@@ -6,22 +6,20 @@
 
 .myText {
     text-length: 30;
+    
 }
-#shadowText #highlight {
+#myLabel #highlight {
     text-anchor: middle;
     x: -1;
     y: -1;
 }
-#shadowText #shadow {
+#myLabel #shadow {
     fill: red;
     x: 1;
     y: 1;
 }
-#shadowText #main {
+#myLabel #main {
     fill: #1eff00;
     x:0;
     y:0;
-}
-#shadowText {
-    text-anchor: middle;
 }
