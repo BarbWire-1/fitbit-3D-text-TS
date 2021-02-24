@@ -1,9 +1,11 @@
-//@ts-nocheck
+
 export interface ShadowTextWidget extends TextElement {
   text: string;
+  letterSpacing: number;
+  textAnchor: "start"|"middle"|"end";
   redraw(): void;
 }
-
+//@ts-ignore
 const construct: ShadowTextWidget = (el: TextElement) => {
       
   const textEl = el.getElementById('text') as TextElement;

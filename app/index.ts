@@ -13,7 +13,7 @@ myLabel.letterSpacing = 20;
 const update = () => {
   myLabel.text = `steps ${today.adjusted.steps}`;
   myLabel2.text = `cals ${today.adjusted.calories}`;
-  myLabel2.textAnchor = "middle";
+  myLabel.textAnchor = "middle";  //TODO check different settings for text-anchor/letter-spacing. Now preset in widget index.view to avoid error if undefined
 }
 setInterval(update, 1000);
 console.log(myLabel.text)

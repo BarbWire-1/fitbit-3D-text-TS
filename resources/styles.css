@@ -4,10 +4,7 @@
     fill:black;
 }
 
-#myLabel .myText {   
-    text-anchor: middle;
-    letter-spacing: 3;
-}
+
 
 #myLabel #highlight {
     fill: white;   
