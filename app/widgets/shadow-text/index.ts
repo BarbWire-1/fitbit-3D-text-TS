@@ -37,11 +37,11 @@ el.getElementsByClassName("myText").forEach(e => {
 // individual settings for all 3 textElements, later per set? class? inline?
 // offset on x,y
 mainEl.x = 0; // takes x from use
-//highlight.x = - 1; // offset to main
+highlightEl.x = - 1; // offset to main
 shadowEl.x =  2; // offset to main
 
 mainEl.y = 0;
-//highlight.y = - 1;
+highlightEl.y = - 1;
 shadowEl.y =  2;
 
 // fill
