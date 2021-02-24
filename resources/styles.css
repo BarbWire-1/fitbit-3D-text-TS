@@ -19,8 +19,9 @@
 #myLabel #shadow {
     text-anchor: middle;
     fill: red;
-    x: 1;
-    y: 1;
+    x: 3;
+    y: 3;
+    opacity: 0.6;
 }
 #myLabel #main {
     text-anchor: middle;
@@ -36,13 +37,15 @@
 }
 #myLabel2 #shadow {
     text-anchor: middle;
-    fill: #1f0a7c;
-    x: 1;
-    y: 1;
+    fill: #7356f5;
+    x: 3;
+    y:3;
+    opacity: 0.5;
 }
 #myLabel2 #main {
     text-anchor: middle;
     fill: #0af5ce;
     x:0;
     y:0;
+   
 }
