@@ -1,0 +1,21 @@
+<svg>
+    <rect id="background" />
+
+    <defs>
+        <symbol id="textShadow">
+            <text id="text" class="myText" opacity="0">Text</text>
+            <text  id="highlight" class="myText">Text</text>
+            <text id="shadow" class="myText">Text</text>
+            <text id="main" class="myText">Text</text>
+        </symbol>
+      
+    </defs>
+
+    <use href="#textShadow">
+        <set href="main" attributeName="fill" to="orange"/>
+        <set href="highlight" attributeName="fill"  to="white"/>
+        <set href="shadow" attributeName="fill"  to="red"/>
+    </use>
+
+
+</svg>
