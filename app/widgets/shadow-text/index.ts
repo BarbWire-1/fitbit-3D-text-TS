@@ -26,7 +26,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
     el.getElementsByClassName("myText").forEach(e => {
        
       (e as TextElement).text = textEl.text ?? ""; 
-      (e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // No idea why, but works on #mylabel .myText in CSS
+      (e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // works on #mylabel .myText in CSS or <set> on text/ ERROR IF UNDEFINED!!!
       (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
     });
   };
