@@ -13,7 +13,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
 
-textEl.textAnchor = "middle";
+//textEl.textAnchor = "middle";
 
 
 Object.defineProperty(el, 'text', {
@@ -28,8 +28,8 @@ Object.defineProperty(el, 'text', {
   //const initialiseText = () => {
     // now applied per class
     el.getElementsByClassName("myText").forEach(e => {
-      (e as TextElement).text = textEl.text ?? "TEXT"; 
-      (e as TextElement).textAnchor = textEl.textAnchor ?? "start";
+      (e as TextElement).text = textEl.text ?? ""; 
+      //(e as TextElement).textAnchor = textEl.textAnchor ?? "start";
     
     });
   };
@@ -37,7 +37,7 @@ Object.defineProperty(el, 'text', {
 // individual settings for all 3 textElements, later per set? class? inline?
 // offset on x,y 
 // currently not working in css/svg - without probs in NON-WIDGET // need to define Properties?
-
+/*
 mainEl.x = mainEl.x ?? 0; // takes x from use
 highlightEl.x = highlightEl.x ?? - 1; // offset to main
 shadowEl.x = shadowEl.x ?? 2; // offset to main
@@ -50,7 +50,7 @@ shadowEl.y =  shadowEl.y ?? 2;
 mainEl.style.opacity = mainEl.style.opacity ?? 1; // individual opacity
 highlightEl.style.opacity = highlightEl.style.opacity ?? 0.9;
 shadowEl.style.opacity = shadowEl.style.opacity ?? 0.6;
-
+*/
   (el as ShadowTextWidget).redraw();
      return el as ShadowTextWidget;
  

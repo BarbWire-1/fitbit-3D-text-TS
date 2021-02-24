@@ -6,20 +6,26 @@
 
 .myText {
     text-length: 30;
-    
+    text-anchor: middle;
+}
+#myLabel {
+    text-anchor: middle;
 }
 #myLabel #highlight {
+    fill: white;
     text-anchor: middle;
     x: -1;
     y: -1;
 }
 #myLabel #shadow {
+    text-anchor: middle;
     fill: red;
     x: 1;
     y: 1;
 }
 #myLabel #main {
-    fill: #1eff00;
+    text-anchor: middle;
+    fill: orange;
     x:0;
     y:0;
 }
