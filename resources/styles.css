@@ -7,7 +7,7 @@
 #myLabel .myText {
     text-length: 30;
     text-anchor: middle;
-    letter-spacing: 0;
+    letter-spacing: 5;
 }
 
 #myLabel #highlight {
