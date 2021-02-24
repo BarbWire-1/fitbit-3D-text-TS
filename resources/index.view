@@ -17,5 +17,6 @@
         <set href="shadow" attributeName="fill"  to="red"/>
     </use>
 
+    <use id="myLabel" href="#shadowText" />
 
 </svg>
