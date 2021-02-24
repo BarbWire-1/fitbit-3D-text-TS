@@ -4,7 +4,7 @@
 
     <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1"/>
     <use id="myLabel2" href="#shadowText" x="50%-20" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"> 
-        <set href="text" attributeName="letter-spacing" to="2" />
+        <set href="text" attributeName="letter-spacing" to="5" />
         <set href="text" attributeName="text-anchor" to="middle"/>
     </use>
 

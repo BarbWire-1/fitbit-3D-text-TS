@@ -4,7 +4,7 @@
     fill:black;
 }
 
-#myLabel .myText {   
+#myLabel #text {   
     text-anchor: middle;
     letter-spacing: 3;
 }
