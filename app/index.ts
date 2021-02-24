@@ -42,7 +42,7 @@ shadow.style.fill = "red";
 
 // opacity
 main.style.opacity = 1; // individual opacity
-highlight.style.opacity = 0.8;
-shadow.style.opacity = 0.8;
+highlight.style.opacity = 0.9;
+shadow.style.opacity = 0.6;
 
 
