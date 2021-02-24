@@ -1,7 +1,7 @@
 # shadow-text
-single symbol/use for shadow effects on textElements for fitbit OS\
-(going to be widgettised...)
+Widget for shadow-/highlight effects on textElements for fitbit OS\
+(instruction and usage doco will follow soon...)
 
-!<div align="center">![image](image1.png)</div>
+!<div align="center">![image](image2.png)</div>
 
 
