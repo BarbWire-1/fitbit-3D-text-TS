@@ -11,7 +11,7 @@
       
     </defs>
 
-    <use href="#textShadow">
+    <use href="#textShadow" x="168" y="168">
         <set href="main" attributeName="fill" to="orange"/>
         <set href="highlight" attributeName="fill"  to="white"/>
         <set href="shadow" attributeName="fill"  to="red"/>
