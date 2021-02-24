@@ -4,9 +4,10 @@
     fill:black;
 }
 
-.myText {
+#myLabel .myText {
     text-length: 30;
     text-anchor: middle;
+    letter-spacing: 0;
 }
 #myLabel {
     text-anchor: middle;
