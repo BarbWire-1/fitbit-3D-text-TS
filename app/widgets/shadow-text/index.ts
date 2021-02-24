@@ -36,7 +36,7 @@ Object.defineProperty(el, 'text', {
 
 // individual settings for all 3 textElements, later per set? class? inline?
 // offset on x,y 
-// currently not working in css/svg - without probs in NON-WIDGET
+// currently not working in css/svg - without probs in NON-WIDGET // need to define Properties?
 
 mainEl.x = mainEl.x ?? 0; // takes x from use
 highlightEl.x = highlightEl.x ?? - 1; // offset to main
