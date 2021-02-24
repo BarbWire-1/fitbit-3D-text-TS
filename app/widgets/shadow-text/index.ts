@@ -21,10 +21,13 @@ const construct: ShadowTextWidget = (el: TextElement) => {
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  (el as CurvedTextWidget).redraw = () => { 
+ 
+  (el as ShadowTextWidget).redraw = () => { 
     el.getElementsByClassName("myText").forEach(e => {
+       
       (e as TextElement).text = textEl.text ?? ""; 
-      //(e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // No idea why, but works on #mylabel .myText in CSS
+      (e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // No idea why, but works on #mylabel .myText in CSS
+      (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
     });
   };
 
