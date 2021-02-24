@@ -11,8 +11,8 @@ let main = document.getElementById("main") as TextElement;
 text.text = "shadow-text";
 text.style.fontFamily = "Barlow-Bold";
 text.style.fontSize = 45;
-text.textAnchor = "middle"  ?? "start";
-text.letterSpacing = 0 ?? 0;
+text.textAnchor = "middle";
+text.letterSpacing = 0;
 
 // now applied per class
 document.getElementsByClassName("myText").forEach(e => {
