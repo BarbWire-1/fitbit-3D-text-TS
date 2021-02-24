@@ -1,0 +1,9 @@
+<defs>
+        <symbol id="shadowText" type="shadowText">
+            <text id="text" class="myText" opacity="0">Text</text>  <!--element inherits text/text-props - hopefully :)-->
+            <text  id="highlight" class="myText" >Text</text>
+            <text id="shadow" class="myText">Text</text>
+            <text id="main" class="myText" >Text</text>
+        </symbol>
+      
+    </defs>

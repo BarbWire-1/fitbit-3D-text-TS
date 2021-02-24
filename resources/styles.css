@@ -4,10 +4,48 @@
     fill:black;
 }
 
-.myText {
+#myLabel .myText {
     text-length: 30;
+    text-anchor: middle;
+    letter-spacing: 0;
 }
-#textShadow #highlight {
+
+#myLabel #highlight {
+    fill: white;
+    text-anchor: middle;
     x: -1;
     y: -1;
+}
+#myLabel #shadow {
+    text-anchor: middle;
+    fill: red;
+    x: 3;
+    y: 3;
+    opacity: 0.6;
+}
+#myLabel #main {
+    text-anchor: middle;
+    fill: orange;
+    x:0;
+    y:0;
+}
+#myLabel2 #highlight {
+    fill: white;
+    text-anchor: middle;
+    x: -1;
+    y: -1;
+}
+#myLabel2 #shadow {
+    text-anchor: middle;
+    fill: #7356f5;
+    x: 3;
+    y:3;
+    opacity: 0.5;
+}
+#myLabel2 #main {
+    text-anchor: middle;
+    fill: #0af5ce;
+    x:0;
+    y:0;
+   
 }
