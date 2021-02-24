@@ -8,6 +8,7 @@ widgetFactory(shadowText);
 
 let myLabel = document.getElementById('myLabel') as ShadowTextWidget;
 myLabel.text = "test-text";
+console.log(myLabel.text)
 
 let text = document.getElementById("text") as TextElement;              // not displayed, evtl inherit text/props from here
 let shadow = document.getElementById("shadow") as TextElement;          // in CSS reachable as #textShadow #shadow
@@ -15,7 +16,7 @@ let highlight = document.getElementById("highlight") as TextElement;    // in CS
 let main = document.getElementById("main") as TextElement;              // in CSS reachable as #textShadow #main
 
 
-
+/*
 // settings text-props : evtl inherit by props on use?
 text.text = "shadow-text";
 text.style.fontFamily = "Barlow-Bold";
@@ -54,4 +55,4 @@ main.style.opacity = 1; // individual opacity
 highlight.style.opacity = 0.9;
 shadow.style.opacity = 0.6;
 
-
+*/

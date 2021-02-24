@@ -7,7 +7,18 @@
 .myText {
     text-length: 30;
 }
-#textShadow #highlight {
+#shadowText #highlight {
+    fill: white;
     x: -1;
     y: -1;
+}
+#shadowText #shadow {
+    fill: red;
+    x: 1;
+    y: 1;
+}
+#shadowText #main {
+    fill: orange;
+    x:0;
+    y:0;
 }
