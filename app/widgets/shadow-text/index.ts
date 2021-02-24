@@ -13,9 +13,6 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
 
-//textEl.textAnchor = "middle";
-
-
 Object.defineProperty(el, 'text', {
     set: function(newValue) {
       textEl.text = newValue;
@@ -25,32 +22,15 @@ Object.defineProperty(el, 'text', {
 // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
 (el as CurvedTextWidget).redraw = () => {
-  //const initialiseText = () => {
-    // now applied per class
+ 
     el.getElementsByClassName("myText").forEach(e => {
       (e as TextElement).text = textEl.text ?? ""; 
-      //(e as TextElement).textAnchor = textEl.textAnchor ?? "start";
+      //(e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // No idea why, but works on #mylabel .myText in CSS
     
     });
   };
 
-// individual settings for all 3 textElements, later per set? class? inline?
-// offset on x,y 
-// currently not working in css/svg - without probs in NON-WIDGET // need to define Properties?
-/*
-mainEl.x = mainEl.x ?? 0; // takes x from use
-highlightEl.x = highlightEl.x ?? - 1; // offset to main
-shadowEl.x = shadowEl.x ?? 2; // offset to main
 
-mainEl.y = mainEl.y ?? 0;
-highlightEl.y = highlightEl.y ?? - 1;
-shadowEl.y =  shadowEl.y ?? 2;
-
-// opacity
-mainEl.style.opacity = mainEl.style.opacity ?? 1; // individual opacity
-highlightEl.style.opacity = highlightEl.style.opacity ?? 0.9;
-shadowEl.style.opacity = shadowEl.style.opacity ?? 0.6;
-*/
   (el as ShadowTextWidget).redraw();
      return el as ShadowTextWidget;
  

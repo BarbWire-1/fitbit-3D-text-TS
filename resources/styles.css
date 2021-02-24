@@ -9,9 +9,7 @@
     text-anchor: middle;
     letter-spacing: 0;
 }
-#myLabel {
-    text-anchor: middle;
-}
+
 #myLabel #highlight {
     fill: white;
     text-anchor: middle;
@@ -27,6 +25,24 @@
 #myLabel #main {
     text-anchor: middle;
     fill: orange;
+    x:0;
+    y:0;
+}
+#myLabel2 #highlight {
+    fill: white;
+    text-anchor: middle;
+    x: -1;
+    y: -1;
+}
+#myLabel2 #shadow {
+    text-anchor: middle;
+    fill: #1f0a7c;
+    x: 1;
+    y: 1;
+}
+#myLabel2 #main {
+    text-anchor: middle;
+    fill: #0af5ce;
     x:0;
     y:0;
 }

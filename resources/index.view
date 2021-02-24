@@ -2,7 +2,9 @@
     <rect id="background" />
 
 
-    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1">
-      
-    </use>
+    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1"/>
+    <use id="myLabel2" href="#shadowText" x="50%" y="50%+100" font-family="Barlow-Bold" font-size="30" opacity="1"/> 
+     
+
+ 
 </svg>

@@ -7,9 +7,12 @@ import { shadowText, ShadowTextWidget } from './widgets/shadow-text';
 widgetFactory(shadowText);
 
 let myLabel = document.getElementById('myLabel') as ShadowTextWidget;
+let myLabel2 = document.getElementById('myLabel2') as ShadowTextWidget;
 
-const steps = () => {
-  myLabel.text = String(today.adjusted.steps);
+
+const update = () => {
+  myLabel.text = `steps ${today.adjusted.steps}`;
+  myLabel2.text = `cals ${today.adjusted.calories}`;
 }
-setInterval(steps, 1000);
+setInterval(update, 1000);
 console.log(myLabel.text)
