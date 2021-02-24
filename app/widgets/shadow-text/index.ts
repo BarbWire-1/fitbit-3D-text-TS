@@ -1,6 +1,8 @@
 
 export interface ShadowTextWidget extends TextElement {
   text: string;
+  letterSpacing: number;
+  textAnchor: "start"|"middle"|"end";
   redraw(): void;
 }
 //@ts-ignore
