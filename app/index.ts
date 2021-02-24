@@ -7,6 +7,7 @@ import { shadowText, ShadowTextWidget } from './widgets/shadow-text';
 widgetFactory(shadowText);
 
 let myLabel = document.getElementById('myLabel') as ShadowTextWidget;
+myLabel.text = "test-text";
 
 let text = document.getElementById("text") as TextElement;              // not displayed, evtl inherit text/props from here
 let shadow = document.getElementById("shadow") as TextElement;          // in CSS reachable as #textShadow #shadow

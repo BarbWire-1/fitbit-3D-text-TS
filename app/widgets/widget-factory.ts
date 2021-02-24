@@ -1,4 +1,3 @@
-//@ts-nocheck
 // Widget factory
 // This module attempts to make widget usage seem more 'normal'; ie, similar to a built-in element or component.
 

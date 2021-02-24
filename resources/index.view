@@ -3,10 +3,10 @@
 
     <defs>
         <symbol id="textShadow">
-            <text id="text" class="myText" opacity="0">Text</text>
-            <text  id="highlight" class="myText">Text</text>
-            <text id="shadow" class="myText">Text</text>
-            <text id="main" class="myText">Text</text>
+            <text id="text" class="myTextI" opacity="0">Text</text>
+            <text  id="highlight" class="myTextI">Text</text>
+            <text id="shadow" class="myTextI">Text</text>
+            <text id="main" class="myTextI">Text</text>
         </symbol>
       
     </defs>
