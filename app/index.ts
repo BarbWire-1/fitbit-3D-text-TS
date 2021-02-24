@@ -13,6 +13,7 @@ let myLabel2 = document.getElementById('myLabel2') as ShadowTextWidget;
 const update = () => {
   myLabel.text = `steps ${today.adjusted.steps}`;
   myLabel2.text = `cals ${today.adjusted.calories}`;
+  myLabel2.textAnchor = "middle";
 }
 setInterval(update, 1000);
 console.log(myLabel.text)

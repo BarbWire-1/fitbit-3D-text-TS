@@ -4,10 +4,9 @@
     fill:black;
 }
 
-#myLabel .myText {
-    text-length: 30;
+#myLabel .myText {   
     text-anchor: middle;
-    letter-spacing: 5;
+    letter-spacing: 3;
 }
 
 #myLabel #highlight {
@@ -28,19 +27,22 @@
 }
 #myLabel2 #highlight {
     fill: white;   
-    x: -1;
+    x: 1;
     y: -1;
 }
 #myLabel2 #shadow { 
     fill: #7356f5;
-    x: 3;
+    x: -3;
     y:3;
-    opacity: 0.5;
+    opacity: 0.7;
 }
-#myLabel2 #main {
-  
+#myLabel2 #main {  
     fill: #0af5ce;
     x:0;
     y:0;
    
+}
+#myLabel2 .myText {   
+    text-anchor: start;
+    letter-spacing:0;
 }
