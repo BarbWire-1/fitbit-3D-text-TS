@@ -2,8 +2,8 @@
     <rect id="background" />
 
 
-    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold">
-        <set href="highlight" attributeName="x" to="-1" />
-        <set href="highlight" attributeName="y" to="-1" />
+    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" >
+        <set href="highlight" attributeName="fill" to="white" />
+        <set href="highlight" attributeName="y" to="-10" />
     </use>
 </svg>

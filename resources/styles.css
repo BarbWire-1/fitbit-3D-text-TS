@@ -8,7 +8,7 @@
     text-length: 30;
 }
 #shadowText #highlight {
-    fill: white;
+   
     x: -1;
     y: -1;
 }
@@ -18,7 +18,7 @@
     y: 1;
 }
 #shadowText #main {
-    fill: orange;
+    fill: #1eff00;
     x:0;
     y:0;
 }

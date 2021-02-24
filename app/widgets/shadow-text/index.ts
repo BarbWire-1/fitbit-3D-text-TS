@@ -1,7 +1,7 @@
 //@ts-nocheck
 export interface ShadowTextWidget extends GraphicsElement {
   text: string;
-  //startAngle: Number;
+  textAnchor: string;
   //anchorAngle: Number;
   redraw(): void;
 }
@@ -24,11 +24,11 @@ const construct: ShadowTextWidget = (el: GraphicsElement) => {
   
 
 //settings text-props : evtl inherit by props on use?
-textEl.text = "shadow-text";
-textEl.style.fontFamily = "Barlow-Bold";
-textEl.style.fontSize = 45;
+//textEl.text = "shadow-text";
+//textEl.style.fontFamily = "Barlow-Bold";
+//textEl.style.fontSize = 45;
 textEl.textAnchor = "middle";
-textEl.letterSpacing = 0;
+//textEl.letterSpacing = 0;
 
 Object.defineProperty(el, 'text', {
     set: function(newValue) {
@@ -44,11 +44,11 @@ Object.defineProperty(el, 'text', {
     el.getElementsByClassName("myText").forEach(e => {
       (e as TextElement).text = textEl.text ?? "TEXT";
       //props
-      (e as TextElement).style.fontFamily = textEl.style.fontFamily ?? "System-Regular";
-      (e as TextElement).style.fontSize = textEl.style.fontSize ?? 30;
-      console.log(`textEl.style.fontSize: ${textEl.style.fontSize}`);
+      //(e as TextElement).style.fontFamily = textEl.style.fontFamily ?? "System-Regular";
+      //(e as TextElement).style.fontSize = textEl.style.fontSize ?? 30;
+      //console.log(`textEl.style.fontSize: ${textEl.style.fontSize}`);
       (e as TextElement).textAnchor = textEl.textAnchor ?? "start";
-      (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
+      //(e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
     });
   };
 //INITIALISE FIX TEXT RELATIONS    
@@ -64,23 +64,25 @@ Object.defineProperty(el, 'text', {
 */
 // individual settings for all 3 textElements, later per set? class? inline?
 // offset on x,y
+
 mainEl.x = mainEl.x ?? 0; // takes x from use
 highlightEl.x = highlightEl.x ?? - 1; // offset to main
-shadowEl.x =  2; // offset to main
+shadowEl.x = shadowEl.x ?? 2; // offset to main
 
-mainEl.y = 0;
-highlightEl.y = - 1;
-shadowEl.y =  2;
+mainEl.y = mainEl.y ?? 0;
+highlightEl.y = highlightEl.y ?? - 1;
+shadowEl.y =  shadowEl.y ?? 2;
 
+/*
 // fill
-mainEl.style.fill = "orange";
-highlightEl.style.fill = "white";
-shadowEl.style.fill = "red";
-
+mainEl.style.fill = mainEl.style.fill ?? "orange";
+highlightEl.style.fill = highlightEl.style.fill ?? "white";
+shadowEl.style.fill = shadowEl.style.fill ?? "red";
+*/
 // opacity
-mainEl.style.opacity = 1; // individual opacity
-highlightEl.style.opacity = 0.9;
-shadowEl.style.opacity = 0.6;
+mainEl.style.opacity = mainEl.style.opacity ?? 1; // individual opacity
+highlightEl.style.opacity = highlightEl.style.opacity ?? 0.9;
+shadowEl.style.opacity = shadowEl.style.opacity ?? 0.6;
 
   (el as ShadowTextWidget).redraw();
      return el as ShadowTextWidget;
