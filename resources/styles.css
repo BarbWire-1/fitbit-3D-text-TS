@@ -7,3 +7,7 @@
 .myText {
     text-length: 30;
 }
+#textShadow #highlight {
+    x: -1;
+    y: -1;
+}
