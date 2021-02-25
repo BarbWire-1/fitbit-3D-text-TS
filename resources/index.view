@@ -2,12 +2,19 @@
     <rect id="background" />
 
 
-    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1">
-        <set href="text" attributeName="letter-spacing" to="2" />  <!--letterSpacing and textAnchor need a <set> on href#text, which is a placeholder, that inherits text and props-->
-        <!--set href="text" attributeName="text-anchor" to="middle"/--> <!-- or can be changed in js/ts as myLabel.textAnchor or can be set in CSS-->
+    <use id="stepsLabel" href="#shadowText" x="30" y="50%-50" font-family="Barlow-Bold" font-size="45" opacity="1" display="inline">
+        <set href="text" attributeName="letter-spacing" to="1"/>
+        <set href="text" attributeName="text-anchor" to="start"/> 
+        <set href="text" attributeName="text-length" to="20"/> 
+        <set href="text" attributeName="text-buffer" to="steps 00000"/> <!--letterSpacing and textAnchor need a <set> on href#text, which is a placeholder, that inherits text and props-->
     </use>
-    <use id="myLabel2" href="#shadowText" x="50%" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"> 
-        <!--set href="text" attributeName="letter-spacing" to="0"/-->
-        <!--set href="text" attributeName="text-anchor" to="end"/-->
+
+    <use id="calsLabel" href="#shadowText" x="100%-200" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"/>     
+
+    <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1">
+        <set href="text" attributeName="letter-spacing" to="2"/>
+        <set href="text" attributeName="text-anchor" to="middle"/> 
     </use>
+
+
 </svg>
