@@ -32,7 +32,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const highlightEl = el.getElementById('highlight') as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
-  mainEl.x = mainEl.y = 0;
+  
 
   
   // PRIVATE FUNCTIONS
@@ -42,7 +42,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
     el.getElementsByClassName("myText").forEach(e => {
       
       (e as TextElement).text = textEl.text ?? ""; 
-      (e as TextElement).textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor;
+      (e as TextElement).textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
       (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
     });
   };
