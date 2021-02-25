@@ -40,9 +40,9 @@ const construct: ShadowTextWidget = (el: TextElement) => {
  
   (el as ShadowTextWidget).redraw = () => { 
     el.getElementsByClassName("myText").forEach(e => {
-       
+      
       (e as TextElement).text = textEl.text ?? ""; 
-      (e as TextElement).textAnchor = textEl.textAnchor ?? "start"; // works on #mylabel .myText in CSS or <set> on text/ ERROR IF UNDEFINED!!!
+      (e as TextElement).textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor;
       (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
     });
   };
