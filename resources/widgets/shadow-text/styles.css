@@ -3,18 +3,18 @@
     text-anchor: start; /*for all textElements - evtl. adjust to your needs?*/
 }
 
-#main {
+.main {
     fill: orange;
     x: 0;
     y:0;
 }
-#highlight {
+.highlight {
     fill: white;
     opacity: 1;
     x:-1;
     y: -1;
 }
-#shadow {
+.shadow {
     fill: red;
     opacity: 0.6;
     x: 3;

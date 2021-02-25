@@ -43,3 +43,5 @@ let test = stepsLabel;
 //  (e as TextElement).style.fill = "yellow"
   
 //});
+console.log(JSON.stringify(test.children))
+
