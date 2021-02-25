@@ -6,40 +6,24 @@
 
 
 
-#myLabel #highlight {
-    fill: white;   
+
+.highlight {
     x: -1;
-    y: -1;
+    y: 1;
+    fill: white;
 }
-#myLabel #shadow {  
+.shadow {
+    x: 2;
+    y: -2;
     fill: red;
-    x: 3;
-    y: 3;
-    opacity: 0.6;
-}
-#myLabel #main {  
-    fill: orange;
-    x:0;
-    y:0;
-}
-#myLabel2 #highlight {
-    fill: white;   
-    x: 1;
-    y: -1;
-}
-#myLabel2 #shadow { 
-    fill: #7356f5;
-    x: -3;
-    y:3;
     opacity: 0.7;
 }
-#myLabel2 #main {  
-    fill: #0af5ce;
-    x:0;
-    y:0;
+
+.main {
+    fill: orange;
+    x: 0;
+    y: 0;
+    
    
-}
-#myLabel2 .myText {   
-    text-anchor: start;
-    letter-spacing:0;
+
 }

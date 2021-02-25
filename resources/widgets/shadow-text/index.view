@@ -1,9 +1,9 @@
 <defs>
         <symbol id="shadowText" type="shadowText">
             <text id="text" class="myText" letter-spacing="0" text-anchor="start" display="none"/>  <!--element inherits text/text-props - hopefully :)-->
-            <text  id="highlight" class="myText"/>
-            <text id="shadow" class="myText"/>
-            <text id="main" class="myText"/>
+            <text  id="highlight" class="myText highlight"/>
+            <text id="shadow" class="myText shadow"/>
+            <text id="main" class="myText main"/>
         </symbol>
       
     </defs>
