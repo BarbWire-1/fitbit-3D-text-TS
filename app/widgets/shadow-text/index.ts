@@ -32,7 +32,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const highlightEl = el.getElementById('highlight') as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
-
+  mainEl.x = mainEl.y = 0;
 
   
   // PRIVATE FUNCTIONS
