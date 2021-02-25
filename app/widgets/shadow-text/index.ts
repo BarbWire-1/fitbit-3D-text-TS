@@ -1,6 +1,8 @@
 
 export interface ShadowTextWidget extends TextElement {
   text: string;
+  textAnchor: "start" | "middle" | "end";
+  letterSpacing: number;
   redraw(): void; 
 
 }
@@ -9,7 +11,8 @@ const construct: ShadowTextWidget = (el: TextElement) => {
 
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
-        textEl.text = newValue;
+      textEl.text = newValue;
+      
         (el as ShadowTextWidget).redraw();
       }
   });
@@ -27,6 +30,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
       (el as ShadowTextWidget).redraw();
     }
   });
+
     
   const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight') as TextElement;
@@ -34,7 +38,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const mainEl = el.getElementById('main') as TextElement;
   
 
-  
+  mainEl.x = mainEl.y = 0;
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
  

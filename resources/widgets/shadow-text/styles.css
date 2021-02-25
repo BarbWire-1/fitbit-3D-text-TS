@@ -3,20 +3,3 @@
     text-anchor: start; /*for all textElements - evtl. adjust to your needs?*/
 }
 
-.main {
-    fill: orange;
-    x: 0;
-    y:0;
-}
-.highlight {
-    fill: white;
-    opacity: 1;
-    x:-1;
-    y: -1;
-}
-.shadow {
-    fill: red;
-    opacity: 0.6;
-    x: 3;
-    y: 3;
-}
