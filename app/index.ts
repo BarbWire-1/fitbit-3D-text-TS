@@ -46,3 +46,8 @@ let test = stepsLabel;
 console.log(JSON.stringify(test.children))
 console.log(JSON.stringify(document.getElementsByClassName("highlight")));
 console.log(JSON.stringify(document.getElementsByTypeName("shadowText")));
+//(test.getElementById("highlight") as ShadowTextWidget).style.fill = "red"
+
+stepsLabel.shadowFill = "blue";
+stepsLabel.highlightFill = "yellow";
+stepsLabel.mainFill = "limegreen"

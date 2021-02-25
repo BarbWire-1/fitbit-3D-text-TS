@@ -3,6 +3,9 @@ export interface ShadowTextWidget extends TextElement {
   text: string;
   textAnchor: "start" | "middle" | "end";
   letterSpacing: number;
+  shadowFill: string;
+  highlightFill: string;
+  mainFill: string;
   redraw(): void; 
 
 }
@@ -12,8 +15,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
       textEl.text = newValue;
-      
-        (el as ShadowTextWidget).redraw();
+      (el as ShadowTextWidget).redraw();
       }
   });
   
@@ -30,7 +32,28 @@ const construct: ShadowTextWidget = (el: TextElement) => {
       (el as ShadowTextWidget).redraw();
     }
   });
-
+  
+  Object.defineProperty(el, 'shadowFill', {
+    set: function (newValue) {
+      
+      shadowEl.style.fill = newValue;
+      (el as ShadowTextWidget).redraw();
+    }
+  });
+  Object.defineProperty(el, 'highlightFill', {
+    set: function (newValue) {
+      
+      highlightEl.style.fill = newValue;
+      (el as ShadowTextWidget).redraw();
+    }
+  });
+   Object.defineProperty(el, 'mainFill', {
+    set: function (newValue) {
+      
+      mainEl.style.fill = newValue;
+      (el as ShadowTextWidget).redraw();
+    }
+  });
     
   const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight') as TextElement;
