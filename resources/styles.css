@@ -6,7 +6,7 @@
 
 
 
-
+/*The following settings get applied to ALL shadowText elements which get not specifically set per ID, as they change the symbol directly*/
 .highlight {
     x: -1;
     y: 1;
@@ -23,7 +23,7 @@
     fill: orange;
     x: 0;
     y: 0;
-    
-   
-
+}
+.layout {
+    text-anchor: middle;
 }
