@@ -1,6 +1,6 @@
 <defs>
         <symbol id="shadowText" type="shadowText">
-            <text id="text" class="myText" opacity="0" letter-spacing="0" text-anchor="start"/>  <!--element inherits text/text-props - hopefully :)-->
+            <text id="text" class="myText" letter-spacing="0" text-anchor="start" display="none"/>  <!--element inherits text/text-props - hopefully :)-->
             <text  id="highlight" class="myText"/>
             <text id="shadow" class="myText"/>
             <text id="main" class="myText"/>
