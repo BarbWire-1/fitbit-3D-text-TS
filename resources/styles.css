@@ -7,8 +7,8 @@
 
 
 /*The following settings get applied to ALL shadowText elements which get not specifically set per ID, as they change the symbol directly*/
-#text {
-    text-length: 15;
+.myText {
+    text-length: 20;
 }
 .highlight {
     x: -1;
