@@ -8,7 +8,8 @@ widgetFactory(shadowText);
 
 let myLabel = document.getElementById('myLabel') as ShadowTextWidget;
 let myLabel2 = document.getElementById('myLabel2') as ShadowTextWidget;
-myLabel.letterSpacing = 20;
+myLabel.letterSpacing = 3;
+
 
 const update = () => {
   myLabel.text = `steps ${today.adjusted.steps}`;

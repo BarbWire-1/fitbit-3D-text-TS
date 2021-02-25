@@ -2,7 +2,7 @@
     <rect id="background" />
 
 
-    <use id="myLabel" href="#shadowText" x="20" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1">
+    <use id="myLabel" href="#shadowText" x="50%" y="50%" font-family="Barlow-Bold" font-size="45" opacity="1">
         <set href="text" attributeName="letter-spacing" to="2" /> <!--TODO overrides preset in shadowText/index.view... next index.ts ???-->
         <set href="text" attributeName="text-anchor" to="start"/>
     </use>

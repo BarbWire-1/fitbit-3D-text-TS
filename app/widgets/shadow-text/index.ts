@@ -4,9 +4,33 @@ export interface ShadowTextWidget extends TextElement {
   letterSpacing: number;
   textAnchor: "start"|"middle"|"end";
   redraw(): void;
+
+  
+
 }
 //@ts-ignore
 const construct: ShadowTextWidget = (el: TextElement) => {
+
+  Object.defineProperty(el, 'text', {
+      set: function(newValue) {
+        textEl.text = newValue;
+        (el as ShadowTextWidget).redraw();
+      }
+  });
+  
+  Object.defineProperty(el, 'textAnchor', {
+    set: function(newValue) {
+      textEl.textAnchor = newValue;
+      (el as ShadowTextWidget).redraw();
+    }
+  });
+  Object.defineProperty(el, 'letterSpacing', {
+    set: function(newValue) {
+      textEl.letterSpacing = newValue;
+      (el as ShadowTextWidget).redraw();
+    }
+  });
+
       
   const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight') as TextElement;
@@ -14,13 +38,7 @@ const construct: ShadowTextWidget = (el: TextElement) => {
   const mainEl = el.getElementById('main') as TextElement;
 
 
-  Object.defineProperty(el, 'text', {
-    set: function(newValue) {
-      textEl.text = newValue;
-      (el as ShadowTextWidget).redraw();
-    }
-  });
-
+  
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
  
