@@ -8,13 +8,13 @@ widgetFactory(shadowText);
 
 let myLabel = document.getElementById('myLabel') as ShadowTextWidget;
 let myLabel2 = document.getElementById('myLabel2') as ShadowTextWidget;
-myLabel.letterSpacing = 3;
+myLabel.letterSpacing = 10;
 
 
 const update = () => {
   myLabel.text = `steps ${today.adjusted.steps}`;
   myLabel2.text = `cals ${today.adjusted.calories}`;
-  myLabel.textAnchor = "middle";  //TODO check different settings for text-anchor/letter-spacing. Now preset in widget index.view to avoid error if undefined
+  myLabel.textAnchor = "end";  //TODO check different settings for text-anchor/letter-spacing. Now preset in widget index.view to avoid error if undefined
 }
 setInterval(update, 1000);
 console.log(myLabel.text)
