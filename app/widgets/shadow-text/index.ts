@@ -1,11 +1,7 @@
 
 export interface ShadowTextWidget extends TextElement {
   text: string;
-  letterSpacing: number;
-  textAnchor: "start"|"middle"|"end";
-  redraw(): void;
-
-  
+  redraw(): void; 
 
 }
 //@ts-ignore
@@ -24,14 +20,14 @@ const construct: ShadowTextWidget = (el: TextElement) => {
       (el as ShadowTextWidget).redraw();
     }
   });
+
   Object.defineProperty(el, 'letterSpacing', {
     set: function(newValue) {
       textEl.letterSpacing = newValue;
       (el as ShadowTextWidget).redraw();
     }
   });
-
-      
+    
   const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight') as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
