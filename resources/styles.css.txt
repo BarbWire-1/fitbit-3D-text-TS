@@ -6,11 +6,32 @@
 
 
 
+/*The following settings get applied to ALL shadowText elements which get not specifically set per ID, as they change the symbol directly*/
+.myText {
+    text-length: 20;
+}
+.highlight {
+    x: -1;
+    y: 1;
+    fill: white;
+}
+.shadow {
+    x: 2;
+    y: -2;
+    fill: red;
+    opacity: 0.7;
+}
+
+.main {
+    fill: orange; 
+}
 
 
 /* to change settings of an indiviual ShadowTextElement differently you can do so using specified selectors like this: */
 /* This setting overrides the setting for ALL classes as it is on #ID .class */
-
+#calsLabel .layout {
+    text-anchor: start;
+}
 
 #countDown #main {
     fill:mediumturquoise;
@@ -22,8 +43,11 @@
     y: 4;
 }
 #countDown #highlight {
-    x: -2;
+    y: -2;
     y: -2;
     opacity: 0.8;
     fill:#f5acda
+}
+#countDown #text {
+    text-anchor: middle;
 }
