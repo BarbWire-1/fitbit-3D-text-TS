@@ -44,4 +44,5 @@ let test = stepsLabel;
   
 //});
 console.log(JSON.stringify(test.children))
-
+console.log(JSON.stringify(document.getElementsByClassName("highlight")));
+console.log(JSON.stringify(document.getElementsByTypeName("shadowText")));
