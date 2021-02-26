@@ -52,6 +52,6 @@ test.mainFill = "limegreen"
 console.log(JSON.stringify(test.children))
 console.log(JSON.stringify(document.getElementsByClassName("highlight")));
 console.log(JSON.stringify(document.getElementsByTypeName("shadowText")));
-(test.getElementById("main") as ShadowTextWidget).style.fill = "red" // working: need document in widget index to reach "main" as child?
+//(test.getElementById("main") as ShadowTextWidget).style.fill = "red" // working: need document in widget index to reach "main" as child?
 
-test.main.style.fill = "white" //not working
+//test.main.style.fill = "white" //not working
