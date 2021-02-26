@@ -24,19 +24,25 @@ const update = setInterval(() => {
 
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 
-let test = stepsLabel;
+let test: ShadowTextWidget = stepsLabel;
 //test.x = 200;
 //test.y = 200;
-//test.textAnchor = "end";
-//testLabel.letterSpacing = 5;
-//test.style.opacity = 0.2;
-//test.style.fontFamily = "Tungsten-Medium";
+//test.textAnchor = "middle";
+test.letterSpacing = 3;
+//test.style.opacity = 0.7;
+test.style.fontFamily = "Tungsten-Medium";
 //test.style.fontSize = 25;
 //test.style.display = "none";
 
 // el.style.fill is NOT applicable on the widget-text directly, as it is composed out of multiple elements!!!
-// (the 3 classes to add fill are 'highlight', 'shadow' and 'main')
-// instead you can manipulate (the fill of) a class like this:
+// (the 3 layers to add fill are 'highlight', 'shadow' and 'main')
+// instead you can manipulate the fill of the layers like this:
+
+test.shadowFill = "blue";
+test.highlightFill = "yellow";
+test.mainFill = "limegreen"
+
+
 
 //let highlights = document.getElementsByClassName("highlight");
 //highlights.forEach(e => {
@@ -48,6 +54,4 @@ console.log(JSON.stringify(document.getElementsByClassName("highlight")));
 console.log(JSON.stringify(document.getElementsByTypeName("shadowText")));
 //(test.getElementById("highlight") as ShadowTextWidget).style.fill = "red"
 
-stepsLabel.shadowFill = "blue";
-stepsLabel.highlightFill = "yellow";
-stepsLabel.mainFill = "limegreen"
+//test.main.style.fill = "white" //not working
