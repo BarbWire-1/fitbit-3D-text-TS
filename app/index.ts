@@ -54,4 +54,4 @@ console.log(JSON.stringify(document.getElementsByClassName("highlight")));
 console.log(JSON.stringify(document.getElementsByTypeName("shadowText")));
 //(test.getElementById("highlight") as ShadowTextWidget).style.fill = "red"
 
-//test.main.style.fill = "white" //not working
+test.main.style.fill = "white" //not working

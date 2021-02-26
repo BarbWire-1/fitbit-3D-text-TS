@@ -6,7 +6,8 @@ export interface ShadowTextWidget extends TextElement {
   shadowFill: string;
   highlightFill: string;
   mainFill: string;
-  main: TextElement;
+  fill: string;            //TEST
+  main: GraphicsElement;   //TEST
   redraw(): void; 
 
 }
@@ -54,19 +55,33 @@ const el: ShadowTextWidget;
       el.redraw();
     }
    });
-   Object.defineProperty(el, 'main', {
-      set: function(newValue) {
-      textEl.mainEl = newValue;
+  
+  // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+ /*
+  Object.defineProperty(el, 'main', {
+    set: function (newValue) { 
+      
+      (textEl.mainEl as GraphicsElement) = newValue;
       el.redraw();
-      }
+    }
   });
+
+   Object.defineProperty(el, 'fill', {
+    set: function (newValue) {    
+       textEl.childrenEl.style.fill = newValue;
+       console.log(JSON.stringify(textEl.childrenEl.style.fill))
+      el.redraw();
+    }
+   });
+  */
+  // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
       
   const textEl = el.getElementById('text');
   const highlightEl = el.getElementById('highlight');
   const shadowEl = el.getElementById('shadow');
-  const mainEl = el.getElementById('main');
+  const mainEl = el.getElementById('main') as GraphicsElement;
   
-
+  
   mainEl.x = mainEl.y = 0;
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
