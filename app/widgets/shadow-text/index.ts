@@ -4,16 +4,15 @@ export interface ShadowTextWidget extends TextElement {
   textAnchor: "start" | "middle" | "end";
   letterSpacing: number;
   shadowFill: string;
-  highlightFill: string;
-  mainFill: string;
-  fill: string;            //TEST
+  lightFill: string;
+  mainFill: string;//TEST
   //main: Styled;   //TEST
   redraw(): void; 
 
 }
 
 
-const construct = (el: { redraw: { (): void; (): void; }; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
+const construct = (el: { redraw: { (): void; (): void; }; style: any; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
 
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
@@ -42,15 +41,17 @@ const construct = (el: { redraw: { (): void; (): void; }; getElementById: (arg0:
       el.redraw();
     }
   });
-  Object.defineProperty(el, 'highlightFill', {
-    set: function (newValue) {     
+  Object.defineProperty(el, 'lightFill', {
+    set: function (newValue) {  
+      
       highlightEl.style.fill = newValue;
       el.redraw();
     }
   });
    Object.defineProperty(el, 'mainFill', {
     set: function (newValue) {    
-      (mainEl.style.fill as unknown as Styled)= newValue;
+       mainEl.style.fill = newValue;
+       console.log(el.getElementById("main").style.fill);
       el.redraw();
     }
    });
@@ -87,7 +88,7 @@ const construct = (el: { redraw: { (): void; (): void; }; getElementById: (arg0:
   
   el.redraw = () => { 
       
-      el.getElementsByClassName("myText").forEach(e => {
+      el.getElementsByClassName("myText").forEach((e: { text: string; textAnchor: string; letterSpacing: number; }) => {
         e.text = textEl.text ?? ""; 
         e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
         e.letterSpacing = textEl.letterSpacing ?? 0;

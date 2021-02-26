@@ -39,7 +39,7 @@ test.style.fontFamily = "Tungsten-Medium";
 // instead you can manipulate the fill of the layers like this:
 
 test.shadowFill = "blue";
-test.highlightFill = "yellow";
+test.lightFill = "yellow";
 test.mainFill = "limegreen";
 
 
