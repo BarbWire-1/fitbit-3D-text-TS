@@ -12,7 +12,7 @@ export interface ShadowTextWidget extends TextElement {
 }
 
 
-const construct = (el: { redraw: { (): void; (): void; }; style: any; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
+const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "mainFill" | "shadowFill"; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
 
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
@@ -38,20 +38,21 @@ const construct = (el: { redraw: { (): void; (): void; }; style: any; getElement
   Object.defineProperty(el, 'shadowFill', {
     set: function (newValue) {     
       (shadowEl.style.fill) = newValue;
+      console.log(`shadow: ${shadowEl.style.fill}`);
       el.redraw();
     }
   });
   Object.defineProperty(el, 'lightFill', {
-    set: function (newValue) {  
-      
+    set: function (newValue) {    
       highlightEl.style.fill = newValue;
+      console.log(`light: ${highlightEl.style.fill}`);
       el.redraw();
     }
   });
    Object.defineProperty(el, 'mainFill', {
     set: function (newValue) {    
        mainEl.style.fill = newValue;
-       console.log(el.getElementById("main").style.fill);
+       console.log(`main: ${mainEl.style.fill}`);
       el.redraw();
     }
    });
