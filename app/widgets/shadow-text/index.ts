@@ -1,81 +1,89 @@
 
 export interface ShadowTextWidget extends TextElement {
-  text: string;
-  textAnchor: "start" | "middle" | "end";
-  letterSpacing: number;
+  //text: string;
+  //textAnchor: "start" | "middle" | "end";
+  //letterSpacing: number;
   shadowFill: string;
   highlightFill: string;
   mainFill: string;
+  main: TextElement;
   redraw(): void; 
 
 }
-//@ts-ignore
-const construct: ShadowTextWidget = (el: TextElement) => {
 
+//@ts-ignore
+const construct: ShadowTextWidget = (el) => {
+//@ts-ignore
+const el: ShadowTextWidget;
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
       textEl.text = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
       }
   });
   
   Object.defineProperty(el, 'textAnchor', {
     set: function(newValue) {
       textEl.textAnchor = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
     }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
     set: function(newValue) {
       textEl.letterSpacing = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
     }
   });
   
   Object.defineProperty(el, 'shadowFill', {
-    set: function (newValue) {
-      
+    set: function (newValue) {     
       shadowEl.style.fill = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
     }
   });
   Object.defineProperty(el, 'highlightFill', {
-    set: function (newValue) {
-      
+    set: function (newValue) {     
       highlightEl.style.fill = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
     }
   });
    Object.defineProperty(el, 'mainFill', {
-    set: function (newValue) {
-      
+    set: function (newValue) {    
       mainEl.style.fill = newValue;
-      (el as ShadowTextWidget).redraw();
+      el.redraw();
     }
+   });
+   Object.defineProperty(el, 'main', {
+      set: function(newValue) {
+      textEl.mainEl = newValue;
+      el.redraw();
+      }
   });
-    
-  const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight') as TextElement;
-  const shadowEl = el.getElementById('shadow') as TextElement;
-  const mainEl = el.getElementById('main') as TextElement;
+      
+  const textEl = el.getElementById('text');
+  const highlightEl = el.getElementById('highlight');
+  const shadowEl = el.getElementById('shadow');
+  const mainEl = el.getElementById('main');
   
 
   mainEl.x = mainEl.y = 0;
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
- 
-  (el as ShadowTextWidget).redraw = () => { 
-    el.getElementsByClassName("myText").forEach(e => {
-      
-      (e as TextElement).text = textEl.text ?? ""; 
-      (e as TextElement).textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
-      (e as TextElement).letterSpacing = textEl.letterSpacing ?? 0;
+  
+  el.redraw = () => { 
+      //@ts-ignore
+      const e: TextElement;
+      el.getElementsByClassName("myText").forEach(e => {
+        e.text = textEl.text ?? ""; 
+        e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
+        e.letterSpacing = textEl.letterSpacing ?? 0;
+
     });
   };
 
-  (el as ShadowTextWidget).redraw();
-  return el as ShadowTextWidget;
+  el.redraw();
+  return el;
  
 }
 
