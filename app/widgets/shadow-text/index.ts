@@ -1,8 +1,8 @@
 
 export interface ShadowTextWidget extends TextElement {
-  //text: string;
-  //textAnchor: "start" | "middle" | "end";
-  //letterSpacing: number;
+  text: string;
+  textAnchor: "start" | "middle" | "end";
+  letterSpacing: number;
   shadowFill: string;
   highlightFill: string;
   mainFill: string;
@@ -12,17 +12,16 @@ export interface ShadowTextWidget extends TextElement {
 
 }
 
-//@ts-ignore
-const construct: ShadowTextWidget = (el) => {
-//@ts-ignore
-const el: ShadowTextWidget;
+
+const construct = (el: { redraw: { (): void; (): void; }; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
+
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
       textEl.text = newValue;
       el.redraw();
       }
   });
-  
+ 
   Object.defineProperty(el, 'textAnchor', {
     set: function(newValue) {
       textEl.textAnchor = newValue;
@@ -76,9 +75,9 @@ const el: ShadowTextWidget;
   */
   // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
       
-  const textEl = el.getElementById('text');
-  const highlightEl = el.getElementById('highlight');
-  const shadowEl = el.getElementById('shadow');
+  const textEl = el.getElementById('text') as TextElement;
+  const highlightEl = el.getElementById('highlight') as GraphicsElement;
+  const shadowEl = el.getElementById('shadow') as GraphicsElement;
   const mainEl = el.getElementById('main') as GraphicsElement;
   
   
@@ -87,8 +86,7 @@ const el: ShadowTextWidget;
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   
   el.redraw = () => { 
-      //@ts-ignore
-      const e: TextElement;
+      
       el.getElementsByClassName("myText").forEach(e => {
         e.text = textEl.text ?? ""; 
         e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
