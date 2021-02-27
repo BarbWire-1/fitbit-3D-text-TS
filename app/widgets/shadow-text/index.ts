@@ -1,7 +1,7 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
-
-  main: ShadowTextWidget;
+  text: string;
+  main: TextElement;
   light: TextElement;
   shadow: TextElement;
 
