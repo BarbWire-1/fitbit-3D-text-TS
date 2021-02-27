@@ -1,6 +1,6 @@
 
-export interface ShadowTextWidget extends TextElement {
-  
+export interface ShadowTextWidget extends GraphicsElement {
+  textAnchor: string;
   main: ShadowTextWidget;
   light: TextElement;
   shadow: TextElement;
@@ -73,7 +73,7 @@ const construct = (el: ShadowTextWidget) => {
       
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
         e.text = mainEl.text ?? ""; 
-        e.textAnchor = mainEl.textAnchor === undefined ? "start" : mainEl.textAnchor; // preset in widget css now?
+        e.textAnchor = mainEl.textAnchor ?? "start"; // preset in widget css now?
         e.letterSpacing = mainEl.letterSpacing ?? 0;
 
     });
