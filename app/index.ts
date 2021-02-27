@@ -50,3 +50,6 @@ test.light.style.fill = "yellow";
 //highlights.forEach(e => {
 //  (e as TextElement).style.fill = "yellow"
 
+test.main.text = "blah" // TODO luckily not redrawn as hardcode, possible to remove this attribute from "main" ?
+test.shadow.x = 5;
+test.shadow.y = 5;

@@ -1,5 +1,5 @@
 
-export interface ShadowTextWidget extends TextElement {
+export interface ShadowTextWidget extends GraphicsElement {
   //text: string;                             // TODO as extending TextElement not necessary to export??? check that. Or as SubElements are defined themselves now?
   //textAnchor: "start" | "middle" | "end";
   //letterSpacing: number;
@@ -43,7 +43,7 @@ const construct = (el: ShadowTextWidget) => {
   }) 
   Object.defineProperty(el, 'shadowFill', {
     set: function (newValue) {     
-      (shadowEl.style.fill) = newValue;
+      el.shadow.style.fill = newValue;
       console.log(`shadow: ${shadowEl.style.fill}`);
       el.redraw();
     }
@@ -55,7 +55,7 @@ const construct = (el: ShadowTextWidget) => {
   })
   Object.defineProperty(el, 'lightFill', {
     set: function (newValue) {    
-      highlightEl.style.fill = newValue;
+      el.light.style.fill = newValue;
       console.log(`light: ${highlightEl.style.fill}`);
       el.redraw();
     }
@@ -68,7 +68,7 @@ const construct = (el: ShadowTextWidget) => {
 
    Object.defineProperty(el, 'mainFill', {
     set: function (newValue) {    
-       mainEl.style.fill = newValue;
+       el.main.style.fill = newValue;
        console.log(`main: ${mainEl.style.fill}`);
       el.redraw();
     }
@@ -77,23 +77,7 @@ const construct = (el: ShadowTextWidget) => {
  
   
   // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
- /*
-  Object.defineProperty(el, 'main', {
-    set: function (newValue) { 
-      
-      el.getElementById("main").style.fill = newValue;
-      el.redraw();
-    }
-  });
-*/
-   Object.defineProperty(el, 'fill', {
-    set: function (newValue) {    
-       (textEl.getElementsByClassName("myText") as unknown as Styled).style.fill = newValue;
-       console.log(JSON.stringify(textEl.getElementsByClassName("myText")))
-      el.redraw();
-    }
-   });
-  
+ 
   // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
       
   const textEl = el.getElementById('text') as TextElement;
