@@ -1,8 +1,8 @@
 
 export interface ShadowTextWidget extends TextElement {
-  text: string;
-  textAnchor: "start" | "middle" | "end";
-  letterSpacing: number;
+  //text: string;                             // as exten
+  //textAnchor: "start" | "middle" | "end";
+  //letterSpacing: number;
   //shadowFill: string;
   //lightFill: string;
   //mainFill: string;//TEST
@@ -14,7 +14,7 @@ export interface ShadowTextWidget extends TextElement {
 }
 
 
-const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "mainFill" | "shadowFill"; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) => {
+const construct = (el) => {
 
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
