@@ -52,9 +52,11 @@ test.light.style.fill = "yellow";
 //  (e as TextElement).style.fill = "yellow"
 
 
-//test.main.text = "blah" // TODO luckily not redrawn as hardcode, possible to remove this attribute from subElement ?
+//test.main.text = "blah" //
 //test.main.textAnchor = "end" // - "same" -
 test.shadow.x = 5;
 test.shadow.y = 5;
 test.textAnchor = "middle";
+console.log(test.shadow.style.fill) //TODO interesting: not logged in widget, but here
+console.log(test.text)              // undefined
 

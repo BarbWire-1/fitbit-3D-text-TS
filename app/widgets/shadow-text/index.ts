@@ -1,5 +1,5 @@
 
-export interface ShadowTextWidget extends GraphicsElement {
+export interface ShadowTextWidget extends TextElement {
   
   main: TextElement;
   light: TextElement;
@@ -10,7 +10,6 @@ export interface ShadowTextWidget extends GraphicsElement {
 const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
-
       set: function (newValue) {
         mainEl.text = newValue;
         el.redraw();
@@ -18,7 +17,6 @@ const construct = (el: ShadowTextWidget) => {
   });
 
   Object.defineProperty(el, 'textAnchor', {
-
       set: function (newValue) {
         mainEl.textAnchor = newValue;
         el.redraw();
@@ -26,37 +24,31 @@ const construct = (el: ShadowTextWidget) => {
   });
 
   Object.defineProperty(el, 'letterSpacing', {
-
       set: function (newValue) {
         mainEl.letterSpacing = newValue;
-        el.redraw();
-      
+        el.redraw();    
       }
   });
 
-  //add subElements and export as TextElement to be able to style as myText.subElement.style.fill / redraw if newValue
+  // add subElements and export as TextElement to be able to style as myText.subElement.style.string
+  // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
   Object.defineProperty(el, 'shadow', {
-
       get: function () { return shadowEl; },
       set: function (newValue) {
         el.shadow.style.fill = newValue;
         el.redraw();
-
       }
   }); 
  
   Object.defineProperty(el, 'light', {
-
       get: function () { return highlightEl; },
       set: function (newValue) {
         el.light.style.fill = newValue;
         el.redraw();
-
       }
   });
 
   Object.defineProperty(el, 'main', {
-
       get: function () { return mainEl; },
       set: function (newValue) {
         el.main.style.fill = newValue;
