@@ -19,10 +19,10 @@
 
     <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1" >
         <set href="main" attributeName="letter-spacing" to="3"/>       <!--this one is working-->
-        <set href="main" attributeName="text-anchor" to="middle"/>      <!--TODO WHY not applied if set here, but working in CSS???-->
-        
-
+        <set href="main" attributeName="text-anchor" to="middle"/>      
     </use>
 
 
 </svg>
+<!--TODO WHY is text-anchor on "main" not applied if set here, but working in CSS???-->
+<!-- as set in widget-css? need to find out, how to avoid "undefined" if not pre-setted-->
