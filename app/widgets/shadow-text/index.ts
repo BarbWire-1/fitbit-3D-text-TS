@@ -1,6 +1,6 @@
 
 export interface ShadowTextWidget extends TextElement {
-  //text: string;                             // as exten
+  //text: string;                             // TODO as extending TextElement not necessary to export??? check that. Or as SubElements are defined themselves now?
   //textAnchor: "start" | "middle" | "end";
   //letterSpacing: number;
   //shadowFill: string;
@@ -14,7 +14,7 @@ export interface ShadowTextWidget extends TextElement {
 }
 
 
-const construct = (el) => {
+const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
       set: function(newValue) {
@@ -108,7 +108,7 @@ const construct = (el) => {
   
   el.redraw = () => { 
       
-      el.getElementsByClassName("myText").forEach((e: { text: string; textAnchor: string; letterSpacing: number; }) => {
+      el.getElementsByClassName("myText").forEach((e: TextElement) => {
         e.text = textEl.text ?? ""; 
         e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
         e.letterSpacing = textEl.letterSpacing ?? 0;
