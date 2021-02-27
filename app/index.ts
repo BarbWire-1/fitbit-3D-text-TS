@@ -58,5 +58,6 @@ test.shadow.x = 5;
 test.shadow.y = 5;
 test.textAnchor = "middle";
 console.log(test.shadow.style.fill) //TODO interesting: not logged in widget, but here
-console.log(test.text)              // undefined
+console.log(test.text)              // undefined log, but applicable here?
+console.log(test.main.text)         // logs text-buffer // TODO change structure somewhere, so it´s loggable as myElement.text?  
 
