@@ -17,13 +17,12 @@
 
     <use id="calsLabel" href="#shadowText" x="100%-200" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"/>     
 
-    <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1">
-        <set href="main" attributeName="letter-spacing" to="2"/>
-        <set href="main" attributeName="text-anchor" to="middle"/> 
+    <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1" >
+        <set href="main" attributeName="letter-spacing" to="3"/>       <!--this one is working-->
+        <set href="main" attributeName="text-anchor" to="middle"/>      <!--TODO WHY not applied if set here, but working in CSS???-->
         
 
     </use>
 
 
 </svg>
-<!--TODO 1 why overrides css widget css, but <set> in SVG don´t???-->

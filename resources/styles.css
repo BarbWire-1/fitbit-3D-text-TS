@@ -3,13 +3,7 @@
     height: 100%;
     fill:black;
 }
-
-
-
-
-
-/* to change settings of an indiviual ShadowTextElement differently you can do so using specified selectors like this: */
-/* This setting overrides the setting for ALL classes as it is on #ID .class */
+/* these settings get applied to the symbols subElements directly, so to ALL ShadowTextWidget- Elements*/
 .highlight {
     fill: white;
     x:-1;
@@ -26,7 +20,10 @@
 }
 #countDown #main {
     fill:mediumturquoise;
+    text-anchor: middle;
 }
+/* to change settings of an indiviual ShadowTextElement differently you can do so using specified selectors like this: */
+/* This setting overrides the setting for ALL classes as it is on #ID .class */
 #countDown #shadow {
     fill:#811ef3;
     opacity: 0.7;
