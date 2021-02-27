@@ -56,4 +56,5 @@ test.light.style.fill = "yellow";
 //test.main.textAnchor = "end" // - "same" -
 test.shadow.x = 5;
 test.shadow.y = 5;
+test.textAnchor = "start";
 

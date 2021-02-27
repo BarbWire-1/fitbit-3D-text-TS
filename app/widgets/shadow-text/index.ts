@@ -4,7 +4,6 @@ export interface ShadowTextWidget extends GraphicsElement {
   main: TextElement;
   light: TextElement;
   shadow: TextElement;
- 
 }
 
 const construct = (el: ShadowTextWidget) => {
@@ -30,25 +29,19 @@ const construct = (el: ShadowTextWidget) => {
     }
   });
 
-
-  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill //TODO could this be written in one function? 
-   Object.defineProperty(el, 'shadow', {
-     get: function () { return shadowEl; }
-  }) 
-  Object.defineProperty(el, 'shadowFill', {
-    set: function (newValue) {     
+  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill 
+  Object.defineProperty(el, 'shadow', {
+    get: function () { return shadowEl; },
+    set: function (newValue) {
       el.shadow.style.fill = newValue;
       console.log(`shadow: ${shadowEl.style.fill}`);
       el.redraw();
     }
-  });
-
-  //add highlight and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
-   Object.defineProperty(el, 'light', {
-    get: function () {return highlightEl;}
-  })
-  Object.defineProperty(el, 'lightFill', {
-    set: function (newValue) {    
+  }); 
+ 
+  Object.defineProperty(el, 'light', {
+    get: function () { return highlightEl; },
+    set: function (newValue) {
       el.light.style.fill = newValue;
       console.log(`light: ${highlightEl.style.fill}`);
       el.redraw();
@@ -57,18 +50,12 @@ const construct = (el: ShadowTextWidget) => {
 
   //add main and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
   Object.defineProperty(el, 'main', {
-    get: function () { return mainEl; }
-  });
-
-   Object.defineProperty(el, 'mainFill', {
-    set: function (newValue) {    
-       el.main.style.fill = newValue;
-       console.log(`main: ${mainEl.style.fill}`);
-      el.redraw();
-    }
-   });
-   
- 
+    get: function () { return mainEl; },
+    set: function (newValue) {
+      el.main.style.fill = newValue;
+      el.redraw(); 
+      }
+    });
   
   // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
  
