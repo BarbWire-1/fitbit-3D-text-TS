@@ -8,6 +8,6 @@
 		"**/*.ts",
 		"**/*.js",
 		"../node_modules/fitbit-sdk-types/types/device",
-		"index.compiled.to", "widgets/shadow-text/index.compiled.to", "index.js", "index.ts.txt"
+		"index.compiled.to", "widgets/shadow-text/index.compiled.to", "index.js.txt", "index.ts"
 	]
 }

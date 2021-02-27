@@ -2,7 +2,7 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import { shadowText,ShadowTextWidget } from './widgets/shadow-text';
+import { shadowText } from './widgets/shadow-text';
 
 widgetFactory(shadowText);
 

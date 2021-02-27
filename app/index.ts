@@ -32,7 +32,7 @@ const update = setInterval(() => {
 
 //test.x = 200;
 //test.y = 200;
-//test.textAnchor = "middle";
+test.main.textAnchor = "end"; //TODO no longer working here on test or test.main. evtl. textEl needed for this???
 test.letterSpacing = 3;
 //test.style.opacity = 0.7;
 test.style.fontFamily = "Tungsten-Medium";
