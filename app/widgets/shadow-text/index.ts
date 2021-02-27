@@ -1,8 +1,9 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
-  //text: string;                             // TODO as extending TextElement not necessary to export??? check that. Or as SubElements are defined themselves now?
+  //text: string;                            
   //textAnchor: "start" | "middle" | "end";
   //letterSpacing: number;
+
   //shadowFill: string;
   //lightFill: string;
   //mainFill: string;//TEST
@@ -10,32 +11,31 @@ export interface ShadowTextWidget extends GraphicsElement {
   light: ShadowTextWidget;
   shadow: ShadowTextWidget;
   redraw(): void; 
-
 }
-
 
 const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
-      set: function(newValue) {
+    set: function (newValue) {
       textEl.text = newValue;
       el.redraw();
-      }
+    }
   });
- 
+
   Object.defineProperty(el, 'textAnchor', {
-    set: function(newValue) {
+    set: function (newValue) {
       textEl.textAnchor = newValue;
       el.redraw();
     }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
-    set: function(newValue) {
+    set: function (newValue) {
       textEl.letterSpacing = newValue;
       el.redraw();
     }
   });
+
 
   //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill //TODO could this be written in one function? 
    Object.defineProperty(el, 'shadow', {
@@ -84,11 +84,12 @@ const construct = (el: ShadowTextWidget) => {
   const highlightEl = el.getElementById('highlight') as GraphicsElement;
   const shadowEl = el.getElementById('shadow') as GraphicsElement;
   const mainEl = el.getElementById('main') as GraphicsElement;
-  
-  
+
+
   mainEl.x = mainEl.y = 0;
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+
   
   el.redraw = () => { 
       
@@ -102,7 +103,7 @@ const construct = (el: ShadowTextWidget) => {
 
   el.redraw();
   return el;
- 
+
 }
 
 export const shadowText = () => {
