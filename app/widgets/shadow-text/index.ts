@@ -37,7 +37,7 @@ const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "
     }
   });
 
-  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill //TODO could this be written in one function? 
    Object.defineProperty(el, 'shadow', {
      get: function () { return shadowEl; }
   }) 
