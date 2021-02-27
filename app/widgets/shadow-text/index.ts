@@ -4,67 +4,72 @@ export interface ShadowTextWidget extends GraphicsElement {
   main: TextElement;
   light: TextElement;
   shadow: TextElement;
+
 }
 
 const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
-    set: function (newValue) {
-      mainEl.text = newValue;
-      el.redraw();
-    }
+
+      set: function (newValue) {
+        mainEl.text = newValue;
+        el.redraw();
+      }
   });
 
   Object.defineProperty(el, 'textAnchor', {
-    set: function (newValue) {
-      mainEl.textAnchor = newValue;
-      el.redraw();
-    }
+
+      set: function (newValue) {
+        mainEl.textAnchor = newValue;
+        el.redraw();
+      }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
-    set: function (newValue) {
-      mainEl.letterSpacing = newValue;
-      el.redraw();
-    }
+
+      set: function (newValue) {
+        mainEl.letterSpacing = newValue;
+        el.redraw();
+      
+      }
   });
 
-  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill 
+  //add subElements and export as TextElement to be able to style as myText.subElement.style.fill / redraw if newValue
   Object.defineProperty(el, 'shadow', {
-    get: function () { return shadowEl; },
-    set: function (newValue) {
-      el.shadow.style.fill = newValue;
-      console.log(`shadow: ${shadowEl.style.fill}`);
-      el.redraw();
-    }
+
+      get: function () { return shadowEl; },
+      set: function (newValue) {
+        el.shadow.style.fill = newValue;
+        el.redraw();
+
+      }
   }); 
  
   Object.defineProperty(el, 'light', {
-    get: function () { return highlightEl; },
-    set: function (newValue) {
-      el.light.style.fill = newValue;
-      console.log(`light: ${highlightEl.style.fill}`);
-      el.redraw();
-    }
+
+      get: function () { return highlightEl; },
+      set: function (newValue) {
+        el.light.style.fill = newValue;
+        el.redraw();
+
+      }
   });
 
-  //add main and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
   Object.defineProperty(el, 'main', {
-    get: function () { return mainEl; },
-    set: function (newValue) {
-      el.main.style.fill = newValue;
-      el.redraw(); 
+
+      get: function () { return mainEl; },
+      set: function (newValue) {
+        el.main.style.fill = newValue;
+        el.redraw(); 
+
       }
-    });
-  
-  // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+  });
  
-  // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
       
   //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight') as GraphicsElement;
-  const shadowEl = el.getElementById('shadow') as GraphicsElement;
-  const mainEl = el.getElementById('main') as GraphicsElement;
+  const highlightEl = el.getElementById('highlight');
+  const shadowEl = el.getElementById('shadow');
+  const mainEl = el.getElementById('main') as TextElement;
 
 
   mainEl.x = mainEl.y = 0;
@@ -84,7 +89,6 @@ const construct = (el: ShadowTextWidget) => {
 
   el.redraw();
   return el;
-
 }
 
 export const shadowText = () => {
