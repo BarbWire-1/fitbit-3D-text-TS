@@ -10,21 +10,21 @@ const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
     set: function (newValue) {
-      textEl.text = newValue;
+      mainEl.text = newValue;
       el.redraw();
     }
   });
 
   Object.defineProperty(el, 'textAnchor', {
     set: function (newValue) {
-      textEl.textAnchor = newValue;
+      mainEl.textAnchor = newValue;
       el.redraw();
     }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
     set: function (newValue) {
-      textEl.letterSpacing = newValue;
+      mainEl.letterSpacing = newValue;
       el.redraw();
     }
   });
@@ -61,7 +61,7 @@ const construct = (el: ShadowTextWidget) => {
  
   // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
       
-  const textEl = el.getElementById('text') as TextElement;
+  //const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight') as GraphicsElement;
   const shadowEl = el.getElementById('shadow') as GraphicsElement;
   const mainEl = el.getElementById('main') as GraphicsElement;
@@ -75,9 +75,9 @@ const construct = (el: ShadowTextWidget) => {
   el.redraw = () => { 
       
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
-        e.text = textEl.text ?? ""; 
-        e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
-        e.letterSpacing = textEl.letterSpacing ?? 0;
+        e.text = mainEl.text ?? ""; 
+        e.textAnchor = mainEl.textAnchor === undefined ? "start" : mainEl.textAnchor; // preset in widget css now?
+        e.letterSpacing = mainEl.letterSpacing ?? 0;
 
     });
   };
