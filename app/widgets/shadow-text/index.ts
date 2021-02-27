@@ -1,6 +1,6 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
-  textAnchor: string;
+
   main: ShadowTextWidget;
   light: TextElement;
   shadow: TextElement;
@@ -8,6 +8,13 @@ export interface ShadowTextWidget extends GraphicsElement {
 }
 
 const construct = (el: ShadowTextWidget) => {
+
+  //const textEl = el.getElementById('text') as TextElement;
+  const highlightEl = el.getElementById('highlight') as ShadowTextWidget;
+  const shadowEl = el.getElementById('shadow') as ShadowTextWidget;
+  const mainEl = el.getElementById('main') as ShadowTextWidget;
+
+   mainEl.x = mainEl.y = 0;
 
   Object.defineProperty(el, 'text', {
       set: function (newValue) {
@@ -58,13 +65,10 @@ const construct = (el: ShadowTextWidget) => {
   });
  
       
-  //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight');
-  const shadowEl = el.getElementById('shadow');
-  const mainEl = el.getElementById('main') as TextElement;
+  
 
 
-  mainEl.x = mainEl.y = 0;
+ 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
 
