@@ -1,16 +1,10 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
-  //text: string;                            
-  //textAnchor: "start" | "middle" | "end";
-  //letterSpacing: number;
-
-  //shadowFill: string;
-  //lightFill: string;
-  //mainFill: string;//TEST
-  main: ShadowTextWidget;   //TEST
-  light: ShadowTextWidget;
-  shadow: ShadowTextWidget;
-  redraw(): void; 
+  
+  main: TextElement;
+  light: TextElement;
+  shadow: TextElement;
+ 
 }
 
 const construct = (el: ShadowTextWidget) => {
