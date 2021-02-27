@@ -18,6 +18,7 @@ const update = setInterval(() => {
   stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
+
   test.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
   test.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
   //console.log(cd)
@@ -51,6 +52,8 @@ test.light.style.fill = "yellow";
 //  (e as TextElement).style.fill = "yellow"
 
 
-test.main.text = "blah" // TODO luckily not redrawn as hardcode, possible to remove this attribute from "main" ?
+//test.main.text = "blah" // TODO luckily not redrawn as hardcode, possible to remove this attribute from subElement ?
+//test.main.textAnchor = "end" // - "same" -
 test.shadow.x = 5;
 test.shadow.y = 5;
+
