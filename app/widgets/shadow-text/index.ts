@@ -3,10 +3,12 @@ export interface ShadowTextWidget extends TextElement {
   text: string;
   textAnchor: "start" | "middle" | "end";
   letterSpacing: number;
-  shadowFill: string;
-  lightFill: string;
-  mainFill: string;//TEST
-  //main: Styled;   //TEST
+  //shadowFill: string;
+  //lightFill: string;
+  //mainFill: string;//TEST
+  main: ShadowTextWidget;   //TEST
+  light: ShadowTextWidget;
+  shadow: ShadowTextWidget;
   redraw(): void; 
 
 }
@@ -34,7 +36,11 @@ const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "
       el.redraw();
     }
   });
-  
+
+  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+   Object.defineProperty(el, 'shadow', {
+     get: function () { return shadowEl; }
+  }) 
   Object.defineProperty(el, 'shadowFill', {
     set: function (newValue) {     
       (shadowEl.style.fill) = newValue;
@@ -42,6 +48,11 @@ const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "
       el.redraw();
     }
   });
+
+  //add highlight and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+   Object.defineProperty(el, 'light', {
+    get: function () {return highlightEl;}
+  })
   Object.defineProperty(el, 'lightFill', {
     set: function (newValue) {    
       highlightEl.style.fill = newValue;
@@ -49,6 +60,12 @@ const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "
       el.redraw();
     }
   });
+
+  //add main and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+  Object.defineProperty(el, 'main', {
+    get: function () { return mainEl; }
+  });
+
    Object.defineProperty(el, 'mainFill', {
     set: function (newValue) {    
        mainEl.style.fill = newValue;
@@ -56,6 +73,8 @@ const construct = (el: { redraw: { (): void; (): void; }; style: "lightFill" | "
       el.redraw();
     }
    });
+   
+ 
   
   // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
  /*

@@ -9,6 +9,8 @@ widgetFactory(shadowText);
 let stepsLabel = document.getElementById('stepsLabel') as ShadowTextWidget;
 let calsLabel = document.getElementById('calsLabel') as ShadowTextWidget;
 let countDown = document.getElementById('countDown') as ShadowTextWidget;
+let test: ShadowTextWidget = stepsLabel;
+
 
 let cd = 100;
 
@@ -16,7 +18,8 @@ const update = setInterval(() => {
   stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
-
+  test.main.style.fill = cd % 2 === 0? "limegreen" : "red";
+  console.log(cd)
   if (cd == 0) {
     cd = 100;
   }
@@ -24,7 +27,7 @@ const update = setInterval(() => {
 
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 
-let test: ShadowTextWidget = stepsLabel;
+
 //test.x = 200;
 //test.y = 200;
 //test.textAnchor = "middle";
@@ -38,9 +41,8 @@ test.style.fontFamily = "Tungsten-Medium";
 // (the 3 layers to add fill are 'highlight', 'shadow' and 'main')
 // instead you can manipulate the fill of the layers like this:
 
-test.shadowFill = "blue";
-test.lightFill = "yellow";
-test.mainFill = "limegreen";
+test.shadow.style.fill = "blue";
+test.light.style.fill = "yellow";
 
 
 //let highlights = document.getElementsByClassName("highlight");
