@@ -1,20 +1,20 @@
 
-export interface ShadowTextWidget extends TextElement {
-  //text: string;
+export interface ShadowTextWidget extends GraphicsElement {
+  //text: string;                            
   //textAnchor: "start" | "middle" | "end";
   //letterSpacing: number;
-  shadowFill: string;
-  highlightFill: string;
-  mainFill: string;
-  //fill: string;            //TEST
-  //main: GraphicsElement;   //TEST
-  //redraw(): void; 
 
+  //shadowFill: string;
+  //lightFill: string;
+  //mainFill: string;//TEST
+  main: ShadowTextWidget;   //TEST
+  light: ShadowTextWidget;
+  shadow: ShadowTextWidget;
+  redraw(): void; 
 }
 
+const construct = (el: ShadowTextWidget) => {
 
-function construct (el: { redraw: { (): void; (): void; }; getElementById: (arg0: string) => GraphicsElement; getElementsByClassName: (arg0: string) => any[]; }) {
- 
   Object.defineProperty(el, 'text', {
     set: function (newValue) {
       textEl.text = newValue;
@@ -36,60 +36,67 @@ function construct (el: { redraw: { (): void; (): void; }; getElementById: (arg0
     }
   });
 
+
+  //add shadow and export as ShadowTextWidget to be able to style as myText.shadow.style.fill //TODO could this be written in one function? 
+   Object.defineProperty(el, 'shadow', {
+     get: function () { return shadowEl; }
+  }) 
   Object.defineProperty(el, 'shadowFill', {
-    set: function (newValue) {
-      shadowEl.style.fill = newValue;
-      el.redraw();
-    }
-  });
-  Object.defineProperty(el, 'highlightFill', {
-    set: function (newValue) {
-      highlightEl.style.fill = newValue;
-      el.redraw();
-    }
-  });
-  Object.defineProperty(el, 'mainFill', {
-    set: function (newValue) {
-      mainEl.style.fill = newValue;
+    set: function (newValue) {     
+      el.shadow.style.fill = newValue;
+      console.log(`shadow: ${shadowEl.style.fill}`);
       el.redraw();
     }
   });
 
-  // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-  /*
-   Object.defineProperty(el, 'main', {
-     set: function (newValue) {
-       
-       (textEl.mainEl as GraphicsElement) = newValue;
-       el.redraw();
-     }
+  //add highlight and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+   Object.defineProperty(el, 'light', {
+    get: function () {return highlightEl;}
+  })
+  Object.defineProperty(el, 'lightFill', {
+    set: function (newValue) {    
+      el.light.style.fill = newValue;
+      console.log(`light: ${highlightEl.style.fill}`);
+      el.redraw();
+    }
+  });
+
+  //add main and export as ShadowTextWidget to be able to style as myText.shadow.style.fill
+  Object.defineProperty(el, 'main', {
+    get: function () { return mainEl; }
+  });
+
+   Object.defineProperty(el, 'mainFill', {
+    set: function (newValue) {    
+       el.main.style.fill = newValue;
+       console.log(`main: ${mainEl.style.fill}`);
+      el.redraw();
+    }
    });
+   
  
-    Object.defineProperty(el, 'fill', {
-     set: function (newValue) {
-        textEl.childrenEl.style.fill = newValue;
-        console.log(JSON.stringify(textEl.childrenEl.style.fill))
-       el.redraw();
-     }
-    });
-   */
+  
+  // TEST TO GET "style.fill" on textEl.childrenEl XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+ 
   // END TEST XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
-  const textEl = el.getElementById('text');
-  const highlightEl = el.getElementById('highlight');
-  const shadowEl = el.getElementById('shadow');
+      
+  const textEl = el.getElementById('text') as TextElement;
+  const highlightEl = el.getElementById('highlight') as GraphicsElement;
+  const shadowEl = el.getElementById('shadow') as GraphicsElement;
   const mainEl = el.getElementById('main') as GraphicsElement;
 
 
   mainEl.x = mainEl.y = 0;
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  el.redraw = () => {
-    //@ts-ignore
-    const e: TextElement;
-    el.getElementsByClassName("myText").forEach(e => {
-      e.text = textEl.text ?? "";
-      e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
-      e.letterSpacing = textEl.letterSpacing ?? 0;
+
+  
+  el.redraw = () => { 
+      
+      el.getElementsByClassName("myText").forEach((e: TextElement) => {
+        e.text = textEl.text ?? ""; 
+        e.textAnchor = textEl.textAnchor === undefined ? "start" : textEl.textAnchor; // preset in widget css now?
+        e.letterSpacing = textEl.letterSpacing ?? 0;
 
     });
   };
