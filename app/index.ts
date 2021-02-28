@@ -90,5 +90,9 @@ console.log(test.main.text)
 //    e.style.fill = "yellow";
 //  });
 test.text = "doof";
-(test.main as GraphicsElement).text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadow.style.fontSize = 100;
+test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
+test.shadow.style.fill = "white";
+test.shadow.x = 10;
+
+const testRect = document.getElementById("testRect");
+
