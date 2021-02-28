@@ -23,12 +23,14 @@ const construct = (el: ShadowTextWidget) => {
     throw textAnchor = mainEl.textAnchor;
   } catch (e) {
     console.log(e);
-    textAnchor = 'start';
-    mainEl.textAnchor = textAnchor; // why not directly assignable, why this prob if "undefined" at all?? 
-    //console.log(mainEl.textAnchor)
+    mainEl.textAnchor = "start"; 
+    console.log(mainEl.textAnchor)
   }
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
-  
+  //overrrides ALL mainEl if one undefined??
+  // so try an if instead to differentiate?
+  //or need invisible #text for textAnchor?
+
 
 
   Object.defineProperty(el, 'text', {
