@@ -1,13 +1,15 @@
 
-export interface ShadowTextWidget extends GraphicsElement {
+export interface ShadowTextWidget extends RectElement {
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
+  
+  main: RectElement;
+  light: RectElement;
+  shadow: RectElement;
   redraw();
-  main: GraphicsElement;
-  light: GraphicsElement;
-  shadow: GraphicsElement;
+
   /*
   main: Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
   light: Style['fill'], ['opacity'], ['display'];
@@ -18,13 +20,34 @@ export interface ShadowTextWidget extends GraphicsElement {
 
 const construct = (el: ShadowTextWidget) => {
 
-  //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight')as GraphicsElement;
-  const shadowEl = el.getElementById('shadow') as GraphicsElement;
-  const mainEl = el.getElementById('main') as TextElement;
+  const textEl = el.getElementById('text') as TextElement;
+  const highlightEl = el.getElementById('highlight')as RectElement;
+  const shadowEl = el.getElementById('shadow') as RectElement;
+  const mainEl = el.getElementById('main') as RectElement;
 
   
   mainEl.x = mainEl.y = 0;
+
+// PRIVATE FUNCTIONS
+  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+ 
+  
+  el.redraw = () => { 
+      
+      el.getElementsByClassName("myText").forEach((e: TextElement) => {
+        e.text = textEl.text ?? ""; 
+        e.textAnchor = textEl.textAnchor; // preset in widget css now?
+        e.letterSpacing = textEl.letterSpacing ?? 0;
+        //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
+    });
+  };
+
+  el.redraw();
+
+
+
+
+
 
 //As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
@@ -34,21 +57,21 @@ const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'text', {
       set: function (newValue) {
-        mainEl.text = newValue;
+        textEl.text = newValue;
         el.redraw();
       }
   });
 
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
-      mainEl.textAnchor = newValue ?? "start";
+      textEl.textAnchor = newValue ?? "start";
       el.redraw();
       }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
       set: function (newValue) {
-        mainEl.letterSpacing = newValue;
+        textEl.letterSpacing = newValue;
         el.redraw();    
       }
   });
@@ -58,7 +81,7 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'shadow',  {
       get: function () { return shadowEl; },
       set: function (newValue) {
-        el.shadow.style.fill = newValue;
+        (el.shadow  as RectElement).style.fill = newValue;
         el.redraw();
       }
   }); 
@@ -81,21 +104,7 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
-  // PRIVATE FUNCTIONS
-  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
- 
   
-  el.redraw = () => { 
-      
-      el.getElementsByClassName("myText").forEach((e: TextElement) => {
-        e.text = mainEl.text ?? ""; 
-        e.textAnchor = mainEl.textAnchor; // preset in widget css now?
-        e.letterSpacing = mainEl.letterSpacing ?? 0;
-        //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
-    });
-  };
-
-  el.redraw();
   return el;
 }
 
