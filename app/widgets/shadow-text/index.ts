@@ -111,7 +111,7 @@ const construct = (el: ShadowTextWidget) => {
     get: function () { return mainEl; }
   });
  
-  // FROM SERGIO: seems to do the same, but how differently??
+  // FROM SERGIO: seems to do the same as newValue/redraw(), but how differently??
   const update = () => {};
   return {
   
