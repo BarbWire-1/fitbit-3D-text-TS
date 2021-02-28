@@ -1,21 +1,26 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
   //textAnchor: string;
-  //text: string;             // enables to set text attributes on shadowText directly
-  //letterSpacing: number;
-  //textAnchor: string;
-  main: GraphicsElement;    // as Graphics enables to change layout, but no text-related.
+  text: string;             // enables to set text attributes on shadowText directly
+  letterSpacing: number;
+  textAnchor: "start" | "middle" | "end";
+  redraw();
+  main: GraphicsElement;
   light: GraphicsElement;
   shadow: GraphicsElement;
-  redraw();
+  /*
+  main: Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
+  light: Style['fill'], ['opacity'], ['display'];
+  shadow: Style ['fill'], ['opacity'], ['display'];
+ */
 }
 
 
 const construct = (el: ShadowTextWidget) => {
 
   //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight') as TextElement;
-  const shadowEl = el.getElementById('shadow') as TextElement;
+  const highlightEl = el.getElementById('highlight')as GraphicsElement;
+  const shadowEl = el.getElementById('shadow') as GraphicsElement;
   const mainEl = el.getElementById('main') as TextElement;
 
   
@@ -38,7 +43,6 @@ const construct = (el: ShadowTextWidget) => {
       set: function (newValue) {
       mainEl.textAnchor = newValue ?? "start";
       el.redraw();
-      console.log(`textAnchor in redraw: ${mainEl.parent.id}`, mainEl.textAnchor) // not loggable here, seems to be moved out by export. don´t understand
       }
   });
 
@@ -49,9 +53,9 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
-  // add subElements and export as TextElement to be able to style as myText.subElement.style.string
+  // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
-  Object.defineProperty(el, 'shadow', {
+  Object.defineProperty(el, 'shadow',  {
       get: function () { return shadowEl; },
       set: function (newValue) {
         el.shadow.style.fill = newValue;
@@ -67,6 +71,7 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
+
   Object.defineProperty(el, 'main', {
       get: function () { return mainEl; },
       set: function (newValue) {
@@ -75,12 +80,7 @@ const construct = (el: ShadowTextWidget) => {
 
       }
   });
- 
-      
-  
 
-
- 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
  

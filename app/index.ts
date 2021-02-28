@@ -89,6 +89,6 @@ console.log(test.main.text)
 //document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
 //    e.style.fill = "yellow";
 //  });
-test.text = "doof"
-test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
+test.text = "doof";
+(test.main as GraphicsElement).text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
 test.shadow.style.fontSize = 100;
