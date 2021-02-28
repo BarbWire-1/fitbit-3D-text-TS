@@ -16,17 +16,19 @@ const construct = (el: ShadowTextWidget) => {
   const mainEl = el.getElementById('main') as ShadowTextWidget;
 
   mainEl.x = mainEl.y = 0;
-  //mainEl.textAnchor = mainEl.textAnchor ?? "start";
+
 
  let textAnchor: string;
-  try {                                         // mainEl.textAnchor throws an error if textAnchor not defined
+  try {                                         
     throw textAnchor = mainEl.textAnchor;
   } catch (e) {
     console.log(e);
     textAnchor = 'start';
-    mainEl.textAnchor = textAnchor // default
+    mainEl.textAnchor = textAnchor; // why not directly assignable, why this prob if "undefined" at all?? 
     //console.log(mainEl.textAnchor)
   }
+//TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
+  
 
 
   Object.defineProperty(el, 'text', {
