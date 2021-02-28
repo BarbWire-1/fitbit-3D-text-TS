@@ -1,30 +1,31 @@
 
-export interface ShadowTextWidget extends GraphicsElement {
-  textAnchor: string;
+export interface ShadowTextWidget extends TextElement {
+  //textAnchor: string;
   text: string;
   main: TextElement;
   light: TextElement;
   shadow: TextElement;
-
 }
+
 
 const construct = (el: ShadowTextWidget) => {
 
   //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight') as ShadowTextWidget;
-  const shadowEl = el.getElementById('shadow') as ShadowTextWidget;
-  const mainEl = el.getElementById('main') as ShadowTextWidget;
+  const highlightEl = el.getElementById('highlight') as TextElement;
+  const shadowEl = el.getElementById('shadow') as TextElement;
+  const mainEl = el.getElementById('main') as TextElement;
 
+  
   mainEl.x = mainEl.y = 0;
 
 
- let textAnchor: string;
+ let textAnchor: "start"|"middle"|"end";
   try {                                         
     throw textAnchor = mainEl.textAnchor;
   } catch (e) {
     console.log(e);
     mainEl.textAnchor = "start"; 
-    console.log(mainEl.textAnchor)
+    console.log(`textAnchor in try/catch: ${mainEl.textAnchor}`)
   }
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
   //overrrides ALL mainEl if one undefined??
@@ -42,8 +43,10 @@ const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
-        mainEl.textAnchor = newValue;
-        el.redraw();
+      mainEl.textAnchor = newValue ?? "start";
+      
+      el.redraw();
+      console.log(`textAnchor in redraw: ${mainEl.textAnchor}`)
       }
   });
 
@@ -92,7 +95,7 @@ const construct = (el: ShadowTextWidget) => {
   
   el.redraw = () => { 
       
-      el.getElementsByClassName("myText").forEach((e: ShadowTextWidget) => {
+      el.getElementsByClassName("myText").forEach((e: TextElement) => {
         e.text = mainEl.text ?? ""; 
         e.textAnchor = mainEl.textAnchor; // preset in widget css now?
         e.letterSpacing = mainEl.letterSpacing ?? 0;

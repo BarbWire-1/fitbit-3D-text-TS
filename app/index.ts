@@ -56,6 +56,7 @@ test.light.style.fill = "yellow";
 test.shadow.x = 5;
 test.shadow.y = 5;
 //test.textAnchor = "end";
+/*
 console.log(test.shadow.style.fill)  //TODO interesting: not logged in widget, but here
 console.log(test.text)               // undefined log, but applicable here?
 console.log(test.main.text)          // logs text-buffer // TODO change structure somewhere, so it´s loggable as myElement.text?  
@@ -63,3 +64,7 @@ console.log(test.textAnchor)         // applied, but not loggable here
 console.log(test.main.textAnchor)    //log working
 console.log(test.letterSpacing)      // log "undefined" can be applied on test or test.main
 console.log(test.main.letterSpacing) // log working
+*/
+console.log(stepsLabel.main.textAnchor)
+console.log(calsLabel.main.textAnchor)
+console.log(countDown.main.textAnchor)
