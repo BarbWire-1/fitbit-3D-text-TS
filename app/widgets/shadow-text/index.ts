@@ -1,5 +1,6 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
+  textAnchor: string;
   text: string;
   main: TextElement;
   light: TextElement;
@@ -14,7 +15,19 @@ const construct = (el: ShadowTextWidget) => {
   const shadowEl = el.getElementById('shadow') as ShadowTextWidget;
   const mainEl = el.getElementById('main') as ShadowTextWidget;
 
-   mainEl.x = mainEl.y = 0;
+  mainEl.x = mainEl.y = 0;
+  //mainEl.textAnchor = mainEl.textAnchor ?? "start";
+
+ let textAnchor: string;
+  try {                                         // mainEl.textAnchor throws an error if textAnchor not defined
+    throw textAnchor = mainEl.textAnchor;
+  } catch (e) {
+    console.log(e);
+    textAnchor = 'start';
+    mainEl.textAnchor = textAnchor // default
+    //console.log(mainEl.textAnchor)
+  }
+
 
   Object.defineProperty(el, 'text', {
       set: function (newValue) {
@@ -71,13 +84,13 @@ const construct = (el: ShadowTextWidget) => {
  
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-
+ 
   
   el.redraw = () => { 
       
-      el.getElementsByClassName("myText").forEach((e: TextElement) => {
+      el.getElementsByClassName("myText").forEach((e: ShadowTextWidget) => {
         e.text = mainEl.text ?? ""; 
-        e.textAnchor = mainEl.textAnchor ?? "start"; // preset in widget css now?
+        e.textAnchor = mainEl.textAnchor; // preset in widget css now?
         e.letterSpacing = mainEl.letterSpacing ?? 0;
 
     });
