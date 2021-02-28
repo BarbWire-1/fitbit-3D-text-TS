@@ -4,7 +4,7 @@
 
     <use id="stepsLabel" href="#shadowText" x="50%" y="50%-50" font-family="Barlow-Bold" font-size="45" opacity="1" display="inline">
         <set href="main" attributeName="letter-spacing" to="1"/>    	<!--working - NOT set in widget CSS-->
-        <set href="main" attributeName="text-anchor" to="start"/>      <!--working - in widget CSS set on .myText!-->
+        <set href="main" attributeName="text-anchor" to="middle"/>      <!--working - in widget CSS set on .myText!-->
         <set href="main" attributeName="text-length" to="20"/> 
         <!--set href="main" attributeName="text-buffer" to="steps 00000"/--> <!--working-->
         <!--letterSpacing and textAnchor need a <set> on href#text, which is a placeholder, that inherits text and props (defaults  0,"start")-->
@@ -17,16 +17,13 @@
 
     <use id="calsLabel" href="#shadowText" x="100%-200" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"> 
         <set href="main" attributeName="fill" to="white" /> 
-        <set href="main" attributeName="text-anchor" to="middle"/>  
+        <set href="main" attributeName="text-anchor" to="start"/>  
     </use>
 
     <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1" >
         <set href="main" attributeName="letter-spacing" to="3"/>       <!--this one is working-->
-        <!--set href="main" attributeName="text-anchor" to="end"/-->      
+        <set href="main" attributeName="text-anchor" to="middle"/>      
     </use>
 
 
 </svg>
-<!--TODO WHY is text-anchor on "main" not applied if set here, but working in CSS???-->
-<!-- as set in widget-css? need to find out, how to avoid "undefined" if not pre-setted-->
-<!--TODO check rules: seems CSS is stronger than settings in <set>??-->

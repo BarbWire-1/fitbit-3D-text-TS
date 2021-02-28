@@ -1,10 +1,12 @@
 
-export interface ShadowTextWidget extends TextElement {
+export interface ShadowTextWidget extends GraphicsElement {
   //textAnchor: string;
-  text: string;
-  main: TextElement;
-  light: TextElement;
-  shadow: TextElement;
+  text: string;             // enables to set text attributes on shadowText directly
+  letterSpacing: number;
+  textAnchor: string;
+  main: GraphicsElement;    // as Graphics enables to change layout, but no text-related.
+  light: GraphicsElement;
+  shadow: GraphicsElement;
   redraw();
 }
 
@@ -18,22 +20,10 @@ const construct = (el: ShadowTextWidget) => {
 
   
   mainEl.x = mainEl.y = 0;
-/*
 
- let textAnchor: "start"|"middle"|"end";
-  try {                                         
-    throw textAnchor = mainEl.textAnchor;
-  } catch (e) {
-    console.log(e);
-
-    mainEl.textAnchor ??= "start"; 
-    console.log(`textAnchor in try/catch: ${mainEl.textAnchor}`)
-  }
-  */
+//As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
-  //overrrides ALL mainEl if one undefined??
-  // so try an if instead to differentiate?
-  //or need invisible #text for textAnchor?
+ 
 
 
 
@@ -43,7 +33,7 @@ const construct = (el: ShadowTextWidget) => {
         el.redraw();
       }
   });
-/*
+
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
       mainEl.textAnchor = newValue ?? "start";
@@ -58,7 +48,7 @@ const construct = (el: ShadowTextWidget) => {
         el.redraw();    
       }
   });
-*/
+
   // add subElements and export as TextElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
   Object.defineProperty(el, 'shadow', {

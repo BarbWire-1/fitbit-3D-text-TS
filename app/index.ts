@@ -33,7 +33,7 @@ const update = setInterval(() => {
 //test.x = 200;
 //test.y = 200;
 //test.textAnchor = "end"; 
-test.letterSpacing = 3;
+//test.letterSpacing = 20;
 //test.style.opacity = 0.7;
 test.style.fontFamily = "Tungsten-Medium";
 //test.style.fontSize = 25;
@@ -46,9 +46,11 @@ test.style.fontFamily = "Tungsten-Medium";
 test.shadow.style.fill = "blue";
 test.light.style.fill = "yellow";
 
-//let highlights = document.getElementsByClassName("highlight");
-//highlights.forEach(e => {
-//  (e as TextElement).style.fill = "yellow"
+// settings on classes for layout eg:
+//let highlights = document.getElementsByClassName("light");
+//highlights.forEach((e: GraphicsElement) => {
+//  e.style.fill = "yellow";
+//});
 
 
 //test.main.text = "blah" //
@@ -57,14 +59,32 @@ test.shadow.x = 5;
 test.shadow.y = 5;
 //test.textAnchor = "end";
 /*
-console.log(test.shadow.style.fill)  //TODO interesting: not logged in widget, but here
-console.log(test.text)               // undefined log, but applicable here?
-console.log(test.main.text)          // logs text-buffer // TODO change structure somewhere, so it´s loggable as myElement.text?  
-console.log(test.textAnchor)         // applied, but not loggable here
-console.log(test.main.textAnchor)    //log working
-console.log(test.letterSpacing)      // log "undefined" can be applied on test or test.main
-console.log(test.main.letterSpacing) // log working
+console.log(test.shadow.style.fill)  
+console.log(test.text)               
+console.log(test.main.text)          // logs text-buffer 
+console.log(test.textAnchor)         
+console.log(test.main.textAnchor)    
+console.log(test.letterSpacing)      
+console.log(test.main.letterSpacing) 
+
+console.log(stepsLabel.textAnchor)
+console.log(calsLabel.textAnchor)
+console.log(`textAnchor from svg: ${countDown.textAnchor}`)
+
+
+//countDown.main.textAnchor = "middle";
+console.log(`textAnchor ater startup: ${countDown.textAnchor}`)
+countDown.text = "blah"
+countDown.main.text = "NÖ" // overrides text on element.text
+countDown.letterSpacing = 20; 
+countDown.textAnchor = "middle" 
+countDown.style.fontFamily = "Tungsten-Medium" 
 */
-console.log(stepsLabel.main.textAnchor)
-console.log(calsLabel.main.textAnchor)
-console.log(countDown.main.textAnchor)
+//TODO 1 IMPORTANT: check settings/logs after change to "GraphicsElement" for subs
+
+console.log(test.main.text)
+
+let highlights = document.getElementsByClassName("light");
+highlights.forEach((e: GraphicsElement) => {
+ e.style.fill = "yellow";
+});
