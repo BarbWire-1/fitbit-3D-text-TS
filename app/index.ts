@@ -15,7 +15,7 @@ let test: ShadowTextWidget = stepsLabel;
 let cd = 100;
 
 const update = setInterval(() => {
-  stepsLabel.text = `steps ${today.adjusted.steps}`;
+  //stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
@@ -89,3 +89,6 @@ console.log(test.main.text)
 //document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
 //    e.style.fill = "yellow";
 //  });
+test.text = "doof"
+test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
+test.shadow.style.fontSize = 100;

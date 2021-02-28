@@ -1,9 +1,9 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
   //textAnchor: string;
-  text: string;             // enables to set text attributes on shadowText directly
-  letterSpacing: number;
-  textAnchor: string;
+  //text: string;             // enables to set text attributes on shadowText directly
+  //letterSpacing: number;
+  //textAnchor: string;
   main: GraphicsElement;    // as Graphics enables to change layout, but no text-related.
   light: GraphicsElement;
   shadow: GraphicsElement;
