@@ -5,6 +5,7 @@ export interface ShadowTextWidget extends TextElement {
   main: TextElement;
   light: TextElement;
   shadow: TextElement;
+  redraw();
 }
 
 
@@ -17,16 +18,18 @@ const construct = (el: ShadowTextWidget) => {
 
   
   mainEl.x = mainEl.y = 0;
-
+/*
 
  let textAnchor: "start"|"middle"|"end";
   try {                                         
     throw textAnchor = mainEl.textAnchor;
   } catch (e) {
     console.log(e);
-    mainEl.textAnchor = "start"; 
+
+    mainEl.textAnchor ??= "start"; 
     console.log(`textAnchor in try/catch: ${mainEl.textAnchor}`)
   }
+  */
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
   //overrrides ALL mainEl if one undefined??
   // so try an if instead to differentiate?
@@ -40,13 +43,12 @@ const construct = (el: ShadowTextWidget) => {
         el.redraw();
       }
   });
-
+/*
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
       mainEl.textAnchor = newValue ?? "start";
-      
       el.redraw();
-      console.log(`textAnchor in redraw: ${mainEl.textAnchor}`)
+      console.log(`textAnchor in redraw: ${mainEl.parent.id}`, mainEl.textAnchor) // not loggable here, seems to be moved out by export. don´t understand
       }
   });
 
@@ -56,7 +58,7 @@ const construct = (el: ShadowTextWidget) => {
         el.redraw();    
       }
   });
-
+*/
   // add subElements and export as TextElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
   Object.defineProperty(el, 'shadow', {
@@ -99,7 +101,7 @@ const construct = (el: ShadowTextWidget) => {
         e.text = mainEl.text ?? ""; 
         e.textAnchor = mainEl.textAnchor; // preset in widget css now?
         e.letterSpacing = mainEl.letterSpacing ?? 0;
-
+        //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
     });
   };
 
