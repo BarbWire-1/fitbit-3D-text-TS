@@ -8,13 +8,14 @@ export interface ShadowTextWidget extends RectElement {  // this is REALLY stran
   main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
   shadow: RectElement;
+
   redraw();
 
   /*
-  main: Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
-  light: Style['fill'], ['opacity'], ['display'];
-  shadow: Style ['fill'], ['opacity'], ['display'];
- */
+  main : Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
+  light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  */
 }
 
 
