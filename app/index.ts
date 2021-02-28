@@ -81,10 +81,11 @@ countDown.textAnchor = "middle"
 countDown.style.fontFamily = "Tungsten-Medium" 
 */
 //TODO 1 IMPORTANT: check settings/logs after change to "GraphicsElement" for subs
+//TODO 2 play with classes on <use>s
 
 console.log(test.main.text)
 
-let highlights = document.getElementsByClassName("light");
-highlights.forEach((e: GraphicsElement) => {
- e.style.fill = "yellow";
-});
+//settings on symbol-intern class
+//document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
+//    e.style.fill = "yellow";
+//  });
