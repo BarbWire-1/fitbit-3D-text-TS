@@ -4,6 +4,7 @@
     fill:black;
 }
 /* these settings get applied to the symbols subElements directly, so to ALL ShadowTextWidget- Elements*/
+/* you could also reach them ALL by className (same as ID) in js/ts */
 #highlight {
     fill: white;
     x:-1;
@@ -23,7 +24,7 @@
 /* This setting overrides the setting for ALL classes as it is on #ID .class */
 #countDown #main {
     fill:mediumturquoise;
-    text-anchor: middle;
+    /*text-anchor: middle;*/
 }
 #countDown #shadow {
     fill:#811ef3;

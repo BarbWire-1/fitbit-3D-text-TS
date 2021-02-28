@@ -15,7 +15,7 @@
 	"fitbit": {
 		"appUUID": "22814526-61d9-4ac4-a172-1a776f242d05",
 		"appType": "clockface",
-		"appDisplayName": "text-shadow",
+		"appDisplayName": "shadow-text",
 		"iconFile": "resources/icon.png",
 		"wipeColor": "#8bc34a",
 		"requestedPermissions": [
@@ -27,7 +27,7 @@
 		],
 		"i18n": {
 			"en-US": {
-				"name": "text-shadow"
+				"name": "shadow-text"
 			}
 		},
 		"defaultLanguage": "en-US"

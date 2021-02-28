@@ -1,35 +1,29 @@
 
 export interface ShadowTextWidget extends GraphicsElement {
+  //textAnchor: string;
+  text: string;             // enables to set text attributes on shadowText directly
+  letterSpacing: number;
   textAnchor: string;
-  text: string;
-  main: TextElement;
-  light: TextElement;
-  shadow: TextElement;
-
+  main: GraphicsElement;    // as Graphics enables to change layout, but no text-related.
+  light: GraphicsElement;
+  shadow: GraphicsElement;
+  redraw();
 }
+
 
 const construct = (el: ShadowTextWidget) => {
 
   //const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight') as ShadowTextWidget;
-  const shadowEl = el.getElementById('shadow') as ShadowTextWidget;
-  const mainEl = el.getElementById('main') as ShadowTextWidget;
+  const highlightEl = el.getElementById('highlight') as TextElement;
+  const shadowEl = el.getElementById('shadow') as TextElement;
+  const mainEl = el.getElementById('main') as TextElement;
 
+  
   mainEl.x = mainEl.y = 0;
 
-
- let textAnchor: string;
-  try {                                         
-    throw textAnchor = mainEl.textAnchor;
-  } catch (e) {
-    console.log(e);
-    mainEl.textAnchor = "start"; 
-    console.log(mainEl.textAnchor)
-  }
+//As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
 //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
-  //overrrides ALL mainEl if one undefined??
-  // so try an if instead to differentiate?
-  //or need invisible #text for textAnchor?
+ 
 
 
 
@@ -42,8 +36,9 @@ const construct = (el: ShadowTextWidget) => {
 
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
-        mainEl.textAnchor = newValue;
-        el.redraw();
+      mainEl.textAnchor = newValue ?? "start";
+      el.redraw();
+      console.log(`textAnchor in redraw: ${mainEl.parent.id}`, mainEl.textAnchor) // not loggable here, seems to be moved out by export. don´t understand
       }
   });
 
@@ -92,11 +87,11 @@ const construct = (el: ShadowTextWidget) => {
   
   el.redraw = () => { 
       
-      el.getElementsByClassName("myText").forEach((e: ShadowTextWidget) => {
+      el.getElementsByClassName("myText").forEach((e: TextElement) => {
         e.text = mainEl.text ?? ""; 
         e.textAnchor = mainEl.textAnchor; // preset in widget css now?
         e.letterSpacing = mainEl.letterSpacing ?? 0;
-
+        //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
     });
   };
 
