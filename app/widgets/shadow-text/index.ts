@@ -1,5 +1,5 @@
 
-export interface ShadowTextWidget extends RectElement {
+export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
