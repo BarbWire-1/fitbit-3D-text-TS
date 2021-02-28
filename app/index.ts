@@ -91,8 +91,8 @@ console.log(test.main.text)
 //  });
 test.text = "doof";
 test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadow.style.fill = "white";
+test.shadow.text = "white"; 
 test.shadow.x = 10;
 
-const testRect = document.getElementById("testRect");
+
 

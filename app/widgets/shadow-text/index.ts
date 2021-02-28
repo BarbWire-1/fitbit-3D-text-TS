@@ -1,11 +1,11 @@
 
-export interface ShadowTextWidget extends RectElement {
+export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  main: RectElement;
+  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
   shadow: RectElement;
   redraw();
