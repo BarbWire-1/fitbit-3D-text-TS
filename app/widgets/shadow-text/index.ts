@@ -5,7 +5,7 @@ export interface ShadowTextWidget extends RectElement {
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  main: RectElement;
+  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
   shadow: RectElement;
   redraw();
