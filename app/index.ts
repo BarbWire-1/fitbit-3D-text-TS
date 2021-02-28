@@ -15,7 +15,7 @@ let test: ShadowTextWidget = stepsLabel;
 let cd = 100;
 
 const update = setInterval(() => {
-  //stepsLabel.text = `steps ${today.adjusted.steps}`;
+  stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
@@ -83,16 +83,16 @@ countDown.style.fontFamily = "Tungsten-Medium"
 //TODO 1 IMPORTANT: check settings/logs after change to "GraphicsElement" for subs
 //TODO 2 play with classes on <use>s
 
-console.log(test.main.text)
+//console.log(test.main.text)
 
 //settings on symbol-intern class
 //document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
 //    e.style.fill = "yellow";
 //  });
-test.text = "doof";
-test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
+//test.text = "doof";
+//test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
 test.shadow.text = "white"; 
-test.shadow.x = 10;
+
 
 
 

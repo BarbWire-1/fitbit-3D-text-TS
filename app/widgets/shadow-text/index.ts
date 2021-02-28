@@ -8,13 +8,14 @@ export interface ShadowTextWidget extends RectElement {  // this is REALLY stran
   main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
   shadow: RectElement;
+
   redraw();
 
   /*
-  main: Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
-  light: Style['fill'], ['opacity'], ['display'];
-  shadow: Style ['fill'], ['opacity'], ['display'];
- */
+  main : Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
+  light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  */
 }
 
 
@@ -26,32 +27,29 @@ const construct = (el: ShadowTextWidget) => {
   const mainEl = el.getElementById('main') as RectElement;
 
   
-  mainEl.x = mainEl.y = 0;
-
-// PRIVATE FUNCTIONS
-  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
- 
+  mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
   
+
+  // PRIVATE FUNCTIONS
+  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+  
+    
   el.redraw = () => { 
-      
+        
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
-        e.text = textEl.text ?? ""; 
-        e.textAnchor = textEl.textAnchor; // preset in widget css now?
-        e.letterSpacing = textEl.letterSpacing ?? 0;
-        //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
-    });
+          e.text = textEl.text ?? ""; 
+          e.textAnchor = textEl.textAnchor; // preset in widget css now?
+          e.letterSpacing = textEl.letterSpacing ?? 0;
+          //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
+      });
   };
 
   el.redraw();
 
 
-
-
-
-
-//As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
-//TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
- 
+    //As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
+    //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
+  
 
 
 
@@ -104,9 +102,28 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
+  /*
+  // TESTING WITH SERGIO´s SUGGESTION
+  // try getting all wanted props and ONLY those defined and exported
+
+  // FROM GONDWANA: this makes mainEl available as el.main. when exported 
+  Object.defineProperty(el, 'main', { 
+    get: function () { return mainEl; }
+  });
+ 
+  // FROM SERGIO: seems to do the same as newValue/redraw(), but how differently??
+  const update = () => {};
+  return {
   
+  set main(fill: string) { el.main.style.fill = fill; update() },
+  get main() { return el.main.style.fill }
+  }
+  */  
+//TODO compare el.redraw and set/get update();
   return el;
 }
+
+
 
 export const shadowText = () => {
   // Returns an object that provides the name of this widget and a function that can be used to construct them.
