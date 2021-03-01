@@ -27,20 +27,28 @@ const update = setInterval(() => {
   }
 }, 1000);
 */
+
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
-// on the <use> itself
-test.text = "TEST";
-//console.log(`text: ${test.text}`); // text: undefined (as redrwn in closure - but working)
-test.x = 168;
+// <use>
+// desirable settings on <use>
+test.text = "TEST"; 
+//console.log(`text: ${test.text}`); // text: undefined (as redrawn in closure - but working)
+test.x = 168; "✔️"
 //console.log(`x: ${test.x}`) // x: 168;
-test.y = 180;
+test.y = 180; "✔️"
 //console.log(`y: ${test.y}`) // x: 180;
-test.style.fontFamily = "Barlow-Bold";
-console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
-/*test.letterSpacing = 1;
-test.textAnchor = "middle";
+test.style.fontFamily = "Barlow-Bold"; "✔️"
+//console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
+test.letterSpacing = 10; "✔️"
+//console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
+test.textAnchor = "middle"; "✔️"
+//console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
 
+//unwanted settings on <use>
+test.style.fill = "white"; "✔️"
+//console.log(`fill: ${test.style.fill}`) // fill: #FFFFFF (gets applied, but at the invisible #text)
 
+/*
 // desirable settings on mainT (main)
 test.mainT.style.fill = "red";  // NO x,y on mainT as 0,0 => coords of the <use>
 test.mainT.style.opacity = 1;
