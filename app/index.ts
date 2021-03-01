@@ -13,9 +13,9 @@ let test: ShadowTextWidget = stepsLabel;
 
 
 let cd = 100;
-
+/*
 const update = setInterval(() => {
-  stepsLabel.text = `steps ${today.adjusted.steps}`;
+  //stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
@@ -26,25 +26,42 @@ const update = setInterval(() => {
     cd = 100;
   }
 }, 1000);
-
+*/
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
+// on the <use> itself
+test.text = "TEST";
+test.x = 168;
+test.y = 180;
+
+test.style.fontFamily = "Barlow-Bold";
+test.letterSpacing = 1;
+test.textAnchor = "middle";
 
 
-//test.x = 200;
-//test.y = 200;
-//test.textAnchor = "end"; 
-//test.letterSpacing = 20;
-//test.style.opacity = 0.7;
-test.style.fontFamily = "Tungsten-Medium";
-//test.style.fontSize = 25;
-//test.style.display = "none";
+// desirable settings on mainText (main)
+test.mainText.style.fill = "red";  // NO x,y on mainText as 0,0 => coords of the <use>
+test.mainText.style.opacity = 1;
+test.mainText.style.display = "inline";
+test.mainText.style.visibility = "visible";
 
-// el.style.fill is NOT applicable on the widget-text directly, as it is composed out of multiple elements!!!
-// (the 3 layers to add fill are 'highlight', 'shadow' and 'main')
-// instead you can manipulate the fill of the layers like this:
 
-test.shadowText.style.fill = "blue";
-test.lightText.style.fill = "yellow";
+// desirable settings on shadowText (shadow)
+test.shadowText.x = 5;
+test.shadowText.y = 5;
+test.shadowText.style.fill = "red";  // NO x,y on mainText as 0,0 => coords of the <use>
+test.shadowText.style.opacity = 1;
+test.shadowText.style.display = "inline";
+test.shadowText.style.visibility = "visible";
+
+
+
+// desirable settings on shadowText (shadow)
+test.lightText.x = 5;
+test.lightText.y = 5;
+test.lightText.style.fill = "red";  // NO x,y on mainText as 0,0 => coords of the <use>
+test.lightText.style.opacity = 1;
+test.lightText.style.display = "inline";
+test.lightText.style.visibility = "visible";
 
 // settings on classes for layout eg:
 //let highlights = document.getElementsByClassName("light");
@@ -52,51 +69,8 @@ test.lightText.style.fill = "yellow";
 //  e.style.fill = "yellow";
 //});
 
-
-//test.main.text = "blah" //
-//test.main.textAnchor = "end" // - "same" -
-//test.shadow.x = 5;
-//test.shadow.y = 5;
-//test.textAnchor = "end";
-/*
-console.log(test.shadow.style.fill)  
-console.log(test.text)               
-console.log(test.main.text)          // logs text-buffer 
-console.log(test.textAnchor)         
-console.log(test.main.textAnchor)    
-console.log(test.letterSpacing)      
-console.log(test.main.letterSpacing) 
-
-console.log(stepsLabel.textAnchor)
-console.log(calsLabel.textAnchor)
-console.log(`textAnchor from svg: ${countDown.textAnchor}`)
-
-
-//countDown.main.textAnchor = "middle";
-console.log(`textAnchor ater startup: ${countDown.textAnchor}`)
-countDown.text = "blah"
-countDown.main.text = "NÖ" // overrides text on element.text
-countDown.letterSpacing = 20; 
-countDown.textAnchor = "middle" 
-countDown.style.fontFamily = "Tungsten-Medium" 
-*/
-//TODO 1 IMPORTANT: check settings/logs after change to "GraphicsElement" for subs
+//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
 //TODO 2 play with classes on <use>s
-
-//console.log(test.main.text)
-
-//settings on symbol-intern class
-//document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
-//    e.style.fill = "yellow";
-//  });
-//test.text = "doof";
-//test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadowText.text = "blah"; 
-test.mainText.style.fill = "orange";
-//@ts-ignore
-test.mainText.style.opacity = 1;
-test.shadowText.x = 15;
-test.shadowText.style.fill = "red";
 
 
 
