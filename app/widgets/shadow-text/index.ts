@@ -78,25 +78,32 @@ const construct = (el: ShadowTextWidget) => {
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
  
   const mainT = {
+    set mainT(x: number) { el.x = x},
+    get mainT() {
+      return mainEl.x;
+    },
     get style() {
       return mainEl.style;
-  
     },
-    get x(): number {
-      return mainEl.x;
-    }
+    
   };
- 
+
 Object.defineProperty(el, 'mainT', {
   get: function() {return mainT;}
 });  
 
 
-const lightT = {
+  const lightT = {
+  set lightT(x: number) { el.lightT.x = x},
+    get lightT() {
+      return highlightEl.x;
+    },
   get style() {
     return highlightEl.style;
   }
-};
+  };
+  
+   console.log(`lightEl.x: ${highlightEl.x}`)
 Object.defineProperty(el, 'lightT', {
   get: function() {return lightT;}
 }); 

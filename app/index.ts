@@ -88,7 +88,8 @@ test.lightT.style.visibility = "visible";
 
 
 test.mainT.style.fill = "white";
-test.mainT.x = 10; // TypeError: Invalid argument type.
+test.lightT.x = 100; // TypeError: Invalid argument type.
+console.log(`mainT.x: ${test.lightT.x}`) // mainT.x: 100 - correct value here, but not applied
 
 
 
