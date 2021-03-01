@@ -29,9 +29,12 @@ const construct = (el: ShadowTextWidget) => {
   //let mainS = el.getElementById("mainS") as RectElement
   
 
-  // PRESETS
+  
   // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
   mainEl.x = mainEl.y = 0;   // so "main" allways is at x,y of the <use>
+  textEl.text = textEl.text ?? "TEXT"
+  //DEFAULTS needed?
+  textEl.text = lightEl.text = shadowEl.text = mainEl.text;
   lightEl.x = lightEl.x ?? -1;
   lightEl.y = lightEl.y ?? -1;
   shadowEl.x = shadowEl.x ?? 2;
@@ -41,7 +44,7 @@ const construct = (el: ShadowTextWidget) => {
   lightEl.style.fill = lightEl.style.fill ?? "white";
   shadowEl.style.fill = shadowEl.style.fill ?? "red";
 
-  textEl.text = textEl.text ?? "TEXT"
+  
 
 
 
@@ -55,6 +58,7 @@ const construct = (el: ShadowTextWidget) => {
           e.text = textEl.text ?? "TEXT"; 
           e.textAnchor = textEl.textAnchor; // preset in widget css now?
           e.letterSpacing = textEl.letterSpacing ?? 0;
+         
           //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
       });
   };
@@ -92,13 +96,10 @@ const construct = (el: ShadowTextWidget) => {
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
 
-  Object.defineProperty(el, 'mainT', {
+  Object.defineProperty(el, 'mainT',{
     get: function() {return mainEl;}
   }); 
 
-
-
-// TEST WITH PREVIOUS APPROACH ##################################################
  Object.defineProperty(el, 'lightT', {
     get: function () { return lightEl; },
     
