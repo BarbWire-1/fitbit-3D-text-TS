@@ -1,40 +1,37 @@
-import { outbox } from "file-transfer";
 
-export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
-  //textAnchor: string;
-  //text: string;             // enables to set text attributes on shadowText directly
+
+export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY strange.
+  
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  lightT: RectElement;
-  shadowT: RectElement;
+  main: TextElement;   
+  light: TextElement;
+  shadow: TextElement;
 
   redraw();
 
   /*
-  main : Style ['fill'], ['opacity'], ['display']; // for string not available....
-  light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
-  shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  main: RectElement, ['fill'], ['opacity'], ['display']; // for string not available....
+  light: RectElement, ['fill'], ['opacity'], ['display'], ['x'], ['y'];
+  shadow: RectElement, ['fill'], ['opacity'], ['display'], ['x'], ['y'];
   */
 }
-
+// TODO check Properties, getter, setter, new Type
 
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const lightEl = el.getElementById('light')as RectElement;
-  const shadowEl = el.getElementById('shadow') as RectElement;
-  const mainEl = el.getElementById('main') as RectElement;
-  //let mainS = el.getElementById("mainS") as RectElement
+  const lightEl = el.getElementById('light')as TextElement;
+  const shadowEl = el.getElementById('shadow') as TextElement;
+  const mainEl = el.getElementById('main') as TextElement;
+ 
   
-
-  
-  // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
+ 
   mainEl.x = mainEl.y = 0;   // so "main" allways is at x,y of the <use>
   textEl.text = textEl.text ?? "TEXT"
-  //DEFAULTS needed?
-  textEl.text = lightEl.text = shadowEl.text = mainEl.text;
+  //DEFAULTS needed? // TODO check if needed/wanted
+ 
   lightEl.x = lightEl.x ?? -1;
   lightEl.y = lightEl.y ?? -1;
   shadowEl.x = shadowEl.x ?? 2;
@@ -43,9 +40,6 @@ const construct = (el: ShadowTextWidget) => {
   mainEl.style.fill = mainEl.style.fill ?? "grey";
   lightEl.style.fill = lightEl.style.fill ?? "white";
   shadowEl.style.fill = shadowEl.style.fill ?? "red";
-
-  
-
 
 
   // PRIVATE FUNCTIONS
@@ -56,20 +50,13 @@ const construct = (el: ShadowTextWidget) => {
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
           e.text = textEl.text ?? "TEXT"; 
-          e.textAnchor = textEl.textAnchor; // preset in widget css now?
+          e.textAnchor = textEl.textAnchor; // throws error if undefined!!! need to be set per <set>,CSS or js for each <use>
           e.letterSpacing = textEl.letterSpacing ?? 0;
          
-          //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
       });
   };
 
   el.redraw();
-
-
-    //As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
-    //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
-  
-
 
 
   Object.defineProperty(el, 'text', {
@@ -93,33 +80,23 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
-  // add subElements and export as mainElement to be able to style as myText.subElement.style.string
-  // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
-
-  Object.defineProperty(el, 'mainT',{
+  // add and export placeholders to pass properties into subElements per ts/js
+ 
+  Object.defineProperty(el, 'main',{
     get: function() {return mainEl;}
   }); 
 
- Object.defineProperty(el, 'lightT', {
-    get: function () { return lightEl; },
+ Object.defineProperty(el, 'light', {
+    get: function () { return lightEl;}
     
    });
-  Object.defineProperty(el, 'shadowT', {
+  Object.defineProperty(el, 'shadow', {
     get: function() { return shadowEl;}   
   });  
   
 
 
  console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
-
-  
-
-
-
-
- 
-  
-
 
 //TODO compare el.redraw and set/get update();
   return el;
@@ -137,4 +114,3 @@ export const shadowText = () => {
 }
 
 
-//TODO back to prev solution? don´t find outbox, how to access x,y this way
