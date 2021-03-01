@@ -87,7 +87,8 @@ test.lightT.style.visibility = "visible";
 //TODO 2 play with classes on <use>s
 
 
-
+test.mainT.style.fill = "white";
+test.mainT.x = 10; // TypeError: Invalid argument type.
 
 
 

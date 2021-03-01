@@ -77,12 +77,17 @@ const construct = (el: ShadowTextWidget) => {
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
  
-const mainT = {
-  get style() {
-    return mainEl.style;
-  }
-};
-Object.defineProperty(el, 'main', {
+  const mainT = {
+    get style() {
+      return mainEl.style;
+  
+    },
+    get x(): number {
+      return mainEl.x;
+    }
+  };
+ 
+Object.defineProperty(el, 'mainT', {
   get: function() {return mainT;}
 });  
 
@@ -92,7 +97,7 @@ const lightT = {
     return highlightEl.style;
   }
 };
-Object.defineProperty(el, 'light', {
+Object.defineProperty(el, 'lightT', {
   get: function() {return lightT;}
 }); 
 
@@ -101,7 +106,7 @@ const shadowT = {
     return shadowEl.style;
   } 
 };
-  Object.defineProperty(el, 'shadow', {
+  Object.defineProperty(el, 'shadowT', {
     get: function() { return shadowT;}
     
 });   
