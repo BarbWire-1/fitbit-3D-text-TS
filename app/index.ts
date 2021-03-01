@@ -87,10 +87,10 @@ test.lightT.style.visibility = "visible";
 //TODO 2 play with classes on <use>s
 
 
-test.mainT.style.fill = "white";
-test.lightT.x = 100; // TypeError: Invalid argument type.
-console.log(`lightT.x: ${test.lightT.x}`) // mainT.x: 100 - correct value here, but not applied
-test.lightT.y = 50;
-console.log(`lightT.y: ${test.lightT.y}`)
+
+test.light.x = 100; // TypeError: Invalid argument type.
+console.log(`light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
+test.light.y = 50;
+console.log(`light.y: ${test.light.y}`)
 
 

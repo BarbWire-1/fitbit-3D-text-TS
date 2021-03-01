@@ -7,7 +7,7 @@ export interface ShadowTextWidget extends TextElement {  // this is REALLY stran
   textAnchor: "start" | "middle" | "end";
   
   mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  lightT: RectElement;
+  light: RectElement;
   shadowT: RectElement;
 
   redraw();
@@ -28,8 +28,22 @@ const construct = (el: ShadowTextWidget) => {
   const mainEl = el.getElementById('main') as TextElement;
   //let mainS = el.getElementById("mainS") as RectElement
   
+
+  // PRESETS
+  // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
   mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
-  
+  highlightEl.x = highlightEl.x ?? -1;
+  highlightEl.y = highlightEl.y ?? -1;
+  shadowEl.x = shadowEl.x ?? 2;
+  shadowEl.y = shadowEl.y ?? 2;
+  shadowEl.style.opacity = shadowEl.style.opacity ?? 0.5;
+  mainEl.style.fill = mainEl.style.fill ?? "grey";
+  highlightEl.style.fill = highlightEl.style.fill ?? "white";
+  shadowEl.style.fill = shadowEl.style.fill ?? "red";
+
+
+
+
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
@@ -77,19 +91,25 @@ const construct = (el: ShadowTextWidget) => {
 
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
- 
+
+  Object.defineProperty(el, 'mainT', {
+    get: function() {return mainT;}
+  }); 
+  
   const mainT = {
     get style() {
       return mainEl.style;
     },    
   };
 
-Object.defineProperty(el, 'mainT', {
-  get: function() {return mainT;}
-});  
+ 
 
  
-  const lightT = {
+  Object.defineProperty(el, 'light', {
+    get: function () { return light; }
+  });   
+
+  const light = {
     get position() {
       return highlightEl.x, highlightEl.y;
     },
@@ -99,9 +119,7 @@ Object.defineProperty(el, 'mainT', {
   };
   
   
-Object.defineProperty(el, 'lightT', {
-  get: function() {return lightT;}
-}); 
+
   
  console.log(`lightEl.x: ${highlightEl.x}`)  
 
