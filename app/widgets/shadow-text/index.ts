@@ -1,13 +1,13 @@
 
-export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
+export interface ShadowTextWidget extends TextElement {  // this is REALLY strange.
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  mainText: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  lightText: RectElement;
-  shadowText: RectElement;
+  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  lightT: RectElement;
+  shadowT: RectElement;
 
   redraw();
 
@@ -77,32 +77,32 @@ const construct = (el: ShadowTextWidget) => {
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
  
-const main = {
+const mainT = {
   get style() {
     return mainEl.style;
   }
 };
-Object.defineProperty(el, 'mainText', {
-  get: function() {return main;}
+Object.defineProperty(el, 'main', {
+  get: function() {return mainT;}
 });  
 
 
-const light = {
+const lightT = {
   get style() {
     return highlightEl.style;
   }
 };
-Object.defineProperty(el, 'lightText', {
-  get: function() {return light;}
+Object.defineProperty(el, 'light', {
+  get: function() {return lightT;}
 }); 
 
-const shadow = {
+const shadowT = {
   get style() {
     return shadowEl.style;
   } 
 };
-Object.defineProperty(el, 'shadowText',{
-  get: function() { return shadow;}
+Object.defineProperty(el, 'shadow',{
+  get: function() { return shadowT;}
     
 });   
   
