@@ -19,8 +19,8 @@ const update = setInterval(() => {
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
-  test.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  test.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
+  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  calsLabel.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
@@ -55,8 +55,8 @@ test.light.style.fill = "yellow";
 
 //test.main.text = "blah" //
 //test.main.textAnchor = "end" // - "same" -
-test.shadow.x = 5;
-test.shadow.y = 5;
+//test.shadow.x = 5;
+//test.shadow.y = 5;
 //test.textAnchor = "end";
 /*
 console.log(test.shadow.style.fill)  
@@ -91,7 +91,14 @@ countDown.style.fontFamily = "Tungsten-Medium"
 //  });
 //test.text = "doof";
 //test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadow.text = "white"; 
+test.shadow.text = "blah"; 
+test.main.style.fill = "orange";
+//@ts-ignore
+test.main.style.opacity = 1;
+test.shadow.x = 15;
+test.shadow.style.fill = "red";
+
+
 
 
 

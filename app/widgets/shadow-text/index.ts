@@ -12,7 +12,7 @@ export interface ShadowTextWidget extends RectElement {  // this is REALLY stran
   redraw();
 
   /*
-  main : Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
+  main : Style ['fill'], ['opacity'], ['display']; // for string not available....
   light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
   shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
   */
@@ -23,9 +23,9 @@ const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
   const highlightEl = el.getElementById('highlight')as RectElement;
-  const shadowEl = el.getElementById('shadow') as RectElement;
-  const mainEl = el.getElementById('main') as RectElement;
-
+  const shadowEl = el.getElementById('shadow') as TextElement;
+  const mainEl = el.getElementById('main') as TextElement;
+  //let mainS = el.getElementById("mainS") as RectElement
   
   mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
   
@@ -76,49 +76,38 @@ const construct = (el: ShadowTextWidget) => {
 
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
-  Object.defineProperty(el, 'shadow',  {
-      get: function () { return shadowEl; },
-      set: function (newValue) {
-        (el.shadow  as RectElement).style.fill = newValue;
-        el.redraw();
-      }
-  }); 
  
-  Object.defineProperty(el, 'light', {
-      get: function () { return highlightEl; },
-      set: function (newValue) {
-        el.light.style.fill = newValue;
-        el.redraw();
-      }
-  });
-
-
-  Object.defineProperty(el, 'main', {
-      get: function () { return mainEl; },
-      set: function (newValue) {
-        el.main.style.fill = newValue;
-        el.redraw(); 
-
-      }
-  });
-
-  /*
-  // TESTING WITH SERGIO´s SUGGESTION
-  // try getting all wanted props and ONLY those defined and exported
-
-  // FROM GONDWANA: this makes mainEl available as el.main. when exported 
-  Object.defineProperty(el, 'main', { 
-    get: function () { return mainEl; }
-  });
- 
-  // FROM SERGIO: seems to do the same as newValue/redraw(), but how differently??
-  const update = () => {};
-  return {
-  
-  set main(fill: string) { el.main.style.fill = fill; update() },
-  get main() { return el.main.style.fill }
+const main = {
+  get style() {
+    return mainEl.style;
   }
-  */  
+};
+Object.defineProperty(el, 'main', {
+  get: function() {return main;}
+});  
+
+
+const light = {
+  get style() {
+    return highlightEl.style;
+  }
+};
+Object.defineProperty(el, 'light', {
+  get: function() {return light;}
+}); 
+
+const shadow = {
+  get style() {
+    return shadowEl.style;
+  } 
+};
+Object.defineProperty(el, 'shadow',{
+  get: function() { return shadow;}
+    
+});   
+  
+
+
 //TODO compare el.redraw and set/get update();
   return el;
 }
