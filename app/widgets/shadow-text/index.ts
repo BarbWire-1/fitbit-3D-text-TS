@@ -1,14 +1,14 @@
 import { outbox } from "file-transfer";
 
-export interface ShadowTextWidget extends TextElement {  // this is REALLY strange.
+export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY strange.
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  light: RectElement;
-  shadowT: RectElement;
+  mainT: TextElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  light: TextElement;
+  shadowT: TextElement;
 
   redraw();
 
@@ -23,7 +23,7 @@ export interface ShadowTextWidget extends TextElement {  // this is REALLY stran
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight')as TextElement;
+  const lightEl = el.getElementById('highlight')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
   //let mainS = el.getElementById("mainS") as RectElement
@@ -32,13 +32,13 @@ const construct = (el: ShadowTextWidget) => {
   // PRESETS
   // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
   mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
-  highlightEl.x = highlightEl.x ?? -1;
-  highlightEl.y = highlightEl.y ?? -1;
+  lightEl.x = lightEl.x ?? -1;
+  lightEl.y = lightEl.y ?? -1;
   shadowEl.x = shadowEl.x ?? 2;
   shadowEl.y = shadowEl.y ?? 2;
   shadowEl.style.opacity = shadowEl.style.opacity ?? 0.5;
   mainEl.style.fill = mainEl.style.fill ?? "grey";
-  highlightEl.style.fill = highlightEl.style.fill ?? "white";
+  lightEl.style.fill = lightEl.style.fill ?? "white";
   shadowEl.style.fill = shadowEl.style.fill ?? "red";
 
 
@@ -102,26 +102,29 @@ const construct = (el: ShadowTextWidget) => {
     },    
   };
 
- 
+  
 
- 
+
+
+ // get style() and hopefully position() on subElement #light
   Object.defineProperty(el, 'light', {
     get: function () { return light; }
   });   
 
   const light = {
     get position() {
-      return highlightEl.x, highlightEl.y;
+      return lightEl.x, lightEl.y; // why dosn´t position() pass the values to my lightEl???
     },
     get style() {
-      return highlightEl.style;
+      return lightEl.style;
     }
   };
   
-  
+ console.log(`lightEl.x: ${lightEl.x}`)  
 
   
- console.log(`lightEl.x: ${highlightEl.x}`)  
+
+
 
 const shadowT = {
   get style() {

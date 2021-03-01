@@ -39,7 +39,7 @@ test.y = 180; "✔️"
 //console.log(`y: ${test.y}`) // x: 180;
 test.style.fontFamily = "Barlow-Bold"; "✔️"
 //console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
-test.letterSpacing = 10; "✔️"
+test.letterSpacing = 0; "✔️"
 //console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
 test.textAnchor = "middle"; "✔️"
 //console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
@@ -88,9 +88,9 @@ test.lightT.style.visibility = "visible";
 
 
 
-test.light.x = 100; // TypeError: Invalid argument type.
+test.light.x = 100; // not applied
 console.log(`light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
 test.light.y = 50;
 console.log(`light.y: ${test.light.y}`)
 
-
+test.light.x = 10;

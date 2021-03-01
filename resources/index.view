@@ -4,6 +4,7 @@
 
     <use id="stepsLabel" href="#shadowText" x="50%" y="50%-50" font-family="Barlow-Bold" font-size="45" opacity="1" display="inline">
        <set href="text" attributeName="text-anchor" to="middle"/> 
+       
     </use>
 
     <use id="calsLabel" href="#shadowText" x="50%" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"> 
