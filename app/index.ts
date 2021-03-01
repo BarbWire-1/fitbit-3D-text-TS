@@ -15,7 +15,7 @@ let countDown = document.getElementById('countDown') as ShadowTextWidget;
 let cd = 100;
 
 const update = setInterval(() => {
-  //test.text = `steps ${today.adjusted.steps}`;
+  test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
@@ -41,7 +41,7 @@ test.style.fontFamily = "Barlow-Bold"; "✔️"
 //console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
 test.letterSpacing = 0; "✔️"
 //console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
-test.textAnchor = "middle"; "✔️"
+//test.textAnchor = "middle"; "✔️"
 //console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
 
 
@@ -93,10 +93,10 @@ console.log(`test light.x: ${test.light.x}`) // mainT.x: 100 - correct value her
 test.light.y = -1;
 console.log(`test light.y: ${test.light.y}`)
 
-test.light.x = -10;
+test.light.x = -3;
 //test.light.text = "orange";
-test.light.style.fontSize = 5; // WTF???
+//test.light.style.fontSize = 5; // WTF???
 
 test.style.fontSize = 40;
 test.light.text = "blöd"; // gets overridden if redrawn
-test.text = String(today.adjusted.steps);
+//test.text = String(today.adjusted.steps);

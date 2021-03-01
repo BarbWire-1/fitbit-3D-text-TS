@@ -3,7 +3,8 @@
 
 
     <use id="test" href="#shadowText" x="50%" y="50%-50" font-family="Barlow-Bold" font-size="45" opacity="1" display="inline">
-       <set href="text" attributeName="text-anchor" to="middle"/> 
+       <set href="text" attributeName="text-anchor" to="end"/> 
+      
        
     </use>
 

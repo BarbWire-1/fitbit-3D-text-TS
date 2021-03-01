@@ -23,7 +23,7 @@ export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY s
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const lightEl = el.getElementById('highlight')as TextElement;
+  const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
   //let mainS = el.getElementById("mainS") as RectElement
@@ -106,11 +106,7 @@ const construct = (el: ShadowTextWidget) => {
 // TEST WITH PREVIOUS APPROACH ##################################################
  Object.defineProperty(el, 'light', {
     get: function () { return lightEl; },
-    set: function (newValue) {    
-      el.light.style.fill = newValue;
-       console.log(`light: ${lightEl.style.fill}`);
-       el.redraw();
-    }
+    
    });
  //################################################################################
 
