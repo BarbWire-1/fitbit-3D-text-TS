@@ -1,3 +1,4 @@
+import { outbox } from "file-transfer";
 
 export interface ShadowTextWidget extends TextElement {  // this is REALLY strange.
   //textAnchor: string;
@@ -78,14 +79,9 @@ const construct = (el: ShadowTextWidget) => {
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
  
   const mainT = {
-    set mainT(x: number) { el.x = x},
-    get mainT() {
-      return mainEl.x;
-    },
     get style() {
       return mainEl.style;
-    },
-    
+    },    
   };
 
 Object.defineProperty(el, 'mainT', {
@@ -94,19 +90,21 @@ Object.defineProperty(el, 'mainT', {
 
 
   const lightT = {
-  set lightT(x: number) { el.lightT.x = x},
-    get lightT() {
-      return highlightEl.x;
-    },
-  get style() {
-    return highlightEl.style;
-  }
+    set lightT(x: number) { el.lightT.x = x},
+      get lightT() {
+        return highlightEl.x;
+      },
+    get style() {
+      return highlightEl.style;
+    }
   };
   
-   console.log(`lightEl.x: ${highlightEl.x}`)
+  
 Object.defineProperty(el, 'lightT', {
   get: function() {return lightT;}
 }); 
+  
+ console.log(`lightEl.x: ${highlightEl.x}`)  
 
 const shadowT = {
   get style() {
@@ -114,8 +112,7 @@ const shadowT = {
   } 
 };
   Object.defineProperty(el, 'shadowT', {
-    get: function() { return shadowT;}
-    
+    get: function() { return shadowT;}   
 });   
   
 
@@ -134,3 +131,6 @@ export const shadowText = () => {
       construct: construct
   }
 }
+
+
+//TODO back to prev solution? don´t find outbox, how to access x,y this way
