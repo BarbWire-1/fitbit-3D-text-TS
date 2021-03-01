@@ -2,13 +2,13 @@ import { outbox } from "file-transfer";
 
 export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY strange.
   //textAnchor: string;
-  text: string;             // enables to set text attributes on shadowText directly
+  //text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
-  shadowT: RectElement;
+  shadow: RectElement;
 
   redraw();
 
@@ -92,15 +92,10 @@ const construct = (el: ShadowTextWidget) => {
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
 
-  Object.defineProperty(el, 'mainT', {
-    get: function() {return mainT;}
+  Object.defineProperty(el, 'main', {
+    get: function() {return mainEl;}
   }); 
-  
-  const mainT = {
-    get style() {
-      return mainEl.style;
-    },    
-  };
+
 
 
 // TEST WITH PREVIOUS APPROACH ##################################################
@@ -108,44 +103,20 @@ const construct = (el: ShadowTextWidget) => {
     get: function () { return lightEl; },
     
    });
- //################################################################################
+  Object.defineProperty(el, 'shadow', {
+    get: function() { return shadowEl;}   
+  });  
+  
 
 
-
-
-
-
-
-/*
-
- // get style() and hopefully position() on subElement #light
-  Object.defineProperty(el, 'light', {
-    get: function () { return light; }
-  });   
-
-  const light = {
-    get position() {
-      return lightEl.x; // why dosn´t position() pass the values to my lightEl???
-    },
-    get style() {
-      return lightEl.style;
-    }
-  };
-*/
  console.log(`${lightEl.parent.id} light.x: ${lightEl.x}`)  
 
   
 
 
 
-const shadowT = {
-  get style() {
-    return shadowEl.style;
-  } 
-};
-  Object.defineProperty(el, 'shadowT', {
-    get: function() { return shadowT;}   
-});   
+
+ 
   
 
 
