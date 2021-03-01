@@ -1,18 +1,19 @@
+import { outbox } from "file-transfer";
 
-export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
+export interface ShadowTextWidget extends TextElement {  // this is REALLY strange.
   //textAnchor: string;
   text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
   light: RectElement;
-  shadow: RectElement;
+  shadowT: RectElement;
 
   redraw();
 
   /*
-  main : Style ['fill'], ['opacity'], ['display']; // for string not available.... grrrr
+  main : Style ['fill'], ['opacity'], ['display']; // for string not available....
   light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
   shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
   */
@@ -22,13 +23,27 @@ export interface ShadowTextWidget extends RectElement {  // this is REALLY stran
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight')as RectElement;
-  const shadowEl = el.getElementById('shadow') as RectElement;
-  const mainEl = el.getElementById('main') as RectElement;
+  const highlightEl = el.getElementById('highlight')as TextElement;
+  const shadowEl = el.getElementById('shadow') as TextElement;
+  const mainEl = el.getElementById('main') as TextElement;
+  //let mainS = el.getElementById("mainS") as RectElement
+  
 
-  
+  // PRESETS
+  // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
   mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
-  
+  highlightEl.x = highlightEl.x ?? -1;
+  highlightEl.y = highlightEl.y ?? -1;
+  shadowEl.x = shadowEl.x ?? 2;
+  shadowEl.y = shadowEl.y ?? 2;
+  shadowEl.style.opacity = shadowEl.style.opacity ?? 0.5;
+  mainEl.style.fill = mainEl.style.fill ?? "grey";
+  highlightEl.style.fill = highlightEl.style.fill ?? "white";
+  shadowEl.style.fill = shadowEl.style.fill ?? "red";
+
+
+
+
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
@@ -76,49 +91,49 @@ const construct = (el: ShadowTextWidget) => {
 
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
-  Object.defineProperty(el, 'shadow',  {
-      get: function () { return shadowEl; },
-      set: function (newValue) {
-        (el.shadow  as RectElement).style.fill = newValue;
-        el.redraw();
-      }
+
+  Object.defineProperty(el, 'mainT', {
+    get: function() {return mainT;}
   }); 
+  
+  const mainT = {
+    get style() {
+      return mainEl.style;
+    },    
+  };
+
+ 
+
  
   Object.defineProperty(el, 'light', {
-      get: function () { return highlightEl; },
-      set: function (newValue) {
-        el.light.style.fill = newValue;
-        el.redraw();
-      }
-  });
+    get: function () { return light; }
+  });   
 
-
-  Object.defineProperty(el, 'main', {
-      get: function () { return mainEl; },
-      set: function (newValue) {
-        el.main.style.fill = newValue;
-        el.redraw(); 
-
-      }
-  });
-
-  /*
-  // TESTING WITH SERGIO´s SUGGESTION
-  // try getting all wanted props and ONLY those defined and exported
-
-  // FROM GONDWANA: this makes mainEl available as el.main. when exported 
-  Object.defineProperty(el, 'main', { 
-    get: function () { return mainEl; }
-  });
- 
-  // FROM SERGIO: seems to do the same as newValue/redraw(), but how differently??
-  const update = () => {};
-  return {
+  const light = {
+    get position() {
+      return highlightEl.x, highlightEl.y;
+    },
+    get style() {
+      return highlightEl.style;
+    }
+  };
   
-  set main(fill: string) { el.main.style.fill = fill; update() },
-  get main() { return el.main.style.fill }
-  }
-  */  
+  
+
+  
+ console.log(`lightEl.x: ${highlightEl.x}`)  
+
+const shadowT = {
+  get style() {
+    return shadowEl.style;
+  } 
+};
+  Object.defineProperty(el, 'shadowT', {
+    get: function() { return shadowT;}   
+});   
+  
+
+
 //TODO compare el.redraw and set/get update();
   return el;
 }
@@ -133,3 +148,6 @@ export const shadowText = () => {
       construct: construct
   }
 }
+
+
+//TODO back to prev solution? don´t find outbox, how to access x,y this way

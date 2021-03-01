@@ -31,5 +31,8 @@
 			}
 		},
 		"defaultLanguage": "en-US"
+	},
+	"dependencies": {
+		"fitfont": "^1.3.3"
 	}
 }

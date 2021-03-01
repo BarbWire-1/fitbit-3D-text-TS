@@ -13,86 +13,84 @@ let test: ShadowTextWidget = stepsLabel;
 
 
 let cd = 100;
-
+/*
 const update = setInterval(() => {
-  stepsLabel.text = `steps ${today.adjusted.steps}`;
+  //stepsLabel.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
-  test.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  test.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
+  calsLabel.mainT.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  calsLabel.mainT.style.opacity = cd % 2 === 0 ? 1 : 0.5;
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
   }
 }, 1000);
+*/
 
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
+// <use>
+// NORMAL settings on <use>
+test.text = "TEST"; 
+//console.log(`text: ${test.text}`); // text: undefined (as redrawn in closure - but working)
+test.x = 168; "✔️"
+//console.log(`x: ${test.x}`) // x: 168;
+test.y = 180; "✔️"
+//console.log(`y: ${test.y}`) // x: 180;
+test.style.fontFamily = "Barlow-Bold"; "✔️"
+//console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
+test.letterSpacing = 10; "✔️"
+//console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
+test.textAnchor = "middle"; "✔️"
+//console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
 
 
-//test.x = 200;
-//test.y = 200;
-//test.textAnchor = "end"; 
-//test.letterSpacing = 20;
-//test.style.opacity = 0.7;
-test.style.fontFamily = "Tungsten-Medium";
-//test.style.fontSize = 25;
-//test.style.display = "none";
+// UNWANTED settings on <use>
+test.style.fill = "white"; "✔️"
+//console.log(`fill: ${test.style.fill}`) // fill: #FFFFFF (gets applied, but at the invisible #text)
+//##########################################################################################################################################
 
-// el.style.fill is NOT applicable on the widget-text directly, as it is composed out of multiple elements!!!
-// (the 3 layers to add fill are 'highlight', 'shadow' and 'main')
-// instead you can manipulate the fill of the layers like this:
 
-test.shadow.style.fill = "blue";
-test.light.style.fill = "yellow";
+/*
+// desirable settings on mainT (main)
+test.mainT.style.fill = "red";  // NO x,y on mainT as 0,0 => coords of the <use>
+test.mainT.style.opacity = 1;
+test.mainT.style.display = "inline";
+test.mainT.style.visibility = "visible";
 
+
+// desirable settings on shadowT (shadow)
+test.shadowT.x = 5;
+test.shadowT.y = 5;
+test.shadowT.style.fill = "red";  // NO x,y on mainT as 0,0 => coords of the <use>
+test.shadowT.style.opacity = 1;
+test.shadowT.style.display = "inline";
+test.shadowT.style.visibility = "visible";
+
+
+
+// desirable settings on shadowT (shadow)
+test.lightT.x = 5;
+test.lightT.y = 5;
+test.lightT.style.fill = "red";  // NO x,y on mainT as 0,0 => coords of the <use>
+test.lightT.style.opacity = 1;
+test.lightT.style.display = "inline";
+test.lightT.style.visibility = "visible";
+*/
 // settings on classes for layout eg:
 //let highlights = document.getElementsByClassName("light");
 //highlights.forEach((e: GraphicsElement) => {
 //  e.style.fill = "yellow";
 //});
 
-
-//test.main.text = "blah" //
-//test.main.textAnchor = "end" // - "same" -
-test.shadow.x = 5;
-test.shadow.y = 5;
-//test.textAnchor = "end";
-/*
-console.log(test.shadow.style.fill)  
-console.log(test.text)               
-console.log(test.main.text)          // logs text-buffer 
-console.log(test.textAnchor)         
-console.log(test.main.textAnchor)    
-console.log(test.letterSpacing)      
-console.log(test.main.letterSpacing) 
-
-console.log(stepsLabel.textAnchor)
-console.log(calsLabel.textAnchor)
-console.log(`textAnchor from svg: ${countDown.textAnchor}`)
-
-
-//countDown.main.textAnchor = "middle";
-console.log(`textAnchor ater startup: ${countDown.textAnchor}`)
-countDown.text = "blah"
-countDown.main.text = "NÖ" // overrides text on element.text
-countDown.letterSpacing = 20; 
-countDown.textAnchor = "middle" 
-countDown.style.fontFamily = "Tungsten-Medium" 
-*/
-//TODO 1 IMPORTANT: check settings/logs after change to "GraphicsElement" for subs
+//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
 //TODO 2 play with classes on <use>s
 
-//console.log(test.main.text)
-
-//settings on symbol-intern class
-//document.getElementsByClassName("light").forEach( (e: GraphicsElement) => {
-//    e.style.fill = "yellow";
-//  });
-//test.text = "doof";
-//test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadow.text = "white"; 
 
 
+test.light.x = 100; // TypeError: Invalid argument type.
+console.log(`light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
+test.light.y = 50;
+console.log(`light.y: ${test.light.y}`)
 
 
