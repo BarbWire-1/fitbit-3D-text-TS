@@ -1,14 +1,14 @@
 import { outbox } from "file-transfer";
 
-export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY strange.
+export interface ShadowTextWidget extends RectElement {  // this is REALLY strange.
   //textAnchor: string;
   //text: string;             // enables to set text attributes on shadowText directly
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  light: RectElement;
-  shadow: RectElement;
+  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  lightT: RectElement;
+  shadowT: RectElement;
 
   redraw();
 
@@ -23,9 +23,9 @@ export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY s
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const lightEl = el.getElementById('light')as TextElement;
-  const shadowEl = el.getElementById('shadow') as TextElement;
-  const mainEl = el.getElementById('main') as TextElement;
+  const lightEl = el.getElementById('light')as RectElement;
+  const shadowEl = el.getElementById('shadow') as RectElement;
+  const mainEl = el.getElementById('main') as RectElement;
   //let mainS = el.getElementById("mainS") as RectElement
   
 
@@ -41,7 +41,7 @@ const construct = (el: ShadowTextWidget) => {
   lightEl.style.fill = lightEl.style.fill ?? "white";
   shadowEl.style.fill = shadowEl.style.fill ?? "red";
 
-
+  textEl.text = textEl.text ?? "TEXT"
 
 
 
@@ -92,24 +92,24 @@ const construct = (el: ShadowTextWidget) => {
   // add subElements and export as mainElement to be able to style as myText.subElement.style.string
   // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
 
-  Object.defineProperty(el, 'main', {
+  Object.defineProperty(el, 'mainT', {
     get: function() {return mainEl;}
   }); 
 
 
 
 // TEST WITH PREVIOUS APPROACH ##################################################
- Object.defineProperty(el, 'light', {
+ Object.defineProperty(el, 'lightT', {
     get: function () { return lightEl; },
     
    });
-  Object.defineProperty(el, 'shadow', {
+  Object.defineProperty(el, 'shadowT', {
     get: function() { return shadowEl;}   
   });  
   
 
 
- console.log(`${lightEl.parent.id} light.x: ${lightEl.x}`)  
+ console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
 
   
 

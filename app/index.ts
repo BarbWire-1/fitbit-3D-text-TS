@@ -19,8 +19,8 @@ const update = setInterval(() => {
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
-  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  calsLabel.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
+  calsLabel.mainT.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  calsLabel.mainT.style.opacity = cd % 2 === 0 ? 1 : 0.5;
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
@@ -89,15 +89,15 @@ test.lightT.style.visibility = "visible";
 
 
 
-console.log(`test light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
-test.light.y = -1;
-console.log(`test light.y: ${test.light.y}`)
+console.log(`test light.x: ${test.lightT.x}`) // mainT.x: 100 - correct value here, but not applied
+test.lightT.y = -1;
+console.log(`test light.y: ${test.lightT.y}`)
 
-test.light.x = -1;
-test.light.y = -1;
-test.light.text = "orange"; // WHY???
+test.lightT.x = -1;
+test.lightT.y = -1;
+//test.lightT.text = "orange"; // WHY???
 //test.light.style.fontSize = 5; // WTF???
 
 test.style.fontSize = 40;
-test.light.style.fill = "yellow"; // gets overridden if redrawn
+//test.lightT.style.fill = "yellow"; // gets overridden if redrawn
 //test.text = String(today.adjusted.steps);
