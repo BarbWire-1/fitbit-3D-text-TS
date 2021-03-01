@@ -31,7 +31,7 @@ const construct = (el: ShadowTextWidget) => {
 
   // PRESETS
   // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
-  mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
+  mainEl.x = mainEl.y = 0;   // so "main" allways is at x,y of the <use>
   lightEl.x = lightEl.x ?? -1;
   lightEl.y = lightEl.y ?? -1;
   shadowEl.x = shadowEl.x ?? 2;
@@ -52,7 +52,7 @@ const construct = (el: ShadowTextWidget) => {
   el.redraw = () => { 
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
-          e.text = textEl.text ?? ""; 
+          e.text = textEl.text ?? "TEXT"; 
           e.textAnchor = textEl.textAnchor; // preset in widget css now?
           e.letterSpacing = textEl.letterSpacing ?? 0;
           //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
@@ -102,9 +102,25 @@ const construct = (el: ShadowTextWidget) => {
     },    
   };
 
-  
+
+// TEST WITH PREVIOUS APPROACH ##################################################
+ Object.defineProperty(el, 'light', {
+    get: function () { return lightEl; },
+    set: function (newValue) {    
+      el.light.style.fill = newValue;
+       console.log(`light: ${lightEl.style.fill}`);
+       el.redraw();
+    }
+   });
+ //################################################################################
 
 
+
+
+
+
+
+/*
 
  // get style() and hopefully position() on subElement #light
   Object.defineProperty(el, 'light', {
@@ -113,13 +129,13 @@ const construct = (el: ShadowTextWidget) => {
 
   const light = {
     get position() {
-      return lightEl.x, lightEl.y; // why dosn´t position() pass the values to my lightEl???
+      return lightEl.x; // why dosn´t position() pass the values to my lightEl???
     },
     get style() {
       return lightEl.style;
     }
   };
-  
+*/
  console.log(`${lightEl.parent.id} light.x: ${lightEl.x}`)  
 
   

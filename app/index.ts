@@ -13,9 +13,9 @@ let countDown = document.getElementById('countDown') as ShadowTextWidget;
 
 
 let cd = 100;
-/*
+
 const update = setInterval(() => {
-  //stepsLabel.text = `steps ${today.adjusted.steps}`;
+  //test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
@@ -26,7 +26,7 @@ const update = setInterval(() => {
     cd = 100;
   }
 }, 1000);
-*/
+
 
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 // <use>
@@ -88,9 +88,15 @@ test.lightT.style.visibility = "visible";
 
 
 
-test.light.x = 100; // not applied
+
 console.log(`test light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
-test.light.y = 50;
+test.light.y = -1;
 console.log(`test light.y: ${test.light.y}`)
 
-test.light.x = 10;
+test.light.x = -10;
+//test.light.text = "orange";
+test.light.style.fontSize = 5; // WTF???
+
+test.style.fontSize = 40;
+test.light.text = "blöd"; // gets overridden if redrawn
+test.text = String(today.adjusted.steps);
