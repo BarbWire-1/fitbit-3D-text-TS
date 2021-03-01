@@ -88,11 +88,14 @@ Object.defineProperty(el, 'mainT', {
   get: function() {return mainT;}
 });  
 
-
+ const update = () => {};
   const lightT = {
-    set lightT(x: number) { el.lightT.x = x},
+   
+    return :{
+    set highlight(x: number) { el.lightT.x = x; update()},                     //TRIAL AND ERROR
       get lightT() {
-        return highlightEl.x;
+        return highlightEl.x
+      }
       },
     get style() {
       return highlightEl.style;
