@@ -5,9 +5,9 @@ export interface ShadowTextWidget extends RectElement {  // this is REALLY stran
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  main: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  light: RectElement;
-  shadow: RectElement;
+  mainText: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  lightText: RectElement;
+  shadowText: RectElement;
 
   redraw();
 
@@ -82,7 +82,7 @@ const main = {
     return mainEl.style;
   }
 };
-Object.defineProperty(el, 'main', {
+Object.defineProperty(el, 'mainText', {
   get: function() {return main;}
 });  
 
@@ -92,7 +92,7 @@ const light = {
     return highlightEl.style;
   }
 };
-Object.defineProperty(el, 'light', {
+Object.defineProperty(el, 'lightText', {
   get: function() {return light;}
 }); 
 
@@ -101,7 +101,7 @@ const shadow = {
     return shadowEl.style;
   } 
 };
-Object.defineProperty(el, 'shadow',{
+Object.defineProperty(el, 'shadowText',{
   get: function() { return shadow;}
     
 });   

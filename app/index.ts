@@ -19,8 +19,8 @@ const update = setInterval(() => {
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
 
-  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  calsLabel.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
+  calsLabel.mainText.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  calsLabel.mainText.style.opacity = cd % 2 === 0 ? 1 : 0.5;
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
@@ -43,8 +43,8 @@ test.style.fontFamily = "Tungsten-Medium";
 // (the 3 layers to add fill are 'highlight', 'shadow' and 'main')
 // instead you can manipulate the fill of the layers like this:
 
-test.shadow.style.fill = "blue";
-test.light.style.fill = "yellow";
+test.shadowText.style.fill = "blue";
+test.lightText.style.fill = "yellow";
 
 // settings on classes for layout eg:
 //let highlights = document.getElementsByClassName("light");
@@ -91,12 +91,12 @@ countDown.style.fontFamily = "Tungsten-Medium"
 //  });
 //test.text = "doof";
 //test.main.text = "blah"  // overrides main.text EXTERN! so changes don´t get inherited to other subs
-test.shadow.text = "blah"; 
-test.main.style.fill = "orange";
+test.shadowText.text = "blah"; 
+test.mainText.style.fill = "orange";
 //@ts-ignore
-test.main.style.opacity = 1;
-test.shadow.x = 15;
-test.shadow.style.fill = "red";
+test.mainText.style.opacity = 1;
+test.shadowText.x = 15;
+test.shadowText.style.fill = "red";
 
 
 
