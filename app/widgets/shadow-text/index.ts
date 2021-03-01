@@ -1,21 +1,17 @@
 
 
-export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY strange.
+export interface ShadowTextWidget extends GraphicsElement {  
   
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
-  
+
+  // export 'placeholders'
   main: TextElement;   
   light: TextElement;
   shadow: TextElement;
-
+  
   redraw();
 
-  /*
-  main: RectElement, ['fill'], ['opacity'], ['display']; // for string not available....
-  light: RectElement, ['fill'], ['opacity'], ['display'], ['x'], ['y'];
-  shadow: RectElement, ['fill'], ['opacity'], ['display'], ['x'], ['y'];
-  */
 }
 // TODO check Properties, getter, setter, new Type
 
@@ -44,8 +40,6 @@ const construct = (el: ShadowTextWidget) => {
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  
-    
   el.redraw = () => { 
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
@@ -59,7 +53,7 @@ const construct = (el: ShadowTextWidget) => {
   el.redraw();
 
 
-  Object.defineProperty(el, 'text', {
+  Object.defineProperty(el, 'text', {     // why does this work without export, but needed?
       set: function (newValue) {
         textEl.text = newValue;
         el.redraw();
