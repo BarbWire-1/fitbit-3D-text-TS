@@ -30,7 +30,7 @@ const update = setInterval(() => {
 
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 // <use>
-// desirable settings on <use>
+// NORMAL settings on <use>
 test.text = "TEST"; 
 //console.log(`text: ${test.text}`); // text: undefined (as redrawn in closure - but working)
 test.x = 168; "✔️"
@@ -44,9 +44,12 @@ test.letterSpacing = 10; "✔️"
 test.textAnchor = "middle"; "✔️"
 //console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
 
-//unwanted settings on <use>
+
+// UNWANTED settings on <use>
 test.style.fill = "white"; "✔️"
 //console.log(`fill: ${test.style.fill}`) // fill: #FFFFFF (gets applied, but at the invisible #text)
+//##########################################################################################################################################
+
 
 /*
 // desirable settings on mainT (main)

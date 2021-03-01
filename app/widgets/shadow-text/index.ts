@@ -22,7 +22,7 @@ export interface ShadowTextWidget extends TextElement {  // this is REALLY stran
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight')as RectElement;
+  const highlightEl = el.getElementById('highlight')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
   //let mainS = el.getElementById("mainS") as RectElement
@@ -101,8 +101,8 @@ const shadowT = {
     return shadowEl.style;
   } 
 };
-Object.defineProperty(el, 'shadow',{
-  get: function() { return shadowT;}
+  Object.defineProperty(el, 'shadow', {
+    get: function() { return shadowT;}
     
 });   
   
