@@ -6,10 +6,10 @@ import { shadowText, ShadowTextWidget } from './widgets/shadow-text';
 
 widgetFactory(shadowText);
 
-let stepsLabel = document.getElementById('stepsLabel') as ShadowTextWidget;
+let test = document.getElementById('test') as ShadowTextWidget;
 let calsLabel = document.getElementById('calsLabel') as ShadowTextWidget;
 let countDown = document.getElementById('countDown') as ShadowTextWidget;
-let test: ShadowTextWidget = stepsLabel;
+//let test: ShadowTextWidget = stepsLabel;
 
 
 let cd = 100;
@@ -89,8 +89,8 @@ test.lightT.style.visibility = "visible";
 
 
 test.light.x = 100; // not applied
-console.log(`light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
+console.log(`test light.x: ${test.light.x}`) // mainT.x: 100 - correct value here, but not applied
 test.light.y = 50;
-console.log(`light.y: ${test.light.y}`)
+console.log(`test light.y: ${test.light.y}`)
 
 test.light.x = 10;

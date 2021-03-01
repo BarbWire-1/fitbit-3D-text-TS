@@ -6,9 +6,9 @@ export interface ShadowTextWidget extends GraphicsElement {  // this is REALLY s
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
-  mainT: TextElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  light: TextElement;
-  shadowT: TextElement;
+  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
+  light: RectElement;
+  shadowT: RectElement;
 
   redraw();
 
@@ -120,7 +120,7 @@ const construct = (el: ShadowTextWidget) => {
     }
   };
   
- console.log(`lightEl.x: ${lightEl.x}`)  
+ console.log(`${lightEl.parent.id} light.x: ${lightEl.x}`)  
 
   
 
