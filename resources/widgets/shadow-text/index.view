@@ -1,9 +1,10 @@
 <defs>
-        <symbol id="shadowText" type="shadowText">
-            <text id="text" class="myText" display="none"/>  <!--element inherits text/text-props - set letterSpacing/textAnchor on class .layout-->
-            <text id="shadow" class="myText shadow"/>               <!--so fill and/or offset can be set per class .shadow-->
-            <text  id="highlight" class="myText light"/>            <!--so fill and/or offset can be set per class .highlight-->             
-            <text id="main" class="myText main"/>                   <!--so fill can be set per class .main / x,y is hardcoded to 0,0 as others are set in relation-->
-        </symbol>
+    <symbol id="shadowText" type="shadowText" font-family="System-Regular" font-size="30" > <!--this is an interesting found. Inheritance?-->
+        <text id="text" class="myText" display="none"  text-anchor="start"/>  <!--element inherits text/text-props -->
+        <text id="shadow" class="myText shadow" x="2" y="2" fill="red" opacity="0.5"/>  <!--so fill and/or offset can be set per class .shadow-->
+        <text  id="light" class="myText light" x="-1" y="1" fill="white"/>   <!--so fill and/or offset can be set per class .highlight-->             
+        <text id="main" class="myText main" fill="grey"/>      <!--so fill can be set per class .main / x,y is hardcoded to 0,0 in redraw as others are set in relation-->
+    </symbol>
       
-    </defs>
+</defs>
+

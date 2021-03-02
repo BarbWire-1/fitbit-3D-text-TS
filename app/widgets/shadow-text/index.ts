@@ -1,84 +1,48 @@
-import { outbox } from "file-transfer";
 
-export interface ShadowTextWidget extends TextElement {  // this is REALLY strange.
-  //textAnchor: string;
-  text: string;             // enables to set text attributes on shadowText directly
+
+export interface ShadowTextWidget extends GraphicsElement { 
+  
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
+  // export 'placeholders'
+  main: TextElement;   
+  light: TextElement;
+  shadow: TextElement;
   
-  mainT: RectElement;   // very ugly, but allows to ristrict props. strange: text is still applicable
-  light: RectElement;
-  shadowT: RectElement;
-
   redraw();
 
-  /*
-  main : Style ['fill'], ['opacity'], ['display']; // for string not available....
-  light: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
-  shadow: Style ['fill'], ['opacity'], ['display'], ['x'], ['y'];
-  */
 }
 
+//DEFAULTS in symbol
 
 const construct = (el: ShadowTextWidget) => {
 
   const textEl = el.getElementById('text') as TextElement;
-  const highlightEl = el.getElementById('highlight')as TextElement;
+  const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
-  //let mainS = el.getElementById("mainS") as RectElement
-  
-
-  // PRESETS
-  // textEl.textAnchor = textEl.textAnchor ?? "start"; // grrrrrr..... error if undefined
-  mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use>
-  highlightEl.x = highlightEl.x ?? -1;
-  highlightEl.y = highlightEl.y ?? -1;
-  shadowEl.x = shadowEl.x ?? 2;
-  shadowEl.y = shadowEl.y ?? 2;
-  shadowEl.style.opacity = shadowEl.style.opacity ?? 0.5;
-  mainEl.style.fill = mainEl.style.fill ?? "grey";
-  highlightEl.style.fill = highlightEl.style.fill ?? "white";
-  shadowEl.style.fill = shadowEl.style.fill ?? "red";
-
-
-
-
-
+ 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  
-    
   el.redraw = () => { 
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
-          e.text = textEl.text ?? ""; 
-          e.textAnchor = textEl.textAnchor; // preset in widget css now?
+          e.text = textEl.text ?? "TEXT"; 
           e.letterSpacing = textEl.letterSpacing ?? 0;
-          //console.log(el.main.textAnchor) // all to "default" outer settings overridden :(
+          e.style.fontFamily = textEl.style.fontFamily;
+          e.textAnchor = textEl.textAnchor;
+          
       });
+    
+    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
   };
 
   el.redraw();
 
-
-    //As try/catch(e) overrides ALL textAnchor, if only one is undefined (???) seems to be necessary to set textAnchor for each use in svg manually to start
-    //TODO add new simple file to test all settings/errors from scratch now, after textAnchor no longer presetted in css
-  
-
-
-
-  Object.defineProperty(el, 'text', {
+  Object.defineProperty(el, 'text', {     // don´t need export as all text, but need redraw
       set: function (newValue) {
         textEl.text = newValue;
         el.redraw();
-      }
-  });
-
-  Object.defineProperty(el, 'textAnchor', {
-      set: function (newValue) {
-      textEl.textAnchor = newValue ?? "start";
-      el.redraw();
       }
   });
 
@@ -89,55 +53,31 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
-  // add subElements and export as mainElement to be able to style as myText.subElement.style.string
-  // redraw if newValue (hardcoded values are also settable on subs in .ts, but won´t get redrawn) - // TODO NOT nice. possible to exclude them?
+  Object.defineProperty(el, 'textAnchor', {
+      set: function (newValue) {
+        textEl.textAnchor = newValue;
+        el.redraw();    
+      }
+  });
 
-  Object.defineProperty(el, 'mainT', {
-    get: function() {return mainT;}
+  // add and export placeholders to pass properties into subElements per ts/js
+  Object.defineProperty(el, 'main',{ 
+    get: function() {return mainEl;}
   }); 
-  
-  const mainT = {
-    get style() {
-      return mainEl.style;
-    },    
-  };
+
+ Object.defineProperty(el, 'light', {
+    get: function() { return lightEl;}
+    
+   });
+  Object.defineProperty(el, 'shadow', {
+    get: function() { return shadowEl;}   
+  });  
+
+ //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
 
  
-
- 
-  Object.defineProperty(el, 'light', {
-    get: function () { return light; }
-  });   
-
-  const light = {
-    get position() {
-      return highlightEl.x, highlightEl.y;
-    },
-    get style() {
-      return highlightEl.style;
-    }
-  };
-  
-  
-
-  
- console.log(`lightEl.x: ${highlightEl.x}`)  
-
-const shadowT = {
-  get style() {
-    return shadowEl.style;
-  } 
-};
-  Object.defineProperty(el, 'shadowT', {
-    get: function() { return shadowT;}   
-});   
-  
-
-
-//TODO compare el.redraw and set/get update();
   return el;
 }
-
 
 
 export const shadowText = () => {
@@ -150,4 +90,7 @@ export const shadowText = () => {
 }
 
 
-//TODO back to prev solution? don´t find outbox, how to access x,y this way
+//TODO check Properties, getter, setter, new Type
+//TODO compare el.redraw and set/get update();
+//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
+//TODO 2 play with classes on <use>s
