@@ -3,8 +3,7 @@
 export interface ShadowTextWidget extends GraphicsElement { 
   
   letterSpacing: number;
- 
-  
+  textAnchor: "start" | "middle" | "end";
   // export 'placeholders'
   main: TextElement;   
   light: TextElement;
@@ -13,8 +12,8 @@ export interface ShadowTextWidget extends GraphicsElement {
   redraw();
 
 }
-// TODO check Properties, getter, setter, new Type
-// TODO why behave fontSize and textAnchor that differently???
+
+//DEFAULTS in symbol
 
 const construct = (el: ShadowTextWidget) => {
 
@@ -23,23 +22,6 @@ const construct = (el: ShadowTextWidget) => {
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
  
-  
- 
-   /*
-  textEl.text = textEl.text ?? "TEXT"
-  //textEl.style.fontSize = textEl.style.fontSize ?? 100;
-  //DEFAULTS needed? // TODO check if needed/wanted
-  mainEl.x = mainEl.y = 0;
-  lightEl.x = lightEl.x ?? -1;
-  lightEl.y = lightEl.y ?? -1;
-  shadowEl.x = shadowEl.x ?? 2;
-  shadowEl.y = shadowEl.y ?? 2;
-  shadowEl.style.opacity = shadowEl.style.opacity ?? 0.5;
-  mainEl.style.fill = mainEl.style.fill ?? "grey";
-  lightEl.style.fill = lightEl.style.fill ?? "white";
-  shadowEl.style.fill = shadowEl.style.fill ?? "red";
-*/
-
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => { 
@@ -48,12 +30,11 @@ const construct = (el: ShadowTextWidget) => {
           e.text = textEl.text ?? "TEXT"; 
           e.letterSpacing = textEl.letterSpacing ?? 0;
           e.style.fontFamily = textEl.style.fontFamily;
-          e.textAnchor = textEl.textAnchor; // throws error if undefined!!! need to be set per <set>,CSS or js for each <use>
-          //e.style.fontSize = textEl.style.fontSize; // very strange. all element disappear. what´s that???
-          //TODO why are textAnchor, fontFamily and fontsize not working if not defined for textEL??? structural/logical mistake somewhere? 
+          e.textAnchor = textEl.textAnchor;
+          
       });
-    mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use> if redrawn
     
+    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
   };
 
   el.redraw();
@@ -72,15 +53,15 @@ const construct = (el: ShadowTextWidget) => {
       }
   });
 
-  Object.defineProperty(el, 'fontSize', {
+  Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
-        textEl.style.fontSize = newValue;
+        textEl.textAnchor = newValue;
         el.redraw();    
       }
   });
 
   // add and export placeholders to pass properties into subElements per ts/js
-  Object.defineProperty(el, 'main',{ // TODO test structure
+  Object.defineProperty(el, 'main',{ 
     get: function() {return mainEl;}
   }); 
 
@@ -91,11 +72,10 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'shadow', {
     get: function() { return shadowEl;}   
   });  
-  
 
  //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
 
-  //TODO compare el.redraw and set/get update();
+ 
   return el;
 }
 
@@ -110,3 +90,7 @@ export const shadowText = () => {
 }
 
 
+//TODO check Properties, getter, setter, new Type
+//TODO compare el.redraw and set/get update();
+//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
+//TODO 2 play with classes on <use>s

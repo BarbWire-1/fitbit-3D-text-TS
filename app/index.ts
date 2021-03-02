@@ -43,7 +43,7 @@ test.style.fontSize = 40; "✔️"
 //console.log(`fontSize: ${test.style.fontSize}`) // fontSize: 100 // changed back to 40 - applied to ALL subs, if not individually changed
 test.letterSpacing = 0; "✔️"
 //console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
-//test.textAnchor = "end"; "✔️"
+test.textAnchor = "middle"; "✔️"
 //console.log(`textAnchor: ${test.textAnchor}`) // textAnchor: undefined (as redrawn in closure - but working)
 
 
@@ -73,9 +73,9 @@ test.main.y = 0; "🛑✔️" // default 0
 //console.log(`main y: ${ test.main.y }`) // main y: 100 // gets applied, but redrawn if dynamic // (changed back to 0)
 test.main.text = "main"; "🛑✔️" // default textEl.text
 //console.log(`main text: ${ test.main.text }`) // main text: main // gets applied, but redrawn if dynamic
-///test.main.style.fontFamily = "Barlow-Bold"; "🛑✔️" // default textEl.style.fonFamily
+test.main.style.fontFamily = "Barlow-Bold"; "🛑✔️" // default textEl.style.fonFamily
 //console.log(`main fontFamily: ${ test.main.style.fontFamily }`) //main fontFamily: Tungsten-Medium // gets applied, but redrawn if dynamic // (changed back to Barlow-Bold)
-//test.main.style.fontSize = 40; "🛑"
+test.main.style.fontSize = 40; "🛑"
 //console.log(`main fontSize: ${ test.main.style.fontSize }`) //main fontSize: 100 // appliable, does NOT get redrawn, as not settable to = textEL in widget. Why??
 /*
 // desirable settings on shadowT (shadow)
@@ -102,8 +102,7 @@ test.lightT.style.visibility = "visible";
 //  e.style.fill = "yellow";
 //});
 
-//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
-//TODO 2 play with classes on <use>s
+
 
 
 
