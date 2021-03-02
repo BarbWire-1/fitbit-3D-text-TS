@@ -4,7 +4,7 @@ export interface ShadowTextWidget extends GraphicsElement {
   
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
-
+  
   // export 'placeholders'
   main: TextElement;   
   light: TextElement;
@@ -14,6 +14,7 @@ export interface ShadowTextWidget extends GraphicsElement {
 
 }
 // TODO check Properties, getter, setter, new Type
+// TODO why behave fontSize and textAnchor that differently???
 
 const construct = (el: ShadowTextWidget) => {
 
@@ -24,8 +25,9 @@ const construct = (el: ShadowTextWidget) => {
  
   
  
-  mainEl.x = mainEl.y = 0;   // so "main" allways is at x,y of the <use>
+   
   textEl.text = textEl.text ?? "TEXT"
+  //textEl.style.fontSize = textEl.style.fontSize ?? 100;
   //DEFAULTS needed? // TODO check if needed/wanted
  
   lightEl.x = lightEl.x ?? -1;
@@ -44,14 +46,17 @@ const construct = (el: ShadowTextWidget) => {
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
           e.text = textEl.text ?? "TEXT"; 
-          e.textAnchor = textEl.textAnchor; // throws error if undefined!!! need to be set per <set>,CSS or js for each <use>
           e.letterSpacing = textEl.letterSpacing ?? 0;
-         
+          e.style.fontFamily = textEl.style.fontFamily;
+          e.textAnchor = textEl.textAnchor; // throws error if undefined!!! need to be set per <set>,CSS or js for each <use>
+          //e.style.fontSize = textEl.style.fontSize ?? 30; // very strange. all element disappear. what´s that???
+          //TODO why are textAnchor, fontFamily and fontsize not working if not defined for textEL??? structural/logical mistake somewhere? 
       });
+    mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use> if redrawn
+   
   };
 
   el.redraw();
-
 
   Object.defineProperty(el, 'text', {     // why does this work without export, but needed?
       set: function (newValue) {
@@ -75,13 +80,12 @@ const construct = (el: ShadowTextWidget) => {
   });
 
   // add and export placeholders to pass properties into subElements per ts/js
- 
-  Object.defineProperty(el, 'main',{
+  Object.defineProperty(el, 'main',{ // TODO test structure
     get: function() {return mainEl;}
   }); 
 
  Object.defineProperty(el, 'light', {
-    get: function () { return lightEl;}
+    get: function() { return lightEl;}
     
    });
   Object.defineProperty(el, 'shadow', {
@@ -89,13 +93,11 @@ const construct = (el: ShadowTextWidget) => {
   });  
   
 
+ //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
 
- console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
-
-//TODO compare el.redraw and set/get update();
+  //TODO compare el.redraw and set/get update();
   return el;
 }
-
 
 
 export const shadowText = () => {
