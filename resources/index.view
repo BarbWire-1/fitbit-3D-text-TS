@@ -2,9 +2,9 @@
     <rect id="background" />
 
 
-    <use id="test" href="#shadowText" x="50%" y="50%-50" font-family="Barlow-Bold" font-size="40" opacity="1" display="inline">
-       <set href="text" attributeName="text-anchor" to="end"/> 
-      <set href="text" attributeName="text-buffer" to="start"/>
+    <use id="test" href="#shadowText" x="50%" y="50%-50"  opacity="1" font-family="Barlow-Bold" font-size="40" display="inline">
+       <set href="text" attributeName="text-anchor" to="middle"/> 
+     
        
     </use>
 

@@ -1,7 +1,8 @@
 
 
-export interface ShadowTextWidget extends GraphicsElement {  
-  
+export interface ShadowTextWidget extends GraphicsElement { 
+  //fontFamily: string;
+  //fontsize: number;
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   
@@ -29,7 +30,7 @@ const construct = (el: ShadowTextWidget) => {
   textEl.text = textEl.text ?? "TEXT"
   //textEl.style.fontSize = textEl.style.fontSize ?? 100;
   //DEFAULTS needed? // TODO check if needed/wanted
- 
+  mainEl.x = mainEl.y = 0;
   lightEl.x = lightEl.x ?? -1;
   lightEl.y = lightEl.y ?? -1;
   shadowEl.x = shadowEl.x ?? 2;
@@ -49,11 +50,11 @@ const construct = (el: ShadowTextWidget) => {
           e.letterSpacing = textEl.letterSpacing ?? 0;
           e.style.fontFamily = textEl.style.fontFamily;
           e.textAnchor = textEl.textAnchor; // throws error if undefined!!! need to be set per <set>,CSS or js for each <use>
-          //e.style.fontSize = textEl.style.fontSize ?? 30; // very strange. all element disappear. what´s that???
+          //e.style.fontSize = textEl.style.fontSize; // very strange. all element disappear. what´s that???
           //TODO why are textAnchor, fontFamily and fontsize not working if not defined for textEL??? structural/logical mistake somewhere? 
       });
     mainEl.x = mainEl.y = 0; // so "main" allways is at x,y of the <use> if redrawn
-   
+    
   };
 
   el.redraw();
