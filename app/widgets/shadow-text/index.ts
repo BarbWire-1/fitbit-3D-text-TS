@@ -1,10 +1,9 @@
 
 
 export interface ShadowTextWidget extends GraphicsElement { 
-  //fontFamily: string;
-  //fontsize: number;
+  
   letterSpacing: number;
-  textAnchor: "start" | "middle" | "end";
+ 
   
   // export 'placeholders'
   main: TextElement;   
@@ -59,23 +58,23 @@ const construct = (el: ShadowTextWidget) => {
 
   el.redraw();
 
-  Object.defineProperty(el, 'text', {     // why does this work without export, but needed?
+  Object.defineProperty(el, 'text', {     // don´t need export as all text, but need redraw
       set: function (newValue) {
         textEl.text = newValue;
         el.redraw();
       }
   });
 
-  Object.defineProperty(el, 'textAnchor', {
-      set: function (newValue) {
-      textEl.textAnchor = newValue ?? "start";
-      el.redraw();
-      }
-  });
-
   Object.defineProperty(el, 'letterSpacing', {
       set: function (newValue) {
         textEl.letterSpacing = newValue;
+        el.redraw();    
+      }
+  });
+
+  Object.defineProperty(el, 'fontSize', {
+      set: function (newValue) {
+        textEl.style.fontSize = newValue;
         el.redraw();    
       }
   });

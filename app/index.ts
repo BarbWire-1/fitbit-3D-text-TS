@@ -37,10 +37,10 @@ test.x = 168; "✔️"
 //console.log(`x: ${test.x}`) // x: 168;
 test.y = 180; "✔️"
 //console.log(`y: ${test.y}`) // x: 180;
-//test.style.fontFamily = "Barlow-Bold"; "✔️"
+test.style.fontFamily = "Barlow-Bold"; "✔️"
 //console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
-test.style.fontSize = 100; "✔️"
-//console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
+test.style.fontSize = 40; "✔️"
+//console.log(`fontSize: ${test.style.fontSize}`) // fontSize: 100 // changed back to 40 - applied to ALL subs, if not individually changed
 test.letterSpacing = 0; "✔️"
 //console.log(`letterSpacing: ${test.letterSpacing}`) // letterSpacing: undefined (as redrawn in closure - but working)
 //test.textAnchor = "end"; "✔️"
@@ -73,9 +73,9 @@ test.main.y = 0; "🛑✔️" // default 0
 //console.log(`main y: ${ test.main.y }`) // main y: 100 // gets applied, but redrawn if dynamic // (changed back to 0)
 test.main.text = "main"; "🛑✔️" // default textEl.text
 //console.log(`main text: ${ test.main.text }`) // main text: main // gets applied, but redrawn if dynamic
-test.main.style.fontFamily = "Barlow-Bold"; "🛑✔️" // default textEl.style.fonFamily
+///test.main.style.fontFamily = "Barlow-Bold"; "🛑✔️" // default textEl.style.fonFamily
 //console.log(`main fontFamily: ${ test.main.style.fontFamily }`) //main fontFamily: Tungsten-Medium // gets applied, but redrawn if dynamic // (changed back to Barlow-Bold)
-test.main.style.fontSize = 100; "🛑"
+//test.main.style.fontSize = 40; "🛑"
 //console.log(`main fontSize: ${ test.main.style.fontSize }`) //main fontSize: 100 // appliable, does NOT get redrawn, as not settable to = textEL in widget. Why??
 /*
 // desirable settings on shadowT (shadow)
@@ -117,8 +117,8 @@ test.light.y = -1;
 //test.lightT.text = "orange"; // WHY???
 //test.light.style.fontSize = 5; // WTF???
 //test.lightT.text = "blah"; // gets overridden if redrawn
-test.style.fontSize = 40;
-test.shadow.style.fontSize = 45; 
+
+//test.shadow.style.fontSize = 45; 
 test.shadow.y = 15;
 test.shadow.style.opacity = 0.3;
 test.shadow.x = 0;
