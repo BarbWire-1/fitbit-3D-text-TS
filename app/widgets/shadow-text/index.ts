@@ -25,7 +25,7 @@ const construct = (el: ShadowTextWidget) => {
  
   
  
-   
+   /*
   textEl.text = textEl.text ?? "TEXT"
   //textEl.style.fontSize = textEl.style.fontSize ?? 100;
   //DEFAULTS needed? // TODO check if needed/wanted
@@ -38,7 +38,7 @@ const construct = (el: ShadowTextWidget) => {
   mainEl.style.fill = mainEl.style.fill ?? "grey";
   lightEl.style.fill = lightEl.style.fill ?? "white";
   shadowEl.style.fill = shadowEl.style.fill ?? "red";
-
+*/
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
