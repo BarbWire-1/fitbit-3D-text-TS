@@ -57,7 +57,7 @@ test.style.fill = "white"; "✔️"
 // desirable settings on main (main)
 // NO x,y on mainT as 0,0 => coords of the <use>
 
-test.main.style.fill = "grey"; "✔️"
+test.main.style.fill = "blue"; "✔️"
 //console.log(`main fill: ${ test.main.style.fill }`) // main fill: #FF0000 // (changed back to grey)
 test.main.style.opacity = 1; "✔️" 
 //console.log(`main opacity: ${ test.main.style.opacity }`) // main opacity: 0.5 // (changed back to 1)

@@ -17,7 +17,7 @@ export interface ShadowTextWidget extends GraphicsElement {
 
 const construct = (el: ShadowTextWidget) => {
 
-  const textEl = el.getElementById('text') as TextElement;
+  //const textEl = el.getElementById('text') as TextElement;
   const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
@@ -27,35 +27,36 @@ const construct = (el: ShadowTextWidget) => {
   el.redraw = () => { 
         
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
-          e.text = textEl.text ?? "TEXT"; 
-          e.letterSpacing = textEl.letterSpacing ?? 0;
-          e.style.fontFamily = textEl.style.fontFamily;
-          e.textAnchor = textEl.textAnchor;
+          e.text = mainEl.text ?? "TEXT"; 
+          e.letterSpacing = mainEl.letterSpacing ?? 0;
+          e.style.fontFamily = mainEl.style.fontFamily;
+          e.textAnchor = mainEl.textAnchor;
+          //e.style.fontSize = textEl.style.fontSize; // why doesn´t this work???
           
       });
     
-    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
+   // mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
   };
 
   el.redraw();
 
   Object.defineProperty(el, 'text', {     // don´t need export as all text, but need redraw
       set: function (newValue) {
-        textEl.text = newValue;
+        mainEl.text = newValue;
         el.redraw();
       }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
       set: function (newValue) {
-        textEl.letterSpacing = newValue;
+        mainEl.letterSpacing = newValue;
         el.redraw();    
       }
   });
 
   Object.defineProperty(el, 'textAnchor', {
       set: function (newValue) {
-        textEl.textAnchor = newValue;
+        mainEl.textAnchor = newValue;
         el.redraw();    
       }
   });
