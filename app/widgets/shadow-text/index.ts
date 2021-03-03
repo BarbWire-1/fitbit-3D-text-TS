@@ -31,11 +31,11 @@ const construct = (el: ShadowTextWidget) => {
           e.letterSpacing = mainEl.letterSpacing ?? 0;
           e.style.fontFamily = mainEl.style.fontFamily;
           e.textAnchor = mainEl.textAnchor;
-          //e.style.fontSize = textEl.style.fontSize; // why doesn´t this work???
+          //e.style.fontSize = mainEl.style.fontSize; // why doesn´t this work???
           
       });
     
-   // mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
+   mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
   };
 
   el.redraw();
