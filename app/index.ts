@@ -31,12 +31,13 @@ const update = setInterval(() => {
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 // <use>
 // NORMAL settings on <use>
+/*
 //test.text = "TEST"; 
 //console.log(`text: ${test.text}`); // text: undefined (as redrawn in closure - but working)
 test.x = 168; "✔️"
 //console.log(`x: ${test.x}`) // x: 168;
 test.y = 180; "✔️"
-/*
+
 //console.log(`y: ${test.y}`) // x: 180;
 test.style.fontFamily = "Barlow-Bold"; "✔️"
 //console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
