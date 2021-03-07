@@ -2,21 +2,21 @@
     <rect id="background" />
 
 
-    <use id="test" href="#shadowText" x="50%" y="50%-50"  opacity="1" font-family="Fabrikat-Bold" font-size="40" display="inline">
-       <set href="text" attributeName="text-anchor" to="middle"/> 
+    <use id="test" href="#shadowText" x="50%" y="50%">
+      
      
        
     </use>
 
     <use id="calsLabel" href="#shadowText" x="50%" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1" display="none"> 
         <set href="main" attributeName="fill" to="white" /> 
-        <set href="text" attributeName="text-anchor" to="start"/>  
+        <set href="main" attributeName="text-anchor" to="start"/>  
          
     </use>
 
     <use id="countDown" href="#shadowText" x="50%" y="50%+30" font-family="Barlow-Bold" font-size="70" opacity="1" display="none">
         <set href="main" attributeName="letter-spacing" to="3"/>       <!--this one is working-->
-        <set href="text" attributeName="text-anchor" to="middle"/>      
+        <set href="main" attributeName="text-anchor" to="middle"/>      
     </use>
 
    

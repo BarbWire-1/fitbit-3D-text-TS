@@ -31,11 +31,13 @@ const update = setInterval(() => {
 // TESTED SETTINGS ON SHADOW-WIDGET-ELEMENT
 // <use>
 // NORMAL settings on <use>
+/*
 //test.text = "TEST"; 
 //console.log(`text: ${test.text}`); // text: undefined (as redrawn in closure - but working)
 test.x = 168; "✔️"
 //console.log(`x: ${test.x}`) // x: 168;
 test.y = 180; "✔️"
+
 //console.log(`y: ${test.y}`) // x: 180;
 test.style.fontFamily = "Barlow-Bold"; "✔️"
 //console.log(`fontFamily: ${test.style.fontFamily}`) // fontFamily: Barlow-Bold
@@ -57,7 +59,7 @@ test.style.fill = "white"; "✔️"
 // desirable settings on main (main)
 // NO x,y on mainT as 0,0 => coords of the <use>
 
-test.main.style.fill = "grey"; "✔️"
+test.main.style.fill = "blue"; "✔️"
 //console.log(`main fill: ${ test.main.style.fill }`) // main fill: #FF0000 // (changed back to grey)
 test.main.style.opacity = 1; "✔️" 
 //console.log(`main opacity: ${ test.main.style.opacity }`) // main opacity: 0.5 // (changed back to 1)
@@ -77,7 +79,7 @@ test.main.style.fontFamily = "Barlow-Bold"; "🛑✔️" // default textEl.style
 //console.log(`main fontFamily: ${ test.main.style.fontFamily }`) //main fontFamily: Tungsten-Medium // gets applied, but redrawn if dynamic // (changed back to Barlow-Bold)
 test.main.style.fontSize = 40; "🛑"
 //console.log(`main fontSize: ${ test.main.style.fontSize }`) //main fontSize: 100 // appliable, does NOT get redrawn, as not settable to = textEL in widget. Why??
-/*
+
 // desirable settings on shadowT (shadow)
 test.shadowT.x = 5;
 test.shadowT.y = 5;
@@ -95,7 +97,7 @@ test.lightT.style.fill = "red";  // NO x,y on mainT as 0,0 => coords of the <use
 test.lightT.style.opacity = 1;
 test.lightT.style.display = "inline";
 test.lightT.style.visibility = "visible";
-*/
+
 // settings on classes for layout eg:
 //let highlights = document.getElementsByClassName("light");
 //highlights.forEach((e: GraphicsElement) => {
@@ -122,3 +124,4 @@ test.shadow.y = 15;
 test.shadow.style.opacity = 0.3;
 test.shadow.x = 0;
 //test.text = String(today.adjusted.steps);
+*/
