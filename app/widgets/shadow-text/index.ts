@@ -95,3 +95,4 @@ export const shadowText = () => {
 //TODO compare el.redraw and set/get update();
 //TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
 //TODO 2 play with classes on <use>s
+//TODO 1.1 can get rid of #text now?
