@@ -8,5 +8,5 @@ WORK IN PROGRESS...
 
 
 # Acknowledgement
-_
+=
 This widget gets integrated by the widget-factory written by [Gondwanasoft](https://github.com/gondwanasoft/fitbit-simple-widget)
