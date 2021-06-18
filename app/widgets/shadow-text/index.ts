@@ -31,7 +31,7 @@ const construct = (el: ShadowTextWidget) => {
           e.letterSpacing = mainEl.letterSpacing ?? 0;
           e.style.fontFamily = mainEl.style.fontFamily;
           e.textAnchor = mainEl.textAnchor;
-          //e.style.fontSize = mainEl.style.fontSize; // why doesn´t this work???
+          //e.style.fontSize = mainEl.style.fontSize; // change to accessible??
           
       });
     
@@ -40,7 +40,7 @@ const construct = (el: ShadowTextWidget) => {
 
   el.redraw();
 
-  Object.defineProperty(el, 'text', {     // don´t need export as all text, but need redraw
+  Object.defineProperty(el, 'text', {     
       set: function (newValue) {
         mainEl.text = newValue;
         el.redraw();
