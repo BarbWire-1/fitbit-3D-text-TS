@@ -36,6 +36,7 @@ const construct = (el: ShadowTextWidget) => {
       });
     
    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
+  
   };
 
   el.redraw();
@@ -75,8 +76,31 @@ const construct = (el: ShadowTextWidget) => {
   });  
 
  //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
-
  
+//TEST PROPS ********************************************************************************
+// const lightPublic = {
+//   lightStyle: {}
+// }
+// Object.defineProperty(lightPublic, 'style' ,{
+//   get() {return  lightPublic.lightStyle;} 
+// });
+// Object.defineProperty(lightPublic.lightStyle, 'fill', {
+//    set(newValue) {lightEl.style.fill = newValue;}
+//  });
+//  Object.defineProperty(lightPublic.lightStyle, 'opacity', {
+//   set(newValue) {lightEl.style.opacity = newValue;}
+// });
+// 
+// Object.defineProperty(lightPublic, 'x' ,{
+//   get() {return  lightPublic.lightStyle;} 
+// });
+//  
+// Object.defineProperty(el, 'light', {
+//   get() {return lightPublic}
+// });
+//END TEST **********************************************************************************
+
+
   return el;
 }
 

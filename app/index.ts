@@ -124,3 +124,11 @@ test.light.y = -1;
 // test.shadow.style.opacity = 0.3;
 // test.shadow.x = 0;
 //test.text = String(today.adjusted.steps);
+
+test.style.fontSize = 50;
+test.style.fontFamily = "Barlow-Regular"
+test.main.style.fill = "blue"
+test.shadow.style.fill="black"
+
+console.log(`test.light.style.fill: ${test.light.style.fill}`)
+console.log(`test.light.x: ${test.light.x}`)
