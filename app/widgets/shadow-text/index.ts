@@ -42,35 +42,37 @@ const construct = (el: ShadowTextWidget) => {
   el.redraw();
 
   Object.defineProperty(el, 'text', {     
-      set: function (newValue) {
+      set(newValue) {
         mainEl.text = newValue;
         el.redraw();
       }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
-      set: function (newValue) {
+      set(newValue) {
         mainEl.letterSpacing = newValue;
         el.redraw();    
       }
   });
 
   Object.defineProperty(el, 'textAnchor', {
-      set: function (newValue) {
+      set(newValue) {
         mainEl.textAnchor = newValue;
         el.redraw();    
       }
   });
 
   // add and export placeholders to pass properties into subElements per ts/js
+  // as ALL properties are exposed, they are accesible from js/ts.
+  // only the above assigned ones get overwritten on redraw()
   Object.defineProperty(el, 'main',{ 
-    get: function() {return mainEl;}
+    get() { return mainEl;}
   }); 
   Object.defineProperty(el, 'light', {
-    get: function() { return lightEl;}
+    get() { return lightEl;}
    });
   Object.defineProperty(el, 'shadow', {
-    get: function() { return shadowEl;}   
+    get() { return shadowEl;}   
   });  
 
  //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
