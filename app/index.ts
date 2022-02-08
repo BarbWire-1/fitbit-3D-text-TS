@@ -18,20 +18,24 @@ const update = setInterval(() => {
   test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
+  
 
   calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  calsLabel.main.style.opacity = cd % 2 === 0 ? 1 : 0.5;
+  
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
   }
 }, 1000);
 
-
+countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
+test.x = 168;
 test.style.fontFamily = "Barlow-Regular"
 test.main.style.fill = "blue"
 test.shadow.style.fill="black"
+
+
 
 console.log(`test.light.style.fill: ${test.light.style.fill}`)
 console.log(`test.light.x: ${test.light.x}`)
