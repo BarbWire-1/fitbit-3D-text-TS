@@ -36,47 +36,77 @@ const construct = (el: ShadowTextWidget) => {
       });
     
    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
+  
   };
 
   el.redraw();
 
   Object.defineProperty(el, 'text', {     
-      set: function (newValue) {
+
+      set(newValue) {
+
         mainEl.text = newValue;
         el.redraw();
       }
   });
 
   Object.defineProperty(el, 'letterSpacing', {
-      set: function (newValue) {
+      set(newValue) {
         mainEl.letterSpacing = newValue;
         el.redraw();    
       }
   });
 
   Object.defineProperty(el, 'textAnchor', {
-      set: function (newValue) {
+      set(newValue) {
         mainEl.textAnchor = newValue;
         el.redraw();    
       }
   });
 
   // add and export placeholders to pass properties into subElements per ts/js
+  // as ALL properties are exposed, they are accesible from js/ts.
+  // only the above assigned ones get overwritten on redraw()
   Object.defineProperty(el, 'main',{ 
-    get: function() {return mainEl;}
+    get() { return mainEl;}
   }); 
-
- Object.defineProperty(el, 'light', {
-    get: function() { return lightEl;}
-    
+  Object.defineProperty(el, 'light', {
+    get() { return lightEl;}
    });
   Object.defineProperty(el, 'shadow', {
-    get: function() { return shadowEl;}   
+    get() { return shadowEl;}   
   });  
 
  //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
-
  
+//TEST PROPS ********************************************************************************
+// const lightPublic = {
+//    lightStyle: {}
+//    lightOffset: {}
+// }
+// Object.defineProperty(lightPublic, 'style' ,{
+//   get() {return  lightPublic.lightStyle;} 
+// });
+// Object.defineProperty(lightPublic.lightStyle, 'fill', {
+//    set(newValue) {lightEl.style.fill = newValue;}
+//  });
+//  Object.defineProperty(lightPublic.lightStyle, 'opacity', {
+//   set(newValue) {lightEl.style.opacity = newValue;}
+// });
+// 
+// Object.defineProperty(lightPublic, 'x' ,{
+//   get() {return  lightPublic.lightOffset;} 
+// });
+// Object.defineProperty(lightPublic.lightOffset, 'x', {
+//   set(newValue) {lightEl.x = newValue;}
+// });
+//  
+// Object.defineProperty(el, 'light', {
+//   get() {return lightPublic}
+// });
+//END TEST **********************************************************************************
+
+
   return el;
 }
 

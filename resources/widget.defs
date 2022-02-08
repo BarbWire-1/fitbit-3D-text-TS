@@ -3,6 +3,6 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="import" href="/mnt/sysassets/system_widget.defs" />
         <link rel="stylesheet" href="widgets/shadow-text/styles.css" />
-        <link rel="import" href="widgets/shadow-text/index.view" />
+        <link rel="import" href="widgets/shadow-text/index.defs" />
     </defs>
 </svg>

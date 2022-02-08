@@ -1,3 +1,4 @@
+
 // Widget factory
 // This module attempts to make widget usage seem more 'normal'; ie, similar to a built-in element or component.
 
@@ -25,10 +26,8 @@ export const widgetFactory = (...args) => {
     const widgetRego = args[i]();   // get the registration info for this widget
     const instances = searchElement.getElementsByTypeName(widgetRego.name); // warning: this picks up widgets within widgets
     instances.forEach(el => {   // construct all widgets of this type
-      if (el.id !== el.type) {    // old firmware will find the <use> AND the <symbol> for each widget instance
-        el.class = el.class; // This shouldn't do anything, but seems to cause CSS rules to be reapplied. Without it, CSS selectors such as "#id #radius" don't work.
-        widgetRego.construct(el); // construct a widget instance by adding properties and functions to el
-      }
+      el.class = el.class; // This shouldn't do anything, but seems to cause CSS rules to be reapplied. Without it, CSS selectors such as "#id #radius" don't work.
+      widgetRego.construct(el); // construct a widget instance by adding properties and functions to el
     });
   }
 }
