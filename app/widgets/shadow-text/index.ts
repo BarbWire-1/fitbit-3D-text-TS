@@ -77,7 +77,8 @@ const construct = (el: ShadowTextWidget) => {
  
 //TEST PROPS ********************************************************************************
 // const lightPublic = {
-//   lightStyle: {}
+//    lightStyle: {}
+//    lightOffset: {}
 // }
 // Object.defineProperty(lightPublic, 'style' ,{
 //   get() {return  lightPublic.lightStyle;} 
@@ -90,7 +91,10 @@ const construct = (el: ShadowTextWidget) => {
 // });
 // 
 // Object.defineProperty(lightPublic, 'x' ,{
-//   get() {return  lightPublic.lightStyle;} 
+//   get() {return  lightPublic.lightOffset;} 
+// });
+// Object.defineProperty(lightPublic.lightOffset, 'x', {
+//   set(newValue) {lightEl.x = newValue;}
 // });
 //  
 // Object.defineProperty(el, 'light', {

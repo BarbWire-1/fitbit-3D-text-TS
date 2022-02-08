@@ -34,7 +34,7 @@ test.x = 168;
 test.style.fontFamily = "Barlow-Regular"
 test.main.style.fill = "blue"
 test.shadow.style.fill="black"
-
+//test.light.x = -5;
 
 
 console.log(`test.light.style.fill: ${test.light.style.fill}`)
