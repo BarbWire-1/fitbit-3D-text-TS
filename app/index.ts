@@ -34,11 +34,11 @@ test.x = 168;
 test.style.fontFamily = "Barlow-Regular"
 test.main.style.fill = "blue"
 test.shadow.style.fill="black"
-//test.light.x = -5;
+test.light.x = -5;
 
 
 
 console.log(`test.light.style.fill: ${test.light.style.fill}`)
-console.log(`test.light.x: ${test.light.x}`)
+console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
 console.log("test.main.textAnchor: "+test.main.textAnchor)
 

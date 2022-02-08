@@ -81,7 +81,7 @@ const construct = (el: ShadowTextWidget) => {
  
 //TEST PROPS ********************************************************************************
 // const lightPublic = {
-//    lightStyle: {}
+//    lightStyle: {},
 //    lightOffset: {}
 // }
 // Object.defineProperty(lightPublic, 'style' ,{
