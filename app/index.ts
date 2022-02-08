@@ -118,10 +118,9 @@ test.light.y = -1;
 //test.lightT.text = "orange"; // WHY???
 //test.light.style.fontSize = 5; // WTF???
 //test.lightT.text = "blah"; // gets overridden if redrawn
-
-//test.shadow.style.fontSize = 45; 
-test.shadow.y = 15;
-test.shadow.style.opacity = 0.3;
-test.shadow.x = 0;
-//test.text = String(today.adjusted.steps);
 */
+// test.shadow.style.fontSize = 45; 
+// test.shadow.y = 15;
+// test.shadow.style.opacity = 0.3;
+// test.shadow.x = 0;
+//test.text = String(today.adjusted.steps);
