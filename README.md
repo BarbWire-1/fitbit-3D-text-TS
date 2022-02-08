@@ -1,3 +1,4 @@
+
 # shadow-text
 Widget for shadow-/highlight effects on textElements for fitbit OS\
 (instruction and usage doco will follow soon...)
@@ -17,4 +18,7 @@ Text and text-properties are the same for all 3 text-elements.
 
 !<div align="center">![image](image2.png)</div>
 
+
+
+This widget gets integrated by the widget-factory written by [Gondwanasoft](https://github.com/gondwanasoft/fitbit-simple-widget)
 

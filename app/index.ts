@@ -1,4 +1,4 @@
-
+// this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
@@ -37,6 +37,8 @@ test.shadow.style.fill="black"
 //test.light.x = -5;
 
 
+
 console.log(`test.light.style.fill: ${test.light.style.fill}`)
 console.log(`test.light.x: ${test.light.x}`)
 console.log("test.main.textAnchor: "+test.main.textAnchor)
+
