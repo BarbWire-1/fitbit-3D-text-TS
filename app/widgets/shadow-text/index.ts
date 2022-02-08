@@ -41,7 +41,7 @@ const construct = (el: ShadowTextWidget) => {
 
   el.redraw();
 
-  Object.defineProperty(el, 'text', {     // don´t need export as all text, but need redraw
+  Object.defineProperty(el, 'text', {     
       set: function (newValue) {
         mainEl.text = newValue;
         el.redraw();
@@ -66,10 +66,8 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'main',{ 
     get: function() {return mainEl;}
   }); 
-
- Object.defineProperty(el, 'light', {
+  Object.defineProperty(el, 'light', {
     get: function() { return lightEl;}
-    
    });
   Object.defineProperty(el, 'shadow', {
     get: function() { return shadowEl;}   
