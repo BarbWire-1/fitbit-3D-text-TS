@@ -21,15 +21,15 @@ const update = setInterval(() => {
   countDown.text = (`00${--cd}`).slice(-2);
   
 
-  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+ // calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
   
   //console.log(cd)
   if (cd == 0) {
     cd = 100;
   }
 }, 1000);
-
-countDown.light.style.opacity = 1;
+// 
+// countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
 test.x = 168;
 test.style.fontFamily = "Barlow-Regular"

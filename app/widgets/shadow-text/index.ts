@@ -1,3 +1,4 @@
+import { mainWorkspace } from "blockly";
 
 
 export interface ShadowTextWidget extends TextElement { 
@@ -6,16 +7,41 @@ export interface ShadowTextWidget extends TextElement {
   textAnchor: "start" | "middle" | "end";
   // export 'placeholders'
   main: TextElement;   
-  light: TextElement;
-  shadow: TextElement;
-  //lightPublic: TextElement;
+  //light: TextElement;
+  //shadow: TextElement;
+  lightPublic: TextElement;
   //shadowPublic: TextElement;
+  light: {
+    style: {
+      fill: string,
+      opacity: number,
+      display: "inline" | "none" | "hidden"
+    }
+    x: number,
+    y: number
+  }
   
+  shadow: {
+    style: {
+      fill: string,
+      opacity: number,
+      display: "inline" | "none" | "hidden"
+    }
+    x: number,
+    y: number
+  }
   redraw();
 
 }
 
-//DEFAULTS in symbol
+// DEFAULTS in widgets/shadow-text/styles.css
+// this allows them to get overwritten from main CSS if set there
+
+// mainEl.style.fill = "grey"
+// x,y center screen
+// textAnchor middle
+// lightEl.style.fill = "white", offset -1/-1
+// shadowEl.style.fill = "red", offset 1/1
 
 const construct = (el: ShadowTextWidget) => {
  
@@ -23,7 +49,7 @@ const construct = (el: ShadowTextWidget) => {
   const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
-  el.style === el.style
+  
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => { 
@@ -43,7 +69,7 @@ const construct = (el: ShadowTextWidget) => {
   };
 
   el.redraw();
-
+  
   Object.defineProperty(el, 'text', {     
       set(newValue) {
         mainEl.text = newValue;
@@ -75,16 +101,7 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'main',{ 
     get() { return mainEl;}
   }); 
-  // Object.defineProperty(el, 'light', {
-  //   get() { return lightEl;}
-  //  });
-  // Object.defineProperty(el, 'shadow', {
-  //   get() { return shadowEl;}   
-  // });  
-
- //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
- 
-//TEST PROPS ********************************************************************************
+  
 // use this object to get <style>
 // then set style-properties. Later assign these values to el
 // this allows to only expose desired properties
@@ -144,8 +161,6 @@ Object.defineProperty(el, 'shadow', {
  get() {return shadowPublic}
 });
 //TODO check how to avoid redundant code. ugly
-//END TEST **********************************************************************************
-
 
 
   return el;
@@ -160,12 +175,3 @@ export const shadowText = () => {
       construct: construct
   }
 }
-
-
-//TODO check Properties, getter, setter, new Type
-//TODO compare el.redraw and set/get update();
-//TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
-//TODO 2 play with classes on <use>s
-
-
-//TODO 1.1.1 compare to elder version and check for css. I know, it DID work previously!

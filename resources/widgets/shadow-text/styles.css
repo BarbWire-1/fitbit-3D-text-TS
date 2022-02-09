@@ -1,4 +1,18 @@
 .myText {
     text-length: 20;
 }
-
+.main {
+    fill: grey;
+    text-anchor: 'middle';
+    
+}
+.shadow {
+    fill: red;
+    x: 1;
+    y: 1;
+}
+.light {
+    fill: white;
+    x: -1;
+    y: -1;
+}
