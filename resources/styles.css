@@ -30,18 +30,19 @@
 }
 
 #countDown #shadow {
-    fill:#000000;
+    fill:#c711e3;
     opacity: 1;
-    x: 4;
-    y: 4;
+    x: 2;
+    y: 2;
 }
-/*
+
 #countDown #light {
     x: -2;
     y: -2;
     opacity: 1;
     fill:#f5acda
 }
+/*
 .color1 {
     fill:yellowgreen;
 }

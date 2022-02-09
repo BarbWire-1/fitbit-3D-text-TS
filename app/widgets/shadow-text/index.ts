@@ -5,12 +5,7 @@ export interface ShadowTextWidget extends TextElement {
   
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
-  // export 'placeholders'
   main: TextElement;   
-  //light: TextElement;
-  //shadow: TextElement;
-  lightPublic: TextElement;
-  //shadowPublic: TextElement;
   light: {
     style: {
       fill: string,
@@ -101,14 +96,17 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'main',{ 
     get() { return mainEl;}
   }); 
-  
-// use this object to get <style>
+
+//DEFINE PROPERTIES FOR SUBELEMENTS
+// use an object to get <style>
 // then set style-properties. Later assign these values to el
 // this allows to only expose desired properties
+
+//DEFINE lightEL-PROPERTIES
 const lightPublic = {
-   lightStyle: {},
-   class: 'light',
+   lightStyle: {}, 
 };
+
 Object.defineProperty(lightPublic, 'style' ,{
   get() {return  lightPublic.lightStyle;} 
 });
@@ -127,15 +125,14 @@ Object.defineProperty(lightPublic, 'x', {
 Object.defineProperty(lightPublic, 'y', {
   set(newValue) {lightEl.y = newValue;}
 });
- 
+// get all props from lightPublic
 Object.defineProperty(el, 'light', {
   get() {return lightPublic}
 });
-lightEl.style == lightPublic.lightStyle
 
+//DEFINE shadowtEL-PROPERTIES
 const shadowPublic = {
   shadowStyle: {},
-  class: 'shadow'
 };
 console.log(JSON.stringify(shadowPublic))
 Object.defineProperty(shadowPublic, 'style' ,{

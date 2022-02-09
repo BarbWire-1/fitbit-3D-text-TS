@@ -34,12 +34,14 @@ test.style.fontSize = 50;
 test.x = 168;
 test.style.fontFamily = "Barlow-Regular"
 test.main.style.fill = "blue"
-test.shadow.style.fill="white"
+test.shadow.style.fill="black"
 //test.light.x = -15;
 //test.light.style.fill = "white"
 test.light.style.opacity = 1;
 test.light.style.display = "inline";
-
+test.style.fill = "yellow"//NOT ASSIGNED
+// TODO set el-props to main-props?
+// test.x DOES get applied...tss
 
 
 console.log(`test.light.style.fill: ${test.light.style.fill}`)
