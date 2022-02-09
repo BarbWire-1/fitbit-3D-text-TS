@@ -1,15 +1,15 @@
 
 
-export interface ShadowTextWidget extends GraphicsElement { 
+export interface ShadowTextWidget extends TextElement { 
   
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   // export 'placeholders'
   main: TextElement;   
-  // light: TextElement;
-  // shadow: TextElement;
-  lightPublic: any;
-  shadowPublic: any;
+  light: TextElement;
+  shadow: TextElement;
+  //lightPublic: TextElement;
+  //shadowPublic: TextElement;
   
   redraw();
 
