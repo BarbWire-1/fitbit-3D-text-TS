@@ -65,45 +65,81 @@ const construct = (el: ShadowTextWidget) => {
   });
 
   // add and export placeholders to pass properties into subElements per ts/js
-  // as ALL properties are exposed, they are accesible from js/ts.
+  // as ALL properties are exposed, they are all accesible from js/ts.
   // only the above assigned ones get overwritten on redraw()
+  // these are loggable in index.ts!!! ???
+  
+  // <main> is the origin textElement
+  // so expose ALL text-relevant properties here
   Object.defineProperty(el, 'main',{ 
     get() { return mainEl;}
   }); 
-  Object.defineProperty(el, 'light', {
-    get() { return lightEl;}
-   });
-  Object.defineProperty(el, 'shadow', {
-    get() { return shadowEl;}   
-  });  
+  // Object.defineProperty(el, 'light', {
+  //   get() { return lightEl;}
+  //  });
+  // Object.defineProperty(el, 'shadow', {
+  //   get() { return shadowEl;}   
+  // });  
 
  //console.log(`${lightEl.parent.id} lightT.x: ${lightEl.x}`)  
  
 //TEST PROPS ********************************************************************************
-// const lightPublic = {
-//    lightStyle: {},
-//    lightOffset: {}
-// }
-// Object.defineProperty(lightPublic, 'style' ,{
-//   get() {return  lightPublic.lightStyle;} 
-// });
-// Object.defineProperty(lightPublic.lightStyle, 'fill', {
-//    set(newValue) {lightEl.style.fill = newValue;}
-//  });
-//  Object.defineProperty(lightPublic.lightStyle, 'opacity', {
-//   set(newValue) {lightEl.style.opacity = newValue;}
-// });
-// 
-// Object.defineProperty(lightPublic, 'x' ,{
-//   get() {return  lightPublic.lightOffset;} 
-// });
-// Object.defineProperty(lightPublic.lightOffset, 'x', {
-//   set(newValue) {lightEl.x = newValue;}
-// });
-//  
-// Object.defineProperty(el, 'light', {
-//   get() {return lightPublic}
-// });
+// use this object to get <style>
+// then set style-properties. Later assign these values to el
+// this allows to only expose desired properties
+const lightPublic = {
+   lightStyle: {},
+};
+Object.defineProperty(lightPublic, 'style' ,{
+  get() {return  lightPublic.lightStyle;} 
+});
+Object.defineProperty(lightPublic.lightStyle, 'fill', {
+   set(newValue) {lightEl.style.fill = newValue;}
+ });
+ Object.defineProperty(lightPublic.lightStyle, 'opacity', {
+  set(newValue) {lightEl.style.opacity = newValue;}
+});
+Object.defineProperty(lightPublic.lightStyle, 'display', {
+  set(newValue) {lightEl.style.display = newValue;}
+});
+Object.defineProperty(lightPublic, 'x', {
+  set(newValue) {lightEl.x = newValue;}
+});
+Object.defineProperty(lightPublic, 'y', {
+  set(newValue) {lightEl.y = newValue;}
+});
+ 
+Object.defineProperty(el, 'light', {
+  get() {return lightPublic}
+});
+
+
+const shadowPublic = {
+  shadowStyle: {},
+};
+Object.defineProperty(shadowPublic, 'style' ,{
+ get() {return  shadowPublic.shadowStyle;} 
+});
+Object.defineProperty(shadowPublic.shadowStyle, 'fill', {
+  set(newValue) {shadowEl.style.fill = newValue;}
+});
+Object.defineProperty(shadowPublic.shadowStyle, 'opacity', {
+ set(newValue) {shadowEl.style.opacity = newValue;}
+});
+Object.defineProperty(shadowPublic.shadowStyle, 'display', {
+ set(newValue) {shadowEl.style.display = newValue;}
+});
+Object.defineProperty(shadowPublic, 'x', {
+ set(newValue) {shadowEl.x = newValue;}
+});
+Object.defineProperty(shadowPublic, 'y', {
+ set(newValue) {shadowEl.y = newValue;}
+});
+
+Object.defineProperty(el, 'shadow', {
+ get() {return shadowPublic}
+});
+//TODO check how to avoid redundant code. ugly
 //END TEST **********************************************************************************
 
 
