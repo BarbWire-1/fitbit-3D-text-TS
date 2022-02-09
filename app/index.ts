@@ -10,7 +10,7 @@ widgetFactory(shadowText);
 let test = document.getElementById('test') as ShadowTextWidget;
 let calsLabel = document.getElementById('calsLabel') as ShadowTextWidget;
 let countDown = document.getElementById('countDown') as ShadowTextWidget;
-let allLights = document.getElementsByClassName('light') as TextElement[];
+let allLights = document.getElementsByClassName('light') as ShadowTextWidget[];
 
 
 let cd = 100;
@@ -35,8 +35,8 @@ test.x = 168;
 test.style.fontFamily = "Barlow-Regular"
 test.main.style.fill = "blue"
 test.shadow.style.fill="white"
-test.light.x = -15;
-test.light.style.fill = "white"
+//test.light.x = -15;
+//test.light.style.fill = "white"
 test.light.style.opacity = 1;
 test.light.style.display = "inline";
 
@@ -46,5 +46,6 @@ console.log(`test.light.style.fill: ${test.light.style.fill}`)
 console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
 console.log("test.main.textAnchor: "+test.main.textAnchor);
 
-allLights.forEach(el => el.style.fill = "black");
+//allLights.forEach(el => el.style.fill = "black");
 
+console.log(JSON.stringify(allLights))

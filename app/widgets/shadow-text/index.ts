@@ -18,12 +18,12 @@ export interface ShadowTextWidget extends TextElement {
 //DEFAULTS in symbol
 
 const construct = (el: ShadowTextWidget) => {
-  
+ 
   //const textEl = el.getElementById('text') as TextElement;
   const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
   const mainEl = el.getElementById('main') as TextElement;
- 
+  el.style === el.style
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => { 
@@ -90,6 +90,7 @@ const construct = (el: ShadowTextWidget) => {
 // this allows to only expose desired properties
 const lightPublic = {
    lightStyle: {},
+   class: 'light',
 };
 Object.defineProperty(lightPublic, 'style' ,{
   get() {return  lightPublic.lightStyle;} 
@@ -113,11 +114,13 @@ Object.defineProperty(lightPublic, 'y', {
 Object.defineProperty(el, 'light', {
   get() {return lightPublic}
 });
-
+lightEl.style == lightPublic.lightStyle
 
 const shadowPublic = {
   shadowStyle: {},
+  class: 'shadow'
 };
+console.log(JSON.stringify(shadowPublic))
 Object.defineProperty(shadowPublic, 'style' ,{
  get() {return  shadowPublic.shadowStyle;} 
 });
