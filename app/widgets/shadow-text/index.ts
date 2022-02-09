@@ -6,8 +6,10 @@ export interface ShadowTextWidget extends GraphicsElement {
   textAnchor: "start" | "middle" | "end";
   // export 'placeholders'
   main: TextElement;   
-  light: TextElement;
-  shadow: TextElement;
+  // light: TextElement;
+  // shadow: TextElement;
+  lightPublic: any;
+  shadowPublic: any;
   
   redraw();
 
@@ -16,7 +18,7 @@ export interface ShadowTextWidget extends GraphicsElement {
 //DEFAULTS in symbol
 
 const construct = (el: ShadowTextWidget) => {
-
+  
   //const textEl = el.getElementById('text') as TextElement;
   const lightEl = el.getElementById('light')as TextElement;
   const shadowEl = el.getElementById('shadow') as TextElement;
@@ -25,7 +27,7 @@ const construct = (el: ShadowTextWidget) => {
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => { 
-        
+    
       el.getElementsByClassName("myText").forEach((e: TextElement) => {
           e.text = mainEl.text ?? "TEXT"; 
           e.letterSpacing = mainEl.letterSpacing ?? 0;
@@ -36,15 +38,14 @@ const construct = (el: ShadowTextWidget) => {
       });
     
    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
-  
+   
+   
   };
 
   el.redraw();
 
   Object.defineProperty(el, 'text', {     
-
       set(newValue) {
-
         mainEl.text = newValue;
         el.redraw();
       }
@@ -162,4 +163,6 @@ export const shadowText = () => {
 //TODO compare el.redraw and set/get update();
 //TODO 1 IMPORTANT: Implement UNWANTED and console.log for each - check settings/logs after change to "GraphicsElement" for subs
 //TODO 2 play with classes on <use>s
-//TODO 1.1 can get rid of #text now?
+
+
+//TODO 1.1.1 compare to elder version and check for css. I know, it DID work previously!
