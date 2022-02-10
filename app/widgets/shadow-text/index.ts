@@ -17,6 +17,7 @@ export interface ShadowTextWidget extends TextElement {
   // shadowEl.style.fill = "red", offset 1/1
   
   // SubText limits exposed properties
+  // as this is outside the closure, it can be modified AND logged in index.ts!!!
   type SubText =  {
     style: {
       fill: string,
@@ -36,7 +37,7 @@ export interface ShadowTextWidget extends TextElement {
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
     el.redraw = () => { 
-        //here text-properties get assigned to all el
+        //here text-properties get assigned to all el of widget-instance
         el.getElementsByClassName("myText").forEach((e: TextElement) => {
             e.text = mainEl.text ?? "TEXT"; 
             e.letterSpacing = mainEl.letterSpacing ?? 0;
@@ -50,8 +51,8 @@ export interface ShadowTextWidget extends TextElement {
     };
   
     el.redraw();
-    // all the same for elements of shadow-text
-    // values assigned in redraw()
+    //all the same for elements of shadow-text
+    //values assigned in redraw()
     Object.defineProperty(el, 'text', {     
         set(newValue) {
           mainEl.text = newValue;
@@ -70,6 +71,7 @@ export interface ShadowTextWidget extends TextElement {
           el.redraw();    
         }
     });
+    
   
     // pass props recieved from 'main', 'light', 'shadow' to SVG-Els
     //TextElement
