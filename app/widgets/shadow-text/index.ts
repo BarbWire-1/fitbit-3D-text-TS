@@ -1,5 +1,4 @@
 export interface ShadowTextWidget extends TextElement { 
-  
     letterSpacing: number;
     textAnchor: "start" | "middle" | "end";
     main: TextElement;   
@@ -29,8 +28,7 @@ export interface ShadowTextWidget extends TextElement {
   };
   
   const construct = (el: ShadowTextWidget) => {
-   
-    //const textEl = el.getElementById('text') as TextElement;
+    
     const lightEl = el.getElementById('light') as TextElement as SubText;
     const shadowEl = el.getElementById('shadow') as TextElement as SubText;
     const mainEl = el.getElementById('main') as TextElement;
@@ -38,14 +36,14 @@ export interface ShadowTextWidget extends TextElement {
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
     el.redraw = () => { 
-        //here text-properties get assign to all el
+        //here text-properties get assigned to all el
         el.getElementsByClassName("myText").forEach((e: TextElement) => {
             e.text = mainEl.text ?? "TEXT"; 
             e.letterSpacing = mainEl.letterSpacing ?? 0;
             e.style.fontFamily = mainEl.style.fontFamily;
             e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize; // change to accessible??
-            
+            //e.style.fontSize = mainEl.style.fontSize; 
+            //TODO check, why if set this, nothing gets displayed
         });
       
      mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
@@ -91,10 +89,10 @@ export interface ShadowTextWidget extends TextElement {
     return el;
   };
   
-  
+  // Returns an object that provides the name of this widget and a function that can be used to construct them.
+  // This is used internally by widget-factory.ts.
   export const shadowText = () => {
-    // Returns an object that provides the name of this widget and a function that can be used to construct them.
-    // This is used internally by widget-factory.ts.
+    
     return {
         name: 'shadowText',
         construct: construct
