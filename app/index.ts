@@ -51,3 +51,4 @@ console.log("test.main.textAnchor: "+test.main.textAnchor);
 //allLights.forEach(el => el.style.fill = "black");
 
 console.log(JSON.stringify(allLights))
+test.light.style.fill = "limegreen"

@@ -95,10 +95,10 @@ const construct = (el: ShadowTextWidget) => {
     get() { return mainEl;}
   }); 
   Object.defineProperty(el, 'light',{ 
-    get() { return mainEl;}
+    get() { return lightEl;}
   }); 
   Object.defineProperty(el, 'shadow',{ 
-    get() { return mainEl;}
+    get() { return shadowEl;}
   }); 
   
  
