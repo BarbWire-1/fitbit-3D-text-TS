@@ -59,3 +59,4 @@ test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
 
 //TODO now ALL get exposed, but unwanted overwritten in redraw, except fontSize,
 // working o-kay... but unsatisfying
+//check for proxy
