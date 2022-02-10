@@ -59,8 +59,6 @@ const construct = (el: ShadowTextWidget) => {
       });
     
    mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
-   
-   
   };
 
   el.redraw();
@@ -102,6 +100,9 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'shadow',{ 
     get() { return mainEl;}
   }); 
+  
+ 
+  
 //DEFINE PROPERTIES FOR SUBELEMENTS
 // use an object to get <style>
 // then set style-properties. Later assign these values to el
@@ -177,3 +178,6 @@ export const shadowText = () => {
       construct: construct
   }
 }
+
+// TODO add type SubText for light/shadow? Class?
+// then won't need to limit in interface, which might work in js too
