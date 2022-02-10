@@ -19,24 +19,24 @@
   
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
-class SubText   {
-  constructor(style,x,y){
-    this.style = style;
-    class Style {
-      constructor(fill,opacity,display) {
-      this.style.fill = fill;
-      this.style.opacity = opacity;
-      this.style.display = display;
-      }
-    }
-    this.x = x;
-    this.y = y;
-  };
-};
-const light = new SubText();
-const shadow = new SubText();
-let publicLightEl = new Array;
-console.log(JSON.stringify(`light: ${light}`))
+// class SubText   {
+//   constructor(style,x,y){
+//     this.style = style;
+//     class Style {
+//       constructor(fill,opacity,display) {
+//       this.style.fill = fill;
+//       this.style.opacity = opacity;
+//       this.style.display = display;
+//       }
+//     }
+//     this.x = x;
+//     this.y = y;
+//   };
+// };
+// const light = new SubText();
+// const shadow = new SubText();
+// let publicLightEl = new Array;
+// console.log(JSON.stringify(`light: ${light}`))
     
     
     
@@ -49,7 +49,7 @@ const construct = (el) => {
     const lightEl = el.getElementById('light');
     const shadowEl = el.getElementById('shadow');
     const mainEl = el.getElementById('main');
-    lightEl = publicLightEl
+   
     // PROPERTIES
     
     // FIX TEXT-PROPERTIES 
@@ -119,7 +119,7 @@ const construct = (el) => {
     };
   };
   
-  export {light,shadow}
+  //export {light,shadow}
   // TODO add type SubText for light/shadow? Class?
   // then won't need to limit in interface, which might work in js too
   

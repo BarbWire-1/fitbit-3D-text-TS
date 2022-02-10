@@ -33,10 +33,10 @@ const update = setInterval(() => {
 test.style.fontSize = 50;
 test.x = 168;
 test.style.fontFamily = "Barlow-Bold"
-// test.main.style.fill = "blue"
-// test.shadow.style.fill="black"
-// //test.light.x = -15;
-// //test.light.style.fill = "white"
+test.main.style.fill = "blue"
+test.shadow.style.fill="white"
+test.light.x = -15;// doesn't work
+test.light.style.fill = "green"//cannot set fill of undefined!!
 // test.light.style.opacity = 1;
 // test.light.style.display = "inline";
 // test.style.fill = "yellow"//NOT ASSIGNED
@@ -52,5 +52,10 @@ test.style.fontFamily = "Barlow-Bold"
 // 
 // console.log(JSON.stringify(allLights))
 // test.light.style.fill = "limegreen"
-// test.light.style.fontSize = 100;
-// test.light.fontFamily = "Tungsten-Medium"
+test.light.style.fontSize = 100;
+test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
+// 
+// test.light.x = 10
+
+//TODO now ALL get exposed, but unwanted overwritten in redraw, except fontSize,
+// working o-kay... but unsatisfying
