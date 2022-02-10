@@ -21,7 +21,7 @@ import Proxy from 'proxy-polyfill'
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
 class SubText {
-  constructor(style,x,y){
+  constructor(style,x,y,enumerable,iterable){
     this.style = style;
     class Style {
       constructor(fill,opacity,display) {
@@ -50,7 +50,10 @@ const construct = (el) => {
     const lightEl = el.getElementById('light');
     const shadowEl = el.getElementById('shadow');
     const mainEl = el.getElementById('main');
+
     
+    
+//TEST **************************************************************************************
     //TODO try use publicEls and then ... and then???
     //SVG ELs are still handled as text :(
     publicLightEl.push(new SubText());
@@ -58,7 +61,45 @@ const construct = (el) => {
     
     //publicShadowEl[0].style.fill = "orange";
     //console.log(publicShadow[0].style.fill)//Cannot set property 'fill' of undefined
-    console.log(JSON.stringify(`publicLightEl: ${publicLightEl}`))
+    Object.getOwnPropertyNames(lightEl).forEach(function(val, idx, array){
+      console.log(`lightEl: ${val} -> ${JSON.stringify(lightEl[val])}`);
+    });// this doesn't log anything???
+    
+    
+    Object.getOwnPropertyNames(publicLightEl).forEach(function(val, idx, array){
+      console.log(`publicLightEl: ${val} -> ${JSON.stringify(publicLightEl[val])}`);
+    });
+    
+    
+    var target = publicLightEl;
+    var enum_and_nonenum = Object.getOwnPropertyNames(target);
+    var enum_only = Object.keys(target);
+    var nonenum_only = enum_and_nonenum.filter(function(key) {
+      var indexInEnum = enum_only.indexOf(key);
+      if (indexInEnum == -1) {
+      // not found in enum_only keys mean the key is non-enumerable,
+      // so return true so we keep this in the filter
+        return true;
+    } else {
+      return false;
+    }
+    });
+
+console.log(nonenum_only);// length WTF???
+
+//TODO look at this Object.create....
+// non-enumerable property
+var my_obj = Object.create({}, {
+  getFoo: {
+    value: function() { return this.foo; },
+    enumerable: false
+  }
+});
+my_obj.foo = 1;
+
+console.log(Object.getOwnPropertyNames(my_obj).sort()); // logs 'foo,getFoo'
+// TEST END ***********************************************************************************
+   
    
     // PROPERTIES
     
