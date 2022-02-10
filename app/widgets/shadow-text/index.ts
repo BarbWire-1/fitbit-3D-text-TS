@@ -1,30 +1,30 @@
-import { mainWorkspace } from "blockly";
-
 
 export interface ShadowTextWidget extends TextElement { 
   
   letterSpacing: number;
   textAnchor: "start" | "middle" | "end";
   main: TextElement;   
-  light: {
-    style: {
-      fill: string,
-      opacity: number,
-      display: "inline" | "none" | "hidden"
-    }
-    x: number,
-    y: number
-  }
+  light: SubText;
+  shadow: SubText;
+  // light: {
+  //   style: {
+  //     fill: string,
+  //     opacity: number,
+  //     display: "inline" | "none" | "hidden"
+  //   }
+  //   x: number,
+  //   y: number
+  // }
   
-  shadow: {
-    style: {
-      fill: string,
-      opacity: number,
-      display: "inline" | "none" | "hidden"
-    }
-    x: number,
-    y: number
-  }
+  // shadow: {
+  //   style: {
+  //     fill: string,
+  //     opacity: number,
+  //     display: "inline" | "none" | "hidden"
+  //   }
+  //   x: number,
+  //   y: number
+  // }
   redraw();
 
 }
@@ -38,11 +38,21 @@ export interface ShadowTextWidget extends TextElement {
 // lightEl.style.fill = "white", offset -1/-1
 // shadowEl.style.fill = "red", offset 1/1
 
+type SubText =  {
+  style: {
+    fill: string,
+    opacity: number,
+    display: "inline" | "none" | "hidden"
+  }
+  x: number,
+  y: number
+}
+
 const construct = (el: ShadowTextWidget) => {
  
   //const textEl = el.getElementById('text') as TextElement;
-  const lightEl = el.getElementById('light')as TextElement;
-  const shadowEl = el.getElementById('shadow') as TextElement;
+  const lightEl = el.getElementById('light') as unknown as SubText;
+  const shadowEl = el.getElementById('shadow') as unknown as SubText;
   const mainEl = el.getElementById('main') as TextElement;
   
   // PRIVATE FUNCTIONS
@@ -91,6 +101,11 @@ const construct = (el: ShadowTextWidget) => {
   
   // <main> is the origin textElement
   // so expose ALL text-relevant properties here
+  
+  
+  
+  // pass props recieved from 'main', 'light', 'shadow' to SVG-Els
+
   Object.defineProperty(el, 'main',{ 
     get() { return mainEl;}
   }); 
