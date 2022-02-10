@@ -31,8 +31,8 @@ export interface ShadowTextWidget extends TextElement {
   const construct = (el: ShadowTextWidget) => {
    
     //const textEl = el.getElementById('text') as TextElement;
-    const lightEl = el.getElementById('light') as unknown as SubText;
-    const shadowEl = el.getElementById('shadow') as unknown as SubText;
+    const lightEl = el.getElementById('light') as TextElement as SubText;
+    const shadowEl = el.getElementById('shadow') as TextElement as SubText;
     const mainEl = el.getElementById('main') as TextElement;
     
     // PRIVATE FUNCTIONS

@@ -52,5 +52,4 @@ console.log("test.main.textAnchor: "+test.main.textAnchor);
 
 console.log(JSON.stringify(allLights))
 test.light.style.fill = "limegreen"
-test.light.
 
