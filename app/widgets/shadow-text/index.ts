@@ -96,68 +96,73 @@ const construct = (el: ShadowTextWidget) => {
   Object.defineProperty(el, 'main',{ 
     get() { return mainEl;}
   }); 
-
+  Object.defineProperty(el, 'light',{ 
+    get() { return mainEl;}
+  }); 
+  Object.defineProperty(el, 'shadow',{ 
+    get() { return mainEl;}
+  }); 
 //DEFINE PROPERTIES FOR SUBELEMENTS
 // use an object to get <style>
 // then set style-properties. Later assign these values to el
 // this allows to only expose desired properties
 
-//DEFINE lightEL-PROPERTIES
-const lightPublic = {
-   lightStyle: {}, 
-};
-
-Object.defineProperty(lightPublic, 'style' ,{
-  get() {return  lightPublic.lightStyle;} 
-});
-Object.defineProperty(lightPublic.lightStyle, 'fill', {
-   set(newValue) {lightEl.style.fill = newValue;}
- });
- Object.defineProperty(lightPublic.lightStyle, 'opacity', {
-  set(newValue) {lightEl.style.opacity = newValue;}
-});
-Object.defineProperty(lightPublic.lightStyle, 'display', {
-  set(newValue) {lightEl.style.display = newValue;}
-});
-Object.defineProperty(lightPublic, 'x', {
-  set(newValue) {lightEl.x = newValue;}
-});
-Object.defineProperty(lightPublic, 'y', {
-  set(newValue) {lightEl.y = newValue;}
-});
-// get all props from lightPublic
-Object.defineProperty(el, 'light', {
-  get() {return lightPublic}
-});
-
-//DEFINE shadowtEL-PROPERTIES
-const shadowPublic = {
-  shadowStyle: {},
-};
-console.log(JSON.stringify(shadowPublic))
-Object.defineProperty(shadowPublic, 'style' ,{
- get() {return  shadowPublic.shadowStyle;} 
-});
-Object.defineProperty(shadowPublic.shadowStyle, 'fill', {
-  set(newValue) {shadowEl.style.fill = newValue;}
-});
-Object.defineProperty(shadowPublic.shadowStyle, 'opacity', {
- set(newValue) {shadowEl.style.opacity = newValue;}
-});
-Object.defineProperty(shadowPublic.shadowStyle, 'display', {
- set(newValue) {shadowEl.style.display = newValue;}
-});
-Object.defineProperty(shadowPublic, 'x', {
- set(newValue) {shadowEl.x = newValue;}
-});
-Object.defineProperty(shadowPublic, 'y', {
- set(newValue) {shadowEl.y = newValue;}
-});
-
-Object.defineProperty(el, 'shadow', {
- get() {return shadowPublic}
-});
-//TODO check how to avoid redundant code. ugly
+// //DEFINE lightEL-PROPERTIES
+// const lightPublic = {
+//    lightStyle: {}, 
+// };
+// 
+// Object.defineProperty(lightPublic, 'style' ,{
+//   get() {return  lightPublic.lightStyle;} 
+// });
+// Object.defineProperty(lightPublic.lightStyle, 'fill', {
+//    set(newValue) {lightEl.style.fill = newValue;}
+//  });
+//  Object.defineProperty(lightPublic.lightStyle, 'opacity', {
+//   set(newValue) {lightEl.style.opacity = newValue;}
+// });
+// Object.defineProperty(lightPublic.lightStyle, 'display', {
+//   set(newValue) {lightEl.style.display = newValue;}
+// });
+// Object.defineProperty(lightPublic, 'x', {
+//   set(newValue) {lightEl.x = newValue;}
+// });
+// Object.defineProperty(lightPublic, 'y', {
+//   set(newValue) {lightEl.y = newValue;}
+// });
+// // get all props from lightPublic
+// Object.defineProperty(el, 'light', {
+//   get() {return lightPublic}
+// });
+// 
+// //DEFINE shadowtEL-PROPERTIES
+// const shadowPublic = {
+//   shadowStyle: {},
+// };
+// console.log(JSON.stringify(shadowPublic))
+// Object.defineProperty(shadowPublic, 'style' ,{
+//  get() {return  shadowPublic.shadowStyle;} 
+// });
+// Object.defineProperty(shadowPublic.shadowStyle, 'fill', {
+//   set(newValue) {shadowEl.style.fill = newValue;}
+// });
+// Object.defineProperty(shadowPublic.shadowStyle, 'opacity', {
+//  set(newValue) {shadowEl.style.opacity = newValue;}
+// });
+// Object.defineProperty(shadowPublic.shadowStyle, 'display', {
+//  set(newValue) {shadowEl.style.display = newValue;}
+// });
+// Object.defineProperty(shadowPublic, 'x', {
+//  set(newValue) {shadowEl.x = newValue;}
+// });
+// Object.defineProperty(shadowPublic, 'y', {
+//  set(newValue) {shadowEl.y = newValue;}
+// });
+// 
+// Object.defineProperty(el, 'shadow', {
+//  get() {return shadowPublic}
+// });
+// //TODO check how to avoid redundant code. ugly
 
 
   return el;
