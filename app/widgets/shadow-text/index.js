@@ -22,21 +22,15 @@ import Proxy from 'proxy-polyfill'
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
 class SubText {
   constructor(style,x,y,enumerable,iterable, fill,opacity,display){
-    this.style = style;
+    this.style = {
+      fill = fill,
+      opacity = opacity,
+      display = display
+    };
     this.x = x;
     this.y = y;
     this.enumerable = true;
     this.iterable = true;
-    this.fill = fill;
-    this.opacity = opacity;
-    this.display = display;
-    
-    
-  // };
-  // constructor(fill, opacity,display){
-  //   this.style.fill = fill;
-  //   this.style.opacity = opacity;
-  //   this.style.display = display;
    }
 };
 
@@ -45,8 +39,10 @@ let publicShadowEl = new Array;
 let testEl = new SubText();
 
 
-testEl.fill = "orange"
-console.log(testEl.fill)
+testEl.style.fill = "orange"
+console.log(testEl.style.fill)
+
+testEl.fontFamily = "Tungsten-Medium"
 Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
   console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
 });// fill, opacity, display NOT included 

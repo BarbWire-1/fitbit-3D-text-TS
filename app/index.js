@@ -61,5 +61,7 @@ test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
 // working o-kay... but unsatisfying
 //check for proxy
 
-testEl.fill="green"
-console.log(testEl.fill)
+testEl.style.fill="green"
+console.log(testEl.style.fill)
+testEl.fontFamily = "Tungsten-Medium"
+console.log(testEl.fontFamily)// WHY?????
