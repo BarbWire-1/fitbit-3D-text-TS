@@ -21,25 +21,35 @@ import Proxy from 'proxy-polyfill'
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
 class SubText {
-  constructor(style,x,y,enumerable,iterable){
+  constructor(style,x,y,enumerable,iterable, fill,opacity,display){
     this.style = style;
-    class Style {
-      constructor(fill,opacity,display) {
-      this.style.fill = fill;
-      this.style.opacity = opacity;
-      this.style.display = display;
-      }
-    }
     this.x = x;
     this.y = y;
     this.enumerable = true;
     this.iterable = true;
-  };
+    this.fill = fill;
+    this.opacity = opacity;
+    this.display = display;
+    
+    
+  // };
+  // constructor(fill, opacity,display){
+  //   this.style.fill = fill;
+  //   this.style.opacity = opacity;
+  //   this.style.display = display;
+   }
 };
 
 let publicLightEl = new Array;
 let publicShadowEl = new Array;
-  
+let testEl = new SubText();
+
+
+testEl.fill = "orange"
+console.log(testEl.fill)
+Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
+  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
+});// fill, opacity, display NOT included 
 
 const construct = (el) => {
   
@@ -61,17 +71,15 @@ const construct = (el) => {
     
     //publicShadowEl[0].style.fill = "orange";
     //console.log(publicShadow[0].style.fill)//Cannot set property 'fill' of undefined
-    Object.getOwnPropertyNames(lightEl).forEach(function(val, idx, array){
-      console.log(`lightEl: ${val} -> ${JSON.stringify(lightEl[val])}`);
-    });// this doesn't log anything???
+    
     
     
     Object.getOwnPropertyNames(publicLightEl).forEach(function(val, idx, array){
-      console.log(`publicLightEl: ${val} -> ${JSON.stringify(publicLightEl[val])}`);
+      //console.log(`publicLightEl: ${val} -> ${JSON.stringify(publicLightEl[val])}`);
     });
     
     
-    var target = publicLightEl;
+    var target = testEl;
     var enum_and_nonenum = Object.getOwnPropertyNames(target);
     var enum_only = Object.keys(target);
     var nonenum_only = enum_and_nonenum.filter(function(key) {
@@ -85,7 +93,7 @@ const construct = (el) => {
     }
     });
 
-console.log(nonenum_only);// length WTF???
+//console.log(nonenum_only);// length WTF???
 
 //TODO look at this Object.create....
 // non-enumerable property
@@ -97,7 +105,53 @@ var my_obj = Object.create({}, {
 });
 my_obj.foo = 1;
 
-console.log(Object.getOwnPropertyNames(my_obj).sort()); // logs 'foo,getFoo'
+//console.log(Object.getOwnPropertyNames(my_obj).sort()); // logs 'foo,getFoo'
+
+
+function showProps(obj, objName) {
+  var result = '';
+  for (var i in obj) {
+    // obj.hasOwnProperty() wird benutzt um Eigenschaften aus der Prototypen-Kette herauszufiltern
+    if (obj.hasOwnProperty(i)) {
+      result += objName + '.' + i + ' = ' + obj[i] + '\n';
+    }
+  }
+  return result;
+}
+showProps(lightEl, "LightEl")// nothing
+
+
+function listAllProperties(o) {
+  var objectToInspect;
+	var result = [];
+
+	for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)) {
+    result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+}
+
+return result;
+}
+//listAllProperties(lightEl)
+//listAllProperties(publicLightEl)
+listAllProperties(testEl)
+
+//TODO check possibilities of encapsulation
+// Animal properties and method encapsulation
+var Animal = {
+  type: 'Invertebrates', // Default value of properties
+  displayType: function() {  // Method which will display type of Animal
+   // console.log(this.type);
+  }
+};
+
+// Create new animal type called animal1
+var animal1 = Object.create(Animal);
+animal1.displayType(); // Output:Invertebrates
+
+// Create new animal type called Fishes
+var fish = Object.create(Animal);
+fish.type = 'Fishes';
+fish.displayType(); // Output:Fishes
 // TEST END ***********************************************************************************
    
    
@@ -173,3 +227,4 @@ console.log(Object.getOwnPropertyNames(my_obj).sort()); // logs 'foo,getFoo'
   //export {light,shadow}
   // TODO add type SubText for light/shadow? Class?
   // then won't need to limit in interface, which might work in js too
+export {testEl}

@@ -2,7 +2,7 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import { shadowText, ShadowTextWidget,light,shadow } from './widgets/shadow-text/index'
+import { shadowText,testEl } from './widgets/shadow-text/index'
 
 
 widgetFactory(shadowText);
@@ -60,3 +60,6 @@ test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
 //TODO now ALL get exposed, but unwanted overwritten in redraw, except fontSize,
 // working o-kay... but unsatisfying
 //check for proxy
+
+testEl.fill="green"
+console.log(testEl.fill)
