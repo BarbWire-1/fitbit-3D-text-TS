@@ -21,7 +21,7 @@ const update = setInterval(() => {
   countDown.text = (`00${--cd}`).slice(-2);
   
 
- // calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
   
   //console.log(cd)
   if (cd == 0) {
@@ -35,8 +35,8 @@ test.x = 168;
 test.style.fontFamily = "Barlow-Bold"
 test.main.style.fill = "blue"
 test.shadow.style.fill="white"
-test.light.x = -15;// doesn't work
-test.light.style.fill = "green"//cannot set fill of undefined!!
+//test.light.x = -15;
+test.light.style.fill = "white"
 // test.light.style.opacity = 1;
 // test.light.style.display = "inline";
 // test.style.fill = "yellow"//NOT ASSIGNED
@@ -52,7 +52,7 @@ test.light.style.fill = "green"//cannot set fill of undefined!!
 // 
 // console.log(JSON.stringify(allLights))
 // test.light.style.fill = "limegreen"
-test.light.style.fontSize = 100;
+//test.light.style.fontSize = 100;
 test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
 // 
 // test.light.x = 10
@@ -65,3 +65,6 @@ testEl.style.fill="green"
 console.log(testEl.style.fill)
 testEl.fontFamily = "Tungsten-Medium"
 console.log(testEl.fontFamily)// WHY?????
+
+//test.main.fill = "green"//doesn't get applied, but why can I set it this way???
+//test.main.style.fill = "green"//gets applied (to expect)

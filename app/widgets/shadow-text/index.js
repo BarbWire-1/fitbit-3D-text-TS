@@ -21,7 +21,7 @@ import Proxy from 'proxy-polyfill'
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
 class SubText {
-  constructor(style,x,y,enumerable,iterable, fill,opacity,display){
+  constructor(x,y,enumerable,iterable, fill,opacity,display){
     this.style = {
       fill = fill,
       opacity = opacity,
