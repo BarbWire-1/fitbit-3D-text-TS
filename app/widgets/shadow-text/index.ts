@@ -6,8 +6,7 @@ export interface ShadowTextWidget extends TextElement {
     light: SubText;
     shadow: SubText;
     redraw();
-  
-  }
+  };
   
   // DEFAULTS in widgets/shadow-text/styles.css
   // this allows them to get overwritten from main CSS if set there
@@ -24,10 +23,10 @@ export interface ShadowTextWidget extends TextElement {
       fill: string,
       opacity: number,
       display: "inline" | "none" | "hidden"
-    }
+    },
     x: number,
     y: number
-  }
+  };
   
   const construct = (el: ShadowTextWidget) => {
    
@@ -53,21 +52,20 @@ export interface ShadowTextWidget extends TextElement {
     };
   
     el.redraw();
-    
+    // all the same for elements of shadow-text
+    // values assigned in redraw()
     Object.defineProperty(el, 'text', {     
         set(newValue) {
           mainEl.text = newValue;
           el.redraw();
         }
     });
-  
     Object.defineProperty(el, 'letterSpacing', {
         set(newValue) {
           mainEl.letterSpacing = newValue;
           el.redraw();    
         }
     });
-  
     Object.defineProperty(el, 'textAnchor', {
         set(newValue) {
           mainEl.textAnchor = newValue;
@@ -75,31 +73,23 @@ export interface ShadowTextWidget extends TextElement {
         }
     });
   
-    // add and export placeholders to pass properties into subElements per ts/js
-    // as ALL properties are exposed, they are all accesible from js/ts.
-    // only the above assigned ones get overwritten on redraw()
-    // these are loggable in index.ts!!! ???
-    
-    // <main> is the origin textElement
-    // so expose ALL text-relevant properties here
-    
-    
-    
     // pass props recieved from 'main', 'light', 'shadow' to SVG-Els
-  
+    //TextElement
     Object.defineProperty(el, 'main',{ 
       get() { return mainEl;}
     }); 
+    //SubText
     Object.defineProperty(el, 'light',{ 
       get() { return lightEl;}
     }); 
-    Object.defineProperty(el, 'shadow',{ 
+    //SubText
+    Object.defineProperty(el, 'shadow',{
       get() { return shadowEl;}
     }); 
    
   
     return el;
-  }
+  };
   
   
   export const shadowText = () => {
@@ -108,8 +98,8 @@ export interface ShadowTextWidget extends TextElement {
     return {
         name: 'shadowText',
         construct: construct
-    }
-  }
+    };
+  };
   
   // TODO add type SubText for light/shadow? Class?
   // then won't need to limit in interface, which might work in js too
