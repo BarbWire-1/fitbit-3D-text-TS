@@ -34,30 +34,15 @@ export interface ShadowTextWidget extends TextElement {
     const shadowEl = el.getElementById('shadow') as TextElement as SubText;
     const mainEl = el.getElementById('main') as TextElement;
     
-    // PRIVATE FUNCTIONS
-    // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-    el.redraw = () => { 
-        //here text-properties get assigned to all el of widget-instance
-        el.getElementsByClassName("myText").forEach((e: TextElement) => {
-            e.text = mainEl.text ?? "TEXT"; 
-            e.letterSpacing = mainEl.letterSpacing ?? 0;
-            e.style.fontFamily = mainEl.style.fontFamily;
-            e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize; 
-            //TODO check, why if set this, nothing gets displayed
-        });
-      
-     mainEl.x = mainEl.y = 0; // so "main" allways gets redrawn at x,y of the <use>
-    };
-  
-    el.redraw();
-    //all the same for elements of shadow-text
-    //values assigned in redraw()
+    // PROPERTIES
+    
+    // FIX TEXT-PROPERTIES 
+    // (same for all elements of instance)
     Object.defineProperty(el, 'text', {     
-        set(newValue) {
-          mainEl.text = newValue;
-          el.redraw();
-        }
+      set(newValue) {
+        mainEl.text = newValue;
+        el.redraw();
+      }
     });
     Object.defineProperty(el, 'letterSpacing', {
         set(newValue) {
@@ -71,23 +56,40 @@ export interface ShadowTextWidget extends TextElement {
           el.redraw();    
         }
     });
-    
   
-    // pass props recieved from 'main', 'light', 'shadow' to SVG-Els
-    //TextElement
+
+    // PASS PROPERTIES FROM EXPOSED TO INNER EL
+    // TextElement
     Object.defineProperty(el, 'main',{ 
       get() { return mainEl;}
     }); 
-    //SubText
+    // SubText
     Object.defineProperty(el, 'light',{ 
       get() { return lightEl;}
     }); 
-    //SubText
+    // SubText
     Object.defineProperty(el, 'shadow',{
       get() { return shadowEl;}
     }); 
+    
+    // PRIVATE FUNCTIONS
+    // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+    el.redraw = () => { 
+        //here text-properties get assigned to all el of widget-instance
+        el.getElementsByClassName("myText").forEach((e: TextElement) => {
+            e.text = mainEl.text ?? "TEXT"; 
+            e.letterSpacing = mainEl.letterSpacing ?? 0;
+            e.style.fontFamily = mainEl.style.fontFamily;
+            e.textAnchor = mainEl.textAnchor;
+            //e.style.fontSize = mainEl.style.fontSize; 
+            //TODO check, why if set this, nothing gets displayed
+        });
+    
+    // fix main at x,y of <use>
+    mainEl.x = mainEl.y = 0;
+    };
+    el.redraw();
    
-  
     return el;
   };
   
