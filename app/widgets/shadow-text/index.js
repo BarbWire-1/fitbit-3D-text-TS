@@ -20,7 +20,7 @@ import Proxy from 'proxy-polyfill'
   
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
-class SubText   {
+class SubText {
   constructor(style,x,y){
     this.style = style;
     class Style {
@@ -32,12 +32,15 @@ class SubText   {
     }
     this.x = x;
     this.y = y;
+    this.enumerable = true;
+    this.iterable = true;
   };
 };
 
 let publicLightEl = new Array;
 let publicShadowEl = new Array;
   
+
 const construct = (el) => {
   
   // const light = new SubText();
@@ -52,7 +55,10 @@ const construct = (el) => {
     //SVG ELs are still handled as text :(
     publicLightEl.push(new SubText());
     publicShadowEl.push(new SubText());
-    console.log(JSON.stringify(`publicLigtEl: ${publicLightEl}`))
+    
+    //publicShadowEl[0].style.fill = "orange";
+    //console.log(publicShadow[0].style.fill)//Cannot set property 'fill' of undefined
+    console.log(JSON.stringify(`publicLightEl: ${publicLightEl}`))
    
     // PROPERTIES
     
