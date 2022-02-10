@@ -1,11 +1,12 @@
-export interface ShadowTextWidget extends TextElement { 
-    letterSpacing: number;
-    textAnchor: "start" | "middle" | "end";
-    main: TextElement;   
-    light: SubText;
-    shadow: SubText;
-    redraw();
-  };
+//@ts-nocheck
+// export interface ShadowTextWidget extends TextElement { 
+//     letterSpacing: number;
+//     textAnchor: "start" | "middle" | "end";
+//     main: TextElement;   
+//     light: SubText;
+//     shadow: SubText;
+//     redraw();
+//   };
   
   // DEFAULTS in widgets/shadow-text/styles.css
   // this allows them to get overwritten from main CSS if set there
@@ -18,22 +19,37 @@ export interface ShadowTextWidget extends TextElement {
   
   // SubText limits exposed properties
   // as this is outside the closure, it can be modified AND logged in index.ts!!!
-  type SubText =  {
-    style: {
-      fill: string,
-      opacity: number,
-      display: "inline" | "none" | "hidden"
-    },
-    x: number,
-    y: number
+class SubText   {
+  constructor(style,x,y){
+    this.style = style;
+    class Style {
+      constructor(fill,opacity,display) {
+      this.style.fill = fill;
+      this.style.opacity = opacity;
+      this.style.display = display;
+      }
+    }
+    this.x = x;
+    this.y = y;
   };
+};
+const light = new SubText();
+const shadow = new SubText();
+let publicLightEl = new Array;
+console.log(JSON.stringify(`light: ${light}`))
+    
+    
+    
+const construct = (el) => {
   
-  const construct = (el: ShadowTextWidget) => {
+  // const light = new SubText();
+  // const shadow = new SubText();
     
-    const lightEl = el.getElementById('light') as TextElement as SubText;
-    const shadowEl = el.getElementById('shadow') as TextElement as SubText;
-    const mainEl = el.getElementById('main') as TextElement;
-    
+   
+    const lightEl = el.getElementById('light');
+    const shadowEl = el.getElementById('shadow');
+    const mainEl = el.getElementById('main');
+    lightEl = publicLightEl
     // PROPERTIES
     
     // FIX TEXT-PROPERTIES 
@@ -76,12 +92,12 @@ export interface ShadowTextWidget extends TextElement {
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
     el.redraw = () => { 
         //here text-properties get assigned to all el of widget-instance
-        el.getElementsByClassName("myText").forEach((e: TextElement) => {
+        el.getElementsByClassName("myText").forEach((e) => {
             e.text = mainEl.text ?? "TEXT"; 
             e.letterSpacing = mainEl.letterSpacing ?? 0;
             e.style.fontFamily = mainEl.style.fontFamily;
             e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize; 
+            //e.style.fontSize = mainEl.style.fontSize ?? 30; 
             //TODO check, why if set this, nothing gets displayed
         });
     
@@ -103,6 +119,7 @@ export interface ShadowTextWidget extends TextElement {
     };
   };
   
+  export {light,shadow}
   // TODO add type SubText for light/shadow? Class?
   // then won't need to limit in interface, which might work in js too
   
