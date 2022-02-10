@@ -34,13 +34,10 @@ class SubText   {
     this.y = y;
   };
 };
-const light = new SubText();
-const shadow = new SubText();
+
 let publicLightEl = new Array;
-console.log(JSON.stringify(`light: ${ light}`))
-    
-    
-    
+let publicShadowEl = new Array;
+  
 const construct = (el) => {
   
   // const light = new SubText();
@@ -50,7 +47,11 @@ const construct = (el) => {
     const lightEl = el.getElementById('light');
     const shadowEl = el.getElementById('shadow');
     const mainEl = el.getElementById('main');
-    publicLightEl.push(lightEl)
+    
+    //TODO try use publicEls and then ... and then???
+    //SVG ELs are still handled as text :(
+    publicLightEl.push(new SubText());
+    publicShadowEl.push(new SubText());
     console.log(JSON.stringify(`publicLigtEl: ${publicLightEl}`))
    
     // PROPERTIES
