@@ -157,7 +157,7 @@ let testEl = new SubText();
 Object.preventExtensions(testEl);
 
 testEl.style.fill = "orange"
-console.log(testEl.style.fill)
+//console.log(testEl.style.fill)
 
 
 

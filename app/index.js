@@ -40,12 +40,6 @@ test.light.style.fill = "white"
 test.light.style.opacity = 1;
 test.light.style.display = "inline";
 
-
-test.style.fill = "yellow"//NOT ASSIGNED
-// TODO set el-props to main-props?
-
-
-
 // console.log(`test.light.style.fill: ${test.light.style.fill}`)
 // console.log(`test.light.x: ${(test.light.x)}`)
 // console.log("test.main.textAnchor: "+test.main.textAnchor);
@@ -59,10 +53,6 @@ test.light.style.fill = "limegreen"
 test.light.x = -2
 test.light.y = -2
 
-
-test.style.fill="green"
-console.log(`test.style.fill: ${test.style.fill}`)
-
 test.light.style.fontFamily = "Tungsten-Medium"
 console.log(test.light.style.fontFamily) //undefined and not applied
 
@@ -73,3 +63,4 @@ console.log(test.light.style.fontFamily) //undefined and not applied
 // Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
 //   console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
 // });
+// TODO set el-props to main-props?
