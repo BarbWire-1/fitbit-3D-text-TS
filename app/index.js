@@ -46,7 +46,6 @@ test.light.style.display = "inline";
 
 //allLights.forEach(el => el.style.fill = "black");
 
-//console.log(JSON.stringify(allLights))
 test.light.style.fill = "limegreen"
 
 
@@ -56,6 +55,11 @@ test.light.y = -2
 test.light.style.fontSize = 100;
 console.log(test.light.style.fontSize) //undefined and not applied
 
+//console.log(test.light.style.fill) // #32CD32 
+//BUT:
+//console.log(JSON.stringify(allLights)) //[{},{},{}]
+
+
 // deleted my exception for wrong property... so
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
 
@@ -64,3 +68,5 @@ console.log(test.light.style.fontSize) //undefined and not applied
 //   console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
 // });
 // TODO set el-props to main-props?
+
+

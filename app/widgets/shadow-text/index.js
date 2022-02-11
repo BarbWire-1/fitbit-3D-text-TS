@@ -35,7 +35,6 @@ const construct = (el) => {
     set x(num) {el.x = num},
     get y() {return el.y},
     set y(num) {el.y = num},
-   
   });
   
   //SUBTEXT elements
@@ -50,6 +49,26 @@ const construct = (el) => {
   };
   errorHandling(lightEl)
   
+  var target = lightEl;
+    var enum_and_nonenum = Object.getOwnPropertyNames(target);
+    var enum_only = Object.keys(target);
+    var nonenum_only = enum_and_nonenum.filter(function(key) {
+      var indexInEnum = enum_only.indexOf(key);
+      if (indexInEnum == -1) {
+      // not found in enum_only keys mean the key is non-enumerable,
+      // so return true so we keep this in the filter
+        return true;
+    } else {
+      return false;
+    }
+    });
+  console.log(`noenum: ${nonenum_only}`);// noenum:    (empty)
+  console.log(`enum: ${enum_only}`);// enum: style,x,y 
+  
+  
+  console.log(Object.getOwnPropertyNames(lightEl))
+  console.log(JSON.stringify(lightEl))//  {} // ????
+  
   // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
   
    // MAIN TEXTELEMENT
@@ -58,11 +77,8 @@ const construct = (el) => {
   // //for use without above wrapper
   // const lightEl = el.getElementById('light');
   // const shadowEl = el.getElementById('shadow');
-    
-
    
     // PROPERTIES
-    
     // FIX TEXT-PROPERTIES 
     // (same for all elements of instance)
     Object.defineProperty(el, 'text', {     
@@ -119,6 +135,8 @@ const construct = (el) => {
     el.redraw();
    
     return el;
+   
+  
   };
   
   // Returns an object that provides the name of this widget and a function that can be used to construct them.
