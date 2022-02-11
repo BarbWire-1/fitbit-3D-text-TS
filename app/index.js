@@ -63,8 +63,11 @@ test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
 
 testEl.style.fill="green"
 console.log(testEl.style.fill)
-testEl.fontFamily = "Tungsten-Medium"
+//testEl.fontFamily = "Tungsten-Medium"
 console.log(testEl.fontFamily)// WHY?????
-
+testEl
 //test.main.fill = "green"//doesn't get applied, but why can I set it this way???
 //test.main.style.fill = "green"//gets applied (to expect)
+//TODO check testEl => module: SubText, while test/main etc: any (!!!)
+
+test.light.fontSize = 50;// hah! not applied using wrapper

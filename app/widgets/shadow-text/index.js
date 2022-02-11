@@ -1,5 +1,6 @@
 //@ts-nocheck
 import Proxy from 'proxy-polyfill'
+
 // export interface ShadowTextWidget extends TextElement { 
 //     letterSpacing: number;
 //     textAnchor: "start" | "middle" | "end";
@@ -18,10 +19,14 @@ import Proxy from 'proxy-polyfill'
   // lightEl.style.fill = "white", offset -1/-1
   // shadowEl.style.fill = "red", offset 1/1
   
-  // SubText limits exposed properties
-  // as this is outside the closure, it can be modified AND logged in index.ts!!!
+  
+  
+//TEST OUTER CLASS *********************************************************************************
+// using class for exposed element nicely shows up properties in index
+// and recognizes els as SubText
+// but how to pass values into closure Els?
 class SubText {
-  constructor(x,y,enumerable,iterable, fill,opacity,display){
+  constructor(x,y,enumerable,iterable, extensible,fill,opacity,display){
     this.style = {
       fill = fill,
       opacity = opacity,
@@ -31,125 +36,66 @@ class SubText {
     this.y = y;
     this.enumerable = true;
     this.iterable = true;
+    this.extensible = false;
    }
 };
 
-let publicLightEl = new Array;
-let publicShadowEl = new Array;
-let testEl = new SubText();
+// Now outside of closure for testing, how it get exposed (ex-/import)
+//creates object
+let testEl = new SubText(); 
 
+//fixes object properties
+Object.preventExtensions(testEl);
 
 testEl.style.fill = "orange"
 console.log(testEl.style.fill)
 
-testEl.fontFamily = "Tungsten-Medium"
+//logs a list of Els key:value
 Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
   console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
-});// fill, opacity, display NOT included 
+});
+
+//TODO try use publicEls and then ... and then???
+//SVG ELs are still handled as text :(  
+    
+//TEST OUTER CLASS END **********************************************************************************
 
 const construct = (el) => {
   
-  // const light = new SubText();
-  // const shadow = new SubText();
-    
+  
+  // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
+  const createSubText = (el) => ({
+    get style() {
+      return {
+        get fill() {return el.style.fill},
+        set fill(color) {el.style.fill = color},
+        get opacity() {return el.style.opacity},
+        set opacity(num) {el.style.opacity = num},
+        get display() {return el.style.display},
+        set display(val) {el.style.opacity = val}
+     }
+    },
+    get x() {return el.x},
+    set x(num) {el.x = num},
+    get y() {return el.y},
+    set y(num) {el.y = num},
    
-    const lightEl = el.getElementById('light');
-    const shadowEl = el.getElementById('shadow');
-    const mainEl = el.getElementById('main');
-
-    
-    
-//TEST **************************************************************************************
-    //TODO try use publicEls and then ... and then???
-    //SVG ELs are still handled as text :(
-    publicLightEl.push(new SubText());
-    publicShadowEl.push(new SubText());
-    
-    //publicShadowEl[0].style.fill = "orange";
-    //console.log(publicShadow[0].style.fill)//Cannot set property 'fill' of undefined
-    
-    
-    
-    Object.getOwnPropertyNames(publicLightEl).forEach(function(val, idx, array){
-      //console.log(`publicLightEl: ${val} -> ${JSON.stringify(publicLightEl[val])}`);
-    });
-    
-    
-    var target = testEl;
-    var enum_and_nonenum = Object.getOwnPropertyNames(target);
-    var enum_only = Object.keys(target);
-    var nonenum_only = enum_and_nonenum.filter(function(key) {
-      var indexInEnum = enum_only.indexOf(key);
-      if (indexInEnum == -1) {
-      // not found in enum_only keys mean the key is non-enumerable,
-      // so return true so we keep this in the filter
-        return true;
-    } else {
-      return false;
-    }
-    });
-
-//console.log(nonenum_only);// length WTF???
-
-//TODO look at this Object.create....
-// non-enumerable property
-var my_obj = Object.create({}, {
-  getFoo: {
-    value: function() { return this.foo; },
-    enumerable: false
-  }
-});
-my_obj.foo = 1;
-
-//console.log(Object.getOwnPropertyNames(my_obj).sort()); // logs 'foo,getFoo'
-
-
-function showProps(obj, objName) {
-  var result = '';
-  for (var i in obj) {
-    // obj.hasOwnProperty() wird benutzt um Eigenschaften aus der Prototypen-Kette herauszufiltern
-    if (obj.hasOwnProperty(i)) {
-      result += objName + '.' + i + ' = ' + obj[i] + '\n';
-    }
-  }
-  return result;
-}
-showProps(lightEl, "LightEl")// nothing
-
-
-function listAllProperties(o) {
-  var objectToInspect;
-	var result = [];
-
-	for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)) {
-    result = result.concat(Object.getOwnPropertyNames(objectToInspect));
-}
-
-return result;
-}
-//listAllProperties(lightEl)
-//listAllProperties(publicLightEl)
-listAllProperties(testEl)
-
-//TODO check possibilities of encapsulation
-// Animal properties and method encapsulation
-var Animal = {
-  type: 'Invertebrates', // Default value of properties
-  displayType: function() {  // Method which will display type of Animal
-   // console.log(this.type);
-  }
-};
-
-// Create new animal type called animal1
-var animal1 = Object.create(Animal);
-animal1.displayType(); // Output:Invertebrates
-
-// Create new animal type called Fishes
-var fish = Object.create(Animal);
-fish.type = 'Fishes';
-fish.displayType(); // Output:Fishes
-// TEST END ***********************************************************************************
+  });
+  
+  //SUBTEXT elements
+  const lightEl = createSubText(el.getElementById('light'));
+  const shadowEl = createSubText(el.getElementById('shadow'));
+  
+  // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
+  
+   // MAIN TEXTELEMENT
+   const mainEl = el.getElementById('main');
    
+  // //for use without above wrapper
+  // const lightEl = el.getElementById('light');
+  // const shadowEl = el.getElementById('shadow');
+    
+
    
     // PROPERTIES
     
@@ -180,7 +126,7 @@ fish.displayType(); // Output:Fishes
     Object.defineProperty(el, 'main',{ 
       get() { return mainEl;}
     }); 
-    // SubText
+    SubText
     Object.defineProperty(el, 'light',{ 
       get() { return lightEl;}
     }); 
@@ -188,6 +134,7 @@ fish.displayType(); // Output:Fishes
     Object.defineProperty(el, 'shadow',{
       get() { return shadowEl;}
     }); 
+  
     
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
@@ -220,7 +167,5 @@ fish.displayType(); // Output:Fishes
     };
   };
   
-  //export {light,shadow}
-  // TODO add type SubText for light/shadow? Class?
-  // then won't need to limit in interface, which might work in js too
-export {testEl}
+ 
+  export {testEl}
