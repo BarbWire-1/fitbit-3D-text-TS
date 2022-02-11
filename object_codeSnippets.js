@@ -93,7 +93,7 @@ console.log(e);
 // TEST END ***********************************************************************************
 
 const createPotatoWidget = (element) => ({
-    get() style: {
+    get style() {
       return {
         get fill() { return element.style.fill},
         set fill(color) { element.style.fill = color}

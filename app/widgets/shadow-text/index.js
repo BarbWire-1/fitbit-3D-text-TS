@@ -42,8 +42,8 @@ const construct = (el) => {
   //SUBTEXT elements
   const lightEl = createSubText(el.getElementById('light'));
   const shadowEl = createSubText(el.getElementById('shadow'));
-  Object.preventExtensions(lightEl);
-  Object.preventExtensions(shadowEl);
+  Object.seal(lightEl);
+  Object.seal(shadowEl);
   
   // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
   

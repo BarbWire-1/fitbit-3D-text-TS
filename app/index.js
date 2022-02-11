@@ -62,3 +62,8 @@ test.light.y = -2
 
 test.style.fill="green"
 console.log(test.style.fill)
+
+test.light.style.fontFamily = "Tungsten-Medium"
+
+// deleted my exception for wrong property... so
+//TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
