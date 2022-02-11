@@ -2,7 +2,7 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import { shadowText,testEl } from './widgets/shadow-text/index'
+import { shadowText,testEl} from './widgets/shadow-text/index'
 
 
 widgetFactory(shadowText);
@@ -21,7 +21,7 @@ const update = setInterval(() => {
   countDown.text = (`00${--cd}`).slice(-2);
   
 
-  //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
+  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
   
   //console.log(cd)
   if (cd == 0) {
@@ -29,7 +29,7 @@ const update = setInterval(() => {
   }
 }, 1000);
 // 
-// countDown.light.style.opacity = 1;
+countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
 test.x = 168;
 test.style.fontFamily = "Barlow-Bold"
@@ -37,37 +37,28 @@ test.main.style.fill = "blue"
 test.shadow.style.fill="white"
 //test.light.x = -15;
 test.light.style.fill = "white"
-// test.light.style.opacity = 1;
-// test.light.style.display = "inline";
-// test.style.fill = "yellow"//NOT ASSIGNED
-// // TODO set el-props to main-props?
-// // test.x DOES get applied...tss
-// 
-// 
-// console.log(`test.light.style.fill: ${test.light.style.fill}`)
-// console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
-// console.log("test.main.textAnchor: "+test.main.textAnchor);
-// 
-// //allLights.forEach(el => el.style.fill = "black");
-// 
-// console.log(JSON.stringify(allLights))
-// test.light.style.fill = "limegreen"
-//test.light.style.fontSize = 100;
-test.light.fontFamily = "Tungsten-Medium"//gets overwritten in redraw
-// 
-// test.light.x = 10
+test.light.style.opacity = 1;
+test.light.style.display = "inline";
 
-//TODO now ALL get exposed, but unwanted overwritten in redraw, except fontSize,
-// working o-kay... but unsatisfying
-//check for proxy
 
-testEl.style.fill="green"
-console.log(testEl.style.fill)
-//testEl.fontFamily = "Tungsten-Medium"
-console.log(testEl.fontFamily)// WHY?????
-testEl
-//test.main.fill = "green"//doesn't get applied, but why can I set it this way???
-//test.main.style.fill = "green"//gets applied (to expect)
-//TODO check testEl => module: SubText, while test/main etc: any (!!!)
+test.style.fill = "yellow"//NOT ASSIGNED
+// TODO set el-props to main-props?
 
-test.light.fontSize = 50;// hah! not applied using wrapper
+
+
+console.log(`test.light.style.fill: ${test.light.style.fill}`)
+console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
+console.log("test.main.textAnchor: "+test.main.textAnchor);
+
+//allLights.forEach(el => el.style.fill = "black");
+
+console.log(JSON.stringify(allLights))
+test.light.style.fill = "limegreen"
+
+
+test.light.x = -2
+test.light.y = -2
+
+
+test.style.fill="green"
+console.log(test.style.fill)

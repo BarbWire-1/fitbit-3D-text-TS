@@ -1,70 +1,25 @@
 //@ts-nocheck
 import Proxy from 'proxy-polyfill'
 
-// export interface ShadowTextWidget extends TextElement { 
-//     letterSpacing: number;
-//     textAnchor: "start" | "middle" | "end";
-//     main: TextElement;   
-//     light: SubText;
-//     shadow: SubText;
-//     redraw();
-//   };
+// DEFAULTS in widgets/shadow-text/styles.css
+// this allows them to get overwritten from main CSS if set there
   
-  // DEFAULTS in widgets/shadow-text/styles.css
-  // this allows them to get overwritten from main CSS if set there
+// mainEl.style.fill = "grey"
+// x,y center screen
+// textAnchor middle
+// lightEl.style.fill = "white", offset -1/-1
+// shadowEl.style.fill = "red", offset 1/1
   
-  // mainEl.style.fill = "grey"
-  // x,y center screen
-  // textAnchor middle
-  // lightEl.style.fill = "white", offset -1/-1
-  // shadowEl.style.fill = "red", offset 1/1
-  
-  
-  
-//TEST OUTER CLASS *********************************************************************************
-// using class for exposed element nicely shows up properties in index
-// and recognizes els as SubText
-// but how to pass values into closure Els?
-class SubText {
-  constructor(x,y,enumerable,iterable, extensible,fill,opacity,display){
-    this.style = {
-      fill = fill,
-      opacity = opacity,
-      display = display
-    };
-    this.x = x;
-    this.y = y;
-    this.enumerable = true;
-    this.iterable = true;
-    this.extensible = false;
-   }
-};
 
-// Now outside of closure for testing, how it get exposed (ex-/import)
-//creates object
-let testEl = new SubText(); 
-
-//fixes object properties
-Object.preventExtensions(testEl);
-
-testEl.style.fill = "orange"
-console.log(testEl.style.fill)
-
-//logs a list of Els key:value
-Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
-  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
-});
-
-//TODO try use publicEls and then ... and then???
-//SVG ELs are still handled as text :(  
-    
-//TEST OUTER CLASS END **********************************************************************************
 
 const construct = (el) => {
   
   
   // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
+  // and I hate it not showing up possible props in index.
+  // it just prevents writing those not wanted
   const createSubText = (el) => ({
+    
     get style() {
       return {
         get fill() {return el.style.fill},
@@ -72,7 +27,7 @@ const construct = (el) => {
         get opacity() {return el.style.opacity},
         set opacity(num) {el.style.opacity = num},
         get display() {return el.style.display},
-        set display(val) {el.style.opacity = val}
+        set display(val) {el.style.display = val}
      }
     },
     get x() {return el.x},
@@ -85,6 +40,8 @@ const construct = (el) => {
   //SUBTEXT elements
   const lightEl = createSubText(el.getElementById('light'));
   const shadowEl = createSubText(el.getElementById('shadow'));
+  Object.preventExtensions(lightEl);
+  Object.preventExtensions(shadowEl);
   
   // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
   
@@ -166,6 +123,54 @@ const construct = (el) => {
         construct: construct
     };
   };
-  
  
-  export {testEl}
+  
+  
+//TEST OUTER CLASS *********************************************************************************
+// using class for exposed element nicely shows up properties in index
+// and recognizes els as SubText
+// but how to pass values into closure Els?
+
+//NOT IMPLEMENTED IN MODULE CURRENTLY
+class SubText {
+  constructor(x,y,enumerable,iterable, extensible,fill,opacity,display){
+    this.style = {
+      fill = fill,
+      opacity = opacity,
+      display = display
+    };
+    this.x = x;
+    this.y = y;
+    this.enumerable = true;
+    this.iterable = true;
+    this.extensible = false;
+   }
+};
+
+// Now outside of closure for testing, how it get exposed (ex-/import)
+//creates object
+let testEl = new SubText(); 
+
+//fixes object properties
+Object.preventExtensions(testEl);
+
+testEl.style.fill = "orange"
+console.log(testEl.style.fill)
+
+//logs a list of Els key:value
+Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
+  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
+});
+
+export {testEl}
+
+//TODO try use publicEls and then ... and then???
+//SVG ELs are still handled as text :(  
+    
+//TEST OUTER CLASS END **********************************************************************************
+
+  
+  //TODO trying to write not exposed props now throws:
+  //"Unhandled exception: TypeError: Invalid argument type."
+  // but with any phantasy-line.
+  // Write some error handling?
