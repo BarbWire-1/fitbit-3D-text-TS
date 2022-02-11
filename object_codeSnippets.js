@@ -118,4 +118,11 @@ const createPotatoWidget = (element) => ({
      set(newValue) {lightEl.style.fill = newValue;}
    });
    
-   
+   //ERROR HANDLING
+   function go() {
+    'use strict';
+    var x = {};
+    Object.seal(x);
+    x.foo = 123;
+  }
+  go(); // => TypeError: Can't add property foo, object is not extensible

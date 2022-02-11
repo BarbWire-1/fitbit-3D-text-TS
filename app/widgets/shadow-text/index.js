@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 import Proxy from 'proxy-polyfill'
 
 // DEFAULTS in widgets/shadow-text/styles.css
@@ -13,15 +13,14 @@ import Proxy from 'proxy-polyfill'
 
 
 const construct = (el) => {
-  
-  
+   
   // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
   // and I hate it not showing up possible props in index.
   // it just prevents writing those not wanted
   
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
-    
+   
     get style() {
       return {
         get fill() {return el.style.fill},
@@ -44,6 +43,12 @@ const construct = (el) => {
   const shadowEl = createSubText(el.getElementById('shadow'));
   Object.seal(lightEl);
   Object.seal(shadowEl);
+  
+  const errorHandling = (obj) => {
+   // dzz... where did I loose that??
+
+  };
+  errorHandling(lightEl)
   
   // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
   

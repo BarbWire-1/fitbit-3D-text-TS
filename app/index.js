@@ -53,8 +53,8 @@ test.light.style.fill = "limegreen"
 test.light.x = -2
 test.light.y = -2
 
-test.light.style.fontFamily = "Tungsten-Medium"
-console.log(test.light.style.fontFamily) //undefined and not applied
+test.light.style.fontSize = 100;
+console.log(test.light.style.fontSize) //undefined and not applied
 
 // deleted my exception for wrong property... so
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
