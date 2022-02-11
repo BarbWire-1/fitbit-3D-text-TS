@@ -52,7 +52,7 @@ console.log("test.main.textAnchor: "+test.main.textAnchor);
 
 //allLights.forEach(el => el.style.fill = "black");
 
-console.log(JSON.stringify(allLights))
+//console.log(JSON.stringify(allLights))
 test.light.style.fill = "limegreen"
 
 
@@ -67,3 +67,8 @@ test.light.style.fontFamily = "Tungsten-Medium"
 
 // deleted my exception for wrong property... so
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
+
+//logs a list of Els key:value
+Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
+  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
+});

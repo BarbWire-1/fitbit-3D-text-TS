@@ -93,7 +93,7 @@ const construct = (el) => {
     Object.defineProperty(el, 'shadow',{
       get() { return shadowEl;}
     }); 
-  
+    
     
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
@@ -159,10 +159,7 @@ Object.preventExtensions(testEl);
 testEl.style.fill = "orange"
 console.log(testEl.style.fill)
 
-//logs a list of Els key:value
-Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
-  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
-});
+
 
 export {testEl}
 
