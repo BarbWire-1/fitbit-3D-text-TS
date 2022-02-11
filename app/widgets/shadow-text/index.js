@@ -83,7 +83,7 @@ const construct = (el) => {
     Object.defineProperty(el, 'main',{ 
       get() { return mainEl;}
     }); 
-    SubText
+    //SubText
     Object.defineProperty(el, 'light',{ 
       get() { return lightEl;}
     }); 
@@ -174,3 +174,6 @@ export {testEl}
   //"Unhandled exception: TypeError: Invalid argument type."
   // but with any phantasy-line.
   // Write some error handling?
+  
+  //TODO change factory to .js? then remove tsconfig
+  //Try to integrate in new factory?
