@@ -69,4 +69,15 @@ console.log(test.light.style.fontSize) //undefined and not applied
 // });
 // TODO set el-props to main-props?
 
+const inspectObject = (obj) => {
+     
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      console.log(`${prop}: ${JSON.stringify(obj[prop])}`)
+    };
+  };
+};
 
+inspectObject(test.light)
+inspectObject(test.light.style)
+//TODO how to get the props owner id here?

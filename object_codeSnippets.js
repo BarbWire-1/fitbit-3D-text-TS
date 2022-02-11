@@ -143,3 +143,48 @@ const createPotatoWidget = (element) => ({
     });
 console.log(nonenum_only);// length WTF???
 console.log(enum_only);
+
+var target = lightEl;
+    var enum_and_nonenum = Object.getOwnPropertyNames(target);
+    var enum_only = Object.keys(target);
+    var nonenum_only = enum_and_nonenum.filter(function(key) {
+      var indexInEnum = enum_only.indexOf(key);
+      if (indexInEnum == -1) {
+      // not found in enum_only keys mean the key is non-enumerable,
+      // so return true so we keep this in the filter
+        return true;
+    } else {
+      return false;
+    }
+    });
+  console.log(`noenum: ${nonenum_only}`);// noenum:    (empty)
+  console.log(`enum: ${enum_only}`);// enum: style,x,y 
+  
+  
+  console.log(Object.getOwnPropertyNames(lightEl))
+  console.log(JSON.stringify(lightEl))//  {} // ????
+  
+  function listAllProperties(o) {
+    var objectToInspect;
+      var result = [];
+    
+      for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)) {
+      result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+    }
+    
+    return result;
+    }
+    console.log(listAllProperties(lightEl))
+    //returns: style,x,y,propertyIsEnumerable,isPrototypeOf,hasOwnProperty,toLocaleString,valueOf,toString,constructor
+
+//this is good, but only for direct props
+// so logs style as prop, but no fill, opacity, display
+const inspectObject = obj => {
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      console.log(`${prop}: ${JSON.stringify(obj[prop])}`)
+    }
+  }
+}
+
+inspectObject(lightEl)

@@ -13,6 +13,9 @@ import Proxy from 'proxy-polyfill'
 
 
 const construct = (el) => {
+  
+  // MAIN TEXTELEMENT
+  const mainEl = el.getElementById('main');
    
   // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
   // and I hate it not showing up possible props in index.
@@ -49,30 +52,29 @@ const construct = (el) => {
   };
   errorHandling(lightEl)
   
-  var target = lightEl;
-    var enum_and_nonenum = Object.getOwnPropertyNames(target);
-    var enum_only = Object.keys(target);
-    var nonenum_only = enum_and_nonenum.filter(function(key) {
-      var indexInEnum = enum_only.indexOf(key);
-      if (indexInEnum == -1) {
-      // not found in enum_only keys mean the key is non-enumerable,
-      // so return true so we keep this in the filter
-        return true;
-    } else {
-      return false;
-    }
-    });
-  console.log(`noenum: ${nonenum_only}`);// noenum:    (empty)
-  console.log(`enum: ${enum_only}`);// enum: style,x,y 
+  //INSPECT OBJECTS *************************************************************
   
+    const inspectObject = (obj) => {
+     
+      for (const prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          console.log(` ${prop}: ${JSON.stringify(obj[prop])}`)
+        };
+      };
+    };
+    
+    inspectObject(lightEl)
+    //returns:
+    //style: {}
+    //x: -1 / -2
+    //y: -1 / -2
+    //so need to search for style.props
+    inspectObject(lightEl.style)
+    //returns fill, opacity, display forEach
+    //TODO change to call in one plus add any sort of "identifier"
   
-  console.log(Object.getOwnPropertyNames(lightEl))
-  console.log(JSON.stringify(lightEl))//  {} // ????
+  //INSPECT OBJECTS END************************************************************* 
   
-  // TEST WRAPPER INSIDE CLOSURE ************************************************************************** 
-  
-   // MAIN TEXTELEMENT
-   const mainEl = el.getElementById('main');
    
   // //for use without above wrapper
   // const lightEl = el.getElementById('light');
