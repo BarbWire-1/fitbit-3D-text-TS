@@ -1,4 +1,4 @@
-//@ts-nocheck
+'use strict'
 import Proxy from 'proxy-polyfill'
 
 // DEFAULTS in widgets/shadow-text/styles.css

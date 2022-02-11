@@ -46,9 +46,9 @@ test.style.fill = "yellow"//NOT ASSIGNED
 
 
 
-console.log(`test.light.style.fill: ${test.light.style.fill}`)
-console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
-console.log("test.main.textAnchor: "+test.main.textAnchor);
+// console.log(`test.light.style.fill: ${test.light.style.fill}`)
+// console.log(`test.light.x: ${(test.light.x)}`)
+// console.log("test.main.textAnchor: "+test.main.textAnchor);
 
 //allLights.forEach(el => el.style.fill = "black");
 
@@ -61,14 +61,15 @@ test.light.y = -2
 
 
 test.style.fill="green"
-console.log(test.style.fill)
+console.log(`test.style.fill: ${test.style.fill}`)
 
 test.light.style.fontFamily = "Tungsten-Medium"
+console.log(test.light.style.fontFamily) //undefined and not applied
 
 // deleted my exception for wrong property... so
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
 
-//logs a list of Els key:value
-Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
-  console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
-});
+// //logs a list of Els key:value
+// Object.getOwnPropertyNames(testEl).forEach(function(val, idx, array){
+//   console.log(`testEl: ${val}: ${JSON.stringify(testEl[val])}`);
+// });
