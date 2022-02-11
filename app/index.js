@@ -82,3 +82,5 @@ const inspectObject = (obj) => {
 inspectObject(test.light)
 inspectObject(test.light.style)
 //TODO how to get the props owner id here?
+
+
