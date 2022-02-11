@@ -69,6 +69,7 @@ console.log(test.light.style.fontSize) //undefined and not applied
 // });
 // TODO set el-props to main-props?
 
+//working in widget on lightEl and her on el.light
 const inspectObject = (obj) => {
      
   for (const prop in obj) {
