@@ -18,6 +18,8 @@ const construct = (el) => {
   // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
   // and I hate it not showing up possible props in index.
   // it just prevents writing those not wanted
+  
+  // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
     
     get style() {
@@ -176,4 +178,4 @@ export {testEl}
   // Write some error handling?
   
   //TODO change factory to .js? then remove tsconfig
-  //Try to integrate in new factory?
+  //Try to integrate with new factory?
