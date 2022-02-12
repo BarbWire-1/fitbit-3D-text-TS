@@ -220,3 +220,25 @@ function dumpProperties(name, obj, types) {  // This isn't needed; it's just to 
     console.log('  ---------------')
   } while (proto)
 }
+
+//ERRORHANDLING USING PROXY (which doesn't work here this way)
+function disallowUndefinedProperties(obj) {
+  const handler = {
+      get(target, property) {
+          if (property in target) {
+              return target[property];
+          }
+
+          throw new Error(`Property '${property}' is not defined`);
+      }
+  };
+
+  return new Proxy(obj, handler);
+}
+
+// example
+const obj = { key: 'value' };
+const noUndefObj = disallowUndefinedProperties(obj);
+
+console.log(noUndefObj.key);
+console.log(noUndefObj.undefinedProperty); // throws exception

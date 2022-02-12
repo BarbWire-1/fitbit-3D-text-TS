@@ -52,6 +52,8 @@ const construct = (el) => {
   };
   errorHandling(lightEl)
   
+
+  
   //INSPECT OBJECTS *************************************************************
   
     const inspectObject = (obj) => {
