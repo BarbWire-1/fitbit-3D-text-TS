@@ -2,7 +2,7 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import {shadowText } from './widgets/shadow-text';
+import {shadowText,testEl } from './widgets/shadow-text';
 
 
 
@@ -86,11 +86,58 @@ const inspectObject = (objName,obj) => {
 //const normalText = document.getElementById('normalText')
 
 
-inspectObject('test',test)//redraw: undefined
-inspectObject('test.light',test.light)//test.light style: {}//x: -2//y: -2
-inspectObject('test.light.style',test.light.style)// test.light.style fill: "#32CD32" // opacity: 1 // display: "inline"
+// inspectObject('test',test)//redraw: undefined
+// inspectObject('test.light',test.light)//test.light style: {}//x: -2//y: -2
+// inspectObject('test.light.style',test.light.style)// test.light.style fill: "#32CD32" // opacity: 1 // display: "inline"
 
 
 
 //TODO how to get the props owner id here?
 
+function dumpProperties(name, obj, types) {  // This isn't needed; it's just to show how everything links together
+  // types: try to determine type of each property: can cause hard crashes with some objects.
+  let proto = obj
+  let level = 0
+  let type = '?'
+  console.log(`Members of ${name}:`)
+  do {
+    console.log(`  Level ${level++}:`)
+    for(const memberName in proto) {
+      //console.log('in for()')
+      if (proto.hasOwnProperty(memberName)) {
+        //console.log(`in if() ${memberName}`)
+        // memberName 'text' crashes sim
+        if (types)
+          try {
+            //console.log('before obj[]')
+            const member = obj[memberName]  // get member from top-level obj rather than proto, as the latter crashes if not a function
+            //console.log(`in try member=${member}`)
+            type = typeof member
+          } catch(e) {
+            //console.log('in catch')
+            type = 'INACCESSIBLE'
+          }
+        console.log(`    ${memberName} (${type})`)
+      }
+    }
+    proto = Object.getPrototypeOf(proto)
+    console.log('  ---------------')
+  } while (proto)
+}
+//dumpProperties('test', test, true) // widget
+//dumpProperties('testEl', testEl, true) // directly exported Obj
+
+//returns:
+// Members of testEl:                                                                                       
+// Level 0:                                                                                               
+// style (object)                                                                                        
+// x (undefined)                                                                                         
+// y (undefined)                                                                                         
+// enumerable (boolean)                                                                                  
+// iterable (boolean)                                                                                    
+// extensible (boolean) 
+// ---------------                                                                                        
+// Level 1:                                                                                                
+// ---------------                                                                                         
+// Level 2:                                                                                                
+// ---------------  
