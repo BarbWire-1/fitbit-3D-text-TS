@@ -89,9 +89,46 @@ export interface ShadowTextWidget extends TextElement {
     mainEl.x = mainEl.y = 0;
     };
     el.redraw();
-   
+    
+    //INSPECT OBJECT PROTOTYPE CHAIN
+    function dumpProperties(name, obj, types) {  // This isn't needed; it's just to show how everything links together
+      // types: try to determine type of each property: can cause hard crashes with some objects.
+      let proto = obj
+      let level = 0
+      let type = '?'
+      console.log(`Members of ${name}:`)
+      do {
+        console.log(`  Level ${level++}:`)
+        for(const memberName in proto) {
+          //console.log('in for()')
+          if (proto.hasOwnProperty(memberName)) {
+            //console.log(`in if() ${memberName}`)
+            // memberName 'text' crashes sim
+            if (types)
+              try {
+                //console.log('before obj[]')
+                const member = obj[memberName]  // get member from top-level obj rather than proto, as the latter crashes if not a function
+                //console.log(`in try member=${member}`)
+                type = typeof member
+              } catch(e) {
+                //console.log('in catch')
+                type = 'INACCESSIBLE'
+              }
+            console.log(`    ${memberName} (${type})`)
+          }
+        }
+        proto = Object.getPrototypeOf(proto)
+        console.log('  ---------------')
+      } while (proto)
+    }
+    //dumpProperties('lightEl', lightEl, false)
+   //crashes sim: Invalid attribute: 0x206 for SVGELEM type: 0x3706f41b
+   // if tyes = true
+   // the log here totally has nothing to do with the widget#s structure _ WHY???
     return el;
   };
+  
+  
   
   // Returns an object that provides the name of this widget and a function that can be used to construct them.
   // This is used internally by widget-factory.ts.
@@ -105,4 +142,34 @@ export interface ShadowTextWidget extends TextElement {
   
   // TODO add type SubText for light/shadow? Class?
   // then won't need to limit in interface, which might work in js too
-  
+  function dumpProperties(name, obj, types) {  // This isn't needed; it's just to show how everything links together
+      // types: try to determine type of each property: can cause hard crashes with some objects.
+      let proto = obj
+      let level = 0
+      let type = '?'
+      console.log(`Members of ${name}:`)
+      do {
+        console.log(`  Level ${level++}:`)
+        for(const memberName in proto) {
+          //console.log('in for()')
+          if (proto.hasOwnProperty(memberName)) {
+            //console.log(`in if() ${memberName}`)
+            // memberName 'text' crashes sim
+            if (types)
+              try {
+                //console.log('before obj[]')
+                const member = obj[memberName]  // get member from top-level obj rather than proto, as the latter crashes if not a function
+                //console.log(`in try member=${member}`)
+                type = typeof member
+              } catch(e) {
+                //console.log('in catch')
+                type = 'INACCESSIBLE'
+              }
+            console.log(`    ${memberName} (${type})`)
+          }
+        }
+        proto = Object.getPrototypeOf(proto)
+        console.log('  ---------------')
+      } while (proto)
+    }
+    //dumpProperties('lightEl', lightEl, true)
