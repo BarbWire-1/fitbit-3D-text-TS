@@ -2,10 +2,14 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import { shadowText,testEl} from './widgets/shadow-text/index'
+import {shadowText } from './widgets/shadow-text';
+
+
 
 
 widgetFactory(shadowText);
+
+
 
 let test = document.getElementById('test');
 let calsLabel = document.getElementById('calsLabel');
@@ -29,6 +33,7 @@ const update = setInterval(() => {
   }
 }, 1000);
 // 
+//calsLabel.light.style.opacity = 1;
 countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
 test.x = 168;
@@ -52,8 +57,8 @@ test.light.style.fill = "limegreen"
 test.light.x = -2
 test.light.y = -2
 
-test.light.style.fontSize = 100;
-console.log(test.light.style.fontSize) //undefined and not applied
+  test.light.style.fontSize = 100;
+  //console.log(test.light.style.fontSize) //undefined and not applied
 
 //console.log(test.light.style.fill) // #32CD32 
 //BUT:
@@ -70,17 +75,22 @@ console.log(test.light.style.fontSize) //undefined and not applied
 // TODO set el-props to main-props?
 
 //working in widget on lightEl and her on el.light
-const inspectObject = (obj) => {
+const inspectObject = (objName,obj) => {
      
   for (const prop in obj) {
-    if (obj.hasOwnProperty(prop)) {
-      console.log(`${prop}: ${JSON.stringify(obj[prop])}`)
+    if (obj.hasOwnProperty(prop) || obj.children.hasOwnProperty(prop)) {
+      console.log(` ${objName} ${prop}: ${JSON.stringify(obj[prop])}`)
     };
   };
 };
+//const normalText = document.getElementById('normalText')
 
-inspectObject(test.light)
-inspectObject(test.light.style)
+
+inspectObject('test',test)//redraw: undefined
+inspectObject('test.light',test.light)//test.light style: {}//x: -2//y: -2
+inspectObject('test.light.style',test.light.style)// test.light.style fill: "#32CD32" // opacity: 1 // display: "inline"
+
+
+
 //TODO how to get the props owner id here?
-
 

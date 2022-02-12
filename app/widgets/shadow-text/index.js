@@ -46,14 +46,22 @@ const construct = (el) => {
   Object.seal(lightEl);
   Object.seal(shadowEl);
   
-  const errorHandling = (obj) => {
+  const errorHandling = (objName,obj) => {
    // dzz... where did I loose that??
-
-  };
-  errorHandling(lightEl)
   
+     try {
+       for(prop in Object.keys(obj)|| prop in Object.style.keys(obj)){
+          Object.defineProperty(el, 'light',{ 
+            get prop() { return obj.prop;}
+          }); 
+          return prop
+      }
+   } catch (error) {
+     console.warn(prop)
+   }
+  }
+  //errorHandling('lightEl',lightEl)
 
-  
   //INSPECT OBJECTS *************************************************************
   
     const inspectObject = (obj) => {
@@ -65,13 +73,13 @@ const construct = (el) => {
       };
     };
     
-    inspectObject(lightEl)
+    //inspectObject(lightEl)
     //returns:
     //style: {}
     //x: -1 / -2
     //y: -1 / -2
     //so need to search for style.props
-    inspectObject(lightEl.style)
+    //inspectObject(lightEl.style)
     //returns fill, opacity, display forEach
     //TODO change to call in one plus add any sort of "identifier"
     
@@ -106,7 +114,7 @@ const construct = (el) => {
         console.log('  ---------------')
       } while (proto)
     }
-    dumpProperties('lightEl', lightEl, true)
+    //dumpProperties('lightEl', lightEl, true)
   
   //INSPECT OBJECTS END************************************************************* 
   
@@ -144,8 +152,8 @@ const construct = (el) => {
       get() { return mainEl;}
     }); 
     //SubText
-    Object.defineProperty(el, 'light',{ 
-      get() { return lightEl;}
+      Object.defineProperty(el, 'light',{ 
+        get() { return lightEl;}
     }); 
     // SubText
     Object.defineProperty(el, 'shadow',{
@@ -236,3 +244,5 @@ export {testEl}
   
   //TODO change factory to .js? then remove tsconfig
   //Try to integrate with new factory?
+  
+  

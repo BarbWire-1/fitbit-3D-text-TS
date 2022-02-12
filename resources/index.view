@@ -18,5 +18,7 @@
         <set href="main" attributeName="letter-spacing" to="3"/>       <!--this one is working-->
         <set href="main" attributeName="text-anchor" to="middle"/>      
     </use>
+    <text id="normalText" x="0" y="0" fill="black"
+        font-family="System-Regular" font-size="30">Text</text>
 
 </svg>

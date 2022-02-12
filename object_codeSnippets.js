@@ -242,3 +242,69 @@ const noUndefObj = disallowUndefinedProperties(obj);
 
 console.log(noUndefObj.key);
 console.log(noUndefObj.undefinedProperty); // throws exception
+
+https://stackoverflow.com/questions/17461062/automatic-getter-and-setterwith-validation-in-javascript
+//validation
+function Person(name, age) {
+  let person = {
+        name: name,
+        age: age
+    };
+  
+
+
+// //IF object built like this:
+// // personNew is NOT AN OBJECT, but a module
+// // can't be sealed
+// class Person {
+//   constructor (name, age){
+//     this.name = name,
+//     this.age = age
+//   }
+// }
+  
+    Object.defineProperties(person, {
+        name: getAccessor(Person, "name", "String"),
+        age: getAccessor(Person, "age", "Number")
+    });
+  
+}
+  function getAccessor(obj, key, type) {
+    return {
+        enumerable: true,
+        configurable: true,
+        extensible: false,
+        get: function () {
+            return obj[key];
+        },
+        set: function (value) {
+            if (typeOf(value) === type)
+                obj[key] = value;
+        }
+    };
+  }
+  
+  function typeOf(value) {
+    return Object.prototype.toString.call(value).slice(8, -1);
+  }
+  
+ 
+  var personNew = new Person("Aadit M Shah", 20);
+  Object.seal(Person)
+  
+ 
+  personNew.name = 0;       // it won't set the name
+  personNew.age = "twenty"; // it won't set the age
+  personNew.color = "blue"; // Unhandled exception: TypeError: Invalid argument type.
+  
+  
+  console.log(personNew.name);
+  console.log(personNew.age);
+  console.log(personNew.color);//Unhandled exception: ReferenceError: blue is not defined
+  
+  
+  const url = './widgets/shadow-text/index.js';
+  import(url).then(module => {
+    console.log(Object.keys(module));
+    console.log(module.x);
+  });
