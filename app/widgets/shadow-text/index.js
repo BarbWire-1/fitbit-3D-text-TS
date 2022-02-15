@@ -129,7 +129,7 @@ const construct = (el) => {
   
 
 
-//TODO try use publicEls and then ... and then???
+// TODO try use publicEls and then ... and then???
 //SVG ELs are still handled as text :(  
     
 //TEST OUTER CLASS END **********************************************************************************
