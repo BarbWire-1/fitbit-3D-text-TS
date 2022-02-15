@@ -2,7 +2,7 @@
 import document from "document";
 import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
-import {shadowText,testEl } from './widgets/shadow-text';
+import {shadowText} from './widgets/shadow-text';
 import {dumpProperties, inspectObject} from './devTools'
 
 
@@ -64,27 +64,16 @@ test.light.style.fontSize = 100;
 //TODO set el-props to main-props?
 //TODO how to get the props owner id here?
 
+// INSPECT PROTOTYPECHAIN ©️ Gondwana
+ dumpProperties('test', test, true) // widget
 
-// dumpProperties('test', test, true) // widget
-// dumpProperties('testEl', testEl, true) // directly exported Obj
-
-
-//returns:
-// Members of testEl:                                                                                       
-// Level 0:                                                                                               
-// style (object)                                                                                        
-// x (undefined)                                                                                         
-// y (undefined)                                                                                         
-// enumerable (boolean)                                                                                  
-// iterable (boolean)                                                                                    
-// extensible (boolean) 
-// ---------------                                                                                        
-// Level 1:                                                                                                
-// ---------------                                                                                         
-// Level 2:                                                                                                
-// ---------------  
-
-testEl.style.fontFamily = "Tungsten-Medium";
-console.log(Object.keys(testEl))
-inspectObject('testEl',testEl)
-inspectObject('test',test)
+// INSPECT key:value
+inspectObject('test',test)// test redraw: undefined 
+inspectObject('test.light', test.light) 
+// test.light style: {}
+// test.light x: -2
+// test.light y: -2
+inspectObject('test.light.style', test.light.style) 
+// test.light.style fill: "#32CD32"
+// test.light.style opacity: 1 
+// test.light.style display: "inline"

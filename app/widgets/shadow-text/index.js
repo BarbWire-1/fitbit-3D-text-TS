@@ -45,25 +45,7 @@ const construct = (el) => {
   Object.seal(lightEl);
   Object.seal(shadowEl);
   
-  // const errorHandling = (obj)=>{
-  //   
-  //     set(obj, prop,value) {
-  //       if (!(prop in obj)) {
-  //         console.warn(`${prop} not in ${object}`)
-  //       }
-  //        console.log('all fine')
-  //   // 
-  //   //     // The default behavior to store the value
-  //   //     obj[prop] = value;
-  //   // 
-  //   //     // Indicate success
-  //   //     return true;
-  //     }
-  //   };
-  // errorHandling('lightEl',lightEl)
   
-  
-
   //INSPECT OBJECTS *************************************************************
   //key:value pairs
   //inspectObject('lightEl',lightEl)
@@ -145,40 +127,7 @@ const construct = (el) => {
  
   
   
-//TEST OUTER CLASS *********************************************************************************
-// using class for exposed element nicely shows up properties in index
-// and recognizes els as SubText
-// but how to pass values into closure Els?
 
-//NOT IMPLEMENTED IN MODULE CURRENTLY
-class SubText {
-  constructor(x,y,enumerable,iterable, extensible,fill,opacity,display){
-    this.style = {
-      fill = fill,
-      opacity = opacity,
-      display = display
-    };
-    this.x = x;
-    this.y = y;
-    this.enumerable = true;
-    this.iterable = true;
-    this.extensible = false;
-    this.sealed = true;
-   }
-};
-
-// Now outside of closure for testing, how it get exposed (ex-/import)
-//creates object
-let testEl = new SubText(); 
-// 
-// //fixes object properties
-// Object.preventExtensions(testEl);
-
-//testEl.style.fill = "orange"
-//console.log(testEl.style.fill)
-
-
-export {testEl}
 
 //TODO try use publicEls and then ... and then???
 //SVG ELs are still handled as text :(  
@@ -186,10 +135,7 @@ export {testEl}
 //TEST OUTER CLASS END **********************************************************************************
 
   
-  //TODO trying to write not exposed props now throws:
-  //"Unhandled exception: TypeError: Invalid argument type."
-  // but with any phantasy-line.
-  // Write some error handling?
+  //TODO Exception for trying to add not exposed props
   
   //TODO change factory to .js? then remove tsconfig
   //Try to integrate with new factory?

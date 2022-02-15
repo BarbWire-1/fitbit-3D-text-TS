@@ -1,4 +1,4 @@
-// gets prototype chain
+// INSPECT PROTOTYPE CHAIN ©️ Gondwana
 export function dumpProperties(name, obj, types) { 
     // types: try to determine type of each property: can cause hard crashes with some objects.
     let proto = obj
@@ -31,7 +31,7 @@ export function dumpProperties(name, obj, types) {
   };
   //call like: dumpProperties('obj', obj, boolean)
   
-  //gets key:value
+  //INSPECT key:value
   export const inspectObject = (objName,obj) => { 
     for (const prop in obj) {
       if (obj.hasOwnProperty(prop) || obj.children.hasOwnProperty(prop)) {
