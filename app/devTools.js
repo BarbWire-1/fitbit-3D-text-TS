@@ -1,4 +1,5 @@
-//INSPECT OBJECT PROTOTYPE CHAIN
+//INSPECT OBJECT PROTOTYPE CHAIN ©️ Gondwana
+
 export function dumpProperties(name, obj, types) {  // This isn't needed; it's just to show how everything links together
     // types: try to determine type of each property: can cause hard crashes with some objects.
     let proto = obj
@@ -31,7 +32,7 @@ export function dumpProperties(name, obj, types) {  // This isn't needed; it's j
   }
   //call like: dumpProperties('name', obj, boolean)
   
-  //inspect key:value of object
+  //INSPECT key:value
   export const inspectObject = (objName, obj) => {
      
     for (const prop in obj) {
