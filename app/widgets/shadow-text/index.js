@@ -45,14 +45,6 @@ const construct = (el) => {
   Object.seal(lightEl);
   Object.seal(shadowEl);
   
-  
-  //INSPECT OBJECTS *************************************************************
-  //key:value pairs
-  //inspectObject('lightEl',lightEl)
-  //prototype chain
-  //dumpProperties('lightEl', lightEl, true)
-  //INSPECT OBJECTS END************************************************************* 
-  
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
     // (same for all elements of instance)
@@ -108,6 +100,18 @@ const construct = (el) => {
     mainEl.x = mainEl.y = 0;
     };
     el.redraw();
+    
+    
+  
+  // //INSPECT OBJECTS ***************************************************************
+  // 
+  // //key:value pairs
+  // inspectObject('lightEl',lightEl)
+  // 
+  // //prototype chain
+  // dumpProperties('lightEl', lightEl, true)
+  // //INSPECT OBJECTS END************************************************************* 
+  
     
    
     return el;
