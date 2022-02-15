@@ -53,6 +53,7 @@ test.style.fill = "yellow"//NOT ASSIGNED
 
 //console.log(JSON.stringify(allLights))
 test.light.style.fill = "limegreen"
+//test.main.letterSpacing = 50;
 
 
 //INSPECT OBJECT PROTOTYPE CHAIN

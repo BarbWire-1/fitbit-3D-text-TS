@@ -76,7 +76,8 @@ export interface ShadowTextWidget extends TextElement {
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
     el.redraw = () => { 
-        //here text-properties get assigned to all el of widget-instance
+        // here text-properties get assigned to all el of widget-instance
+        // although subTexts don't have EXPOSED textprops, they do have, as linked to SVG TextElement??
         el.getElementsByClassName("myText").forEach((e: TextElement) => {
             e.text = mainEl.text ?? "TEXT"; 
             e.letterSpacing = mainEl.letterSpacing ?? 0;
@@ -86,7 +87,7 @@ export interface ShadowTextWidget extends TextElement {
             //TODO check, why if set this, nothing gets displayed
         });
     
-    // fix main at x,y of <use>
+    //fix main at x,y of <use>
     mainEl.x = mainEl.y = 0;
     };
     el.redraw();
