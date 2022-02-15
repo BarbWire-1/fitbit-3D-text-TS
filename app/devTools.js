@@ -34,7 +34,7 @@ export function dumpProperties(name, obj, types) {
   //INSPECT key:value
   export const inspectObject = (objName,obj) => { 
     for (const prop in obj) {
-      if (obj.hasOwnProperty(prop) || obj.children.hasOwnProperty(prop)) {
+      if (obj.hasOwnProperty(prop)) {
         console.log(` ${objName} ${prop}: ${JSON.stringify(obj[prop])}`)
       };
     };
