@@ -50,10 +50,9 @@ test.light.style.display = "inline";
 // console.log(`test.light.x: ${(test.light.x)}`)
 // console.log("test.main.textAnchor: "+test.main.textAnchor);
 
-allLights.forEach(el => el.style.fill = "black");
+//allLights.forEach(el => el.style.fill = "black");
 
 test.light.style.fill = "limegreen"
-
 
 test.light.x = -2
 test.light.y = -2
@@ -85,7 +84,7 @@ test.light.style.fontSize = 100;
 // Level 2:                                                                                                
 // ---------------  
 
-testEl.x = 5;
+testEl.style.fontFamily = "Tungsten-Medium";
 console.log(Object.keys(testEl))
 inspectObject('testEl',testEl)
 inspectObject('test',test)

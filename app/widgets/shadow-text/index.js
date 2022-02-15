@@ -1,5 +1,6 @@
 "use strict"
-import Proxy from 'proxy-polyfill'
+import * as proxy from 'proxy-polyfill'
+import { inspectObject, dumpProperties } from '../../devTools';
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -16,8 +17,6 @@ const construct = (el) => {
   
   // MAIN TEXTELEMENT
   const mainEl = el.getElementById('main');
-   
-  // this still needs the Object.defineProperty (line 130ff) which gets everything on its own. WHY?
   // and I hate it not showing up possible props in index.
   // it just prevents writing those not wanted
   
@@ -46,53 +45,32 @@ const construct = (el) => {
   Object.seal(lightEl);
   Object.seal(shadowEl);
   
-  const errorHandling = (objName,obj) => {
-   // dzz... where did I loose that??
+  // const errorHandling = (obj)=>{
+  //   
+  //     set(obj, prop,value) {
+  //       if (!(prop in obj)) {
+  //         console.warn(`${prop} not in ${object}`)
+  //       }
+  //        console.log('all fine')
+  //   // 
+  //   //     // The default behavior to store the value
+  //   //     obj[prop] = value;
+  //   // 
+  //   //     // Indicate success
+  //   //     return true;
+  //     }
+  //   };
+  // errorHandling('lightEl',lightEl)
   
-     try {
-       for(prop in Object.keys(obj)|| prop in Object.style.keys(obj)){
-          Object.defineProperty(el, 'light',{ 
-            get prop() { return obj.prop;}
-          }); 
-          return prop
-      }
-   } catch (error) {
-     console.warn(prop)
-   }
-  }
-  //errorHandling('lightEl',lightEl)
+  
 
   //INSPECT OBJECTS *************************************************************
-  
-    const inspectObject = (obj) => {
-     
-      for (const prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-          console.log(` ${prop}: ${JSON.stringify(obj[prop])}`)
-        };
-      };
-    };
-    
-    //inspectObject(lightEl)
-    //returns:
-    //style: {}
-    //x: -1 / -2
-    //y: -1 / -2
-    //so need to search for style.props
-    //inspectObject(lightEl.style)
-    //returns fill, opacity, display forEach
-    //TODO change to call in one plus add any sort of "identifier"
-    
-    
-    
-  
+  //key:value pairs
+  //inspectObject('lightEl',lightEl)
+  //prototype chain
+  //dumpProperties('lightEl', lightEl, true)
   //INSPECT OBJECTS END************************************************************* 
   
-   
-  // //for use without above wrapper
-  // const lightEl = el.getElementById('light');
-  // const shadowEl = el.getElementById('shadow');
-   
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
     // (same for all elements of instance)
@@ -149,37 +127,6 @@ const construct = (el) => {
     };
     el.redraw();
     
-    function dumpProperties(name, obj, types) {  // This isn't needed; it's just to show how everything links together
-      // types: try to determine type of each property: can cause hard crashes with some objects.
-      let proto = obj
-      let level = 0
-      let type = '?'
-      console.log(`Members of ${name}:`)
-      do {
-        console.log(`  Level ${level++}:`)
-        for(const memberName in proto) {
-          //console.log('in for()')
-          if (proto.hasOwnProperty(memberName)) {
-            //console.log(`in if() ${memberName}`)
-            // memberName 'text' crashes sim
-            if (types)
-              try {
-                //console.log('before obj[]')
-                const member = obj[memberName]  // get member from top-level obj rather than proto, as the latter crashes if not a function
-                //console.log(`in try member=${member}`)
-                type = typeof member
-              } catch(e) {
-                //console.log('in catch')
-                type = 'INACCESSIBLE'
-              }
-            console.log(`    ${memberName} (${type})`)
-          }
-        }
-        proto = Object.getPrototypeOf(proto)
-        console.log('  ---------------')
-      } while (proto)
-    }
-    //dumpProperties('lightEl', lightEl, true)
    
     return el;
    
@@ -216,19 +163,19 @@ class SubText {
     this.enumerable = true;
     this.iterable = true;
     this.extensible = false;
+    this.sealed = true;
    }
 };
 
 // Now outside of closure for testing, how it get exposed (ex-/import)
 //creates object
-let testEl = new SubText(); 
+// let testEl = new SubText(); 
+// 
+// //fixes object properties
+// Object.preventExtensions(testEl);
 
-//fixes object properties
-Object.preventExtensions(testEl);
-
-testEl.style.fill = "orange"
+//testEl.style.fill = "orange"
 //console.log(testEl.style.fill)
-
 
 
 export {testEl}
@@ -246,5 +193,4 @@ export {testEl}
   
   //TODO change factory to .js? then remove tsconfig
   //Try to integrate with new factory?
-  
   
