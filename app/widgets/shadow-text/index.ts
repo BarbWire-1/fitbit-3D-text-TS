@@ -35,10 +35,13 @@ export interface ShadowTextWidget extends TextElement {
     const shadowEl = el.getElementById('shadow') as TextElement as SubText;
     const mainEl = el.getElementById('main') as TextElement;
     
+    
+    
     // PROPERTIES
     
     // FIX TEXT-PROPERTIES 
     // (same for all elements of instance)
+    // redraw on newValue
     Object.defineProperty(el, 'text', {     
       set(newValue) {
         mainEl.text = newValue;

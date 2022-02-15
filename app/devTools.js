@@ -30,6 +30,7 @@ export function dumpProperties(name, obj, types) {  // This isn't needed; it's j
       console.log('  ---------------')
     } while (proto)
   }
+  
   //call like: dumpProperties('name', obj, boolean)
   
   //INSPECT key:value
