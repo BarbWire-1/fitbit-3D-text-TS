@@ -169,7 +169,7 @@ class SubText {
 
 // Now outside of closure for testing, how it get exposed (ex-/import)
 //creates object
-// let testEl = new SubText(); 
+let testEl = new SubText(); 
 // 
 // //fixes object properties
 // Object.preventExtensions(testEl);
