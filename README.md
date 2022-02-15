@@ -18,7 +18,7 @@ Text and text-properties are the same for all 3 text-elements.
 
 
 
-!<div align="center">![image](image2.png)</div>
+!<div align="center">![image](screenshot.png)</div>
 
 
 

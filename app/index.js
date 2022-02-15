@@ -38,12 +38,12 @@ setInterval(() => {
 countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
 test.x = 168;
-test.style.fontFamily = "Barlow-Bold"
+//test.style.fontFamily = "Tungsten-Medium"
 test.main.style.fill = "blue"
-test.shadow.style.fill="white"
+test.shadow.style.fill="black"
 //test.light.x = -15;
 test.light.style.fill = "white"
-test.light.style.opacity = 1;
+//test.light.style.opacity = 1;
 test.light.style.display = "inline";
 
 // console.log(`test.light.style.fill: ${test.light.style.fill}`)
@@ -52,10 +52,10 @@ test.light.style.display = "inline";
 
 //allLights.forEach(el => el.style.fill = "black");
 
-test.light.style.fill = "limegreen"
-
-test.light.x = -2
-test.light.y = -2
+// test.light.style.fill = "limegreen"
+// 
+// test.light.x = -2
+// test.light.y = -2
 
 test.light.style.fontSize = 100;
 //console.log(test.light.style.fontSize) //undefined and not applied
