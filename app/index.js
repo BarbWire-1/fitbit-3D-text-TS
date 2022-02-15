@@ -19,7 +19,7 @@ let allLights = document.getElementsByClassName('light');
 
 let cd = 100;
 
-const update = setInterval(() => {
+setInterval(() => {
   test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
