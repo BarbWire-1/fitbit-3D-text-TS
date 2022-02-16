@@ -20,15 +20,19 @@ let countDown = document.getElementById('countDown');
 let allLights = document.getElementsByClassName('light');
 
 /*
-Each widet use contains 3 sub Elements:
-main: provides full text-attributes and inherits textAnchor  style:fontFamily/fontSize/letterspacing/
+Each widget instance contains 3 sub Elements:
+
+The text itself and textAttributes get assigned to the widget-instance directly (like el.text = "blah") and inherited from there
+//TODO Need to check textAttr on instance/main, but sim crashed
+(although I don't understand how that works)
+subElements:
+main: provides full text-attributes and inherits textAnchor, style:fontFamily/fontSize/letterspacing/
 subElements light, shadow:  x,y for offset to main
                             style: fill, opacity, display (to perhaps "mute" one of them)
 
-Position of the whole element gets set on el.x, el.y
+Position of the whole widget instance gets set on el.x, el.y
 also opacity/display can be applied directly (el.style...)
-The text itself gets assigned to the widget-use directly (like el.text = "blah") and inherited from there
-(although I don't understand how that works)
+
 
 The widget elements have default settings which can be overritten in resources/CSS using id/class
 also changes in index.view via set are supported                          
@@ -83,5 +87,5 @@ inspectObject('test.light.style', test.light.style)
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
 //TODO set el-props to main-props?
 //TODO how to get the props owner id here?
-
+//TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
 

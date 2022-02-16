@@ -138,14 +138,7 @@ const construct = (el) => {
   
 
 
-// TODO try use publicEls and then ... and then???
-//SVG ELs are still handled as text :(  
-    
-//TEST OUTER CLASS END **********************************************************************************
-
   
   //TODO Exception for trying to add not exposed props
-  
-  //TODO change factory to .js? then remove tsconfig
-  //Try to integrate with new factory?
+  //TODO Try to run with new factory?
   
