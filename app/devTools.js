@@ -34,8 +34,7 @@ export function dumpProperties(name, obj, types) {
   //INSPECT key:value
   export const inspectObject = (objName,obj) => { 
     
-    let keys = Object.keys(obj);
-   
+    let keys = Object.keys(obj);//only for now
     console.log(objName+" keys: "+ keys);////test.light keys: style,x,y 
     
     for (const prop in obj) {
