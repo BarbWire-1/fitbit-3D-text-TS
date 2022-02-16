@@ -65,10 +65,10 @@ test.light.style.fontSize = 100;
 //TODO how to get the props owner id here?
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
- dumpProperties('test', test, true) // widget
+//dumpProperties('test', test, true) // widget
 
 // INSPECT key:value
-inspectObject('test',test)// test redraw: undefined 
+//inspectObject('test',test)// test redraw: undefined 
 inspectObject('test.light', test.light) 
 // test.light style: {}
 // test.light x: -2

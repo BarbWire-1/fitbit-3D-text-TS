@@ -29,7 +29,9 @@ const construct = (el) => {
         set opacity(num) {el.style.opacity = num},
         get display() {return el.style.display},
         set display(val) {el.style.display = val}
+        
      }
+     
     },
     get x() {return el.x},
     set x(num) {el.x = num},
@@ -40,6 +42,8 @@ const construct = (el) => {
   //SUBTEXT elements
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
+  
+  
   
   // prevent changing object structure
   //Object.seal(lightEl);
@@ -113,7 +117,7 @@ const construct = (el) => {
   // dumpProperties('lightEl', lightEl, true)
   // //INSPECT OBJECTS END************************************************************* 
   
-    
+
    
     return el;
    
