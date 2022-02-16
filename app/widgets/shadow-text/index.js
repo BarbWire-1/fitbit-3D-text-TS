@@ -16,21 +16,25 @@ const construct = (el) => {
   
   // MAIN TEXTELEMENT
   const mainEl = el.getElementById('main');
-  
+  //inspectObject('mainEl', mainEl)// this is empty? no keys??
+  //TODO this is not, what I intended, so maybe define mainEl in here?
   
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
    
-    get style() {
+     get style() {
       return {
+        // this way ALL style would get applied!?
+        // get style() {return el.style}, 
+        // set style(v) {return el.style = v},
         get fill() {return el.style.fill},
         set fill(color) {el.style.fill = color},
         get opacity() {return el.style.opacity},
         set opacity(num) {el.style.opacity = num},
         get display() {return el.style.display},
-        set display(val) {el.style.display = val} 
+        set display(val) {el.style.display = val},
      }
-    },
+   },
     get x() {return el.x},
     set x(num) {el.x = num},
     get y() {return el.y},
@@ -41,6 +45,7 @@ const construct = (el) => {
   // sealed to prevent changes on structure
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
+  inspectObject('lightEl', lightEl)
   //TODO check "safety" from CSS/SVG
   
     // PROPERTIES
@@ -58,12 +63,13 @@ const construct = (el) => {
           el.redraw();    
         }
     });
-    Object.defineProperty(el, 'textAnchor', {
-        set(newValue) {
-          mainEl.textAnchor = newValue;
-          el.redraw();    
-        }
-    });
+    
+    Object.defineProperty(el, 'fontSize', {
+      set(newValue) {
+        mainEl.style.fontSize = newValue;
+        el.redraw();    
+      }
+  });
   
 
     // PASS PROPERTIES FROM EXPOSED TO INNER EL
@@ -90,7 +96,7 @@ const construct = (el) => {
             e.letterSpacing = mainEl.letterSpacing ?? 0;
             e.style.fontFamily = mainEl.style.fontFamily;
             e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize ?? 30; 
+            //e.style.fontSize = mainEl.style.fontSize ?? 30;
             //TODO check, why if set this, nothing gets displayed
         });
     
@@ -111,7 +117,7 @@ const construct = (el) => {
   // dumpProperties('lightEl', lightEl, true)
   // //INSPECT OBJECTS END************************************************************* 
   
-
+    
    
     return el;
    
