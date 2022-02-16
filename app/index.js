@@ -21,7 +21,7 @@ let allLights = document.getElementsByClassName('light');
 
 /*
 Each widet use contains 3 sub Elements:
-main: provides full text-attributes and inherits fontFamily/fontSize/letterspacing/textAnchor 
+main: provides full text-attributes and inherits textAnchor  style:fontFamily/fontSize/letterspacing/
 subElements light, shadow:  x,y for offset to main
                             style: fill, opacity, display (to perhaps "mute" one of them)
 
@@ -83,4 +83,5 @@ inspectObject('test.light.style', test.light.style)
 //TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
 //TODO set el-props to main-props?
 //TODO how to get the props owner id here?
+
 

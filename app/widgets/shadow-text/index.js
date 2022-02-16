@@ -28,10 +28,8 @@ const construct = (el) => {
         get opacity() {return el.style.opacity},
         set opacity(num) {el.style.opacity = num},
         get display() {return el.style.display},
-        set display(val) {el.style.display = val}
-        
+        set display(val) {el.style.display = val} 
      }
-     
     },
     get x() {return el.x},
     set x(num) {el.x = num},
@@ -40,14 +38,10 @@ const construct = (el) => {
   });
   
   //SUBTEXT elements
+  // sealed to prevent changes on structure
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
-  
-  
-  
-  // prevent changing object structure
-  //Object.seal(lightEl);
-  //Object.seal(shadowEl);
+  //TODO check "safety" from CSS/SVG
   
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
