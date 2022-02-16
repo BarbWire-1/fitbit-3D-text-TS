@@ -6,13 +6,32 @@ import { shadowText, ShadowTextWidget } from './widgets/shadow-text';
 import {dumpProperties,inspectObject} from './devTools'
 //import { ShadowTextWidget } from './widgets/shadow-text/index';
 
+//initialize factory - could have multiple args, if multiple widgets used
 widgetFactory(shadowText);
 
+// single widget-instances
 let test = document.getElementById('test') as ShadowTextWidget;
 let calsLabel = document.getElementById('calsLabel') as ShadowTextWidget;
 let countDown = document.getElementById('countDown') as ShadowTextWidget;
+
+// array of subElement 'light' of all widget-instances
+// also writes into symbol!
 let allLights = document.getElementsByClassName('light') as ShadowTextWidget[];
 
+/*
+Each widget instance contains 3 sub Elements:
+The text itself and textAttributes get assigned to the widget-instance directly (like el.text = "blah") and inherited from there
+//TODO Need to check textAttr on instance/main, but sim crashed
+(although I don't understand how that works)
+subElements:
+main: provides full text-attributes and inherits textAnchor, style:fontFamily/fontSize/letterspacing/
+subElements light, shadow:  x,y for offset to main
+                            style: fill, opacity, display (to perhaps "mute" one of them)
+Position of the whole widget instance gets set on el.x, el.y
+also opacity/display can be applied directly (el.style...)
+The widget elements have default settings which can be overritten in resources/CSS using id/class
+also changes in index.view via set are supported                          
+*/
 
 let cd = 100;
 
@@ -20,11 +39,8 @@ setInterval(() => {
   test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
+  // calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
   
-
- // calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "red";
-  
-  //console.log(cd)
   if (cd == 0) {
     cd = 100;
   }
@@ -41,28 +57,22 @@ test.shadow.style.fill="black"
 test.light.style.opacity = 1;
 test.light.style.display = "inline";
 test.style.fill = "yellow"//NOT ASSIGNED
-// TODO set el-props to main-props?
-// test.x DOES get applied...tss
 
 
-// console.log(`test.light.style.fill: ${test.light.style.fill}`)
-// console.log(`test.light.x: ${JSON.stringify(test.light.x)}`)
-// console.log("test.main.textAnchor: "+test.main.textAnchor);
 
-//allLights.forEach(el => el.style.fill = "black");
-
-//console.log(JSON.stringify(allLights))
-test.light.style.fill = "limegreen"
-//test.main.letterSpacing = 50;
+//INSPECT OBJECTS***************************************************************************************
+// PROTOTYPE CHAIN
+//dumpProperties('test', test, false)//crashes sim if set to types == true
 
 
-//INSPECT OBJECT PROTOTYPE CHAIN
-//dumpProperties('test', test, true)
+// as encapsulated?
+//KEY: VALUE PAIR
+//inspectObject('test.light',test.light.style)
+//console.log('I try to get keys' + Object.keys(test.light))  
 
 //TODO vheck why this is not working in this structure
-// as encapsulated?
-//Inspect object key:value
-inspectObject('test.light',test.light.style)
-console.log('I try to get keys' + Object.keys(test.light))  
+//TODO set el-props to main-props?
+
+
 
 

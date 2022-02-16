@@ -98,7 +98,7 @@ export interface ShadowTextWidget extends TextElement {
    
   //dumpProperties('lightEl', lightEl, false)
    //crashes sim: Invalid attribute: 0x206 for SVGELEM type: 0x3706f41b
-   // if tyes = true
+   // if tyes == true
    
   inspectObject('light', lightEl)
   
