@@ -2,10 +2,10 @@
     
     <!--link rel="stylesheet" href="styles.css" /-->    
     
-    <symbol id="shadowText" x="50%" y="50%" type="shadowText" font-family="System-Regular" font-size="30" > <!--this is an interesting found. Inheritance?-->
+    <symbol id="shadowText" x="50%" y="50%" class="myText" type="shadowText" font-family="System-Regular" font-size="30" > <!--this is an interesting found. Inheritance?-->
         <!--text id="text" class="myText" display="none"  text-anchor="start"/-->  <!--element inherits text/text-props -->
         <text id="shadow" class="myText shadow" />  <!--so fill and/or offset can be set per class .shadow-->
-        <text  id="light" class="myText light"/>   <!--so fill and/or offset can be set per class .highlight-->             
+        <text id="light" class="myText light"/>   <!--so fill and/or offset can be set per class .highlight-->             
         <text id="main" class="myText main"/>      <!--so fill can be set per class .main / x,y is hardcoded to 0,0 in redraw as others are set in relation-->
        
     </symbol>    

@@ -74,6 +74,9 @@ inspectObject('test.light', test.light)
 // test.light x: -2
 // test.light y: -2
 inspectObject('test.light.style', test.light.style) 
+//test.light.text = "blah" ;//Unhandled exception: TypeError: Invalid argument type.
+test.light.style.fontSize = 50; // doesn't get applied, but NO error
+test.light.style.fontFamily = "Barlow-Bold"; // doesn't get applied, but NO error
 // test.light.style fill: "#32CD32"
 // test.light.style opacity: 1 
 // test.light.style display: "inline"

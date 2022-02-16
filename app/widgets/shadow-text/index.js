@@ -1,5 +1,4 @@
 "use strict"
-import * as proxy from 'proxy-polyfill'
 import { inspectObject, dumpProperties } from '../../devTools';
 
 // DEFAULTS in widgets/shadow-text/styles.css
@@ -17,8 +16,7 @@ const construct = (el) => {
   
   // MAIN TEXTELEMENT
   const mainEl = el.getElementById('main');
-  // and I hate it not showing up possible props in index.
-  // it just prevents writing those not wanted
+  
   
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
@@ -40,10 +38,12 @@ const construct = (el) => {
   });
   
   //SUBTEXT elements
-  const lightEl = createSubText(el.getElementById('light'));
-  const shadowEl = createSubText(el.getElementById('shadow'));
-  Object.seal(lightEl);
-  Object.seal(shadowEl);
+  const lightEl = Object.seal(createSubText(el.getElementById('light')));
+  const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
+  
+  // prevent changing object structure
+  //Object.seal(lightEl);
+  //Object.seal(shadowEl);
   
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
@@ -101,7 +101,8 @@ const construct = (el) => {
     };
     el.redraw();
     
-    
+    //SET class="myText" on symbol
+    //couldn`t test as sim off 🛑
   
   // //INSPECT OBJECTS ***************************************************************
   // 
