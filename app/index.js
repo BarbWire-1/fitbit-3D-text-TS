@@ -35,11 +35,15 @@ subElements main, light, shadow
 
 SUBELEMENTS:
 properties in general: 
-x, y, style: fill, opacity, display (to perhaps "mute" one of them)
+* x, y, style: fill, opacity, display (to perhaps "mute" one of them)
 
 specific:
-main: x,y are fixed to x,y of the widget-instance
-light, shadow:  x,y for offset to main
+main: 
+* x,y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
+* textAnchor gets applied here like: el.main.textAnchor
+
+light, shadow:  
+* x,y for offset to main
 
 Position of the whole widget instance gets set on el.x, el.y
 also opacity/display can be applied directly (el.style...)
@@ -95,13 +99,22 @@ inspectObject('test.light.style', test.light.style)
 
 
 
-//TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
-//TODO set el-props to main-props?
-//TODO how to get the props owner id here?
-//TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
+
 
 //test.main.style.fontSize = 30;//only applied to main
 test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget
+test.main.textAnchor = "end"
+test.letterSpacing = 1;
 
 
 
+/*
+TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
+TODO set el-props to main-props?
+TODO how to get the props owner id here?
+TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
+- HAH!!!! textAnchor only works on main, not on el
+so there is something strange with textAnchor and fontSize
+If fontSize in the symbol (svg or CSS) it can't get overwritten
+If I DON'T set textAnchor in the symbol (css on main) it throws an error
+*/
