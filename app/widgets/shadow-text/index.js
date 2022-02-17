@@ -81,11 +81,13 @@ const construct = (el) => {
     }); 
   };
   
-  defProps('letterSpacing' , mainEl);
+  //TODO this one works, as directly set on instance?
+  defProps('letterSpacing', mainEl);
   
-  //TODO this one works, as directly set on instance
   
   //But these don't work:
+  //defProps('style', mainEl)// this crashes a lot
+  //TODO 1.1.1 ⚠️ OOOH if style is defined on mainEl, el.style.fontSize doesn't work any longer!!! 
 
   //defProps('text', mainEl)//Invalid argument type.
   //defProps('fontSize', mainEl[style])//ReferenceError: style is not defined
@@ -112,8 +114,11 @@ const construct = (el) => {
             e.letterSpacing = mainEl.letterSpacing ?? 0;
             e.style.fontFamily = mainEl.style.fontFamily;
             e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize ?? 30;
+            //e.style.fontSize = mainEl.style.fontSize ?? 30; 
             //TODO check, why if set this, nothing gets displayed
+            //works if mainEl.style and value set on .main
+            //but if set default in symbol /svg OR CSS it can't be overwritten
+            //while other props CAN
         });
     
     // fix main at x,y of <use>

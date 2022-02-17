@@ -102,7 +102,7 @@ inspectObject('test.light.style', test.light.style)
 
 
 //test.main.style.fontSize = 30;//only applied to main
-test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget
+test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget?
 test.main.textAnchor = "end"
 test.letterSpacing = 20;
 
