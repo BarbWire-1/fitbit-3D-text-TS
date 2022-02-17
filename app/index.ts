@@ -58,7 +58,7 @@ test.light.style.opacity = 1;
 test.light.style.display = "inline";
 test.style.fill = "yellow"//NOT ASSIGNED
 test.main.textAnchor ="start"
-test.textAnchor= "middle"
+//test.textAnchor= "middle"
 
 
 //INSPECT OBJECTS***************************************************************************************
