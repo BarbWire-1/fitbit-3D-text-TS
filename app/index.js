@@ -24,7 +24,7 @@ Each widget instance contains 3 sub Elements:
 
 WIDGET-INSTANCE:
 properties:
-x,y,letterspacing,
+x,y,letterspacing,text
 style: 
 all font-attributes, opacity, display
 additionally: 
@@ -50,7 +50,7 @@ also opacity/display can be applied directly (el.style...)
 
 
 The widget elements have default settings which can be overritten in resources/CSS using id/class
-also changes in index.view via set are supported                          
+also changes on those properties in index.view via set or changes from index.js are supported                          
 */
 
 

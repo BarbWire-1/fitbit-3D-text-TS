@@ -2,23 +2,51 @@
 
 
 # shadow-text
-Widget for shadow-/highlight effects on textElements for fitbit OS\
+Widget for 3D effects on textElements for fitbit OS\
 (instruction and usage doco will follow soon...)
 
-WORK IN PROGRESS...
-Each textElement contains actually 3 elements: main, light and shadow.
-
-These elemts can be used to create a 3D effect on text.
-
-text.light and text.shadow can have their own color and opacity.
-
-Their x and y define their offset to the text.main.
-
-Text and text-properties are the same for all 3 text-elements.
-
-
-
 !<div align="center">![image](screenshot.png)</div>
+
+## WORK IN PROGRESS...
+
+
+Each widget instance contains 3 sub Elements:
+
+WIDGET-INSTANCE:
+
+properties:
+
+x,y,letterspacing,text
+style: 
+all font-attributes, opacity, display
+additionally: 
+
+subElements main, light, shadow
+
+SUBELEMENTS:
+
+properties in general: 
+* x, y, style: fill, opacity, display (to perhaps "mute" one of them)
+
+specific:
+
+main: 
+* x,y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
+* textAnchor gets applied here like: el.main.textAnchor
+
+light, shadow:  
+* x,y for offset to main
+---
+Position of the whole widget instance gets set on el.x, el.y
+also opacity/display can be applied directly (el.style...)
+
+---
+The widget elements have default settings which can be overritten in resources/CSS using id/class
+also changes on those properties in index.view via set or in index.js are supported                          
+
+
+
+
 
 
 
