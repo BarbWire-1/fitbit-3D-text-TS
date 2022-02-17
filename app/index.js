@@ -83,24 +83,6 @@ test.light.style.display = "inline";
 
 test.light.style.fontSize = 100;
 //console.log(test.light.style.fontSize) //undefined and not applied
-
-
-//INSECT OBJECTS*********************************************************************************
-// INSPECT PROTOTYPECHAIN ©️ Gondwana
-//dumpProperties('test', test, true) // widget
-
-// INSPECT key:value
-//inspectObject('test',test)// test redraw: undefined 
-inspectObject('test.light', test.light) 
-inspectObject('test.light.style', test.light.style) 
-//test.light.text = "blah" ;//Unhandled exception: TypeError: Invalid argument type.
-//test.light.style.fontSize = 50; // doesn't get applied, but NO error
-//test.light.style.fontFamily = "Barlow-Bold"; // doesn't get applied, but NO error
-
-
-
-
-
 //test.main.style.fontSize = 30;//only applied to main
 test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget?
 test.main.textAnchor = "end"
@@ -108,6 +90,27 @@ test.letterSpacing = 20;
 
 
 
+//INSECT OBJECTS*********************************************************************************
+// INSPECT PROTOTYPECHAIN ©️ Gondwana
+//dumpProperties('test', test, false) // instance
+dumpProperties('test.main', test.main, false) // 
 
+// INSPECT key:value
+//inspectObject('test',test)// test redraw: undefined 
+//inspectObject('test.light', test.light) 
+//inspectObject('test.light.style', test.light.style) 
+//test.light.text = "blah" ;//Unhandled exception: TypeError: Invalid argument type.
+//test.light.style.fontSize = 50; // doesn't get applied, but NO error
+//test.light.style.fontFamily = "Barlow-Bold"; // doesn't get applied, but NO error
 //dumpProperties('test.main', test.main, false)
-dumpProperties('test', test, false)
+//inspectObject('test', test)// instance
+inspectObject('test.main', test.main)// empty
+//inspectObject('test.light', test.light)// keys and values for !style
+
+
+
+
+
+
+
+
