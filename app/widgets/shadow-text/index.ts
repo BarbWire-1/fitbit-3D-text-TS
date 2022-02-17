@@ -67,6 +67,20 @@ export interface ShadowTextWidget extends TextElement {
   //     }
   // });
   
+  const defProps = (exposed, target)=> {
+   
+    Object.defineProperty(el, exposed, {
+      set(newValue) {
+        exposed = {};
+        target.exposed = newValue;
+        el.redraw();    
+      }
+    }); 
+  };
+  
+  //defProps('letterSpacing' , mainEl) 
+  //TODO this doesn't work on instance, but would on main if Textelement
+  //what I REALLY do want is to target the instance as it seems to do in the above way
 
     // PASS PROPERTIES FROM EXPOSED TO INNER EL
     const assignProps = (exposed, target)=> {

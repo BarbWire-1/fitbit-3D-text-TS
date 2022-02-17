@@ -59,6 +59,7 @@ test.light.style.display = "inline";
 test.style.fill = "yellow"//NOT ASSIGNED
 test.textAnchor ="start"
 test.textAnchor= "middle"
+test.letterSpacing = 5
 
 
 
