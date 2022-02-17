@@ -35,7 +35,7 @@ also opacity/display can be applied directly (el.style...)
 
 
 The widget elements have default settings which can be overritten in resources/CSS using id/class
-also changes in index.view via set are supported                          
+also changes in index.view via set are supported
 */
 
 
@@ -47,12 +47,12 @@ setInterval(() => {
   countDown.text = (`00${--cd}`).slice(-2);
   // to check redraw
   calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
-  
+
   if (cd == 0) {
     cd = 100;
   }
 }, 1000);
-// 
+//
 //calsLabel.light.style.opacity = 1;
 countDown.light.style.opacity = 1;
 test.style.fontSize = 50;
@@ -75,9 +75,9 @@ test.light.style.fontSize = 100;
 //dumpProperties('test', test, true) // widget
 
 // INSPECT key:value
-//inspectObject('test',test)// test redraw: undefined 
-inspectObject('test.light', test.light) 
-inspectObject('test.light.style', test.light.style) 
+//inspectObject('test',test)// test redraw: undefined
+inspectObject('test.light', test.light)
+inspectObject('test.light.style', test.light.style)
 //test.light.text = "blah" ;//Unhandled exception: TypeError: Invalid argument type.
 //test.light.style.fontSize = 50; // doesn't get applied, but NO error
 //test.light.style.fontFamily = "Barlow-Bold"; // doesn't get applied, but NO error
