@@ -35,7 +35,7 @@ Specific:
 
 main: 
 * x, y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
-* textAnchor gets applied here like: el.main.textAnchor
+
 
 light, shadow:  
 * x, y for offset to main
