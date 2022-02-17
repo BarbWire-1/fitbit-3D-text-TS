@@ -1,3 +1,4 @@
+
 // INSPECT PROTOTYPE CHAIN ©️ Gondwana
 export function dumpProperties(name, obj, types) { 
     // types: try to determine type of each property: can cause hard crashes with some objects.

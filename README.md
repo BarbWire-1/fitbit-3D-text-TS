@@ -1,6 +1,5 @@
 
 
-
 # shadow-text
 Widget for 3D effects on textElements for fitbit OS\
 (instruction and usage doco will follow soon...)
@@ -36,6 +35,7 @@ Specific:
 
 main: 
 * x, y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
+
 * textAnchor gets applied here like: el.main.textAnchor
 
 light, shadow:  
