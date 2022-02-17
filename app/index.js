@@ -42,7 +42,7 @@ also changes in index.view via set are supported
 let cd = 100;
 
 setInterval(() => {
-  test.text = `steps ${today.adjusted.steps}`;
+  test.text = `steps ${today.adjusted.steps}`;    // TODO 0 P Why does setting .text on widget (use) work?
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
   // to check redraw
@@ -88,4 +88,6 @@ inspectObject('test.light.style', test.light.style)
 //TODO set el-props to main-props?
 //TODO how to get the props owner id here?
 //TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
-
+//TODO 0 P can dumpProperties() display 'inherit'?
+//TODO 0 P You CAN'T even set test.main.text or style.font-anything
+//TODO 0 P I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.
