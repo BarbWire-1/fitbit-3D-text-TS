@@ -50,7 +50,7 @@ const construct = (el) => {
   
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
-    // (same for all elements of instance)
+    //(same for all elements of instance)
     Object.defineProperty(el, 'text', {     
       set(newValue) {
         mainEl.text = newValue;
@@ -71,21 +71,15 @@ const construct = (el) => {
       }
   });
   
-
     // PASS PROPERTIES FROM EXPOSED TO INNER EL
-    // TextElement
-    Object.defineProperty(el, 'main',{ 
-      get() { return mainEl;}
-    }); 
-    //SubText
-      Object.defineProperty(el, 'light',{ 
-        get() { return lightEl;}
-    }); 
-    // SubText
-    Object.defineProperty(el, 'shadow',{
-      get() { return shadowEl;}
-    }); 
-    
+    const assignProps = ( expose, target) => {
+      Object.defineProperty(el, expose,{
+        get() { return target;}
+      }); 
+    }
+    assignProps('main', mainEl);
+    assignProps('light', lightEl)
+    assignProps('shadow', shadowEl)
     
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
