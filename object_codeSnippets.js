@@ -308,3 +308,22 @@ function Person(name, age) {
     console.log(Object.keys(module));
     console.log(module.x);
   });
+  
+  //TODO try with recursion
+  //THIS doesn't work
+  //INSPECT key:value
+ export const inspectObject = (objName,obj) => { 
+  for (const prop in obj) {
+    if (obj.hasOwnProperty(prop)) {
+      for (const subProp in prop) {
+        console.log(`"${prop}" is an object`) // style is an object
+        if(prop.hasOwnProperty(subProp)) { 
+              console.log(` ${objName} ${subProp}: ${JSON.stringify(prop[subProp])}`);
+              // haha: "s", "t", "y", "l", "e"
+            } 
+        }
+      console.log(` ${objName} ${prop}: ${JSON.stringify(obj[prop])}`);
+    };
+  };
+};
+//call like: inspectObject('objName',obj)

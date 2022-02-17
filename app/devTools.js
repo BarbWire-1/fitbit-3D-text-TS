@@ -46,3 +46,5 @@ export function dumpProperties(name, obj, types) {
   };
   //call like: inspectObject('objName',obj)
  //TODO How to get to the properties of properties by inspecting the main object/element???
+ 
+ 

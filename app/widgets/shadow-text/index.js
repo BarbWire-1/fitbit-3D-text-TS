@@ -75,15 +75,21 @@ const construct = (el) => {
    
     Object.defineProperty(el, exposed, {
       set(newValue) {
-        exposed = {exposed};
-        console.log(JSON.stringify(exposed))
-        target.exposed = newValue;
+        target[exposed] = newValue;
         el.redraw();    
       }
     }); 
   };
   
-  defProps('letterSpacing' , mainEl) 
+  defProps('letterSpacing' , mainEl);
+  
+  //TODO this one works, as directly set on instance
+  
+  //But these don't work:
+
+  //defProps('text', mainEl)//Invalid argument type.
+  //defProps('fontSize', mainEl[style])//ReferenceError: style is not defined
+   
   //TODO this doesn't work on instance, but would on main if Textelement
   //what I REALLY do want is to target the instance as it seems to do in the above way
   
