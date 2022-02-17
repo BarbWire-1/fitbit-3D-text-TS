@@ -42,7 +42,7 @@ const construct = (el) => {
   // sealed to prevent changes on structure
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
-  inspectObject('lightEl', lightEl)
+  //inspectObject('lightEl', lightEl)
   
   
     // PROPERTIES

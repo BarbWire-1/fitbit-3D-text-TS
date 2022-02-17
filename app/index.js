@@ -109,16 +109,5 @@ test.letterSpacing = 20;
 
 
 
-function listAllProperties(o) {
-  var obj;
-    var result = [];
-  
-    for(obj = o; obj !== null; obj = Object.getPrototypeOf(obj)) {
-    result = result.concat(Object.getOwnPropertyNames(obj));
-  }
-  console.log(result)
-  return result;
-  }
-  //dumpProperties(test.main)
-  console.log(typeof test.main)
-  inspectObject(test.main)
+//dumpProperties('test.main', test.main, false)
+dumpProperties('test', test, false)
