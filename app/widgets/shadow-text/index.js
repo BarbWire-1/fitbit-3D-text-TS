@@ -72,7 +72,7 @@ const construct = (el) => {
   });
   
     // PASS PROPERTIES FROM EXPOSED TO INNER EL
-    const assignProps = ( expose, target) => {
+    const assignProps = (expose, target) => {
       Object.defineProperty(el, expose,{
         get() { return target;}
       }); 
@@ -151,6 +151,8 @@ then passed to all subTexts.
 
 TODO I wonder, whether widget instance might have fill, which would get inherited, if nothing else were set anywhere. Just to know, but to lazy to test
 TODO if I comment-out widget css I get "Unhandled exception: Error: Unexpected value for textAnchor:0xffffff80"
-//So might be necessary to set some props there on the symbol to make them available???
+So might be necessary to set some props there on the symbol to make them available???
+TODO check, which structural functions to IIFE 
+TODO try on defineProperty as function with exposed/target
 */
   
