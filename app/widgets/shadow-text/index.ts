@@ -2,7 +2,7 @@ import { dumpProperties, inspectObject } from "../../devTools";
 export interface ShadowTextWidget extends TextElement { 
     letterSpacing: number;
     textAnchor: "start" | "middle" | "end";
-    main: TextElement;   
+    main: SubText;   
     light: SubText;
     shadow: SubText;
     redraw();
@@ -31,8 +31,8 @@ export interface ShadowTextWidget extends TextElement {
   
   const construct = (el: ShadowTextWidget) => {
     
-    const lightEl = el.getElementById('light') as TextElement as SubText;
-    const shadowEl = el.getElementById('shadow') as TextElement as SubText;
+    const lightEl = el.getElementById('light') as TextElement;
+    const shadowEl = el.getElementById('shadow') as TextElement;
     const mainEl = el.getElementById('main') as TextElement;
     
     
@@ -60,22 +60,24 @@ export interface ShadowTextWidget extends TextElement {
           el.redraw();    
         }
     });
+  //   Object.defineProperty(el, 'fontSize', {
+  //     set(newValue) {
+  //       mainEl.style.fontSize = newValue;
+  //       el.redraw();    
+  //     }
+  // });
   
 
     // PASS PROPERTIES FROM EXPOSED TO INNER EL
-    // TextElement
-    Object.defineProperty(el, 'main',{ 
-      get() { return mainEl;}
-    }); 
-    // SubText
-    Object.defineProperty(el, 'light',{ 
-      get() { return lightEl;}
-    }); 
-    // SubText
-    Object.defineProperty(el, 'shadow',{
-      get() { return shadowEl;}
-    }); 
-    
+    const assignProps = (exposed, target)=> {
+      Object.defineProperty(el, exposed,{
+        get() { return target;}
+      }); 
+    };
+    //TODO write a .forEach using className, nameEl?
+    assignProps('main', mainEl);
+    assignProps('light', lightEl);
+    assignProps('shadow', shadowEl);
     // PRIVATE FUNCTIONS
     // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
     el.redraw = () => { 
@@ -117,4 +119,9 @@ export interface ShadowTextWidget extends TextElement {
     };
   };
   
+  /*
+  TODO interesting:
+  getElement as TextElement but export as SubText limits props!!!
+  
+  */
     

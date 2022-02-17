@@ -54,22 +54,23 @@ test.main.style.fill = "blue"
 test.shadow.style.fill="black"
 //test.light.x = -15;
 //test.light.style.fill = "white"
-test.light.style.opacity = 1;
+test.light.style.opacity = .5;
 test.light.style.display = "inline";
 test.style.fill = "yellow"//NOT ASSIGNED
-test.main.textAnchor ="start"
-//test.textAnchor= "middle"
+test.textAnchor ="start"
+test.textAnchor= "middle"
+
 
 
 //INSPECT OBJECTS***************************************************************************************
 // PROTOTYPE CHAIN
-//dumpProperties('test', test, false)//crashes sim if set to types == true
+//dumpProperties('test.main', test.main, false)//crashes sim if set to types == true
 
 
 // as encapsulated?
 //KEY: VALUE PAIR
 //inspectObject('test.light',test.light.style)
-//console.log('I try to get keys' + Object.keys(test.light))  
+console.log('I try to get keys' + Object.keys(test.light))  
 
 //TODO vheck why this is not working in this structure
 //TODO set el-props to main-props?
