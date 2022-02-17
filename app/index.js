@@ -23,7 +23,7 @@ let allLights = document.getElementsByClassName('light');
 Each widget instance contains 3 sub Elements:
 
 The text itself and textAttributes get assigned to the widget-instance directly (like el.text = "blah") and inherited from there
-//TODO Need to check textAttr on instance/main, but sim crashed
+
 (although I don't understand how that works)
 subElements:
 main: provides full text-attributes and inherits textAnchor, style:fontFamily/fontSize/letterspacing/
@@ -88,4 +88,20 @@ inspectObject('test.light.style', test.light.style)
 //TODO set el-props to main-props?
 //TODO how to get the props owner id here?
 //TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
+
+test.main.style.fontSize = 30;//only applied to main
+test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget
+test.letterSpacing = 3;
+
+//TODO check inheritance for text props
+/*
+Logically mainEL IS just a subElement!!! 
+It would be preferable to have all text-props ONLY on widget-instance
+then passed to all subTexts.
+ - check inheritance from symbol head to subs
+ - how to pass the values? as if I remove el.text = mainEl.tex it crashes
+  
+ => perhaps re-add a dummy text to pass props to all subEls?
+
+
 
