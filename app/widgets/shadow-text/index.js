@@ -24,9 +24,6 @@ const construct = (el) => {
    
      get style() {
       return {
-        // this way ALL style would get applied!?
-        // get style() {return el.style}, 
-        // set style(v) {return el.style = v},
         get fill() {return el.style.fill},
         set fill(color) {el.style.fill = color},
         get opacity() {return el.style.opacity},
@@ -46,7 +43,7 @@ const construct = (el) => {
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
   inspectObject('lightEl', lightEl)
-  //TODO check "safety" from CSS/SVG
+  
   
     // PROPERTIES
     // FIX TEXT-PROPERTIES 
@@ -87,7 +84,7 @@ const construct = (el) => {
   
   //But these don't work:
   //defProps('style', mainEl)// this crashes a lot
-  //TODO 1.1.1 ⚠️ OOOH if style is defined on mainEl, el.style.fontSize doesn't work any longer!!! 
+  //TODO1.1.1 ⚠️ OOOH if style is defined on mainEl, el.style.fontSize doesn't work any longer!!! 
 
   //defProps('text', mainEl)//Invalid argument type.
   //defProps('fontSize', mainEl[style])//ReferenceError: style is not defined
@@ -116,7 +113,7 @@ const construct = (el) => {
             e.textAnchor = mainEl.textAnchor;
             //e.style.fontSize = mainEl.style.fontSize ?? 30; 
             //TODO check, why if set this, nothing gets displayed
-            //works if mainEl.style and value set on .main
+            //works if mainEl.style is exposed and value set on .main.style.fontSize
             //but if set default in symbol /svg OR CSS it can't be overwritten
             //while other props CAN
         });
@@ -164,7 +161,14 @@ TODO Exception for trying to add not exposed props
 TODO Try to run with new factory?
   
   
-TODO check inheritance for text props
+TODO INHERITANCE to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
+- HAH!!!! textAnchor only works on main, not on el
+so there is something strange with textAnchor and fontSize
+If fontSize in the symbol (svg or CSS) it can't get overwritten
+If I DON'T set textAnchor in the symbol (css on main) it throws an error
+
+TODO if I comment-out widget css I get "Unhandled exception: Error: Unexpected value for textAnchor:0xffffff80"
+So might be necessary to set some props there on the symbol to make them available???
 
 Logically mainEL IS just a subElement!!! 
 It would be preferable to have all text-props ONLY on widget-instance
@@ -175,11 +179,11 @@ then passed to all subTexts.
  => perhaps re-add a dummy text to pass props to all subEls?
 
 
-
-TODO I wonder, whether widget instance might have fill, which would get inherited, if nothing else were set anywhere. Just to know, but to lazy to test
-TODO if I comment-out widget css I get "Unhandled exception: Error: Unexpected value for textAnchor:0xffffff80"
-So might be necessary to set some props there on the symbol to make them available???
 TODO check, which structural functions to IIFE 
-TODO try on defineProperty as function with exposed/target
+
+TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
+
+TODO check "safety" from CSS/SVG
 */
+
   

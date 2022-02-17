@@ -108,13 +108,15 @@ test.letterSpacing = 20;
 
 
 
-/*
-TODO WRITE NEW EXCEPTION (all notes "undone""...grrr)
-TODO set el-props to main-props?
-TODO how to get the props owner id here?
-TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
-- HAH!!!! textAnchor only works on main, not on el
-so there is something strange with textAnchor and fontSize
-If fontSize in the symbol (svg or CSS) it can't get overwritten
-If I DON'T set textAnchor in the symbol (css on main) it throws an error
-*/
+
+function listAllProperties(o) {
+  var objectToInspect;
+    var result = [];
+  
+    for(objectToInspect = o; objectToInspect !== null; objectToInspect = Object.getPrototypeOf(objectToInspect)) {
+    result = result.concat(Object.getOwnPropertyNames(objectToInspect));
+  }
+  
+  return result;
+  }
+  listAllProperties(test.main)
