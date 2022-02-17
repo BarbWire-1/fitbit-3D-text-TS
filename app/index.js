@@ -22,13 +22,24 @@ let allLights = document.getElementsByClassName('light');
 /*
 Each widget instance contains 3 sub Elements:
 
-The text itself and textAttributes get assigned to the widget-instance directly (like el.text = "blah") and inherited from there
+WIDGET-INSTANCE:
+properties:
+x,y,letterspacing,
+style: 
+all font-attributes, opacity, display
+additionally: 
+subElements main, light, shadow
 
-(although I don't understand how that works)
-subElements:
-main: provides full text-attributes and inherits textAnchor, style:fontFamily/fontSize/letterspacing/
-subElements light, shadow:  x,y for offset to main
-                            style: fill, opacity, display (to perhaps "mute" one of them)
+(The text itself and textAttributes get assigned to the widget-instance directly (like el.text = "blah") and inherited from there
+(although I don't understand how that works))
+
+SUBELEMENTS:
+properties in general: 
+x, y, style: fill, opacity, display (to perhaps "mute" one of them)
+
+specific:
+main: x,y are fixed to x,y of the widget-instance
+light, shadow:  x,y for offset to main
 
 Position of the whole widget instance gets set on el.x, el.y
 also opacity/display can be applied directly (el.style...)
@@ -89,19 +100,8 @@ inspectObject('test.light.style', test.light.style)
 //TODO how to get the props owner id here?
 //TODO to my very confusion text and textAttributes get assigned on the widget-instance direcly, although set on mainEl
 
-test.main.style.fontSize = 30;//only applied to main
+//test.main.style.fontSize = 30;//only applied to main
 test.light.style.fontsize = 50;//I think it get's applied but redrawn in widget
-test.letterSpacing = 3;
-
-//TODO check inheritance for text props
-/*
-Logically mainEL IS just a subElement!!! 
-It would be preferable to have all text-props ONLY on widget-instance
-then passed to all subTexts.
- - check inheritance from symbol head to subs
- - how to pass the values? as if I remove el.text = mainEl.tex it crashes
-  
- => perhaps re-add a dummy text to pass props to all subEls?
 
 
 

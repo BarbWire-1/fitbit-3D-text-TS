@@ -7,8 +7,8 @@ import { inspectObject, dumpProperties } from '../../devTools';
 // mainEl.style.fill = "grey"
 // x,y center screen
 // textAnchor middle
-// lightEl.style.fill = "white", offset -1/-1
-// shadowEl.style.fill = "red", offset 1/1
+// lightEl.style.fill = "white", offset -1/-1, opacity = 0.5
+// shadowEl.style.fill = "red", offset 1/1, opacity = 0.5
   
 
 
@@ -138,7 +138,25 @@ const construct = (el) => {
   
 
 
+/*  
+TODO Exception for trying to add not exposed props
+TODO Try to run with new factory?
   
-  //TODO Exception for trying to add not exposed props
-  //TODO Try to run with new factory?
+  
+TODO check inheritance for text props
+
+Logically mainEL IS just a subElement!!! 
+It would be preferable to have all text-props ONLY on widget-instance
+then passed to all subTexts.
+ - check inheritance from symbol head to subs
+ - how to pass the values? as if I remove el.text = mainEl.tex it crashes
+  
+ => perhaps re-add a dummy text to pass props to all subEls?
+
+
+
+TODO I wonder, whether widget instance might have fill, which would get inherited, if nothing else were set anywhere. Just to know, but to lazy to test
+TODO if I comment-out widget css I get "Unhandled exception: Error: Unexpected value for textAnchor:0xffffff80"
+//So might be necessary to set some props there on the symbol to make them available???
+*/
   
