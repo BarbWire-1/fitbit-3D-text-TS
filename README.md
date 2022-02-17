@@ -14,21 +14,25 @@ Each widget instance contains 3 sub Elements:
 
 WIDGET-INSTANCE:
 
-properties:
+Properties:
 
 x,y,letterspacing,text
 style: 
 all font-attributes, opacity, display
-additionally: 
 
-subElements main, light, shadow
+Additionally: 
 
+main, light, shadow
+___
 SUBELEMENTS:
 
-properties in general: 
+(main, light, shadow)
+
+
+Properties in general: 
 * x, y, style: fill, opacity, display (to perhaps "mute" one of them)
 
-specific:
+Specific:
 
 main: 
 * x,y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
