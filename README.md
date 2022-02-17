@@ -9,15 +9,15 @@ Widget for 3D effects on textElements for fitbit OS\
 ## WORK IN PROGRESS...
 
 
-Each widget instance contains 3 sub Elements:
+**Each widget instance contains 3 sub Elements**
 
 WIDGET-INSTANCE:
 
 Properties:
 
-x,y,letterspacing,text
+x, y, letterspacing, text,
 style: 
-all font-attributes, opacity, display
+(all font-attributes, opacity, display)
 
 Additionally: 
 
@@ -34,11 +34,11 @@ Properties in general:
 Specific:
 
 main: 
-* x,y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
+* x, y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
 * textAnchor gets applied here like: el.main.textAnchor
 
 light, shadow:  
-* x,y for offset to main
+* x, y for offset to main
 ---
 Position of the whole widget instance gets set on el.x, el.y
 also opacity/display can be applied directly (el.style...)
