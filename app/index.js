@@ -123,3 +123,7 @@ inspectObject('test.main', test.main)// empty
 //TODO P A3 that will just lead to confusion aboout which setting should take priority.
 //TODO P A3 Perhaps a good principle is that if a setting should affect the WHOLE widget (ie, ALL subTexts), it should be settable on the widget (use) itself; eg, .text, .fontSize.
 //TODO P A3 If a setting has relevance to an individual subText independently of the others, it should be settable on that subText; eg, .fill.
+//TODO P A3 I don't know if this helps, but try to think of the API from the point of view of a widget USER rather than as the widget DEVELOPER.
+//TODO P A3 As DEVELOPER, you know that it contains three textEls, and you want to be able to set everything everywhere in every possible way.
+//TODO P A3 A widget USER would probably prefer to think of the widget as one magic <text>. It displays ONE string, has ONE location, ONE fontSize, etc. The magic is that it can add a
+//TODO P A3 highlight above and below the text. The API should align with that pragmatic and minimalist view.
