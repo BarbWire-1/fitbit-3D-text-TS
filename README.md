@@ -43,8 +43,19 @@ Position of the whole widget instance gets set on el.x, el.y
 also opacity/display can be applied directly (el.style...)
 
 ---
-The widget elements have default settings which can be overwritten in resources/CSS using id/class
-also changes on those properties in index.view via set or in index.js are supported                          
+The widget elements have default settings which can be overwritten.
+
+mainEl.style.fill = "grey"
+x,y center screen
+textAnchor middle
+lightEl.style.fill = "white", offset x = -1, y = -1, opacity = 0.5
+shadow.style.fill = "red", offset x = 1, y = 1, opacity = 0.5 
+
+These values can be overwritten 
+* in resources/CSS using id (of instance) / class (of subElement)
+* in index.view via set 
+* in index.js 
+---                        
 
 
 

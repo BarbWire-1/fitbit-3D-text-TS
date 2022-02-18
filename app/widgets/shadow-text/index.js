@@ -65,57 +65,61 @@ const construct = (el) => {
   defProps('text', mainEl)
   
   // PASS PROPERTIES FROM EXPOSED TO INNER EL
-    const assignProps = (expose, target) => {
-      Object.defineProperty(el, expose,{
-        get() { return target;}
-      });
-    };
+  const assignProps = (expose, target) => {
+    Object.defineProperty(el, expose,{
+      get() { return target;}
+    });
+  };
     
-    assignProps('main', mainEl);
-    assignProps('light', lightEl);
-    assignProps('shadow', shadowEl);
+  assignProps('main', mainEl);
+  assignProps('light', lightEl);
+  assignProps('shadow', shadowEl);
 
-    // PRIVATE FUNCTIONS
-    // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-    el.redraw = () => {
-        //here text-properties get passed to all el of widget-instance
-        el.getElementsByClassName("myText").forEach((e) => {
-            e.text = mainEl.text ?? "TEXT";
-            e.letterSpacing = mainEl.letterSpacing ?? 0;
-            e.style.fontFamily = mainEl.style.fontFamily;
-            e.textAnchor = mainEl.textAnchor;
-            //e.style.fontSize = mainEl.style.fontSize ?? 30;
-            //TODO check, why if set this, nothing gets displayed
-            //works if mainEl.style is exposed and value set on .main.style.fontSize
-            //but if set default in symbol /svg OR CSS it can't be overwritten
-            //while other props CAN
+  // PRIVATE FUNCTIONS
+  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+  el.redraw = () => {
+    //here text-properties get passed to all el of widget-instance
+      el.getElementsByClassName("myText").forEach((e) => {
+        e.text = mainEl.text ?? "TEXT";
+        e.letterSpacing = mainEl.letterSpacing ?? 0;
+        e.style.fontFamily = mainEl.style.fontFamily;
+        e.textAnchor = mainEl.textAnchor;
+        //e.style.fontSize = mainEl.style.fontSize ?? 30;
+        //TODO check, why if set this, nothing gets displayed
+        //works if mainEl.style is exposed and value set on .main.style.fontSize
+        //but if set default in symbol /svg OR CSS it can't be overwritten
+         //while other props CAN
         });
 
-    // fix main at x,y of <use>
-    mainEl.x = mainEl.y = 0;
-    };
-    el.redraw();
+  // fix main at x,y of <use>
+  mainEl.x = mainEl.y = 0;
+  };
+
+  el.redraw();
 
 
   //INSPECT OBJECTS ***************************************************************
+  
   //key:value pairs
   //inspectObject('lightEl',lightEl)
   
   //prototype chain
   //dumpProperties('lightEl', lightEl, true)
+  
   //INSPECT OBJECTS END*************************************************************
-    return el;
-  };
 
-  // Returns an object that provides the name of this widget and a function that can be used to construct them.
-  // This is used internally by widget-factory.ts.
-  export const shadowText = () => {
+  return el;
+};
 
-    return {
-        name: 'shadowText',
-        construct: construct
-    };
+// Returns an object that provides the name of this widget and a function that can be used to construct them.
+// This is used internally by widget-factory.ts.
+export const shadowText = () => {
+
+  return {
+    name: 'shadowText',
+    construct: construct
   };
+};
 
 
 
