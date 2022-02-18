@@ -110,5 +110,12 @@ inspectObject('test.main', test.main)// empty
 //inspectObject('test.light', test.light)// keys and values for !style
 
 //TODO P 3 can dumpProperties() display 'inherit'?
-//TODO P 3 You CAN'T even set test.main.text or style.font-anything
+//TODO P A2 You CAN'T even set test.main.text or style.font-anything
+//TODO P A2 .main is a different type of object to .light and .shadow. .main returns the Fitbit element object, whereas the others return objects made by createSubText.
+//TODO P A2 It isn't surprising that .main behaves differently to the others.
+//TODO P A2 More importantly, I'm not sure you want callers messing with main's element object, as they could then change stuff you don't want changed.
+//TODO P A2 Think through the design of your API; eg, should .text be set on top-level object, or on .main?
+//TODO P A2 Since text should be the same in ALL subText elements, I can't see why you'd want to be able to set it on one of them only.
+//TODO P A2 What should users actually be able to do with main? Maybe .main should be like .light and .shadow but without .x and .y.
+//TODO P A2 Similarly, I'm very uncomfortable with things like test.light.style.fontSize = 100; as you've tried about. Does it make sense to allow this?
 //TODO P 3 I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.
