@@ -4,10 +4,6 @@ specifiers:
   '@fitbit/sdk': ^5.0.2
   '@fitbit/sdk-cli': ^1.7.3
   fitbit-sdk-types: ^6.0.3
-  proxy-polyfill: ^0.3.2
-
-dependencies:
-  proxy-polyfill: 0.3.2
 
 devDependencies:
   '@fitbit/sdk': 5.0.2
@@ -2319,10 +2315,6 @@ packages:
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
     dev: true
-
-  /proxy-polyfill/0.3.2:
-    resolution: {integrity: sha512-ENKSXOMCewnQTOyqrQXxEjIhzT6dy572mtehiItbDoIUF5Sv5UkmRUc8kowg2MFvr232Uo8rwRpNg3V5kgTKbA==}
-    dev: false
 
   /pump/2.0.1:
     resolution: {integrity: sha512-ruPMNRkN3MHP1cWJc9OWr+T/xDP0jhXYCLfJcBuX54hhfIBnaQmAUMfDcG4DM5UMWByBbJY69QSphm3jtDKIkA==}

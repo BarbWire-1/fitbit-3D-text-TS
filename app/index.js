@@ -36,6 +36,11 @@ setInterval(() => {
 
 //text, letterSpacing, textAnchor
 //get set on widget instance, but can only be logged from instance.main!!!
+
+// test.text = test.main.text;
+//console.log(test.text);// this remains undefined, unfortunately
+//TODO B search a way to console log these values directly from instance
+
 console.log(test.main.text);
 console.log(test.main.letterSpacing);
 console.log(test.main.textAnchor);
