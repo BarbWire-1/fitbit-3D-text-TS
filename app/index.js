@@ -57,7 +57,9 @@ also changes on those properties in index.view via set or changes from index.js 
 let cd = 100;
 
 setInterval(() => {
-  test.text = `steps ${today.adjusted.steps}`;    // TODO 0 P Why does setting .text on widget (use) work?
+  test.text = `steps ${today.adjusted.steps}`;    // TODO P A1 Why does setting .text on widget (use) work?
+  // TODO P A1 Isn't it because you've got Object.defineProperty(el, 'text'...
+  // TODO P A1 ...which copies from use el into mainEl, and then calls redraw to put it everywhere. That seems like a good system to me.
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
   // to check redraw
@@ -107,6 +109,6 @@ dumpProperties('test.main', test.main, false) //
 inspectObject('test.main', test.main)// empty
 //inspectObject('test.light', test.light)// keys and values for !style
 
-//TODO 0 P can dumpProperties() display 'inherit'?
-//TODO 0 P You CAN'T even set test.main.text or style.font-anything
-//TODO 0 P I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.
+//TODO P 3 can dumpProperties() display 'inherit'?
+//TODO P 3 You CAN'T even set test.main.text or style.font-anything
+//TODO P 3 I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.

@@ -16,7 +16,7 @@ const construct = (el) => {
 
   // MAIN TEXTELEMENT
   const mainEl = el.getElementById('main');
-  //inspectObject('mainEl', mainEl)// this is empty? no keys??  // TODO 0 P why no keys?
+  //inspectObject('mainEl', mainEl)// this is empty? no keys??  // TODO P 3 why no keys?
   //TODO this is not, what I intended, so maybe define mainEl in here?
 
   // WRAPPER TO CREATE SUB_ELs
