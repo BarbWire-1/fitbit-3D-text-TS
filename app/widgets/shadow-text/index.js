@@ -7,8 +7,8 @@ import { inspectObject, dumpProperties } from '../../devTools';
 const construct = (el) => {
 
   // MAIN TEXTELEMENT
-  const mainEl = el.getElementById('main');
- 
+  //const mainEl = el.getElementById('main');
+  const dummyEl = el.getElementById('dummy');
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
 
@@ -32,6 +32,7 @@ const construct = (el) => {
   // sealed to prevent changes on structure
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
+  const mainEl = Object.seal(createSubText(el.getElementById('main')));
   
   // PROPERTIES
   // FIX TEXT-PROPERTIES
@@ -40,7 +41,7 @@ const construct = (el) => {
   // but also works on main without passing to others
   Object.defineProperty(el, 'fontSize', {
     set(newValue) {
-      mainEl.style.fontSize = newValue;
+      dummyEl.style.fontSize = newValue;
       el.redraw();
     }
   });
@@ -55,9 +56,9 @@ const construct = (el) => {
   };
   // directly on instance ONLY
   // logging from main
-  defProps('letterSpacing', mainEl);
-  defProps('textAnchor', mainEl);
-  defProps('text', mainEl)
+  defProps('letterSpacing', dummyEl);
+  defProps('textAnchor', dummyEl);
+  defProps('text', dummyEl)
   
   // PASS PROPERTIES FROM EXPOSED TO INNER EL
   const assignProps = (expose, target) => {
@@ -69,16 +70,18 @@ const construct = (el) => {
   assignProps('main', mainEl);
   assignProps('light', lightEl);
   assignProps('shadow', shadowEl);
-
+  
+  assignProps('dummy', dummyEl);
+  
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => {
     //here text-properties get passed to all el of widget-instance
       el.getElementsByClassName("myText").forEach((e) => {
-        e.text = mainEl.text ?? "TEXT";
-        e.letterSpacing = mainEl.letterSpacing ?? 0;
-        e.style.fontFamily = mainEl.style.fontFamily;
-        e.textAnchor = mainEl.textAnchor;
+        e.text = dummyEl.text ?? "TEXT";
+        e.letterSpacing = dummyEl.letterSpacing ?? 0;
+        e.style.fontFamily = dummyEl.style.fontFamily;
+        e.textAnchor = dummyEl.textAnchor;
         //e.style.fontSize = mainEl.style.fontSize ?? 30;
         //TODO check, why if set this, nothing gets displayed
         //works if mainEl.style is exposed and value set on .main.style.fontSize

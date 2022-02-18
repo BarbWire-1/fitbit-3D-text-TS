@@ -4,7 +4,7 @@ import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
 import {shadowText} from './widgets/shadow-text';
 import {dumpProperties, inspectObject} from './devTools'
-import { CONTROLS_REPEAT_TITLE } from "blockly/msg/en";
+
 
 //initialize widgetFactory
 widgetFactory(shadowText);
@@ -32,18 +32,22 @@ setInterval(() => {
   if (cd == 0) {
     cd = 100;
   }
+  //console.log(test.text)//undefined
+  //console.log(test.main.text);// this works 
 }, 1000);
 
 //text, letterSpacing, textAnchor
-//get set on widget instance, but can only be logged from instance.main!!!
+//get set on widget instance, but can only be logged from instance.main as passed from there!!!
 
-// test.text = test.main.text;
-//console.log(test.text);// this remains undefined, unfortunately
-//TODO B search a way to console log these values directly from instance
+// test.text = test.main.text;// doesn't help
+// console.log(test.text);// this remains undefined, unfortunately
+// TODO B search a way to console log these values directly from instance
 
-console.log(test.main.text);
-console.log(test.main.letterSpacing);
-console.log(test.main.textAnchor);
+console.log(test.dummy.text); // this doesn't show on load
+console.log(test.dummy.letterSpacing);// 0
+console.log(test.dummy.textAnchor);// middle
+
+//console.log(test.text)// undefined
 
 
 
@@ -51,6 +55,7 @@ countDown.light.style.opacity = 1;
 calsLabel.textAnchor = "middle";
 
 test.style.fontSize = 50;
+test.textAnchor = "middle";
 test.main.style.fill = "blue";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";

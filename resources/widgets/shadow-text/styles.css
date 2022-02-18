@@ -1,8 +1,17 @@
 
 .myText {
     text-length: 20;
-    
 }
+
+#dummy {
+    
+    text-anchor: middle;
+    font-size: 30;
+    letter-spacing: 0;
+    text-anchor: "middle" ; 
+}
+
+
 .main {
     fill: grey; 
     
