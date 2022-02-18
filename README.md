@@ -11,27 +11,26 @@ Widget for 3D effects on textElements for fitbit OS\
 
 **Each widget instance contains 3 sub Elements**
 
-WIDGET-INSTANCE:
+### WIDGET-INSTANCE:
 
-Properties:
+### Properties:
 
-x, y, text, letterspacing, textAnchor
-style: 
-(all font-attributes, opacity, display)
+x, y, text, letterspacing, textAnchor\
+style:\
+all font-attributes, opacity, display
 
-Additionally: 
-
+Additionally: \
 main, light, shadow
 ___
-SUBELEMENTS:
+### SUBELEMENTS:
 
 (main, light, shadow)
 
 
-Properties in general: 
+### Properties in general:
 * x, y, style: fill, opacity, display (to perhaps "mute" one of them)
 
-Specifics:
+### Specifics:
 
 main: 
 * x, y are fixed to x,y of the widget-instance (changes here get overwritten in widget)
@@ -45,11 +44,22 @@ also opacity/display can be applied directly (el.style...)
 ---
 The widget elements have default settings which can be overwritten.
 
-mainEl.style.fill = "grey"
-x,y center screen
-textAnchor middle
-lightEl.style.fill = "white", offset x = -1, y = -1, opacity = 0.5
-shadow.style.fill = "red", offset x = 1, y = 1, opacity = 0.5 
+## Defaults
+### main
+.style.fill = "grey"\
+x,y center screen\
+textAnchor = "middle"
+
+### light
+.style.fill = "white"\
+x = -1, y = -1 (offset to main)\
+opacity = 0.5
+
+
+### shadow
+.style.fill = "red"\
+x = 1, y = 1 (offset to main)\
+opacity = 0.5 
 
 These values can be overwritten 
 * in resources/CSS using id (of instance) / class (of subElement)
