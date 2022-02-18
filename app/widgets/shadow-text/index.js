@@ -71,7 +71,7 @@ const construct = (el) => {
   assignProps('light', lightEl);
   assignProps('shadow', shadowEl);
   
-  assignProps('dummy', dummyEl);
+  assignProps('logText', dummyEl);
   
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
@@ -82,7 +82,7 @@ const construct = (el) => {
         e.letterSpacing = dummyEl.letterSpacing ?? 0;
         e.style.fontFamily = dummyEl.style.fontFamily;
         e.textAnchor = dummyEl.textAnchor;
-        //e.style.fontSize = mainEl.style.fontSize ?? 30;
+        //e.style.fontSize = dummyEl.style.fontSize ?? 30;
         //TODO check, why if set this, nothing gets displayed
         //works if mainEl.style is exposed and value set on .main.style.fontSize
         //but if set default in symbol /svg OR CSS it can't be overwritten
@@ -130,6 +130,9 @@ TODO Try to run with new factory?
 TODO check, which structural functions to IIFE
 
 TODO check "safety" from CSS/SVG
+
+TODO decide whether to go with dummy textEl or not.
+It isn't really necessary, but makes main a subElement only!
 */
 
 

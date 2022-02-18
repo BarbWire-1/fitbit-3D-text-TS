@@ -33,7 +33,7 @@ setInterval(() => {
     cd = 100;
   }
   //console.log(test.text)//undefined
-  //console.log(test.main.text);// this works 
+  //console.log(test.dummy.text);// this works 
 }, 1000);
 
 //text, letterSpacing, textAnchor
@@ -43,9 +43,9 @@ setInterval(() => {
 // console.log(test.text);// this remains undefined, unfortunately
 // TODO B search a way to console log these values directly from instance
 
-console.log(test.dummy.text); // this doesn't show on load
-console.log(test.dummy.letterSpacing);// 0
-console.log(test.dummy.textAnchor);// middle
+console.log(test.logText.text); // this doesn't show on load
+console.log(test.logText.letterSpacing);// 0
+console.log(test.logText.textAnchor);// middle
 
 //console.log(test.text)// undefined
 
@@ -59,6 +59,9 @@ test.textAnchor = "middle";
 test.main.style.fill = "blue";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";
+
+console.log(test.style.fontSize)
+console.log(test.logText.text)
 
 
 //INSECT OBJECTS*********************************************************************************
