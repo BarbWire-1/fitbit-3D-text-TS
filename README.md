@@ -62,7 +62,7 @@ x = 1, y = 1 (offset to main)\
 opacity = 0.5 
 
 These values can be overwritten 
-* in resources/CSS using id (of instance) / class (of subElement)
+* in resources/CSS using id or class (of instance) / id or class (of subElement)
 * in index.view via set 
 * in index.js 
 ---                        
