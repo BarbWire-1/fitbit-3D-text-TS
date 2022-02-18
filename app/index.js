@@ -118,4 +118,8 @@ inspectObject('test.main', test.main)// empty
 //TODO P A2 Since text should be the same in ALL subText elements, I can't see why you'd want to be able to set it on one of them only.
 //TODO P A2 What should users actually be able to do with main? Maybe .main should be like .light and .shadow but without .x and .y.
 //TODO P A2 Similarly, I'm very uncomfortable with things like test.light.style.fontSize = 100; as you've tried about. Does it make sense to allow this?
-//TODO P 3 I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.
+//TODO P A3 I can set test.main.style.fontSize and it doesn't get passed to light and shadow, as I couldn't do that in the redraw. Setting test.style.fontsize works fine for all.
+//TODO P A3 I don't see this as a problem, for same reason as A2. Design the API before implementing it. It isn't necessary for things to be settable in every possible way;
+//TODO P A3 that will just lead to confusion aboout which setting should take priority.
+//TODO P A3 Perhaps a good principle is that if a setting should affect the WHOLE widget (ie, ALL subTexts), it should be settable on the widget (use) itself; eg, .text, .fontSize.
+//TODO P A3 If a setting has relevance to an individual subText independently of the others, it should be settable on that subText; eg, .fill.
