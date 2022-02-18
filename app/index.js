@@ -4,6 +4,7 @@ import { today } from "user-activity";
 import { widgetFactory } from './widgets/widget-factory';
 import {shadowText} from './widgets/shadow-text';
 import {dumpProperties, inspectObject} from './devTools'
+import { CONTROLS_REPEAT_TITLE } from "blockly/msg/en";
 
 //initialize widgetFactory
 widgetFactory(shadowText);
@@ -19,6 +20,7 @@ let allLights = document.getElementsByClassName('light');
 
 
 let cd = 100;
+
 setInterval(() => {
   
   test.text = `steps ${today.adjusted.steps}`;   
@@ -31,6 +33,14 @@ setInterval(() => {
     cd = 100;
   }
 }, 1000);
+
+//text, letterSpacing, textAnchor
+//get set on widget instance, but can only be logged from instance.main!!!
+console.log(test.main.text);
+console.log(test.main.letterSpacing);
+console.log(test.main.textAnchor);
+
+
 
 countDown.light.style.opacity = 1;
 calsLabel.textAnchor = "middle";

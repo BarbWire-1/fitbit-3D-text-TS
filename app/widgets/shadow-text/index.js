@@ -4,12 +4,6 @@ import { inspectObject, dumpProperties } from '../../devTools';
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
 
-// mainEl.style.fill = "grey"
-// x,y center screen
-// textAnchor middle
-// lightEl.style.fill = "white", offset -1/-1, opacity = 0.5
-// shadowEl.style.fill = "red", offset 1/1, opacity = 0.5
-
 const construct = (el) => {
 
   // MAIN TEXTELEMENT
@@ -60,6 +54,7 @@ const construct = (el) => {
     });
   };
   // directly on instance ONLY
+  // logging from main
   defProps('letterSpacing', mainEl);
   defProps('textAnchor', mainEl);
   defProps('text', mainEl)
