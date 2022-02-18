@@ -133,6 +133,7 @@ TODO check "safety" from CSS/SVG
 
 TODO decide whether to go with dummy textEl or not.
 It isn't really necessary, but makes main a subElement only!
+so fontSize couldn't be set on main any longer
 */
 
 

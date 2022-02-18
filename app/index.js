@@ -42,6 +42,8 @@ setInterval(() => {
 // test.text = test.main.text;// doesn't help
 // console.log(test.text);// this remains undefined, unfortunately
 // TODO B search a way to console log these values directly from instance
+// now added dummy as 'logText' 
+// possible to add other properties of <use> in there to log?
 
 console.log(test.logText.text); // this doesn't show on load
 console.log(test.logText.letterSpacing);// 0
