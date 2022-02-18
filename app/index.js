@@ -109,7 +109,8 @@ dumpProperties('test.main', test.main, false) //
 inspectObject('test.main', test.main)// empty
 //inspectObject('test.light', test.light)// keys and values for !style
 
-//TODO P 3 can dumpProperties() display 'inherit'?
+//TODO P A5 can dumpProperties() display 'inherit'?
+//TODO P A5 Since the answer to A4 turned out NOT to be related to 'inherit' property values, I no longer feel the need to answer this question. :P
 //TODO P A2 You CAN'T even set test.main.text or style.font-anything
 //TODO P A2 .main is a different type of object to .light and .shadow. .main returns the Fitbit element object, whereas the others return objects made by createSubText.
 //TODO P A2 It isn't surprising that .main behaves differently to the others.

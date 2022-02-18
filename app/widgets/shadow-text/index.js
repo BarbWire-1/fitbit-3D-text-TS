@@ -16,7 +16,15 @@ const construct = (el) => {
 
   // MAIN TEXTELEMENT
   const mainEl = el.getElementById('main');
-  //inspectObject('mainEl', mainEl)// this is empty? no keys??  // TODO P 3 why no keys?
+  //inspectObject('mainEl', mainEl)// this is empty? no keys??  // TODO P A4 why no keys?
+  //TODO P A4 .keys only returns keys for members implemented in that object itself, and not those implemented by objects in its prototype chain.
+  //TODO P A4 That's why dumpProperties() iterates down though .getPrototypeOf.
+  //TODO P A4 If you inspect a dumpProperties() output, you'll see that Fitbit element objects usually(?) don't have ANYTHING implemented in them;
+  //TODO P A4 all the API is in prototypes.
+  //TODO P A4 You could modify your inspectObject() to descend through the prototype chain using a loop or recursion,
+  //TODO P A4 or you could pass myElObj.getPrototypeOf() to it and see what it spits out. Then try myElObj.getPrototypeOf().getPrototypeOf(), etc!
+  //TODO P A4 As an aside, I tried calling Fitbit API members directly from the prototype object in which they're implemented, rather than via the use element.
+  //TODO P A4 JS was happy, but the Fitbit API was not. I reported this in discord.
   //TODO this is not, what I intended, so maybe define mainEl in here?
 
   // WRAPPER TO CREATE SUB_ELs
