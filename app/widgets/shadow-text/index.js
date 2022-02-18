@@ -46,31 +46,32 @@ const construct = (el) => {
     }
   });
 
-  const defProps = (exposed, target)=> {
+  const defProps = (prop, target)=> {
     Object.defineProperty(el, exposed, {
       set(newValue) {
-        target[exposed] = newValue;
+        target[prop] = newValue;
         el.redraw();
       }
     });
   };
+  
   // directly on instance ONLY
   // logging from main
   defProps('letterSpacing', dummyEl);
   defProps('textAnchor', dummyEl);
   defProps('text', dummyEl)
   
-  // PASS PROPERTIES FROM EXPOSED TO INNER EL
-  const assignProps = (expose, target) => {
-    Object.defineProperty(el, expose,{
-      get() { return target;}
+  // Exposes property and returns all values to owner
+  const assignProps = (prop, owner) => {
+    Object.defineProperty(el, prop,{
+      get() { return owner;}
     });
   };
     
   assignProps('main', mainEl);
   assignProps('light', lightEl);
   assignProps('shadow', shadowEl);
-  
+  // to pass text and to log all text relevant data in js
   assignProps('logText', dummyEl);
   
   // PRIVATE FUNCTIONS
@@ -134,6 +135,10 @@ TODO check "safety" from CSS/SVG
 TODO decide whether to go with dummy textEl or not.
 It isn't really necessary, but makes main a subElement only!
 so fontSize couldn't be set on main any longer
+
+TODO what is the the specialty with fontSize?
+  * I can't set the API as for other properties
+  * I can't equal it from "owner" dummyEl to all el
 */
 
 
