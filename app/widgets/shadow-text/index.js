@@ -67,10 +67,10 @@ const construct = (el) => {
     }
   };
   
-  //TODO why is the object exetenable? stried seald = true; Object.seal() and also Object.preventExtension
+  
   // to switch to previous, activate line 124 lightEl
   const lightEl = new SubEffects(el.getElementById('light'));
-  Object.preventExtensions(SubEffects)
+  Object.seal(lightEl)
   const testLightEl = new SubEffects(el.getElementById('light'));
   testLightEl.style.fill = "red"//TypeError: Cannot set property 'fill' of undefined
   testLightEl.x = 5;
