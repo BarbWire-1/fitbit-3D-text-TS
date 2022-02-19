@@ -5,7 +5,7 @@
 }
 /* these settings get applied to the symbols subElements directly, so to ALL ShadowTextWidget- Elements*/
 /* you could also reach them ALL by className (same as ID) in js/ts */
-
+/*
 #light {
     fill: #ffffff;
     x:-1;
@@ -21,7 +21,7 @@
 #main {
     fill: orange;
 }
-
+*/
 /* to change settings of an indiviual ShadowTextElement differently you can do so using specified selectors like this: */
 /* This setting overrides the setting for ALL classes as it is on #ID .class */
 #countDown #main {

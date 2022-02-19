@@ -15,12 +15,11 @@ let allLights = document.getElementsByClassName('light');
 
 
 let cd = 100;
-
 setInterval(() => {
   test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
-  calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
+  //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
   if (cd == 0) {
     cd = 100;
