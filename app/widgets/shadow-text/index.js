@@ -153,8 +153,8 @@ const construct = (el) => {
     });
   };
 
-  // directly on instance ONLY
-  // logging from main
+  // on dummy for now
+  // logging from useEl.logText
   defProps('letterSpacing', dummyEl);
   defProps('textAnchor', dummyEl);
   defProps('text', dummyEl)

@@ -28,6 +28,7 @@ setInterval(() => {
   //console.log(test.dummy.text);// this works
 }, 1000);
 inspectObject('test.light', test.light)// keys and values for !style
+inspectObject('test', test)
 //text, letterSpacing, textAnchor
 //get set on widget instance, but can only be logged from instance.main as passed from there!!!
 
