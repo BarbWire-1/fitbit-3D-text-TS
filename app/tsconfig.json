@@ -10,6 +10,6 @@
 		"**/*.ts",
 		"**/*.js",
 		"../node_modules/fitbit-sdk-types/types/device"
-		
+, "widgets/shadow-text/index.js.old"		
 	]
 }

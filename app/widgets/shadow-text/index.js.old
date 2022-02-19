@@ -1,99 +1,12 @@
 "use strict"
 import { constructWidgets } from '../construct-widgets';
 import { inspectObject, dumpProperties } from '../../devTools';
-import { subtle } from 'crypto';
-
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
 
 const construct = (el) => {
- 
-//   // CLASS TESTING (flying blind)****************************************************************************
-  class SubStyle {
-    constructor(style, enumerable, fill, opacity, display, readonly, writable) {
-      this.enumerable = true;
-      this.readonly = false;
-      this.writable = true;
-      
-      this.style = {
-        get style() {
-          return {
-           fill = {
-              get fill() { return this.style.fill },
-              set fill(color) { this.style.fill = color },
-            },
-            opacity = {
-              get opacity() { return this.style.opacity },
-              set opacity(num) { style.opacity = num },
-            },
-            display = {
-              get display() { return this.style.display },
-              set display(val) { style.display = val },
-            }
-          }
-        }
-      }
-    }
-  };
-  
-  class SubEffects extends SubStyle {
-    constructor(x, y, style, enumerable, readonly,fill, opacity, display, writable) {
-      super(style, enumerable, fill, opacity, display, readonly, writable);
-      this.x = {
-        get x() { return this.x },
-        set x(num) { this.x = num },
-      },
-      this.y = {
-        get y() { return this.y },
-        set y(num) { this.y = num },
-      },
-      this.enumerable = true;
-    }
-  };
-  
-  // TODO which font-properties do I really need to expose???
-  //add super and getters/setters if possible at all
-  class SubText  extends SubStyle{
-    constructor(text,letterSpacing, style, fontSize, textAnchor,enumerable){
-      this.style = {
-        fontSize = fontSize,
-        fontFamily = fontFamily
-      };
-      this.textAnchor = textAnchor;
-      this.letterSpacing = letterSpacing;
-      this.enumerable = true;
-    }
-  };
-  
-  // to switch to previous, activate line 124 lightEl
-  const lightEl = new SubEffects(el.getElementById('light'));
-  const testLightEl = new SubEffects(el.getElementById('light'));
-  testLightEl.style.fill = "red"//TypeError: Cannot set property 'fill' of undefined
-  testLightEl.x = 5;
-  // inspectObject('testLightEl',testLightEl);
-  // dumpProperties('testLightEl', testLightEl, true)
-  // 
-  // const testShadowEl = new SubEffects(el.getElementById('shadow'));
-  // inspectObject('testShadowEl',testShadowEl);
-  // dumpProperties('testShadowEl', testShadowEl, true)
-  //lightEl = testLightEl;
-//   
-// //TODO: this is an idiotic approach: how to link to el.getElemendById this way???
-// // worked with constructor funcion, but couldn't get API running
-//   const lightEl = new SubEffects();
-//   const shadowEl = new SubEffects();
-//   // END CLASS TESTING*********************************************************************************************
-// WRAPPER TESTING****************************************************************************************************
-   
-  
-  
-  
-  
-  
-  
 
-// END WRAPPER TESTING************************************************************************************************
   // MAIN TEXTELEMENT
   //const mainEl = el.getElementById('main');
   const dummyEl = el.getElementById('dummy');
@@ -115,16 +28,10 @@ const construct = (el) => {
     get y() {return el.y},
     set y(num) {el.y = num},
   });
-  
 
-  
-  
-  
-  
-  
   //SUBTEXT elements
   // sealed to prevent changes on structure
-  //const lightEl = Object.seal(createSubText(el.getElementById('light')));
+  const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
   const mainEl = Object.seal(createSubText(el.getElementById('main')));
 
@@ -225,18 +132,4 @@ TODO what is the the specialty with fontSize?
   * I can't equal it from "owner" dummyEl to all el
 */
 
-//TODO P :) (it's not really a todo, more an asking for guidance and enlightning )
 
-/*I now have added some classStructure and object lightEl as instance.
-The original lightEl is commented-out.
-I can beautifully read and test everything, but the values set don't get applied.
-I think there must be something wrong with my getters/setters?
-I also added writable = true and readonly = false
-I'm really confused!
-(Too confused, to also add getters setters for text.
- Actually I wonder, if this approach *could* work at all.)
- 
- oooh... maybe, as I run the old redraw() with the old setter
- In defProps???
- I actually can only guess and try and fail.... 
-*/
