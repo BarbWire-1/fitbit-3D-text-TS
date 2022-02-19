@@ -111,16 +111,6 @@ const construct = (el) => {
   return el;
 };
 
-// Returns an object that provides the name of this widget and a function that can be used to construct them.
-// This is used internally by widget-factory.ts.
-export const shadowText = () => { // TODO P 3 is this nec?
-
-  return {
-    name: 'shadowText',
-    construct: construct
-  };
-};
-
 constructWidgets('shadowText', construct);
 
 
