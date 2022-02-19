@@ -20,7 +20,6 @@ setInterval(() => {
   test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
-
   calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
   if (cd == 0) {
@@ -29,7 +28,7 @@ setInterval(() => {
   //console.log(test.text)//undefined
   //console.log(test.dummy.text);// this works
 }, 1000);
-
+inspectObject('test.light', test.light)// keys and values for !style
 //text, letterSpacing, textAnchor
 //get set on widget instance, but can only be logged from instance.main as passed from there!!!
 
@@ -47,7 +46,7 @@ console.log(test.logText.textAnchor);// middle
 
 
 
-countDown.light.style.opacity = 1;
+//countDown.light.style.opacity = 1;
 calsLabel.textAnchor = "middle";
 
 test.style.fontSize = 50;
@@ -56,9 +55,14 @@ test.main.style.fill = "blue";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";
 
+
+
+//* TESTING *******************************************************************************************
 console.log(test.style.fontSize)
 console.log(test.logText.text)
-
+test.light.x = 50;
+test.light.style.fill = "red"
+test.light.style.display = "none"
 
 //INSECT OBJECTS*********************************************************************************
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
@@ -66,4 +70,4 @@ console.log(test.logText.text)
 
 // INSPECT key:value
 inspectObject('test.light', test.light)// keys and values for !style
-
+dumpProperties('test.light', test.light, true)
