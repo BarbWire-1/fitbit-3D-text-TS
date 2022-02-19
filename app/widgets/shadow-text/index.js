@@ -11,10 +11,11 @@ const construct = (el) => {
  
 //   // CLASS TESTING (flying blind)****************************************************************************
   class SubStyle {
-    constructor(style, enumerable, fill, opacity, display, readonly, writable) {
+    constructor(style, enumerable, fill, opacity, display, readonly, writable, sealed) {
       this.enumerable = true;
       this.readonly = false;
       this.writable = true;
+      this.sealed = true;
       
       this.style = {
         get style() {
@@ -38,8 +39,8 @@ const construct = (el) => {
   };
   
   class SubEffects extends SubStyle {
-    constructor(x, y, style, enumerable, readonly,fill, opacity, display, writable) {
-      super(style, enumerable, fill, opacity, display, readonly, writable);
+    constructor(x, y, style, enumerable, readonly,fill, opacity, display, writable, sealed) {
+      super(style, enumerable, fill, opacity, display, readonly, writable, sealed);
       this.x = {
         get x() { return this.x },
         set x(num) { this.x = num },
@@ -66,8 +67,10 @@ const construct = (el) => {
     }
   };
   
+  //TODO why is the object exetenable? stried seald = true; Object.seal() and also Object.preventExtension
   // to switch to previous, activate line 124 lightEl
   const lightEl = new SubEffects(el.getElementById('light'));
+  Object.preventExtensions(SubEffects)
   const testLightEl = new SubEffects(el.getElementById('light'));
   testLightEl.style.fill = "red"//TypeError: Cannot set property 'fill' of undefined
   testLightEl.x = 5;
@@ -86,6 +89,7 @@ const construct = (el) => {
 //   // END CLASS TESTING*********************************************************************************************
 // WRAPPER TESTING****************************************************************************************************
    
+
   
   
   

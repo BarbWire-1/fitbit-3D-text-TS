@@ -63,6 +63,7 @@ console.log(test.logText.text)
 test.light.x = 50;
 test.light.style.fill = "red"
 test.light.style.display = "none"
+//test.light.blah = "blah"//WHY???😭
 
 //INSECT OBJECTS*********************************************************************************
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
