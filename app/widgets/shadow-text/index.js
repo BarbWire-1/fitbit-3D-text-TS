@@ -1,4 +1,5 @@
 "use strict"
+import { constructWidgets } from '../construct-widgets';
 import { inspectObject, dumpProperties } from '../../devTools';
 
 // DEFAULTS in widgets/shadow-text/styles.css
@@ -33,7 +34,7 @@ const construct = (el) => {
   const lightEl = Object.seal(createSubText(el.getElementById('light')));
   const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
   const mainEl = Object.seal(createSubText(el.getElementById('main')));
-  
+
   // PROPERTIES
   // FIX TEXT-PROPERTIES
   //(same for all elements of instance)
@@ -47,33 +48,33 @@ const construct = (el) => {
   });
 
   const defProps = (prop, target)=> {
-    Object.defineProperty(el, exposed, {
+    Object.defineProperty(el, /*exposed*/prop, {
       set(newValue) {
         target[prop] = newValue;
         el.redraw();
       }
     });
   };
-  
+
   // directly on instance ONLY
   // logging from main
   defProps('letterSpacing', dummyEl);
   defProps('textAnchor', dummyEl);
   defProps('text', dummyEl)
-  
+
   // Exposes property and returns all values to owner
   const assignProps = (prop, owner) => {
     Object.defineProperty(el, prop,{
       get() { return owner;}
     });
   };
-    
+
   assignProps('main', mainEl);
   assignProps('light', lightEl);
   assignProps('shadow', shadowEl);
   // to pass text and to log all text relevant data in js
   assignProps('logText', dummyEl);
-  
+
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => {
@@ -98,29 +99,19 @@ const construct = (el) => {
 
 
   //INSPECT OBJECTS ***************************************************************
-  
+
   //key:value pairs
   //inspectObject('lightEl',lightEl)
-  
+
   //prototype chain
   //dumpProperties('lightEl', lightEl, true)
-  
+
   //INSPECT OBJECTS END*************************************************************
 
   return el;
 };
 
-// Returns an object that provides the name of this widget and a function that can be used to construct them.
-// This is used internally by widget-factory.ts.
-export const shadowText = () => {
-
-  return {
-    name: 'shadowText',
-    construct: construct
-  };
-};
-
-
+constructWidgets('shadowText', construct);
 
 
 

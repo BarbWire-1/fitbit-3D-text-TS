@@ -1,14 +1,9 @@
 // this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
 import document from "document";
 import { today } from "user-activity";
-import { widgetFactory } from './widgets/widget-factory';
-import {shadowText} from './widgets/shadow-text';
+//import { widgetFactory } from './widgets/widget-factory';
+import './widgets/shadow-text';
 import {dumpProperties, inspectObject} from './devTools'
-
-
-//initialize widgetFactory
-widgetFactory(shadowText);
-
 
 // single widget-uses
 let test = document.getElementById('test');
@@ -22,18 +17,17 @@ let allLights = document.getElementsByClassName('light');
 let cd = 100;
 
 setInterval(() => {
-  
-  test.text = `steps ${today.adjusted.steps}`;   
+  test.text = `steps ${today.adjusted.steps}`;
   calsLabel.text = `cals ${today.adjusted.calories}`;
   countDown.text = (`00${--cd}`).slice(-2);
- 
+
   calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
   if (cd == 0) {
     cd = 100;
   }
   //console.log(test.text)//undefined
-  //console.log(test.dummy.text);// this works 
+  //console.log(test.dummy.text);// this works
 }, 1000);
 
 //text, letterSpacing, textAnchor
@@ -42,7 +36,7 @@ setInterval(() => {
 // test.text = test.main.text;// doesn't help
 // console.log(test.text);// this remains undefined, unfortunately
 // TODO B search a way to console log these values directly from instance
-// now added dummy as 'logText' 
+// now added dummy as 'logText'
 // possible to add other properties of <use> in there to log?
 
 console.log(test.logText.text); // this doesn't show on load
