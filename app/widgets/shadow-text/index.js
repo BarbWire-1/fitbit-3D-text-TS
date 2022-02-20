@@ -34,8 +34,8 @@ const construct = (el) => {
 
   // Exposes property and returns all values to owner
   const assignProps = (prop, owner) => {
-    Object.defineProperty(el, prop,{
-      get() { return owner;}
+    Object.defineProperty(el, prop, {
+      get() { return owner; }
     });
   };
 
@@ -45,19 +45,19 @@ const construct = (el) => {
     let _textEl = el.getElementById(id);    // private because in closure; might be overkill because widget itself is a closure as well
 
     return {  // this object gets assigned to mainElContainer
-      get textEl() {return _textEl;},             // only for internal use; don't expose publicly
+      get textEl() { return _textEl; },             // only for internal use; don't expose publicly
       get API() {   // public members
         return Object.seal({    // .seal results in 'invalid arg type' error if caller attempts to set a property that isn't defined here
           get style() {   // c/- BarbWire; we only expose style.fill just to demonstrate restrictive API: calling code should be unable to access other style properties
             return {
-              get fill() {return _textEl.style.fill},
+              get fill() { return _textEl.style.fill },
               set fill(color) { _textEl.style.fill = color },
               
-              get opacity() {return _textEl.style.opacity},
+              get opacity() { return _textEl.style.opacity },
               set opacity(number) { _textEl.style.opacity = number },
               
-              get display() {return _textEl.style.display},
-              set display(value) {_textEl.style.display = value}
+              get display() { return _textEl.style.display },
+              set display(value) { _textEl.style.display = value }
             }
           }
         })
@@ -71,21 +71,21 @@ const construct = (el) => {
     let _textEl = el.getElementById(id);    // private because in closure
 
     return {  // this object gets assigned to *Container
-      get textEl() {return _textEl;},             // only for internal use; don't expose publicly
+      get textEl() { return _textEl; },             // only for internal use; don't expose publicly
       get API() {   // public members
         return Object.seal({    // .seal results in 'invalid arg type' error if caller attempts to set a property that isn't defined here
-          set x(newX) {_textEl.x = newX;},
-          set y(newY) {_textEl.y = newY;},
+          set x(newX) { _textEl.x = newX; },
+          set y(newY) { _textEl.y = newY; },
           get style() {   // c/- BarbWire; we only expose style.fill just to demonstrate restrictive API: calling code should be unable to access other style properties
             return {
-              get fill() {return _textEl.style.fill},
+              get fill() { return _textEl.style.fill },
               set fill(color) { _textEl.style.fill = color },
               
-              get opacity() {return _textEl.style.opacity},
+              get opacity() { return _textEl.style.opacity },
               set opacity(number) { _textEl.style.opacity = number },
               
-              get display() {return _textEl.style.display},
-              set display(value) {_textEl.style.display = value}
+              get display() { return _textEl.style.display },
+              set display(value) { _textEl.style.display = value }
             }
           }
         })
@@ -108,10 +108,17 @@ const construct = (el) => {
   
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  const allSubElements = el.getElementsByClassName("myText");
+  const effectElements;
+  (function () {
+      effectElements = el.getElementsByClassName('myText')
+      console.log(effectElements)
+    return effectElements;
+  })();
+  // TODO how to exclude all class != 'main' ?
+  
+  //here text-properties get passed to all elements of widget-instance
   el.redraw = () => {
-    //here text-properties get passed to all elements of widget-instance
-    allSubElements.forEach(e => {
+    effectElements.forEach(e => {
       e.text = mainContainer.textEl.text ?? "shadow-text";
       e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
       e.fontFamily = mainContainer.textEl.fontFamily;

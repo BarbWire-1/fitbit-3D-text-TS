@@ -9,7 +9,7 @@ const construct = (el) => {
 
   // MAIN TEXTELEMENT
   //const mainEl = el.getElementById('main');
-  const dummyEl = el.getElementById('dummy');
+  //const dummyEl = el.getElementById('dummy');
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
 
