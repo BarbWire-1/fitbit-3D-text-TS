@@ -100,7 +100,7 @@ const construct = (el) => {
 // END WRAPPER TESTING************************************************************************************************
   // MAIN TEXTELEMENT
   //const mainEl = el.getElementById('main');
-  const dummyEl = el.getElementById('dummy');
+  //const dummyEl = el.getElementById('dummy'); // TODO is dummyEl necessary?
   // WRAPPER TO CREATE SUB_ELs
   const createSubText = (el) => ({
 
@@ -129,8 +129,8 @@ const construct = (el) => {
   //SUBTEXT elements
   // sealed to prevent changes on structure
   //const lightEl = Object.seal(createSubText(el.getElementById('light')));
-  const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
-  const mainEl = Object.seal(createSubText(el.getElementById('main')));
+  //const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
+  //const mainEl = Object.seal(createSubText(el.getElementById('main')));
 
   // PROPERTIES
   // FIX TEXT-PROPERTIES
@@ -139,8 +139,7 @@ const construct = (el) => {
   // but also works on main without passing to others
   Object.defineProperty(el, 'fontSize', {
     set(newValue) {
-      dummyEl.style.fontSize = newValue;
-      el.redraw();
+      mainContainer.textEl.fontSize = shadowContainer.textEl.fontSize = lightContainer.textEl.fontSize = newValue;
     }
   });
 
@@ -155,9 +154,27 @@ const construct = (el) => {
 
   // on dummy for now
   // logging from useEl.logText
-  defProps('letterSpacing', dummyEl);
-  defProps('textAnchor', dummyEl);
-  defProps('text', dummyEl)
+  //defProps('letterSpacing', dummyEl);
+  //defProps('textAnchor', dummyEl);
+  //defProps('text', dummyEl)
+
+  Object.defineProperty(el, 'text', {
+    set(newValue) {
+      mainContainer.textEl.text = shadowContainer.textEl.text = lightContainer.textEl.text = newValue;  // could iterate if preferred, but that would be slower
+    }
+  });
+
+  Object.defineProperty(el, 'textAnchor', {
+    set(newValue) {
+      mainContainer.textEl.textAnchor = shadowContainer.textEl.textAnchor = lightContainer.textEl.textAnchor = newValue;  // could iterate if preferred, but that would be slower
+    }
+  });
+
+  Object.defineProperty(el, 'letterSpacing', {
+    set(newValue) {
+      mainContainer.textEl.letterSpacing = shadowContainer.textEl.letterSpacing = lightContainer.textEl.letterSpacing = newValue;  // could iterate if preferred, but that would be slower
+    }
+  });
 
   // Exposes property and returns all values to owner
   const assignProps = (prop, owner) => {
@@ -169,7 +186,7 @@ const construct = (el) => {
   let createTextElContainer = id => {
     // Constructs a closure around a TextElement object.
     // id: string: id of <TextElement> element
-    let _textEl = el.getElementById(id);    // private because in closure
+    let _textEl = el.getElementById(id);    // private because in closure; might be overkill because widget itself is a closure as well
 
     return {  // this object gets assigned to mainElContainer
       get textEl() {return _textEl;},             // only for internal use; don't expose publicly
@@ -221,17 +238,18 @@ const construct = (el) => {
   assignProps('light', lightAPI);
   assignProps('shadow', shadowAPI);
   // to pass text and to log all text relevant data in js
-  assignProps('logText', dummyEl);
+  //assignProps('logText', dummyEl);
 
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   el.redraw = () => {
     //here text-properties get passed to all el of widget-instance
+      // TODO P 0 redo to avoid extra calls to getElement
       el.getElementsByClassName("myText").forEach((e) => {
-        e.text = dummyEl.text ?? "TEXT";
-        e.letterSpacing = dummyEl.letterSpacing ?? 0;
-        e.style.fontFamily = dummyEl.style.fontFamily;
-        e.textAnchor = dummyEl.textAnchor;
+        e.text = mainContainer.textEl.text ?? "TEXT";
+        e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
+        e.style.fontFamily = mainContainer.textEl.style.fontFamily;
+        e.textAnchor = mainContainer.textEl.textAnchor;
         //e.style.fontSize = dummyEl.style.fontSize ?? 30;
         //TODO check, why if set this, nothing gets displayed
         //works if mainEl.style is exposed and value set on .main.style.fontSize
@@ -240,7 +258,7 @@ const construct = (el) => {
         });
 
   // fix main at x,y of <use>
-  mainEl.x = mainEl.y = 0;
+  //mainEl.x = mainEl.y = 0;  // TODO it shouldn't be necessary to do this every time anything is changed; ideally, it shouldn't be necessary to do this at all. If we don't expose mainEl.x and .y, then caller could only break it using SVG/CSS.
   };
 
   el.redraw();

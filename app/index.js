@@ -51,6 +51,7 @@ calsLabel.textAnchor = "middle";
 
 test.style.fontSize = 50;
 test.textAnchor = "middle";
+test.letterSpacing = 5;
 test.main.style.fill = "white";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";
