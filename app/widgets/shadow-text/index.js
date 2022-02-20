@@ -114,12 +114,14 @@ const construct = (el) => {
     allSubElements.forEach(e => {
       e.text = mainContainer.textEl.text ?? "shadow-text";
       e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
-      e.style.fontFamily = mainContainer.textEl.style.fontFamily;
+      e.fontFamily = mainContainer.textEl.fontFamily;
       e.textAnchor = mainContainer.textEl.textAnchor;
       e.fontSize = mainContainer.fontSize ?? 30;
     });
   };
-
+  // TODO investigate, why all textProperties work directly on textEl;
+  // and why e.style.fontSize didn't work while it did for letterspacing,
+  // BUT (!!!) can be removed without any influence here
   el.redraw();
 
 

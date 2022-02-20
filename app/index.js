@@ -29,13 +29,14 @@ setInterval(() => {
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
 test.textAnchor = "middle";
-test.letterSpacing = 0;
+test.letterSpacing = 10;
 test.main.style.fill = "blue";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
