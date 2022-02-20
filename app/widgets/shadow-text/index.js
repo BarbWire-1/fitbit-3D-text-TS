@@ -106,11 +106,10 @@ const construct = (el) => {
   assignProps('light', lightAPI);
   assignProps('shadow', shadowAPI);
   
-  // PRIVATE FUNCTIONS
-  // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  console.log(el.firstChild.nextSibling.nextSibling.class)//myText main  
+  //tried to get all expect main here, therefor the function
   const allSubTextElements;
-  !function() {
+  !function () {
+      console.log(el.firstChild.nextSibling.nextSibling.class)//myText main  
       allSubTextElements = el.getElementsByClassName('myText')
       //console.log(allSubTextElements)
       return allSubTextElements;
