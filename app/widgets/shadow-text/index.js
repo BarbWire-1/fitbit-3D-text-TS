@@ -51,7 +51,13 @@ const construct = (el) => {
           get style() {   // c/- BarbWire; we only expose style.fill just to demonstrate restrictive API: calling code should be unable to access other style properties
             return {
               get fill() {return _textEl.style.fill},
-              set fill(color) {_textEl.style.fill = color}
+              set fill(color) { _textEl.style.fill = color },
+              
+              get opacity() {return _textEl.style.opacity},
+              set opacity(number) { _textEl.style.opacity = number },
+              
+              get display() {return _textEl.style.display},
+              set display(value) {_textEl.style.display = value}
             }
           }
         })
@@ -76,7 +82,7 @@ const construct = (el) => {
               set fill(color) { _textEl.style.fill = color },
               
               get opacity() {return _textEl.style.opacity},
-              set opacity(number) { _textEl.style.fill = number },
+              set opacity(number) { _textEl.style.opacity = number },
               
               get display() {return _textEl.style.display},
               set display(value) {_textEl.style.display = value}
