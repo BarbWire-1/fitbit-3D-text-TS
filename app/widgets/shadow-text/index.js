@@ -60,10 +60,10 @@ const construct = (el) => {
               set display(value) { _textEl.style.display = value }
             }
           }
-        })
+        });
       }
-    }
-  }
+    };
+  };
 
   let createOuterTextElContainer = id => {    // TODO P can this be derived from createTextElContainer?
     // Constructs a closure around a TextElement object.
@@ -90,8 +90,8 @@ const construct = (el) => {
           }
         })
       }
-    }
-  }
+    };
+  };
 
   const mainContainer = createTextElContainer('main');
   const mainAPI = mainContainer.API;    // save this so we don't have to reconstruct the API object every time it's accessed
@@ -108,23 +108,25 @@ const construct = (el) => {
   
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
-  const effectElements;
+  console.log(el.firstChild.nextSibling.nextSibling.class)//myText main  
+  const allSubTextElements;
   (function () {
-      effectElements = el.getElementsByClassName('myText')
-      console.log(effectElements)
-    return effectElements;
+      allSubTextElements = el.getElementsByClassName('myText')
+      //console.log(allSubTextElements)
+      return allSubTextElements;
   })();
-  // TODO how to exclude all class != 'main' ?
+  // TODO how to exclude all class = 'main' ? or go on id 'main'
+  // to reach symbol directly? not worth it, I guess. but still...
   
   //here text-properties get passed to all elements of widget-instance
   el.redraw = () => {
-    effectElements.forEach(e => {
-      e.text = mainContainer.textEl.text ?? "shadow-text";
-      e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
-      e.fontFamily = mainContainer.textEl.fontFamily;
-      e.textAnchor = mainContainer.textEl.textAnchor;
-      e.fontSize = mainContainer.fontSize ?? 30;
-    });
+     allSubTextElements.forEach(e => {
+        e.text = mainContainer.textEl.text ?? "shadow-text";
+        e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
+        e.fontFamily = mainContainer.textEl.fontFamily;
+        e.textAnchor = mainContainer.textEl.textAnchor;
+        e.fontSize = mainContainer.fontSize ?? 30;
+      });
   };
   // TODO investigate, why all textProperties work directly on textEl;
   // and why e.style.fontSize didn't work while it did for letterspacing,
