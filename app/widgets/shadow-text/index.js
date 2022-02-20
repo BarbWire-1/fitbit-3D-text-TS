@@ -1,162 +1,18 @@
 "use strict"
 import { constructWidgets } from '../construct-widgets';
 import { inspectObject, dumpProperties } from '../../devTools';
-import { subtle } from 'crypto';
-
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
 
 const construct = (el) => {
 
-//   // CLASS TESTING (flying blind)****************************************************************************
-  class SubStyle {
-    constructor(style, enumerable, fill, opacity, display, readonly, writable, sealed) {
-      this.enumerable = true;
-      this.readonly = false;
-      this.writable = true;
-      this.sealed = true;
 
-      this.style = {
-        get style() {
-          return {
-           fill = {
-              get fill() { return this.style.fill },
-              set fill(color) { this.style.fill = color },
-            },
-            opacity = {
-              get opacity() { return this.style.opacity },
-              set opacity(num) { style.opacity = num },
-            },
-            display = {
-              get display() { return this.style.display },
-              set display(val) { style.display = val },
-            }
-          }
-        }
-      }
-    }
-  };
-
-  class SubEffects extends SubStyle {
-    constructor(x, y, style, enumerable, readonly,fill, opacity, display, writable, sealed) {
-      super(style, enumerable, fill, opacity, display, readonly, writable, sealed);
-      this.x = {
-        get x() { return this.x },
-        set x(num) { this.x = num },
-      },
-      this.y = {
-        get y() { return this.y },
-        set y(num) { this.y = num },
-      },
-      this.enumerable = true;
-    }
-  };
-
-  // TODO which font-properties do I really need to expose???
-  //add super and getters/setters if possible at all
-  class SubText  extends SubStyle{
-    constructor(text,letterSpacing, style, fontSize, textAnchor,enumerable){
-      this.style = {
-        fontSize = fontSize,
-        fontFamily = fontFamily
-      };
-      this.textAnchor = textAnchor;
-      this.letterSpacing = letterSpacing;
-      this.enumerable = true;
-    }
-  };
-
-
-  // to switch to previous, activate line 124 lightEl
-  const lightEl = new SubEffects(el.getElementById('light'));
-  Object.seal(lightEl)
-  const testLightEl = new SubEffects(el.getElementById('light'));
-  testLightEl.style.fill = "red"//TypeError: Cannot set property 'fill' of undefined
-  testLightEl.x = 5;
-  // inspectObject('testLightEl',testLightEl);
-  // dumpProperties('testLightEl', testLightEl, true)
-  //
-  // const testShadowEl = new SubEffects(el.getElementById('shadow'));
-  // inspectObject('testShadowEl',testShadowEl);
-  // dumpProperties('testShadowEl', testShadowEl, true)
-  //lightEl = testLightEl;
-//
-// //TODO: this is an idiotic approach: how to link to el.getElemendById this way???
-// // worked with constructor funcion, but couldn't get API running
-//   const lightEl = new SubEffects();
-//   const shadowEl = new SubEffects();
-//   // END CLASS TESTING*********************************************************************************************
-// WRAPPER TESTING****************************************************************************************************
-
-
-
-
-
-
-
-
-
-// END WRAPPER TESTING************************************************************************************************
-  // MAIN TEXTELEMENT
-  //const mainEl = el.getElementById('main');
-  //const dummyEl = el.getElementById('dummy'); // TODO is dummyEl necessary?
-  // WRAPPER TO CREATE SUB_ELs
-  const createSubText = (el) => ({
-
-    get style() {
-      return {
-        get fill() {return el.style.fill},
-        set fill(color) {el.style.fill = color},
-        get opacity() {return el.style.opacity},
-        set opacity(num) {el.style.opacity = num},
-        get display() {return el.style.display},
-        set display(val) {el.style.display = val},
-     }
-    },
-    get x() {return el.x},
-    set x(num) {el.x = num},
-    get y() {return el.y},
-    set y(num) {el.y = num},
-  });
-
-
-
-
-
-
-
-  //SUBTEXT elements
-  // sealed to prevent changes on structure
-  //const lightEl = Object.seal(createSubText(el.getElementById('light')));
-  //const shadowEl = Object.seal(createSubText(el.getElementById('shadow')));
-  //const mainEl = Object.seal(createSubText(el.getElementById('main')));
-
-  // PROPERTIES
-  // FIX TEXT-PROPERTIES
-  //(same for all elements of instance)
-  // unfortunately can't set this on instance only
-  // but also works on main without passing to others
   Object.defineProperty(el, 'fontSize', {
     set(newValue) {
       mainContainer.textEl.fontSize = shadowContainer.textEl.fontSize = lightContainer.textEl.fontSize = newValue;
     }
   });
-
-  const defProps = (prop, target)=> {
-    Object.defineProperty(el, /*exposed*/prop, {
-      set(newValue) {
-        target[prop] = newValue;
-        el.redraw();
-      }
-    });
-  };
-
-  // on dummy for now
-  // logging from useEl.logText
-  //defProps('letterSpacing', dummyEl);
-  //defProps('textAnchor', dummyEl);
-  //defProps('text', dummyEl)
 
   Object.defineProperty(el, 'text', {
     set(newValue) {
@@ -217,7 +73,13 @@ const construct = (el) => {
           get style() {   // c/- BarbWire; we only expose style.fill just to demonstrate restrictive API: calling code should be unable to access other style properties
             return {
               get fill() {return _textEl.style.fill},
-              set fill(color) {_textEl.style.fill = color}
+              set fill(color) { _textEl.style.fill = color },
+              
+              get opacity() {return _textEl.style.opacity},
+              set opacity(number) { _textEl.style.fill = number },
+              
+              get display() {return _textEl.style.display},
+              set display(value) {_textEl.style.display = value}
             }
           }
         })
@@ -237,37 +99,28 @@ const construct = (el) => {
   assignProps('main', mainAPI);
   assignProps('light', lightAPI);
   assignProps('shadow', shadowAPI);
-  // to pass text and to log all text relevant data in js
-  //assignProps('logText', dummyEl);
-
+  
   // PRIVATE FUNCTIONS
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
+  const allSubElements = el.getElementsByClassName("myText");
   el.redraw = () => {
-    //here text-properties get passed to all el of widget-instance
-      // TODO P 0 redo to avoid extra calls to getElement
-      el.getElementsByClassName("myText").forEach((e) => {
-        e.text = mainContainer.textEl.text ?? "TEXT";
-        e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
-        e.style.fontFamily = mainContainer.textEl.style.fontFamily;
-        e.textAnchor = mainContainer.textEl.textAnchor;
-        //e.style.fontSize = dummyEl.style.fontSize ?? 30;
-        //TODO check, why if set this, nothing gets displayed
-        //works if mainEl.style is exposed and value set on .main.style.fontSize
-        //but if set default in symbol /svg OR CSS it can't be overwritten
-         //while other props CAN
-        });
-
-  // fix main at x,y of <use>
-  //mainEl.x = mainEl.y = 0;  // TODO it shouldn't be necessary to do this every time anything is changed; ideally, it shouldn't be necessary to do this at all. If we don't expose mainEl.x and .y, then caller could only break it using SVG/CSS.
+    //here text-properties get passed to all elements of widget-instance
+    allSubElements.forEach(e => {
+      e.text = mainContainer.textEl.text ?? "shadow-text";
+      e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
+      e.style.fontFamily = mainContainer.textEl.style.fontFamily;
+      e.textAnchor = mainContainer.textEl.textAnchor;
+      e.fontSize = mainContainer.fontSize ?? 30;
+    });
   };
 
   el.redraw();
 
 
   //INSPECT OBJECTS ***************************************************************
-
+  // values currently not readable
   //key:value pairs
-  //inspectObject('lightEl',lightEl)
+  //inspectObject('textEl',textEl)
 
   //prototype chain
   //dumpProperties('lightEl', lightEl, true)
@@ -283,33 +136,6 @@ constructWidgets('shadowText', construct);
 
 /*
 TODO Exception for trying to add not exposed props
-TODO Try to run with new factory?
-
-TODO check, which structural functions to IIFE
-
+TODO Try to run with new factory
 TODO check "safety" from CSS/SVG
-
-TODO decide whether to go with dummy textEl or not.
-It isn't really necessary, but makes main a subElement only!
-so fontSize couldn't be set on main any longer
-
-TODO what is the the specialty with fontSize?
-  * I can't set the API as for other properties
-  * I can't equal it from "owner" dummyEl to all el
-*/
-
-//TODO P :) (it's not really a todo, more an asking for guidance and enlightning )
-
-/*I now have added some classStructure and object lightEl as instance.
-The original lightEl is commented-out.
-I can beautifully read and test everything, but the values set don't get applied.
-I think there must be something wrong with my getters/setters?
-I also added writable = true and readonly = false
-I'm really confused!
-(Too confused, to also add getters setters for text.
- Actually I wonder, if this approach *could* work at all.)
-
- oooh... maybe, as I run the old redraw() with the old setter
- In defProps???
- I actually can only guess and try and fail....
 */

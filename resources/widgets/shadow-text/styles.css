@@ -3,14 +3,6 @@
     text-length: 20;
 }
 
-#dummy {
-    
-    text-anchor: middle;
-    font-size: 30;
-    letter-spacing: 0;
-    text-anchor: "middle" ; 
-}
-
 
 .main {
     fill: grey; 
@@ -22,11 +14,11 @@
     fill: red;
     x: 1;
     y: 1;
-    opacity: 0.5;
+    opacity: 1;
 }
 .light {
     fill: white;
     x: -1;
     y: -1;
-    opacity: 0.5;
+    opacity: 1;
 }
