@@ -110,11 +110,11 @@ const construct = (el) => {
   // Because the widget is a closure, functions declared here aren't accessible to code outside the widget.
   console.log(el.firstChild.nextSibling.nextSibling.class)//myText main  
   const allSubTextElements;
-  (function () {
+  !function() {
       allSubTextElements = el.getElementsByClassName('myText')
       //console.log(allSubTextElements)
       return allSubTextElements;
-  })();
+  }();//IIFE
   // TODO how to exclude all class = 'main' ? or go on id 'main'
   // to reach symbol directly? not worth it, I guess. but still...
   
