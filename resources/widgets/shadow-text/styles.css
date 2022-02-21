@@ -1,10 +1,10 @@
 .myText {
     text-length: 20;
+    letter-spacing: 0;
 }
 .main {
     fill: grey;
-    text-anchor: 'middle';
-    
+   
 }
 .shadow {
     fill: red;
