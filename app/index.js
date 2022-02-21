@@ -29,7 +29,7 @@ setInterval(() => {
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
 test.textAnchor = "middle";
-test.letterSpacing = 10;
+test.letterSpacing = 2;
 test.main.style.fill = "blue";
 test.shadow.style.fill="black";
 test.light.style.fill = "white";

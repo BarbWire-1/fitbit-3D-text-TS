@@ -121,7 +121,7 @@ const construct = (el) => {
   el.redraw = () => {
      allSubTextElements.forEach(e => {
         e.text = mainContainer.textEl.text;
-        e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
+        e.letterSpacing = mainContainer.textEl.letterSpacing;
         e.fontFamily = mainContainer.textEl.fontFamily;
         e.textAnchor = mainContainer.textEl.textAnchor;
         e.fontSize = mainContainer.fontSize;

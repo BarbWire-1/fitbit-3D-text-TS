@@ -1,8 +1,9 @@
-
 .myText {
-    text-length: 20;
+    text-buffer: "shadow-text";
+    text-anchor: "start";
+    letter-spacing: 0;
+    text-length: 20;  
 }
-
 
 .main {
     fill: grey; 
@@ -22,3 +23,4 @@
     y: -1;
     opacity: 1;
 }
+
