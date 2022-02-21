@@ -118,4 +118,6 @@ const construct = (el: ShadowTextWidget) => {
 
   TODO B 1 if not loggable this way, back to wrapper?
   first try find out, what's wrong
+  
+  TODO check, why VS Code settings changed - and change back
   */
