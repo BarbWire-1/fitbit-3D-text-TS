@@ -4,6 +4,7 @@
 }
 .main {
     fill: grey;
+    text-buffer: 'fitbit';
    
 }
 .shadow {
