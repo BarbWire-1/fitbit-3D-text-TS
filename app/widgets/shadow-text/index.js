@@ -1,7 +1,6 @@
 'use strict';
 import { constructWidgets } from '../construct-widgets';
 import { inspectObject, dumpProperties } from '../../devTools';
-import { subtle } from 'crypto';
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -19,10 +18,10 @@ const construct = (el) => {
 		},
 	});
 
-	const defProps = (prop, target) => {
+	const defProps = (prop, obj) => {
 		Object.defineProperty(el, prop, {
 			set(newValue) {
-				target[prop] = newValue;
+				obj[prop] = newValue;
 				el.redraw();
 			},
 		});
@@ -56,10 +55,10 @@ const construct = (el) => {
 	});
 
 	// Exposes property and returns all values to owner
-	const assignProps = (prop, owner) => {
+	const assignProps = (prop, obj) => {
 		Object.defineProperty(el, prop, {
 			get() {
-				return owner;
+				return obj;
 			},
 		});
 	};
@@ -71,8 +70,9 @@ const construct = (el) => {
 
 		return {
 			// this object gets assigned to mainElContainer
-			get textEl() {
-				return _textEl;
+            get textEl() {
+                return _textEl;
+			
 			}, // only for internal use; don't expose publicly
 			get API() {
 				// public members
@@ -81,19 +81,18 @@ const construct = (el) => {
 					get style() {
 						// c/- BarbWire; we only expose style.fill just to demonstrate restrictive API: calling code should be unable to access other style properties
 						return {
-							get fill() {
-								return _textEl.style.fill;
-							},
-							set fill(color) {
-								_textEl.style.fill = color;
-							},
+							get fill() { return _textEl.style.fill; },
+                            set fill(color) { _textEl.style.fill = color; },
+                            
+								
+							
 						};
 					},
 				});
 			},
 		};
 	};
-
+    
 	let createOuterTextElContainer = (id) => {
 		// TODO P can this be derived from createTextElContainer?
 		// Constructs a closure around a TextElement object.
@@ -189,30 +188,6 @@ constructWidgets('shadowText', construct);
     TODO Try to run with new factory?
 
     TODO check, which structural functions to IIFE
-
-    TODO check "safety" from CSS/SVG
-
-    TODO decide whether to go with dummy textEl or not.
-    It isn't really necessary, but makes main a subElement only!
-    so fontSize couldn't be set on main any longer
-
-    TODO what is the the specialty with fontSize?
-    * I can't set the API as for other properties
-    * I can't equal it from "owner" dummyEl to all el
-    */
-
-//TODO P :) (it's not really a todo, more an asking for guidance and enlightning )
-
-/*I now have added some classStructure and object lightEl as instance.
-    The original lightEl is commented-out.
-    I can beautifully read and test everything, but the values set don't get applied.
-    I think there must be something wrong with my getters/setters?
-    I also added writable = true and readonly = false
-    I'm really confused!
-    (Too confused, to also add getters setters for text.
-    Actually I wonder, if this approach *could* work at all.)
-
-    oooh... maybe, as I run the old redraw() with the old setter
-    In defProps???
-    I actually can only guess and try and fail....
+    TODO prettier setting for not breaking everything into lines
+    
     */
