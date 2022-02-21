@@ -115,5 +115,7 @@ const construct = (el: ShadowTextWidget) => {
   TODO interesting:
   getElement as TextElement but export as SubText limits props!!!
   
+
+  TODO B 1 if not loggable this way, back to wrapper?
+  first try find out, what's wrong
   */
-    
