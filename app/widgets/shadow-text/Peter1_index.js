@@ -12,7 +12,7 @@ const construct = (el) => {
 //   // CLASS TESTING (flying blind)****************************************************************************
   class SubStyle {
     constructor(style, enumerable, fill, opacity, display, readonly, writable, sealed) {
-      this.enumerable = true;
+    this.enumerable = true;
       this.readonly = false;
       this.writable = true;
       this.sealed = true;
@@ -35,7 +35,7 @@ const construct = (el) => {
           }
         }
       }
-    }
+      };
   };
 
   class SubEffects extends SubStyle {
@@ -52,7 +52,7 @@ const construct = (el) => {
       this.enumerable = true;
     }
   };
-
+    
   // TODO which font-properties do I really need to expose???
   //add super and getters/setters if possible at all
   class SubText  extends SubStyle{

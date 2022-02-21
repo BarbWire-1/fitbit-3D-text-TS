@@ -1,9 +1,9 @@
 // this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
-import document from "document";
-import { today } from "user-activity";
+import document from 'document';
+import { today } from 'user-activity';
 //import { widgetFactory } from './widgets/widget-factory';
 import './widgets/shadow-text';
-import {dumpProperties, inspectObject} from './devTools'
+import { dumpProperties, inspectObject } from './devTools';
 
 // single widget-uses
 let test = document.getElementById('test');
@@ -13,20 +13,20 @@ let countDown = document.getElementById('countDown');
 //class light
 let allLights = document.getElementsByClassName('light');
 
-
 let cd = 100;
 setInterval(() => {
-  test.text = `steps ${today.adjusted.steps}`;
-  calsLabel.text = `cals ${today.adjusted.calories}`;
-  countDown.text = (`00${--cd}`).slice(-2);
-  //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
+	test.text = `steps ${today.adjusted.steps}`;
+	calsLabel.text = `cals ${today.adjusted.calories}`;
+	countDown.text = `00${--cd}`.slice(-2);
+	//calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
-  if (cd == 0) {
-    cd = 100;
-  }
-  //console.log(test.text)//undefined
-  //console.log(test.dummy.text);// this works
+	if (cd == 0) {
+		cd = 100;
+	}
+	//console.log(test.text)//undefined
+	//console.log(test.dummy.text);// this works
 }, 1000);
+
 //inspectObject('test.light', test.light)// keys and values for !style
 //inspectObject('test', test)
 //text, letterSpacing, textAnchor
@@ -44,28 +44,24 @@ setInterval(() => {
 
 //console.log(test.text)// undefined
 
-
-
 //countDown.light.style.opacity = 1;
-calsLabel.textAnchor = "middle";
+calsLabel.textAnchor = 'middle';
 
 test.style.fontSize = 50;
-test.textAnchor = "middle";
+test.textAnchor = 'middle';
 test.letterSpacing = 5;
-test.main.style.fill = "white";
-test.shadow.style.fill="black";
-test.light.style.fill = "white";
+test.main.style.fill = 'white';
+test.shadow.style.fill = 'black';
+test.light.style.fill = 'white';
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
-
-
 
 //* TESTING *******************************************************************************************
 //console.log(test.style.fontSize)
 //console.log(test.logText.text)
 test.light.x = -5;
 test.light.y = -3;
-test.light.style.fill = "red"
-test.light.style.display = "none"
+test.light.style.fill = 'red';
+test.light.style.display = 'none';
 test.shadow.x = 5;
 test.shadow.y = 3;
 //test.light.blah = "blah"//Unhandled exception: TypeError: Invalid argument type.
