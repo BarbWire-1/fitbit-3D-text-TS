@@ -267,7 +267,7 @@ const construct = (el) => {
   //INSPECT OBJECTS ***************************************************************
 
   //key:value pairs
-  inspectObject('lightEl',lightEl)
+  //inspectObject('lightEl',lightEl)
 
   //prototype chain
   //dumpProperties('lightEl', lightEl, true)
