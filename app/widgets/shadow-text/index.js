@@ -120,16 +120,15 @@ const construct = (el) => {
   //here text-properties get passed to all elements of widget-instance
   el.redraw = () => {
      allSubTextElements.forEach(e => {
-        e.text = mainContainer.textEl.text ?? "shadow-text";
+        e.text = mainContainer.textEl.text;
         e.letterSpacing = mainContainer.textEl.letterSpacing ?? 0;
         e.fontFamily = mainContainer.textEl.fontFamily;
         e.textAnchor = mainContainer.textEl.textAnchor;
-        e.fontSize = mainContainer.fontSize ?? 30;
+        e.fontSize = mainContainer.fontSize;
       });
   };
-  // TODO investigate, why all textProperties work directly on textEl;
-  // and why e.style.fontSize didn't work while it did for letterspacing,
-  // BUT (!!!) can be removed without any influence here
+    // As the <use> doesn't have '.style', but obviously can take the values here,
+    // the writing is e.prop directly. At least that is my current assumption.
   el.redraw();
 
 

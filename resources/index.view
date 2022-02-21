@@ -2,7 +2,7 @@
     <rect id="background" />
 
 
-    <use id="test" href="#shadowText"/> <!--min requirements for default-->
+    <use id="test" href="#shadowText" x="50%" y="50%"/> <!--min requirements for default-->
 
 
 
