@@ -106,8 +106,13 @@ export interface ShadowTextWidget extends TextElement {
             e.textAnchor = mainEl.textAnchor;
           } catch(e) {
             e.textAnchor = 'start';  // default
-          }
-           // e.textAnchor = mainEl.textAnchor ?? "start";
+          };
+          // try {     // textEl.textAnchor throws an error if textAnchor not defined
+          //   e.style.fontSize = mainEl.style.fontSize;
+          // } catch(e) {
+          //   e.style.fontsize= 30;  // default
+          // }
+          // unfortunately doesn't work for fontSize
             //e.style.fontSize = mainEl.style.fontSize; 
             //TODO check, why if set this, nothing gets displayed
         });
