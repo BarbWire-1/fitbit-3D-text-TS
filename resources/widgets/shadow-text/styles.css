@@ -5,20 +5,20 @@
 
 
 .main {
-    fill: grey; 
-    
-    
-    
+    fill: grey;
+
+
+
 }
 .shadow {
     fill: red;
-    x: 1;
-    y: 1;
+    x: 3;
+    y: 3;
     opacity: 1;
 }
 .light {
     fill: white;
-    x: -1;
-    y: -1;
+    x: -3;
+    y: -3;
     opacity: 1;
 }
