@@ -40,6 +40,7 @@ test.light.style.opacity = 0.2;
 test.shadow.x = 5;
 test.shadow.y = 5;
 if (test.light.style.textEl) console.warn('textEl is accessible!! :('); // whinge if textEl is exposed publicly
+if (test.light.style.styleBase) console.warn('styleBase is accessible!! :('); // whinge if textEl is exposed publicly
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;

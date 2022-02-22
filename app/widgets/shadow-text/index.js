@@ -14,12 +14,12 @@ const construct = (el) => {
 
   class StyleCommon {     // style properties common to all elements
     constructor(styleBase) {
-      // styleBase: the Fitbit API style object that implements things
+      // styleBase: the Fitbit API style object that implements things.
+      // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
+      // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
       Object.defineProperty(this, 'opacity', {set(newValue) {styleBase.opacity = newValue;}});
       Object.defineProperty(this, 'display', {set(newValue) {styleBase.display = newValue;}});
     }
-    //set opacity(newValue) {this.textEl.style.opacity = newValue;}
-    //set display(newValue) {this.textEl.style.display = newValue;}
   }
 
   class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
