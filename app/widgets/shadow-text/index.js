@@ -10,47 +10,57 @@ const construct = (el) => {
   let mainEl = el.getElementById('main');
   let lightEl = el.getElementById('light');
   let shadowEl = el.getElementById('shadow');
+  let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
 
   class StyleCommon {     // style properties common to all elements
-    constructor(textEl) {
-      Object.defineProperty(this, 'opacity', {set(newValue) {textEl.style.opacity = newValue;}});
-      Object.defineProperty(this, 'display', {set(newValue) {textEl.style.display = newValue;}});
+    constructor(styleBase) {
+      // styleBase: the Fitbit API style object that implements things
+      Object.defineProperty(this, 'opacity', {set(newValue) {styleBase.opacity = newValue;}});
+      Object.defineProperty(this, 'display', {set(newValue) {styleBase.display = newValue;}});
     }
     //set opacity(newValue) {this.textEl.style.opacity = newValue;}
     //set display(newValue) {this.textEl.style.display = newValue;}
   }
 
   class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-    // TODO P 3.2 implement StyleWidget
-    constructor(textEl) {
-      super(textEl);
+    // TODO P 3.2 implement StyleWidget: needs to redefine opacity and display to apply to useEl??
+    constructor(elStyle) {
+      super(elStyle);
       Object.defineProperty(this, 'fontSize', {set(newValue) {mainEl.style.fontSize = shadowEl.style.fontSize = lightEl.style.fontSize = newValue;}});
       Object.defineProperty(this, 'fontFamily', {set(newValue) {mainEl.style.fontFamily = shadowEl.style.fontFamily = lightEl.style.fontFamily = newValue;}});
     }
   }
 
   class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
-    constructor(textEl) {
-      super(textEl);
-      Object.defineProperty(this, 'fill', {set(newValue) {textEl.style.fill = newValue;}});
+    constructor(styleBase) {
+      super(styleBase);
+      Object.defineProperty(this, 'fill', {set(newValue) {styleBase.fill = newValue;}});
     }
   }
 
   let mainAPI = Object.seal({
-    style: new StyleSubText(mainEl)
+    style: new StyleSubText(mainEl.style)
   })
 
   let lightAPI = Object.seal({
-    style: new StyleSubText(lightEl),
+    style: new StyleSubText(lightEl.style),
     set x(newValue) {lightEl.x = newValue;},
     set y(newValue) {lightEl.y = newValue;}
   })
 
   let shadowAPI = Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
-    style: new StyleSubText(shadowEl),
+    style: new StyleSubText(shadowEl.style),
     set x(newValue) {shadowEl.x = newValue;},
     set y(newValue) {shadowEl.y = newValue;}
   })
+
+  let widgetStyleAPI = new StyleWidget(elStyle); // TODO P 3.1 seal?
+
+  Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
+    get() {
+      return widgetStyleAPI;
+    }
+  });
 
   Object.defineProperty(el, 'text', {
     set(newValue) {
@@ -162,7 +172,7 @@ const construct = (el) => {
         e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
         e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
         e.textAnchor = mainEl.textAnchor;               // TODO should mainEl be el?
-        e.style.fontSize = el.style.fontSize > 0? el.style.fontSize : 30;   // if fontSize is undefined its value is -32768
+        e.style.fontSize = elStyle.fontSize > 0? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
     });
   };
   // TODO investigate, why all textProperties work directly on textEl;

@@ -27,7 +27,8 @@ setInterval(() => {
 }, 1000);
 
 //* TESTING *******************************************************************************************
-test.style.fontSize = 40;
+test.style.fontSize = 10;
+test.style.opacity = 0.2;
 test.textAnchor = "middle";
 test.letterSpacing = 10;
 test.main.style.fill = "white";
