@@ -12,20 +12,28 @@ const construct = (el) => {
   let shadowEl = el.getElementById('shadow');
 
   class StyleCommon {     // style properties common to all elements
-    constructor(textEl) {this.textEl = textEl;}   // TODO P 0 storing textEl in class makes it public, which is why closures seem necessary
-    set opacity(newValue) {this.textEl.style.opacity = newValue;}
-    set display(newValue) {this.textEl.style.display = newValue;}
+    constructor(textEl) {
+      Object.defineProperty(this, 'opacity', {set(newValue) {textEl.style.opacity = newValue;}});
+      Object.defineProperty(this, 'display', {set(newValue) {textEl.style.display = newValue;}});
+    }
+    //set opacity(newValue) {this.textEl.style.opacity = newValue;}
+    //set display(newValue) {this.textEl.style.display = newValue;}
   }
 
   class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-    // TODO P 3.2 implement StyleWidget and widget API in general
-    set fontSize(newValue) {}
-    set fontFamily(newValue) {}
+    // TODO P 3.2 implement StyleWidget
+    constructor(textEl) {
+      super(textEl);
+      Object.defineProperty(this, 'fontSize', {set(newValue) {mainEl.style.fontSize = shadowEl.style.fontSize = lightEl.style.fontSize = newValue;}});
+      Object.defineProperty(this, 'fontFamily', {set(newValue) {mainEl.style.fontFamily = shadowEl.style.fontFamily = lightEl.style.fontFamily = newValue;}});
+    }
   }
 
   class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
-    constructor(textEl) {super(textEl);}
-    set fill(newValue) {this.textEl.style.fill = newValue;}
+    constructor(textEl) {
+      super(textEl);
+      Object.defineProperty(this, 'fill', {set(newValue) {textEl.style.fill = newValue;}});
+    }
   }
 
   let mainAPI = Object.seal({
@@ -43,13 +51,6 @@ const construct = (el) => {
     set x(newValue) {shadowEl.x = newValue;},
     set y(newValue) {shadowEl.y = newValue;}
   })
-
-  // TODO P 3.5 don't set style props directly on element if not consistent with fitbit API
-  Object.defineProperty(el, 'fontSize', {
-    set(newValue) {
-      mainEl.style.fontSize = shadowEl.style.fontSize = lightEl.style.fontSize = newValue;
-    }
-  });
 
   Object.defineProperty(el, 'text', {
     set(newValue) {
@@ -156,13 +157,13 @@ const construct = (el) => {
 
   //here text-properties get passed to all elements of widget-instance
   el.redraw = () => {
-     allSubTextElements.forEach(e => {
+    allSubTextElements.forEach(e => {
         e.text = mainEl.text ?? "shadow-text";
-        e.letterSpacing = mainEl.letterSpacing ?? 0;
-        e.fontFamily = mainEl.style.fontFamily;
-        e.textAnchor = mainEl.textAnchor;
-        e.fontSize = mainEl.style.fontSize ?? 30;
-      });
+        e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
+        e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
+        e.textAnchor = mainEl.textAnchor;               // TODO should mainEl be el?
+        e.style.fontSize = el.style.fontSize > 0? el.style.fontSize : 30;   // if fontSize is undefined its value is -32768
+    });
   };
   // TODO investigate, why all textProperties work directly on textEl;
   // and why e.style.fontSize didn't work while it did for letterspacing,
@@ -192,4 +193,5 @@ TODO Exception for trying to add not exposed props
 TODO Try to run with new factory
 TODO check "safety" from CSS/SVG
 */
+// TODO P 3.2 implement widget (useEl) API in general
 // TODO P 3.7 use config to allowing setting props on use in SVG/CSS

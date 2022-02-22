@@ -27,7 +27,7 @@ setInterval(() => {
 }, 1000);
 
 //* TESTING *******************************************************************************************
-test.style.fontSize = 50;
+test.style.fontSize = 40;
 test.textAnchor = "middle";
 test.letterSpacing = 10;
 test.main.style.fill = "white";
@@ -35,9 +35,10 @@ test.shadow.style.fill="black";
 test.light.style.fill = "white";
 test.light.x = -10;
 test.light.y = -10;
+test.light.style.opacity = 0.2;
 test.shadow.x = 5;
-test.shadow.y = 5
-console.log(`el=${test.light.style.textEl}`);   // TODO P 0 proof that classes leak all members publicly
+test.shadow.y = 5;
+if (test.light.style.textEl) console.warn('textEl is accessible!! :('); // whinge if textEl is exposed publicly
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
