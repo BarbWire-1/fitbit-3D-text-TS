@@ -118,15 +118,15 @@ const construct = (el) => {
     });
 
     // Exposes property and returns all values to owner
-    const assignProps = (prop, owner) => {
+    const defineProps = (prop, obj) => {
         Object.defineProperty(el, prop, {
-            get() { return owner; }
+            get() { return obj; }
         });
     };
 
-    assignProps('main', mainAPI);
-    assignProps('light', effectsAPI(lightEl));
-    assignProps('shadow', effectsAPI(shadowEl));
+    defineProps('main', mainAPI);
+    defineProps('light', effectsAPI(lightEl));
+    defineProps('shadow', effectsAPI(shadowEl));
 
    
     // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
