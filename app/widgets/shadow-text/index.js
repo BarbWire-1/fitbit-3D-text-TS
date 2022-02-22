@@ -122,13 +122,17 @@ const construct = (el) => {
 
    
     // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
-    allSubTextElements = el.getElementsByClassName('myText')
+    const allSubTextElements = el.getElementsByClassName('myText')
     el.redraw = () => {
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
             e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
-            e.textAnchor = mainEl.textAnchor;               // TODO should mainEl be el?
+            try {     // textEl.textAnchor throws an error if textAnchor not defined
+                el.textAnchor = mainEl.textAnchor;
+            } catch (e) {
+               el.Anchor = 'start';
+            }
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
         });
     };
