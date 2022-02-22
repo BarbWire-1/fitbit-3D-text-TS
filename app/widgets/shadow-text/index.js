@@ -24,7 +24,7 @@ const construct = (el) => {
                 set(newValue) { styleBase.display = newValue; }
             });
         }
-    }
+    };
 
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         // TODO P 3.2 implement StyleWidget: needs to redefine opacity and display to apply to useEl??
