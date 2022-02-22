@@ -57,23 +57,31 @@ const construct = (el) => {
             });
         }
     };
-
+    
     let mainAPI = Object.seal({
         style: new StyleSubText(mainEl.style)
     });
 
-    let lightAPI = Object.seal({
-        style: new StyleSubText(lightEl.style),
-        set x(newValue) { lightEl.x = newValue; },
-        set y(newValue) { lightEl.y = newValue; }
+//     let lightAPI = Object.seal({
+//         style: new StyleSubText(lightEl.style),
+//         set x(newValue) { lightEl.x = newValue; },
+//         set y(newValue) { lightEl.y = newValue; }
+//     });
+// 
+//     let shadowAPI = Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
+//         style: new StyleSubText(shadowEl.style),
+//         set x(newValue) { shadowEl.x = newValue; },
+//         set y(newValue) { shadowEl.y = newValue; }
+//     });
+    
+    let effectsAPI = (obj) => Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
+        style: new StyleSubText(obj.style),
+        set x(newValue) { obj.x = newValue; },
+        set y(newValue) { obj.y = newValue; }
     });
 
-    let shadowAPI = Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
-        style: new StyleSubText(shadowEl.style),
-        set x(newValue) { shadowEl.x = newValue; },
-        set y(newValue) { shadowEl.y = newValue; }
-    });
-
+    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁    
+    
     let widgetStyleAPI = new StyleWidget(elStyle); // TODO P 3.1 seal?
 
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -117,8 +125,8 @@ const construct = (el) => {
     };
 
     assignProps('main', mainAPI);
-    assignProps('light', lightAPI);
-    assignProps('shadow', shadowAPI);
+    assignProps('light', effectsAPI(lightEl));
+    assignProps('shadow', effectsAPI(shadowEl));
 
    
     // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
