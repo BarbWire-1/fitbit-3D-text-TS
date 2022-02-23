@@ -1,6 +1,6 @@
 "use strict"
 import { constructWidgets } from '../construct-widgets';
-import { inspectObject, dumpProperties } from '../../devTools';
+import { inspectObject, inspectObject2, dumpProperties } from '../../devTools';
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -67,7 +67,7 @@ const construct = (el) => {
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
         }
-    }
+    };
 
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
@@ -80,14 +80,14 @@ const construct = (el) => {
     };
 
     let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style))
+        style: Object.seal(new StyleSubText(mainEl.style)),
     });
 
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
         set y(newValue) { obj.y = newValue; },
-        enumerable: true
+        enumerable: true,
     });
 
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
@@ -108,10 +108,12 @@ const construct = (el) => {
     defineProps('main', mainAPI);
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
+    
 
-    // PASS TEXT SPECIFIC PROPERTIES TO ALL SUBELEMENTS
-   el.assignOnLoad = () => {
-        const allSubTextElements = el.getElementsByClassName('myText')
+    // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+    const allSubTextElements = el.getElementsByClassName('myText')
+   !function assignOnLoad () {
+        
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
@@ -123,12 +125,13 @@ const construct = (el) => {
             }
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
         });
-    };
-    //TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
-    //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
-
+    } ();//IIFE
+    // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
+    // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
+    // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
+    
+    
     // INITIALISATION:
-
     // Parse and process SVG config attributes:
     const attributes = el.getElementById('config').text.split(';')
     attributes.forEach(attribute => {
@@ -149,13 +152,15 @@ const construct = (el) => {
         }
     });
 
-    el.assignOnLoad();
+   // el.assignOnLoad();
 
 
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    inspectObject('lighEl.style.fill',lightEl.style.fill)
+    inspectObject('lighEl.style.fill', lightEl.style.fill)
+    //inspectObject('mainEl.text', mainEl.text)
+
 
     //prototype chain
     //dumpProperties('lightEl', lightEl.style, false)

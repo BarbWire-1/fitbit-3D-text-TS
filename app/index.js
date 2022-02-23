@@ -17,7 +17,7 @@ let allLights = document.getElementsByClassName('light');
 let cd = 100;
 setInterval(() => {
     //test.text = `steps ${today.adjusted.steps}`;
-    test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
+    //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
@@ -26,6 +26,7 @@ setInterval(() => {
         cd = 100;
     }
 }, 1000);
+calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
@@ -51,10 +52,11 @@ test.shadow.style.opacity = 1;
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-//dumpProperties('test.light.style', test.light.style, false) //
+dumpProperties('test.main', test.light.style, true) //
+console.log(`test.main keys: ${Object.keys(test.main.style)}`)
 
 // INSPECT key:value
- inspectObject('test.main.style.fill', test.main.style.fill)// keys and values for !style
+inspectObject('test.text', test.text)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values

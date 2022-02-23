@@ -49,13 +49,15 @@ export const inspectObject = (objName, obj) => {
         console.log(`${objName}.${obj}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
     } 
 };
-  //call like: inspectObject('objName',obj)
+//call like: inspectObject('objName',obj)
+
+
   /*
  TODO can log values in widget for subEl...
  possible to get the corresponding <use> id?
  possible to go on one specific value?
  possible to reach/pass from/to app/index?
- 
+ TODO B have a look at this: https://flexiple.com/key-value-javascript/
  TODO try to write a recursion to get all properties of el
 
 */
