@@ -28,6 +28,7 @@ setInterval(() => {
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
+test.main.style.fontSize = "Tungsten-Medium" // TODO P 3.0 try to seal `new StyleSubText(obj.style)`
 test.textAnchor = "middle";
 test.letterSpacing = 10;
 test.main.style.fill = "white";
@@ -37,7 +38,6 @@ test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-console.log(`el=${test.light.style.textEl}`);   // TODO P 0 proof that classes leak all members publicly
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
@@ -52,4 +52,4 @@ test.shadow.style.opacity = 1;
  //inspectObject('test.logText.style', test.log.style)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
-//TODO search for a way to log/inspect objects
+//TODO P 2.0 search for a way to log/inspect objects

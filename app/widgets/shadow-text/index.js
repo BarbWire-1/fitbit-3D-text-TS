@@ -57,7 +57,7 @@ const construct = (el) => {
             });
         }
     };
-    
+
     let mainAPI = Object.seal({
         style: new StyleSubText(mainEl.style)
     });
@@ -67,21 +67,22 @@ const construct = (el) => {
 //         set x(newValue) { lightEl.x = newValue; },
 //         set y(newValue) { lightEl.y = newValue; }
 //     });
-// 
+//
 //     let shadowAPI = Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
 //         style: new StyleSubText(shadowEl.style),
 //         set x(newValue) { shadowEl.x = newValue; },
 //         set y(newValue) { shadowEl.y = newValue; }
 //     });
-    
+
+    // TODO P 3.0 in effectsAPI, don’t recreate the style object every time (and same elsewhere?)
     let effectsAPI = (obj) => Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
         style: new StyleSubText(obj.style),
         set x(newValue) { obj.x = newValue; },
         set y(newValue) { obj.y = newValue; }
     });
 
-    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁    
-    
+    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
+
     let widgetStyleAPI = new StyleWidget(elStyle); // TODO P 3.1 seal?
 
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -128,7 +129,7 @@ const construct = (el) => {
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
 
-   
+
     // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
     const allSubTextElements = el.getElementsByClassName('myText')
     el.redraw = () => {
@@ -169,5 +170,7 @@ constructWidgets('shadowText', construct);
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 */
-// TODO P 3.2 implement widget (useEl) API in general
+// TODO P 3.25 implement widget (useEl) API in general
+// TODO P 3.20 implement textAnchor (beware exception)
+// TODO P 3.3 put .docx in repo
 // TODO P 3.7 use config to allowing setting props on use in SVG/CSS
