@@ -29,7 +29,7 @@ setInterval(() => {
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-//test.main.style.fontSize = "Tungsten-Medium" // TODO B I sealed .style so this fails now
+//test.main.style.fontSize = "Tungsten-Medium" 
 // TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
 //dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
 //test.textAnchor = "middle";
@@ -44,16 +44,17 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-dumpProperties('test.main',test.main)   // TODO B This is working for me. The only member is .style.
-
+//dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
+//dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
+                                                                        // but If we can read this like now, we might be close...
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-//dumpProperties('test.main', test.style.fontSize, false) //
+//dumpProperties('test.light.style', test.light.style, false) //
 
 // INSPECT key:value
- inspectObject('test.main.style', test.main.style.fill)// keys and values for !style
+ inspectObject('test.main.style.fill', test.main.style.fill)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect objects

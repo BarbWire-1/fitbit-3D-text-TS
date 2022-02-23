@@ -37,7 +37,8 @@ export const inspectObject = (objName, obj) => {
     let props = [];
     
     for (const prop in obj) {
-        
+        // as propertyNames get handled as char-Array
+        // I tried this approach, although not sure, whether this makes sense
         if (obj.hasOwnProperty(prop)) {
             props.push(obj[ prop ]);
         }; 

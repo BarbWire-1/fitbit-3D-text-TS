@@ -11,6 +11,22 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
+    
+    const setNewValue = (obj, prop) => {
+        Object.defineProperty(obj, prop, {
+            set(newValue) {
+                mainEl[ prop ] =
+                    shadowEl[ prop ] =
+                    lightEl[ prop ] =
+                    newValue;
+            },
+            enumerable: true
+        });
+
+    };
+    setNewValue(el, 'text');
+    setNewValue(el, 'textAnchor');
+    setNewValue(el, 'letterSpacing');
 
     class StyleCommon {     // style properties common to all elements
         constructor(styleBase) {
@@ -31,23 +47,27 @@ const construct = (el) => {
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
             super(elStyle);
-            Object.defineProperty(this, 'fontSize', {
-                set(newValue) {
-                    mainEl.style.fontSize =
-                        shadowEl.style.fontSize =
-                        lightEl.style.fontSize =
-                        newValue;
-                }
-            });
-            Object.defineProperty(this, 'fontFamily', {
-                set(newValue) {
-                    mainEl.style.fontFamily =
-                        shadowEl.style.fontFamily =
-                        lightEl.style.fontFamily =
-                        newValue;
-                },
-                enumerable: true
-            });
+            // Object.defineProperty(this, 'fontSize', {
+            //     set(newValue) {
+            //         mainEl.style.fontSize =
+            //             shadowEl.style.fontSize =
+            //             lightEl.style.fontSize =
+            //             newValue;
+            //     },
+            //     enumerable: true
+            // 
+            // });
+            // Object.defineProperty(this, 'fontFamily', {
+            //     set(newValue) {
+            //         mainEl.style.fontFamily =
+            //             shadowEl.style.fontFamily =
+            //             lightEl.style.fontFamily =
+            //             newValue;
+            //     },
+            //     enumerable: true
+            // });
+            setNewValue(this, 'fontFamily'); //TODO P so sad, this isn't working. works for settings in css, but not in js. this is a novum, I guess
+            setNewValue(this, 'fontSize');
         }
     }
 
@@ -68,7 +88,8 @@ const construct = (el) => {
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
-        set y(newValue) { obj.y = newValue; }
+        set y(newValue) { obj.y = newValue; },
+        enumerable: true
     });
 
     //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
@@ -83,20 +104,7 @@ const construct = (el) => {
     });
 
     
-    const setNewValue = (prop) => {
-        Object.defineProperty(el, prop, {
-            set(newValue) {
-                mainEl[ prop ] =
-                    shadowEl[ prop ] =
-                    lightEl[ prop ] =
-                    newValue;
-            }
-        });
-        
-    };
-    setNewValue('text');
-    setNewValue('textAnchor');
-    setNewValue('letterSpacing');
+    
     
     
     // Exposes property and returns all values to owner
@@ -111,7 +119,7 @@ const construct = (el) => {
     defineProps('shadow', effectsAPI(shadowEl));
 
     // PASS TEXT SPECIFIC PROPERTIES TO ALL SUBELEMENTS
-    el.redraw = () => {
+    el.assignOnLoad = () => {
         const allSubTextElements = el.getElementsByClassName('myText')
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
@@ -150,16 +158,16 @@ const construct = (el) => {
         }
     });
 
-    el.redraw();
+    el.assignOnLoad();
 
 
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    inspectObject('lighEl',lightEl.style.fill)
+    inspectObject('lighEl.style.fill',lightEl.style.fill)
 
     //prototype chain
-    //dumpProperties('lightEl', lightEl, false)
+    //dumpProperties('lightEl', lightEl.style, false)
 
     //INSPECT OBJECTS END*************************************************************
 
