@@ -29,7 +29,6 @@ const construct = (el) => {
     };
 
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-        // TODO P 3.2 implement StyleWidget: needs to redefine opacity and display to apply to useEl??
         constructor(elStyle) {
             super(elStyle);
             Object.defineProperty(this, 'fontSize', {
