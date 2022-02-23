@@ -117,7 +117,7 @@ const construct = (el) => {
         const allSubTextElements = el.getElementsByClassName('myText')
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
-            e.letterSpacing = el.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
+            e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
             e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
             try {     // textEl.textAnchor throws an error if textAnchor not defined
                 e.textAnchor = mainEl.textAnchor;
@@ -175,5 +175,10 @@ constructWidgets('shadowText', construct);
 /*
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
+
+TODO P it looks like css gets processed way slower now than js.
+Not sure if it was this way before.
+you now can see: symbol defaults => js => css applied
+
+I guess one of my recent changes might have caused that, but can't check now as out... sorry
 */
-// TODO B It looks like you got textAnchor working; is there more to do on it? (Nice work, BTW!)
