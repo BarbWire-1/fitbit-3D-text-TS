@@ -113,8 +113,8 @@ const construct = (el) => {
 
 
     // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-    const allSubTextElements = el.getElementsByClassName('myText')
-   !function assignOnLoad () {
+    const allSubTextElements = el.getElementsByClassName('myText');
+    (function () {
         // TODO P 3.5 resolve letterSpacing in assignOnLoad() allSubTextElements loop; in general, lack of clarity/consistency in where SVG/CSS is to be set?
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
@@ -127,11 +127,11 @@ const construct = (el) => {
             }
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
         });
-    } ();//IIFE
+    })();//IIFE
     // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
     // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
     // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
-    // TODO P 3.0 make IIFE anonymous (no 'outer val'): https://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function
+    // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
     // TODO P 3.1 put config into IIFE?
 
 
