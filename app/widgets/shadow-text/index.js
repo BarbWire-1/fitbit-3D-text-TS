@@ -1,6 +1,7 @@
 "use strict"
 import { constructWidgets } from '../construct-widgets';
 import { inspectObject, inspectObject2, dumpProperties } from '../../devTools';
+import document from 'document'
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -153,8 +154,6 @@ const construct = (el) => {
     });
 
    // el.assignOnLoad();
-
-
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
@@ -163,7 +162,7 @@ const construct = (el) => {
 
 
     //prototype chain
-    //dumpProperties('lightEl', lightEl.style, false)
+    //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)
 
     //INSPECT OBJECTS END*************************************************************
 
