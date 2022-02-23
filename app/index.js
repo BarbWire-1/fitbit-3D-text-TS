@@ -44,16 +44,16 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-//dumpProperties('test.main',test.main)   // TODO B This is working for me. The only member is .style.
+dumpProperties('test.main',test.main)   // TODO B This is working for me. The only member is .style.
 
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-//dumpProperties('test.main', test.main, false) //
+//dumpProperties('test.main', test.style.fontSize, false) //
 
 // INSPECT key:value
- //inspectObject('test.logText.style', test.log.style)// keys and values for !style
+ inspectObject('test.main.style', test.style.fontSize)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect objects

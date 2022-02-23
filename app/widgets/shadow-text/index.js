@@ -65,18 +65,6 @@ const construct = (el) => {
         style: Object.seal(new StyleSubText(mainEl.style))
     });
 
-//     let lightAPI = Object.seal({
-//         style: new StyleSubText(lightEl.style),
-//         set x(newValue) { lightEl.x = newValue; },
-//         set y(newValue) { lightEl.y = newValue; }
-//     });
-//
-//     let shadowAPI = Object.seal({
-//         style: new StyleSubText(shadowEl.style),
-//         set x(newValue) { shadowEl.x = newValue; },
-//         set y(newValue) { shadowEl.y = newValue; }
-//     });
-
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
@@ -94,33 +82,23 @@ const construct = (el) => {
         }
     });
 
-    Object.defineProperty(el, 'text', {
-        set(newValue) {
-            mainEl.text =
-                shadowEl.text =
-                lightEl.text =
-                newValue;  // could iterate if preferred, but that would be slower
-        }
-    });
-
-    Object.defineProperty(el, 'textAnchor', {
-        set(newValue) {
-            mainEl.textAnchor =
-                shadowEl.textAnchor =
-                lightEl.textAnchor =
-                newValue;  // could iterate if preferred, but that would be slower
-        }
-    });
-
-    Object.defineProperty(el, 'letterSpacing', {
-        set(newValue) {
-            mainEl.letterSpacing =
-                shadowEl.letterSpacing =
-                lightEl.letterSpacing =
-                newValue;  // could iterate if preferred, but that would be slower
-        }
-    });
-
+    
+    const setNewValue = (prop) => {
+        Object.defineProperty(el, prop, {
+            set(newValue) {
+                mainEl[ prop ] =
+                    shadowEl[ prop ] =
+                    lightEl[ prop ] =
+                    newValue;
+            }
+        });
+        
+    };
+    setNewValue('text');
+    setNewValue('textAnchor');
+    setNewValue('letterSpacing');
+    
+    
     // Exposes property and returns all values to owner
     const defineProps = (prop, obj) => {
         Object.defineProperty(el, prop, {
@@ -178,10 +156,10 @@ const construct = (el) => {
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    //inspectObject('textEl',textEl)
+    inspectObject('lighEl',lightEl.style.fill)
 
     //prototype chain
-    //dumpProperties('lightEl', lightEl, true)
+    //dumpProperties('lightEl', lightEl, false)
 
     //INSPECT OBJECTS END*************************************************************
 
