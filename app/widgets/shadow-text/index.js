@@ -63,7 +63,7 @@ const construct = (el) => {
     };
 
     let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style))    // TODO P 2 seal somewhere sensible if this works
+        style: Object.seal(new StyleSubText(mainEl.style))
     });
 
 //     let lightAPI = Object.seal({
