@@ -12,7 +12,8 @@ const construct = (el) => {
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
     
-    const setNewValue = (obj, prop) => {
+    //APPLY CHANGES ON EL TO ALL
+    const setNewTextAll = (obj, prop) => {
         Object.defineProperty(obj, prop, {
             set(newValue) {
                 mainEl[ prop ] =
@@ -24,9 +25,25 @@ const construct = (el) => {
         });
 
     };
-    setNewValue(el, 'text');
-    setNewValue(el, 'textAnchor');
-    setNewValue(el, 'letterSpacing');
+    setNewTextAll(el, 'text');
+    setNewTextAll(el, 'textAnchor');
+    setNewTextAll(el, 'letterSpacing');
+    
+    
+    //APPLY TEXT-STYLE CHANGES TO ALL 
+    const setNewStyleAll = (obj, prop) => {
+        Object.defineProperty(obj, prop, {
+            set(newValue) {
+                mainEl.style[ prop ] =
+                    shadowEl.style[ prop ] =
+                    lightEl.style[ prop ] =
+                    newValue;
+            },
+            enumerable: true
+        });
+    };
+  
+   //TODO P is this slower? Or did'nt I mention before, that styling gets applied with a delay??
 
     class StyleCommon {     // style properties common to all elements
         constructor(styleBase) {
@@ -47,27 +64,8 @@ const construct = (el) => {
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
             super(elStyle);
-            // Object.defineProperty(this, 'fontSize', {
-            //     set(newValue) {
-            //         mainEl.style.fontSize =
-            //             shadowEl.style.fontSize =
-            //             lightEl.style.fontSize =
-            //             newValue;
-            //     },
-            //     enumerable: true
-            // 
-            // });
-            // Object.defineProperty(this, 'fontFamily', {
-            //     set(newValue) {
-            //         mainEl.style.fontFamily =
-            //             shadowEl.style.fontFamily =
-            //             lightEl.style.fontFamily =
-            //             newValue;
-            //     },
-            //     enumerable: true
-            // });
-            setNewValue(this, 'fontFamily'); //TODO P so sad, this isn't working. works for settings in css, but not in js. this is a novum, I guess
-            setNewValue(this, 'fontSize');
+            setNewStyleAll(this, 'fontFamily'); //TODO P so sad, this isn't working. works for settings in css, but not in js. this is a novum, I guess
+            setNewStyleAll(this, 'fontSize');
         }
     }
 
