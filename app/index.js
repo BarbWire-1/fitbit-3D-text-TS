@@ -17,6 +17,7 @@ let allLights = document.getElementsByClassName('light');
 let cd = 100;
 setInterval(() => {
     test.text = `steps ${today.adjusted.steps}`;
+    test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";

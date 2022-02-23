@@ -78,7 +78,6 @@ const construct = (el) => {
 //         set y(newValue) { shadowEl.y = newValue; }
 //     });
 
-    // TODO P 3.0 in effectsAPI, don’t recreate the style object every time (and same elsewhere?)
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
