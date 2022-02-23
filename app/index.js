@@ -16,7 +16,7 @@ let allLights = document.getElementsByClassName('light');
 
 let cd = 100;
 setInterval(() => {
-    test.text = `steps ${today.adjusted.steps}`;
+    //test.text = `steps ${today.adjusted.steps}`;
     test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
@@ -32,8 +32,8 @@ test.style.fontSize = 50;
 //test.main.style.fontSize = "Tungsten-Medium" // TODO B I sealed .style so this fails now
 // TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
 //dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
-test.textAnchor = "middle";
-test.letterSpacing = 10;
+//test.textAnchor = "middle";
+//test.letterSpacing = 10;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";

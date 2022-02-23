@@ -132,10 +132,9 @@ const construct = (el) => {
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
 
-
-    // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
-    const allSubTextElements = el.getElementsByClassName('myText')
+    // PASS TEXT SPECIFIC PROPERTIES TO ALL SUBELEMENTS
     el.redraw = () => {
+        const allSubTextElements = el.getElementsByClassName('myText')
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
@@ -150,6 +149,29 @@ const construct = (el) => {
     };
     //TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
     //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
+
+    // INITIALISATION:
+
+    // Parse and process SVG config attributes:
+    const attributes = el.getElementById('config').text.split(';')
+    attributes.forEach(attribute => {
+        const colonIndex = attribute.indexOf(':')
+        const attributeName = attribute.substring(0, colonIndex).trim();
+        const attributeValue = attribute.substring(colonIndex+1).trim();
+
+        switch(attributeName) {
+            case 'text':
+                el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                break;
+            case 'letter-spacing':
+                el.letterSpacing = Number(attributeValue);
+                break;
+            case 'text-anchor':
+                el.textAnchor = attributeValue;
+                break;
+        }
+    });
+
     el.redraw();
 
 
