@@ -28,8 +28,9 @@ setInterval(() => {
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-test.main.style.fontSize = "Tungsten-Medium" // TODO P 3.0 try to seal `new StyleSubText(obj.style)`
-dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
+//test.main.style.fontSize = "Tungsten-Medium" // TODO B I sealed .style so this fails now
+// TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
+//dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
 test.textAnchor = "middle";
 test.letterSpacing = 10;
 test.main.style.fill = "white";
@@ -54,4 +55,4 @@ test.shadow.style.opacity = 1;
  //inspectObject('test.logText.style', test.log.style)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
-//TODO P 2.0 search for a way to log/inspect objects
+//TODO search for a way to log/inspect objects

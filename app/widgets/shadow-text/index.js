@@ -63,7 +63,7 @@ const construct = (el) => {
     };
 
     let mainAPI = Object.seal({
-        style: new StyleSubText(mainEl.style)
+        style: Object.seal(new StyleSubText(mainEl.style))    // TODO P 2 seal somewhere sensible if this works
     });
 
 //     let lightAPI = Object.seal({
@@ -80,14 +80,14 @@ const construct = (el) => {
 
     // TODO P 3.0 in effectsAPI, don’t recreate the style object every time (and same elsewhere?)
     let effectsAPI = (obj) => Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
-        style: new StyleSubText(obj.style),
+        style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
         set y(newValue) { obj.y = newValue; }
     });
 
     //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
 
-    let widgetStyleAPI = new StyleWidget(elStyle); // TODO P 3.1 seal?
+    let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
 
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         get() {
