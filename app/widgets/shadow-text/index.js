@@ -84,7 +84,7 @@ const construct = (el) => {
     });
 
     //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
-    //TODO B ^ Your solution is elegant, readable and efficient. I can't think of a good reason to change it.
+    //TODO B ^ Your solution is elegant, readable and efficient. Other than my ego, I can't think of any reason to change it. 😉
 
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
 
@@ -149,6 +149,7 @@ const construct = (el) => {
         });
     };
     //TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
+    //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
     el.redraw();
 
 
