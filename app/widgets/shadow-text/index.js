@@ -25,6 +25,7 @@ const construct = (el) => {
         });
 
     };
+    
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
@@ -43,7 +44,6 @@ const construct = (el) => {
         });
     };
   
-   //TODO P is this slower? Or did'nt I mention before, that styling gets applied with a delay??
 
     class StyleCommon {     // style properties common to all elements
         constructor(styleBase) {
@@ -64,7 +64,7 @@ const construct = (el) => {
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
             super(elStyle);
-            setNewStyleAll(this, 'fontFamily'); //TODO P so sad, this isn't working. works for settings in css, but not in js. this is a novum, I guess
+            setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
         }
     }
@@ -89,9 +89,6 @@ const construct = (el) => {
         set y(newValue) { obj.y = newValue; },
         enumerable: true
     });
-
-    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
-    //TODO B ^ Your solution is elegant, readable and efficient. Other than my ego, I can't think of any reason to change it. 😉
 
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
 
@@ -118,7 +115,7 @@ const construct = (el) => {
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
-            e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
+            e.style.fontFamily = mainEl.style.fontFamily;   
             try {     // textEl.textAnchor throws an error if textAnchor not defined
                 e.textAnchor = mainEl.textAnchor;
             } catch (e) {
@@ -179,6 +176,7 @@ TODO check "safety" from CSS/SVG
 TODO P it looks like css gets processed way slower now than js.
 Not sure if it was this way before.
 you now can see: symbol defaults => js => css applied
+(or maybe js is just quicker this way ;) )
 
 I guess one of my recent changes might have caused that, but can't check now as out... sorry
 */

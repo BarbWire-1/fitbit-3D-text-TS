@@ -57,4 +57,4 @@ test.shadow.style.opacity = 1;
  inspectObject('test.main.style.fill', test.main.style.fill)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
-//TODO search for a way to log/inspect objects
+//TODO search for a way to log/inspect useEl.prop.prop.prop values
