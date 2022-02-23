@@ -16,7 +16,8 @@ let allLights = document.getElementsByClassName('light');
 
 let cd = 100;
 setInterval(() => {
-    test.text = `steps ${today.adjusted.steps}`;
+    //test.text = `steps ${today.adjusted.steps}`;
+    test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
@@ -28,8 +29,11 @@ setInterval(() => {
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-test.textAnchor = "middle";
-test.letterSpacing = 10;
+//test.main.style.fontSize = "Tungsten-Medium" // TODO B I sealed .style so this fails now
+// TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
+//dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
+//test.textAnchor = "middle";
+//test.letterSpacing = 10;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
@@ -37,10 +41,10 @@ test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-console.log(`el=${test.light.style.textEl}`);   // TODO P 0 proof that classes leak all members publicly
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+//dumpProperties('test.main',test.main)   // TODO B This is working for me. The only member is .style.
 
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************

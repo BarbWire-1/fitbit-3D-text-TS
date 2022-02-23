@@ -11,6 +11,6 @@
         <!--so fill and/or offset can be set per class .highlight-->
         <text id="main" class="myText main" x="0" y="0" />
         <!--so fill can be set per class .main / x,y is hardcoded to 0,0 in redraw as others are set in relation-->
-
+        <text id="config" display="none" />
     </symbol>
 </defs>

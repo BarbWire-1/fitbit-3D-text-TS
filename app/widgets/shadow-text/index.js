@@ -18,16 +18,17 @@ const construct = (el) => {
             // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
             // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
             Object.defineProperty(this, 'opacity', {
-                set(newValue) { styleBase.opacity = newValue; }
+                set(newValue) { styleBase.opacity = newValue; },
+                enumerable: true
             });
             Object.defineProperty(this, 'display', {
-                set(newValue) { styleBase.display = newValue; }
+                set(newValue) { styleBase.display = newValue; },
+                enumerable: true
             });
         }
     };
 
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-        // TODO P 3.2 implement StyleWidget: needs to redefine opacity and display to apply to useEl??
         constructor(elStyle) {
             super(elStyle);
             Object.defineProperty(this, 'fontSize', {
@@ -44,7 +45,8 @@ const construct = (el) => {
                         shadowEl.style.fontFamily =
                         lightEl.style.fontFamily =
                         newValue;
-                }
+                },
+                enumerable: true
             });
         }
     }
@@ -53,13 +55,14 @@ const construct = (el) => {
         constructor(styleBase) {
             super(styleBase);
             Object.defineProperty(this, 'fill', {
-                set(newValue) { styleBase.fill = newValue; }
+                set(newValue) { styleBase.fill = newValue; },
+                enumerable: true
             });
         }
     };
-    
+
     let mainAPI = Object.seal({
-        style: new StyleSubText(mainEl.style)
+        style: Object.seal(new StyleSubText(mainEl.style))
     });
 
 //     let lightAPI = Object.seal({
@@ -67,22 +70,23 @@ const construct = (el) => {
 //         set x(newValue) { lightEl.x = newValue; },
 //         set y(newValue) { lightEl.y = newValue; }
 //     });
-// 
-//     let shadowAPI = Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
+//
+//     let shadowAPI = Object.seal({
 //         style: new StyleSubText(shadowEl.style),
 //         set x(newValue) { shadowEl.x = newValue; },
 //         set y(newValue) { shadowEl.y = newValue; }
 //     });
-    
-    let effectsAPI = (obj) => Object.seal({ // TODO P 3.0 rationalise with lightAPI: use a common class?
-        style: new StyleSubText(obj.style),
+
+    let effectsAPI = (obj) => Object.seal({
+        style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
         set y(newValue) { obj.y = newValue; }
     });
 
-    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁    
-    
-    let widgetStyleAPI = new StyleWidget(elStyle); // TODO P 3.1 seal?
+    //TODO P I wrote this just to write ANXTHING toda. But class would be more consequent, more exquisite, more overkill 😁
+    //TODO B ^ Your solution is elegant, readable and efficient. Other than my ego, I can't think of any reason to change it. 😉
+
+    let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
 
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         get() {
@@ -128,10 +132,9 @@ const construct = (el) => {
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
 
-   
-    // PAS TEXT SPECIFIC PRPERTIES TO ALL SUBELEMENTS
-    const allSubTextElements = el.getElementsByClassName('myText')
+    // PASS TEXT SPECIFIC PROPERTIES TO ALL SUBELEMENTS
     el.redraw = () => {
+        const allSubTextElements = el.getElementsByClassName('myText')
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
@@ -145,6 +148,30 @@ const construct = (el) => {
         });
     };
     //TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
+    //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
+
+    // INITIALISATION:
+
+    // Parse and process SVG config attributes:
+    const attributes = el.getElementById('config').text.split(';')
+    attributes.forEach(attribute => {
+        const colonIndex = attribute.indexOf(':')
+        const attributeName = attribute.substring(0, colonIndex).trim();
+        const attributeValue = attribute.substring(colonIndex+1).trim();
+
+        switch(attributeName) {
+            case 'text':
+                el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                break;
+            case 'letter-spacing':
+                el.letterSpacing = Number(attributeValue);
+                break;
+            case 'text-anchor':
+                el.textAnchor = attributeValue;
+                break;
+        }
+    });
+
     el.redraw();
 
 
@@ -169,5 +196,4 @@ constructWidgets('shadowText', construct);
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 */
-// TODO P 3.2 implement widget (useEl) API in general
-// TODO P 3.7 use config to allowing setting props on use in SVG/CSS
+// TODO B It looks like you got textAnchor working; is there more to do on it? (Nice work, BTW!)
