@@ -1,5 +1,7 @@
 node_modules
 build
 Backup
+backup*
 *.yaml
 *.txt
+.gitignore
