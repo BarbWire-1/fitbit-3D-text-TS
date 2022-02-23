@@ -101,10 +101,6 @@ const construct = (el) => {
         }
     });
 
-    
-    
-    
-    
     // Exposes property and returns all values to owner
     const defineProps = (prop, obj) => {
         Object.defineProperty(el, prop, {
@@ -117,16 +113,16 @@ const construct = (el) => {
     defineProps('shadow', effectsAPI(shadowEl));
 
     // PASS TEXT SPECIFIC PROPERTIES TO ALL SUBELEMENTS
-    el.assignOnLoad = () => {
+   el.assignOnLoad = () => {
         const allSubTextElements = el.getElementsByClassName('myText')
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
-            e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el?
+            e.letterSpacing = el.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
             e.style.fontFamily = mainEl.style.fontFamily;   // TODO should mainEl be el?
             try {     // textEl.textAnchor throws an error if textAnchor not defined
-                el.textAnchor = mainEl.textAnchor;
+                e.textAnchor = mainEl.textAnchor;
             } catch (e) {
-               el.Anchor = 'start';
+               e.Anchor = 'start';
             }
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
         });
