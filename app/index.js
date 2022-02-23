@@ -53,7 +53,7 @@ dumpProperties('test.main',test.main)   // TODO B This is working for me. The on
 //dumpProperties('test.main', test.style.fontSize, false) //
 
 // INSPECT key:value
- inspectObject('test.main.style', test.style.fontSize)// keys and values for !style
+ inspectObject('test.main.style', test.main.style.fill)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect objects

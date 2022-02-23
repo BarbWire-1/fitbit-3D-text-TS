@@ -35,8 +35,9 @@ export function dumpProperties(name, obj, types) {
 //INSPECT key:value
 export const inspectObject = (objName, obj) => {
     let props = [];
+    
     for (const prop in obj) {
-
+        
         if (obj.hasOwnProperty(prop)) {
             props.push(obj[ prop ]);
         }; 
@@ -48,5 +49,12 @@ export const inspectObject = (objName, obj) => {
     } 
 };
   //call like: inspectObject('objName',obj)
+  /*
+ TODO can log values in widget for subEl...
+ possible to get the corresponding <use> id?
+ possible to go on one specific value?
+ possible to reach/pass from/to app/index?
  
+ TODO try to write a recursion to get all properties of el
 
+*/
