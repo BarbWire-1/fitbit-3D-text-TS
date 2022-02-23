@@ -156,7 +156,7 @@ const construct = (el) => {
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    inspectObject('lighEl',lightEl.style.fill)
+    inspectObject('lighEl',lightEl.style.opacity)
 
     //prototype chain
     //dumpProperties('lightEl', lightEl, false)

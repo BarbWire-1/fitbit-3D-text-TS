@@ -34,17 +34,19 @@ export function dumpProperties(name, obj, types) {
 
 //INSPECT key:value
 export const inspectObject = (objName, obj) => {
-    let props = []
+    let props = [];
     for (const prop in obj) {
 
         if (obj.hasOwnProperty(prop)) {
-            console.log(` ${objName} ${prop}: ${JSON.stringify(obj[ prop ])}`);
             props.push(obj[ prop ]);
-
-        };
+        }; 
     };
-    console.log(JSON.stringify(props))// incl.values. how to get a key:value pair here?
+    if (props) {
+        console.log(`${objName}: ${obj}`)
+    } else {
+        console.log(`${objName}.${obj}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
+    } 
 };
   //call like: inspectObject('objName',obj)
- //TODO How to get to the properties of properties by inspecting the main object/element???
+ 
 
