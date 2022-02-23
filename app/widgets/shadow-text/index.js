@@ -174,5 +174,4 @@ TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 */
 // TODO B It looks like you got textAnchor working; is there more to do on it? (Nice work, BTW!)
-// TODO P 3.3 put .docx in repo
 // TODO P 3.7 use config to allowing setting props on use in SVG/CSS
