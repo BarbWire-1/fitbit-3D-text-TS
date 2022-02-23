@@ -18,10 +18,12 @@ const construct = (el) => {
             // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
             // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
             Object.defineProperty(this, 'opacity', {
-                set(newValue) { styleBase.opacity = newValue; }
+                set(newValue) { styleBase.opacity = newValue; },
+                enumerable: true
             });
             Object.defineProperty(this, 'display', {
-                set(newValue) { styleBase.display = newValue; }
+                set(newValue) { styleBase.display = newValue; },
+                enumerable: true
             });
         }
     };
@@ -44,7 +46,8 @@ const construct = (el) => {
                         shadowEl.style.fontFamily =
                         lightEl.style.fontFamily =
                         newValue;
-                }
+                },
+                enumerable: true
             });
         }
     }
@@ -53,7 +56,8 @@ const construct = (el) => {
         constructor(styleBase) {
             super(styleBase);
             Object.defineProperty(this, 'fill', {
-                set(newValue) { styleBase.fill = newValue; }
+                set(newValue) { styleBase.fill = newValue; },
+                enumerable: true
             });
         }
     };

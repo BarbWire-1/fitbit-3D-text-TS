@@ -29,6 +29,7 @@ setInterval(() => {
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
 test.main.style.fontSize = "Tungsten-Medium" // TODO P 3.0 try to seal `new StyleSubText(obj.style)`
+dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
 test.textAnchor = "middle";
 test.letterSpacing = 10;
 test.main.style.fill = "white";
@@ -41,6 +42,7 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+//dumpProperties('test.main',test.main)   // TODO B This is working for me. The only member is .style.
 
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
