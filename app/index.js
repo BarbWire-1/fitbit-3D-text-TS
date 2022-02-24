@@ -22,7 +22,9 @@ setInterval(() => {
     //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
-    //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
+    calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
+    // TODOthis doesn't get recognised/logged in widget/setter
+    // where can I measure the "set" ???
 
     if (cd == 0) {
         cd = 100;
