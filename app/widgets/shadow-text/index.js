@@ -87,7 +87,7 @@ console.log(`4. widget start initialisation: ${Date.now() - startFactory}`)
         //TODO how to log setter in constructor? Or need the check in API  
         //APPLY TEXT-STYLE CHANGES TO ALL
         const setNewStyleAll = (obj, prop) => {
-            console.log(`6. setNewStyleAll: ${Date.now() - startFactory}`)
+            console.log(`6. set ${prop}: ${Date.now() - startFactory}`)
                 Object.defineProperty(obj, prop, {
                     set(newValue) {
                         mainEl.style[ prop ] =
