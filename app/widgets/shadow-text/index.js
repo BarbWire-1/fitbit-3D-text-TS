@@ -7,10 +7,10 @@ import { validateSupportedLocales } from '@fitbit/sdk/lib/ProjectConfiguration';
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
-
+console.log(`3. startWidget: ${startFactory - Date.now()}`)
 const construct = (el) => {
     
-console.log(`3. startWidget: ${startFactory - Date.now()}`)
+
     let mainEl = el.getElementById('main');
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
@@ -49,7 +49,7 @@ console.log(`4. widget start initialisation: ${Date.now() - startFactory}`)
 //         };
         
         const setNewTextAll = (obj, prop,) => {
-            console.log(`5. setNewTextAll: ${Date.now() - startFactory}`)  
+            console.log(`5. set ${prop}: ${Date.now() - startFactory}`)  
              Object.defineProperty(obj, prop, {
                 set(newValue) {
                     mainEl[ prop ] =
@@ -102,7 +102,6 @@ console.log(`4. widget start initialisation: ${Date.now() - startFactory}`)
         class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
             constructor(elStyle) {
                 super(elStyle);
-                console.log(`set StyleWidget: ${Date.now() - startFactory}`)
                 setNewStyleAll(this, 'fontFamily');
                 setNewStyleAll(this, 'fontSize');
             }
@@ -112,7 +111,7 @@ console.log(`4. widget start initialisation: ${Date.now() - startFactory}`)
             
             constructor(styleBase) {
                 super(styleBase);
-                console.log("set fill: "+ (Date.now()-startFactory))
+                console.log("7. set fill: "+ (Date.now()-startFactory))
                 Object.defineProperty(this, 'fill', {
                     set(newValue) { styleBase.fill = newValue; },
                     enumerable: true
@@ -153,7 +152,7 @@ console.log(`4. widget start initialisation: ${Date.now() - startFactory}`)
         defineProps('light', effectsAPI(lightEl));
         defineProps('shadow', effectsAPI(shadowEl));
 
-console.log(`7. widget all classes and APIs: ${Date.now() - startFactory}`)  
+console.log(`8. widget all classes and APIs: ${Date.now() - startFactory}`)  
     
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
@@ -174,7 +173,7 @@ console.log(`7. widget all classes and APIs: ${Date.now() - startFactory}`)
                     break;
             }
         });
-console.log(`8. widget config: ${Date.now() - startFactory}`)  
+console.log(`9. widget config: ${Date.now() - startFactory}`)  
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
@@ -190,7 +189,7 @@ console.log(`8. widget config: ${Date.now() - startFactory}`)
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
-console.log(`9. widget elements aligned: ${Date.now() - startFactory}`)  
+console.log(`10. widget elements aligned: ${Date.now() - startFactory}`)  
     
     //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
 
