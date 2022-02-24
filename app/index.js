@@ -6,7 +6,7 @@ import { startFactory } from "./widgets/construct-widgets";
 import { dumpProperties, inspectObject } from './devTools'
 
 
-console.log("start app: " + (Date.now() - startFactory))
+console.log("10. start app: " + (Date.now() - startFactory))
 // single widget-uses
 let test = document.getElementById('test');
 let calsLabel = document.getElementById('calsLabel');
@@ -47,7 +47,7 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-console.log("end app: " + (Date.now() - startFactory))
+console.log("11. end app: " + (Date.now() - startFactory))
 test.fill = "red"
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
 //dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
