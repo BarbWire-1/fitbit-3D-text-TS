@@ -33,7 +33,7 @@ const construct = (el) => {
 
 
     //APPLY TEXT-STYLE CHANGES TO ALL
-    // TODO P 3.3 study setNewStyleAll
+    // TODO B I like the removal of duplication that this function provides! 👍
     const setNewStyleAll = (obj, prop) => {
         Object.defineProperty(obj, prop, {
             set(newValue) {
