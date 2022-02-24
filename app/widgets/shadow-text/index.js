@@ -10,7 +10,7 @@ import { validateSupportedLocales } from '@fitbit/sdk/lib/ProjectConfiguration';
 
 const construct = (el) => {
     
-    console.log(`startWidget: ${startFactory - Date.now()}`)
+console.log(`startWidget: ${startFactory - Date.now()}`)
     let mainEl = el.getElementById('main');
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
@@ -19,7 +19,7 @@ const construct = (el) => {
     
     // INITIALISATION:
     (function () {
-        console.log(`widget start initialisation: ${Date.now() - startFactory}`)  
+console.log(`widget start initialisation: ${Date.now() - startFactory}`)  
         //TODO tested try/catch here... there must be a logic mistake
         //need to test where???
         //const supportedProps = [ 'text', 'textAnchor', 'letterSpacing'];
@@ -49,7 +49,6 @@ const construct = (el) => {
 //         };
         
         const setNewTextAll = (obj, prop,) => {
-
              Object.defineProperty(obj, prop, {
 
                 set(newValue) {
@@ -136,7 +135,7 @@ const construct = (el) => {
                 return widgetStyleAPI;
             }
         });
-
+dumpProperties('widgetStyleAPI', widgetStyleAPI)
         // Exposes property and returns all values to owner
         const defineProps = (prop, obj) => {
             Object.defineProperty(el, prop, {
@@ -148,7 +147,7 @@ const construct = (el) => {
         defineProps('light', effectsAPI(lightEl));
         defineProps('shadow', effectsAPI(shadowEl));
 
-        console.log(`widget all classes and APIs: ${Date.now() - startFactory}`)  
+console.log(`widget all classes and APIs: ${Date.now() - startFactory}`)  
     
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
@@ -169,7 +168,7 @@ const construct = (el) => {
                     break;
             }
         });
-        console.log(`widget config: ${Date.now() - startFactory}`)  
+console.log(`widget config: ${Date.now() - startFactory}`)  
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
@@ -185,7 +184,7 @@ const construct = (el) => {
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
-    console.log(`widget elements alligned: ${Date.now() - startFactory}`)  
+console.log(`widget elements aligned: ${Date.now() - startFactory}`)  
     
     //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
 
