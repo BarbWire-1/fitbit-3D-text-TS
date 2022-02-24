@@ -8,14 +8,14 @@
 
 .shadow {
     fill: red;
-    x: 3;
-    y: 3;
-    opacity: 0.5;
+    x: 1;
+    y: 1;
+   
 }
 
 .light {
     fill: white;
-    x: -3;
-    y: -3;
-    opacity: 0.5;
+    x: -1;
+    y: -1;
+    
 }
