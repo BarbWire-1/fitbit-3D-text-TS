@@ -30,7 +30,7 @@ calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-//test.main.style.fontSize = "Tungsten-Medium" 
+//test.main.style.fontSize = "Tungsten-Medium"
 // TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
 //dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
 //test.textAnchor = "middle";
@@ -47,6 +47,8 @@ test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
 //dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
+// TODO B ^ Be careful what you wish for! You could indeed recurse through objects such as .style. But unless you were very selective,
+// TODO B ...the same logic would also process .parent, .children (and therefore each child), etc. You'd get a HUGE output.
                                                                         // but If we can read this like now, we might be close...
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
