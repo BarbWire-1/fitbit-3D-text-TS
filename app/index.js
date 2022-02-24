@@ -5,6 +5,8 @@ import { today } from "user-activity";
 import './widgets/shadow-text';
 import { dumpProperties, inspectObject } from './devTools'
 
+const startApp = Date.now()
+console.log("start app: " + startApp)
 // single widget-uses
 let test = document.getElementById('test');
 let calsLabel = document.getElementById('calsLabel');
@@ -55,10 +57,10 @@ test.shadow.style.opacity = 1;
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
 //dumpProperties('test.light.style', test.light.style, true) //
-console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
+//console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 
 // INSPECT key:value
-inspectObject('test.text', test.text)// keys and values for !style
+//inspectObject('test.text', test.text)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
