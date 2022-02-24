@@ -54,7 +54,7 @@ test.shadow.style.opacity = 1;
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-dumpProperties('test.light.style', test.light.style, true) //
+//dumpProperties('test.light.style', test.light.style, true) //
 console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 
 // INSPECT key:value

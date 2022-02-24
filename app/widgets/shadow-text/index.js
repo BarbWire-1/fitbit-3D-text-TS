@@ -12,108 +12,112 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-
-    //APPLY CHANGES ON EL TO ALL
-    const setNewTextAll = (obj, prop) => {
-        Object.defineProperty(obj, prop, {
-            set(newValue) {
-                mainEl[ prop ] =
-                    shadowEl[ prop ] =
-                    lightEl[ prop ] =
-                    newValue;
-            },
-            enumerable: true
-        });
-
-    };
-
-    setNewTextAll(el, 'text');
-    setNewTextAll(el, 'textAnchor');
-    setNewTextAll(el, 'letterSpacing');
-
-
-    //APPLY TEXT-STYLE CHANGES TO ALL
-    // TODO B I like the removal of duplication that this function provides! 👍
-    const setNewStyleAll = (obj, prop) => {
-        Object.defineProperty(obj, prop, {
-            set(newValue) {
-                mainEl.style[ prop ] =
-                    shadowEl.style[ prop ] =
-                    lightEl.style[ prop ] =
-                    newValue;
-            },
-            enumerable: true
-        });
-    };
-
-
-    class StyleCommon {     // style properties common to all elements
-        constructor(styleBase) {
-            // styleBase: the Fitbit API style object that implements things.
-            // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
-            // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
-            Object.defineProperty(this, 'opacity', {
-                set(newValue) { styleBase.opacity = newValue; },
-                enumerable: true
-            });
-            Object.defineProperty(this, 'display', {
-                set(newValue) { styleBase.display = newValue; },
-                enumerable: true
-            });
-        }
-    };
-
-    class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-        constructor(elStyle) {
-            super(elStyle);
-            setNewStyleAll(this, 'fontFamily');
-            setNewStyleAll(this, 'fontSize');
-        }
-    };
-
-    class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
-        constructor(styleBase) {
-            super(styleBase);
-            Object.defineProperty(this, 'fill', {
-                set(newValue) { styleBase.fill = newValue; },
-                enumerable: true
-            });
-        }
-    };
-
-    let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style))
-    });
-
-    let effectsAPI = (obj) => Object.seal({
-        style: Object.seal(new StyleSubText(obj.style)),
-        set x(newValue) { obj.x = newValue; },
-        set y(newValue) { obj.y = newValue; },
-        enumerable: true
-    });
-
-    let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
-
-    Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
-        get() {
-            return widgetStyleAPI;
-        }
-    });
-
-    // Exposes property and returns all values to owner
-    const defineProps = (prop, obj) => {
-        Object.defineProperty(el, prop, {
-            get() { return obj; }
-        });
-    };
-
-    defineProps('main', mainAPI);
-    defineProps('light', effectsAPI(lightEl));
-    defineProps('shadow', effectsAPI(shadowEl));
-
-
+    
+    
     // INITIALISATION:
     (function () {
+            
+        //APPLY CHANGES ON EL TO ALL
+        const setNewTextAll = (obj, prop,) => {
+            Object.defineProperty(obj, prop, {
+                set(newValue) {
+                    mainEl[ prop ] =
+                        shadowEl[ prop ] =
+                        lightEl[ prop ] =
+                        newValue;
+                },
+                enumerable: true
+            });
+
+        };
+
+        setNewTextAll(el, 'text');
+        setNewTextAll(el, 'textAnchor');
+        setNewTextAll(el, 'letterSpacing');
+       
+
+        //DEFINE INTERNAL "style" AND APPLY COMMON PROPS
+        class StyleCommon {     // style properties common to all elements
+            constructor(styleBase) {
+                // styleBase: the Fitbit API style object that implements things.
+                // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
+                // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
+                Object.defineProperty(this, 'opacity', {
+                    set(newValue) { styleBase.opacity = newValue; },
+                    enumerable: true
+                });
+                Object.defineProperty(this, 'display', {
+                    set(newValue) { styleBase.display = newValue; },
+                    enumerable: true
+                });
+            }
+            };
+            
+        //APPLY TEXT-STYLE CHANGES TO ALL
+        const setNewStyleAll = (obj, prop) => {
+                Object.defineProperty(obj, prop, {
+                    set(newValue) {
+                        mainEl.style[ prop ] =
+                            shadowEl.style[ prop ] =
+                            lightEl.style[ prop ] =
+                            newValue;
+                    },
+                    enumerable: true
+                });
+            };
+
+        class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
+            constructor(elStyle) {
+                super(elStyle);
+                setNewStyleAll(this, 'fontFamily');
+                setNewStyleAll(this, 'fontSize');
+            }
+        };
+
+        class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
+            constructor(styleBase) {
+                super(styleBase);
+                Object.defineProperty(this, 'fill', {
+                    set(newValue) { styleBase.fill = newValue; },
+                    enumerable: true
+                });
+            }
+        };
+
+        let mainAPI = Object.seal({
+            style: Object.seal(new StyleSubText(mainEl.style))
+        });
+
+        let effectsAPI = (obj) => Object.seal({
+            style: Object.seal(new StyleSubText(obj.style)),
+            set x(newValue) { obj.x = newValue; },
+            set y(newValue) { obj.y = newValue; },
+            enumerable: true
+        });
+
+        let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
+        
+        
+        //REFERENCE BETWEEN VIRTUAL AND ELEMTENT OBJECT STYLE
+        Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
+            get() {
+                return widgetStyleAPI;
+            }
+        });
+
+        // Exposes property and returns all values to owner
+        const defineProps = (prop, obj) => {
+            Object.defineProperty(el, prop, {
+                get() { return obj; }
+            });
+        };
+
+        defineProps('main', mainAPI);
+        defineProps('light', effectsAPI(lightEl));
+        defineProps('shadow', effectsAPI(shadowEl));
+
+
+    
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
         attributes.forEach(attribute => {
