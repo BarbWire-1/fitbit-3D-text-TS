@@ -1,5 +1,5 @@
 "use strict"
-import { constructWidgets } from '../construct-widgets';
+import { constructWidgets, startFactory } from '../construct-widgets';
 import { inspectObject, inspectObject2, dumpProperties } from '../../devTools';
 import document from 'document'
 
@@ -8,8 +8,8 @@ import document from 'document'
 // this allows them to get overwritten from main CSS if set there
 
 const construct = (el) => {
-    let startWidget = Date.now()
-    console.log(`startWidget: ${startWidget}`)
+    
+    console.log(`startWidget: ${startFactory - Date.now()}`)
     let mainEl = el.getElementById('main');
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
@@ -18,7 +18,7 @@ const construct = (el) => {
     
     // INITIALISATION:
     (function () {
-        console.log(`widget start initialisation: ${Date.now() - startWidget}`)    
+        console.log(`widget start initialisation: ${Date.now() - startFactory}`)    
         //APPLY CHANGES ON EL TO ALL
         const setNewTextAll = (obj, prop,) => {
             Object.defineProperty(obj, prop, {
@@ -94,11 +94,12 @@ const construct = (el) => {
             style: Object.seal(new StyleSubText(obj.style)),
             set x(newValue) { obj.x = newValue; },
             set y(newValue) { obj.y = newValue; },
-            enumerable: true
+            enumerable: true,
+           
         });
-
+       
         let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
-        
+        console.timeLog
         
         //REFERENCE BETWEEN VIRTUAL AND ELEMTENT OBJECT STYLE
         Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -118,7 +119,7 @@ const construct = (el) => {
         defineProps('light', effectsAPI(lightEl));
         defineProps('shadow', effectsAPI(shadowEl));
 
-        console.log(`widget all classes and APIs: ${Date.now() - startWidget}`)  
+        console.log(`widget all classes and APIs: ${Date.now() - startFactory}`)  
     
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
@@ -139,7 +140,7 @@ const construct = (el) => {
                     break;
             }
         });
-        console.log(`widget config: ${Date.now() - startWidget}`)  
+        console.log(`widget config: ${Date.now() - startFactory}`)  
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
@@ -155,7 +156,7 @@ const construct = (el) => {
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
-    console.log(`widget elements alligned: ${Date.now() - startWidget}`)  
+    console.log(`widget elements alligned: ${Date.now() - startFactory}`)  
     // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
     // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
     // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var

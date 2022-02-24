@@ -1,12 +1,12 @@
 // this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
 import document from "document";
 import { today } from "user-activity";
-//import { widgetFactory } from './widgets/widget-factory';
 import './widgets/shadow-text';
+import { startFactory } from "./widgets/construct-widgets";
 import { dumpProperties, inspectObject } from './devTools'
 
-const startApp = Date.now()
-console.log("start app: " + startApp)
+
+console.log("start app: " + (Date.now() - startFactory))
 // single widget-uses
 let test = document.getElementById('test');
 let calsLabel = document.getElementById('calsLabel');
@@ -47,6 +47,7 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+console.log("end app: " + (Date.now() - startFactory))
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
 //dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
 // TODO B ^ Be careful what you wish for! You could indeed recurse through objects such as .style. But unless you were very selective,
