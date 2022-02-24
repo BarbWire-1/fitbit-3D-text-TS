@@ -20,7 +20,7 @@ const construct = (el) => {
     // INITIALISATION:
     (function () {
         console.log(`widget start initialisation: ${Date.now() - startFactory}`)  
-        //TODO tested try/catxh here... there must be a logic mistake
+        //TODO tested try/catch here... there must be a logic mistake
         //need to test where???
         //const supportedProps = [ 'text', 'textAnchor', 'letterSpacing'];
         //APPLY CHANGES ON EL TO ALL
@@ -186,12 +186,11 @@ const construct = (el) => {
         });
     })();//IIFE
     console.log(`widget elements alligned: ${Date.now() - startFactory}`)  
-    // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
-    // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
-    // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
-    // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
     
-    //TODO text if IIFE might be responsible for delay of css or just css itself takes so long?
+    //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
+
+    
+    //TODO test if IIFE might be responsible for delay of css or just css itself takes so long?
     // how to measure?? conditional check for fill eg?
 
    // el.assignOnLoad();
@@ -218,14 +217,15 @@ constructWidgets('shadowText', construct);
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 
-TODO P it looks like css gets processed way slower now than js.
-Not sure if it was this way before.
-you now can see: symbol defaults => js => css applied
-(or maybe js is just quicker this way ;) )
 
-I guess one of my recent changes might have caused that, but can't check now as out... sorry
 */
 // TODO B ^ How are you measuring the speed? ...
+// TODO P ^ you can SEE it without measuring.
+
 // TODO B ...Are you sure this isn't an issue arising from lack of clarity about which props are set against use and which against main?...
 // TODO B ...You could console.log in various places to see the sequence in which things are getting applied; possibly the IIFE is getting processed at a different time than previously...
 // TODO B ...I also suspect that IIFE is now running BEFORE copying props from config, whereas redraw() used to be called last. Could it be that?
+// TODO P ^...I actually think you are right. I now set the whole initialisation into one IIFE measured from factory=>widget => app (definetly wrong sequence)
+// TODO P ^... will undo IIFE tomorow and compare results
+
+//TODO P 0 These are no "TODO"s, but just info if interested :) I'll go on with testing tomorrow
