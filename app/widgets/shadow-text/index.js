@@ -190,7 +190,7 @@ console.log(`9. widget config: ${Date.now() - startFactory}`)
         });
     })();//IIFE
 console.log(`10. widget elements aligned: ${Date.now() - startFactory}`)  
-    
+    console.log('----------------------------------------------------------NEXT EL')
     //TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
 
     
