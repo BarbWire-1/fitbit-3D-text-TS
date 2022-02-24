@@ -228,3 +228,9 @@ TODO check "safety" from CSS/SVG
 // TODO P ^... will undo IIFE tomorow and compare results
 
 //TODO P 0 These are no "TODO"s, but just info if interested :) I'll go on with testing tomorrow
+
+//TESTS
+/**
+ * commenting out widget.class = widget.class doesn't change behaviour on load
+ */
+
