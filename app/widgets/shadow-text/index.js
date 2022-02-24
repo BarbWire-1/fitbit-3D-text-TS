@@ -2,6 +2,7 @@
 import { constructWidgets, startFactory } from '../construct-widgets';
 import { inspectObject, inspectObject2, dumpProperties } from '../../devTools';
 import document from 'document'
+import { validateSupportedLocales } from '@fitbit/sdk/lib/ProjectConfiguration';
 
 
 // DEFAULTS in widgets/shadow-text/styles.css
@@ -18,10 +19,39 @@ const construct = (el) => {
     
     // INITIALISATION:
     (function () {
-        console.log(`widget start initialisation: ${Date.now() - startFactory}`)    
+        console.log(`widget start initialisation: ${Date.now() - startFactory}`)  
+        //TODO tested try/catxh here... there must be a logic mistake
+        //need to test where???
+        //const supportedProps = [ 'text', 'textAnchor', 'letterSpacing'];
         //APPLY CHANGES ON EL TO ALL
+//         const setNewTextAll = (obj, prop,) => {
+// 
+//             let isValid = false;
+//             //console.log(isValid)
+//             console.log(prop)
+//             try {
+//                 Object.defineProperty(obj, prop, {
+//                 
+//                     set(newValue) {
+//                         mainEl[ prop ] =
+//                             shadowEl[ prop ] =
+//                             lightEl[ prop ] =
+//                             newValue;
+//                     },
+//                     enumerable: true
+//                 });
+//                 isValid = true;
+//             } catch (error) {
+//                 console.log(`The attribute ${prop} is not available for ${obj}`) 
+//             }
+//             console.log(isValid)
+// 
+//         };
+        
         const setNewTextAll = (obj, prop,) => {
-            Object.defineProperty(obj, prop, {
+
+             Object.defineProperty(obj, prop, {
+
                 set(newValue) {
                     mainEl[ prop ] =
                         shadowEl[ prop ] =
@@ -30,7 +60,6 @@ const construct = (el) => {
                 },
                 enumerable: true
             });
-
         };
 
         setNewTextAll(el, 'text');
@@ -53,7 +82,7 @@ const construct = (el) => {
                     enumerable: true
                 });
             }
-            };
+        };
             
         //APPLY TEXT-STYLE CHANGES TO ALL
         const setNewStyleAll = (obj, prop) => {
@@ -66,7 +95,7 @@ const construct = (el) => {
                     },
                     enumerable: true
                 });
-            };
+        };
 
         class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
             constructor(elStyle) {
@@ -99,7 +128,7 @@ const construct = (el) => {
         });
        
         let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
-        console.timeLog
+      
         
         //REFERENCE BETWEEN VIRTUAL AND ELEMTENT OBJECT STYLE
         Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -161,6 +190,9 @@ const construct = (el) => {
     // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
     // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
     // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
+    
+    //TODO text if IIFE might be responsible for delay of css or just css itself takes so long?
+    // how to measure?? conditional check for fill eg?
 
    // el.assignOnLoad();
     //INSPECT OBJECTS ***************************************************************
