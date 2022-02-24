@@ -136,17 +136,17 @@ const construct = (el) => {
 
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
-        // TODO P 3.5 resolve letterSpacing in assignOnLoad() allSubTextElements loop; in general, lack of clarity/consistency in where SVG/CSS is to be set? Clash with config?
         allSubTextElements.forEach(e => {
-            e.text = mainEl.text ?? "shadow-text";
-            e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
-            e.style.fontFamily = mainEl.style.fontFamily;
+            //e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
+            //e.letterSpacing = mainEl.letterSpacing ?? 0;  // Removed because letter-spacing is set on useEl via config, and not on main
+            e.style.fontFamily = elStyle.fontFamily;        // because font-family is set on useEl
+            /* // Removed because text-anchor is set on useEl via config, and not on main
             try {     // textEl.textAnchor throws an error if textAnchor not defined
                 e.textAnchor = mainEl.textAnchor;
             } catch (e) {
                e.textAnchor = 'start';
-            }
-            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // if fontSize is undefined its value is -32768
+            }*/
+            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
     // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
