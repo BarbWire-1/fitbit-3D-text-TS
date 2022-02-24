@@ -112,10 +112,31 @@ const construct = (el) => {
     defineProps('shadow', effectsAPI(shadowEl));
 
 
-    // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-    const allSubTextElements = el.getElementsByClassName('myText');
+    // INITIALISATION:
     (function () {
-        // TODO P 3.5 resolve letterSpacing in assignOnLoad() allSubTextElements loop; in general, lack of clarity/consistency in where SVG/CSS is to be set?
+        // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
+        const attributes = el.getElementById('config').text.split(';')
+        attributes.forEach(attribute => {
+            const colonIndex = attribute.indexOf(':')
+            const attributeName = attribute.substring(0, colonIndex).trim();
+            const attributeValue = attribute.substring(colonIndex+1).trim();
+
+            switch(attributeName) {
+                case 'text':
+                    el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                    break;
+                case 'letter-spacing':
+                    el.letterSpacing = Number(attributeValue);
+                    break;
+                case 'text-anchor':
+                    el.textAnchor = attributeValue;
+                    break;
+            }
+        });
+
+        // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        const allSubTextElements = el.getElementsByClassName('myText');
+        // TODO P 3.5 resolve letterSpacing in assignOnLoad() allSubTextElements loop; in general, lack of clarity/consistency in where SVG/CSS is to be set? Clash with config?
         allSubTextElements.forEach(e => {
             e.text = mainEl.text ?? "shadow-text";
             e.letterSpacing = mainEl.letterSpacing ?? 0;    // TODO should mainEl be el? Why does this work on letterSpacing, and/but only there?
@@ -132,29 +153,6 @@ const construct = (el) => {
     // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
     // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
     // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
-    // TODO P 3.1 put config into IIFE?
-
-
-    // INITIALISATION:
-    // Parse and process SVG config attributes:
-    const attributes = el.getElementById('config').text.split(';')
-    attributes.forEach(attribute => {
-        const colonIndex = attribute.indexOf(':')
-        const attributeName = attribute.substring(0, colonIndex).trim();
-        const attributeValue = attribute.substring(colonIndex+1).trim();
-
-        switch(attributeName) {
-            case 'text':
-                el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
-                break;
-            case 'letter-spacing':
-                el.letterSpacing = Number(attributeValue);
-                break;
-            case 'text-anchor':
-                el.textAnchor = attributeValue;
-                break;
-        }
-    });
 
    // el.assignOnLoad();
     //INSPECT OBJECTS ***************************************************************
@@ -189,4 +187,5 @@ I guess one of my recent changes might have caused that, but can't check now as 
 */
 // TODO B ^ How are you measuring the speed? ...
 // TODO B ...Are you sure this isn't an issue arising from lack of clarity about which props are set against use and which against main?...
-// TODO B ...You could console.log in various places to see the sequence in which things are getting applied; possibly the IIFE is getting processed at a different time than previously.
+// TODO B ...You could console.log in various places to see the sequence in which things are getting applied; possibly the IIFE is getting processed at a different time than previously...
+// TODO B ...I also suspect that IIFE is now running BEFORE copying props from config, whereas redraw() used to be called last. Could it be that?
