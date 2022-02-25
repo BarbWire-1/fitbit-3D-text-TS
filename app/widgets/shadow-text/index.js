@@ -119,9 +119,9 @@ const construct = (el) => {
         attributes.forEach(attribute => {
             const colonIndex = attribute.indexOf(':')
             const attributeName = attribute.substring(0, colonIndex).trim();
-            const attributeValue = attribute.substring(colonIndex + 1).trim();
+            const attributeValue = attribute.substring(colonIndex+1).trim();
 
-            switch (attributeName) {
+            switch(attributeName) {
                 case 'text':
                     el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
                     break;
@@ -154,7 +154,7 @@ const construct = (el) => {
     // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
     // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
 
-    // el.assignOnLoad();
+   // el.assignOnLoad();
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs

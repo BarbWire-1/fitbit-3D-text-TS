@@ -1,6 +1,5 @@
 import document from 'document';
 export const startFactory = Date.now()
-console.log(`1. startFactory: ${Date.now()}`)
     export const constructWidgets = (widgetType, construct) => {
         const widgets = document.getElementsByTypeName(widgetType);
         widgets.forEach(widget => {
@@ -11,4 +10,3 @@ console.log(`1. startFactory: ${Date.now()}`)
             }
         });
 }
-console.log("2. end factory: "+ (Date.now() - startFactory))
