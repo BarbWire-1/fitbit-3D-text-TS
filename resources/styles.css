@@ -27,7 +27,8 @@
 /* This setting overrides the setting for ALL classes as it is on #ID .class */
 #countDown #main {
     fill: mediumturquoise;
-    /*text-anchor: middle;*/ /* text-anchor is now set in use's config because it applies to all textEls, not just main */
+    /*text-anchor: middle;*/
+    /* text-anchor is now set in use's config because it applies to all textEls, not just main */
 }
 
 #countDown #shadow {

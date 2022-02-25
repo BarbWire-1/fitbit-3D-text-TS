@@ -2,7 +2,7 @@
     <rect id="background" />
 
 
-    <use id="test" href="#shadowText" >
+    <use id="test" href="#shadowText">
         <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle;' />
     </use>
     <!--min requirements for default-->
@@ -22,7 +22,8 @@
         display="inline">
         <!-- <set href="dummy" attributeName="letter-spacing" to="3"/>       this one is working it probably doesn't now, but it should work against main -->
         <!-- <set href="dummy" attributeName="text-anchor" to="middle"/> -->
-        <set href="#config" attributeName="text-buffer" to='text-anchor: middle' /> <!-- used to be set on main, but is now set in config because it applies to all textEls -->
+        <set href="#config" attributeName="text-buffer" to='text-anchor: middle' />
+        <!-- used to be set on main, but is now set in config because it applies to all textEls -->
     </use>
     <text id="normalText" x="0" y="0" fill="black" font-family="System-Regular" font-size="30">Text</text>
 

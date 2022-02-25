@@ -1,12 +1,10 @@
 // this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
 import document from "document";
 import { today } from "user-activity";
+//import { widgetFactory } from './widgets/widget-factory';
 import './widgets/shadow-text';
-import { startFactory } from "./widgets/construct-widgets";
 import { dumpProperties, inspectObject } from './devTools'
 
-
-console.log("11. start app: " + (Date.now() - startFactory))
 // single widget-uses
 let test = document.getElementById('test');
 let calsLabel = document.getElementById('calsLabel');
@@ -22,9 +20,7 @@ setInterval(() => {
     //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
-    calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
-    // TODOthis doesn't get recognised/logged in widget/setter
-    // where can I measure the "set" ???
+    //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
     if (cd == 0) {
         cd = 100;
@@ -49,22 +45,20 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-console.log("12. end app: " + (Date.now() - startFactory))
-test.fill = "red"
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
 //dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
 // TODO B ^ Be careful what you wish for! You could indeed recurse through objects such as .style. But unless you were very selective,
 // TODO B ...the same logic would also process .parent, .children (and therefore each child), etc. You'd get a HUGE output.
-                                                                        // but If we can read this like now, we might be close...
+// but If we can read this like now, we might be close...
 //test.main.style.display = "none"
 //INSPECT OBJECTS****************************************************************************************
 // at the moment not possible as encapsulated
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-//dumpProperties('test.light.style', test.light.style, true) //
-//console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
+dumpProperties('test.light.style', test.light.style, true) //
+console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 
 // INSPECT key:value
-//inspectObject('test.text', test.text)// keys and values for !style
+inspectObject('test.text', test.text)// keys and values for !style
 // dumpProperties('test.light', test.light, true)
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
