@@ -111,6 +111,38 @@ const construct = (el) => {
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
 
+    el.getBBox = () => {
+        const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
+
+        let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
+        if (lightEl.style.display !== 'none') {
+            lightX = lightEl.x;
+            lightY = lightEl.y;
+        };
+        if (shadowEl.style.display !== 'none') {
+            shadowX = shadowEl.x;
+            shadowY = shadowEl.y;
+        };
+
+        const leftExtra = Math.min(Math.min(lightX,0), Math.min(shadowX,0));    // will be 0 or negative
+        const topExtra = Math.min(Math.min(lightY,0), Math.min(shadowY,0));    // will be 0 or negative
+        const rightExtra = Math.max(Math.max(lightX,0), Math.max(shadowX,0));
+        const bottomExtra = Math.max(Math.max(lightY,0), Math.max(shadowY,0));
+
+        const bbox = {
+            bottom: mainBBox.bottom + bottomExtra,
+            height: mainBBox.height - topExtra + bottomExtra,
+            left: mainBBox.x + leftExtra,
+            right: mainBBox.right + rightExtra,
+            top: mainBBox.y + topExtra,
+            width: mainBBox.width - leftExtra + rightExtra,
+            x: mainBBox.x + leftExtra,
+            y: mainBBox.y + topExtra
+        }
+        //dumpProperties('main', mainBBox, 1)
+        //console.log(`bb=${JSON.stringify(bbox)}`)
+        return bbox;
+    }
 
     // INITIALISATION:
     (function () {
@@ -179,6 +211,7 @@ TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 
 TODO P it looks like css gets processed way slower now than js.
+TODO B ^ Issue now resolved?
 Not sure if it was this way before.
 you now can see: symbol defaults => js => css applied
 (or maybe js is just quicker this way ;) )
