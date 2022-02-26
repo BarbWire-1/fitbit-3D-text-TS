@@ -41,7 +41,7 @@ const construct = (el) => {
 
     //APPLY TEXT-STYLE CHANGES TO ALL
     
-    const setNewStyleAll = (obj, prop) => {
+   function setNewStyleAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
                 mainEl.style[ prop ] =
@@ -108,7 +108,7 @@ const construct = (el) => {
     });
 
     // Exposes property and returns all values to owner
-    const defineProps = (prop, obj) => {
+    function defineProps(prop, obj)  {
         Object.defineProperty(el, prop, {
             get() { return obj; }
         });
