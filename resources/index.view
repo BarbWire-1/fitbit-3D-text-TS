@@ -2,8 +2,8 @@
     <rect id="background" />
 
 
-    <use id="test" href="#shadowText" class="widget-auto" x="50%" y="50%">
-        <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle; text-length: 20' />
+    <use id="test" href="#shadowText" class="widget-auto" x="50%" y="50%" >
+        <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle' />
     </use>
     <!--min requirements for default-->
 

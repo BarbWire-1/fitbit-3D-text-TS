@@ -30,8 +30,8 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-    setNewTextAll(el, 'textLength');
-
+    setNewTextAll(el, 'textLength'); '⛔️'
+    //TODO P this doesn't get applied, although I can log it in app/index
 
     //APPLY TEXT-STYLE CHANGES TO ALL
     // TODO B I like the removal of duplication that this function provides! 👍
@@ -140,8 +140,8 @@ const construct = (el) => {
             x: mainBBox.x + leftExtra,
             y: mainBBox.y + topExtra
         }
-        //dumpProperties('main', mainBBox, 1)
-        //console.log(`bb=${JSON.stringify(bbox)}`)
+        dumpProperties('main', mainBBox, 1)
+        console.log(`bb=${JSON.stringify(bbox)}`)
         return bbox;
     }
 
@@ -166,8 +166,8 @@ const construct = (el) => {
                     break;
                 case 'text-length':
                     el.textLength = Number(attributeValue);
-                    break;
-                    
+                    break; 
+                // TODO B remove if no solution    '⛔️'
             }
         });
         console.log(mainEl.textLength)
