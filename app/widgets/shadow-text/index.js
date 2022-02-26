@@ -12,20 +12,26 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-
+    
+    // let useEls = []
+    // useEls.push(el.id)
+    // inspectObject((`${useEls[ 0 ]}.firstChild.style.fill`), useEls[ 0 ].firstChild.style.fill)
+    //console.log(`use ids: ${useEls}`)
+    //TODO B how get data out of the widget to read, resp read data from widget directly?
+    
     //APPLY CHANGES ON EL TO ALL
-    const setNewTextAll = (obj, prop) => {
-        Object.defineProperty(obj, prop, {
-            set(newValue) {
-                mainEl[ prop ] =
-                    shadowEl[ prop ] =
-                    lightEl[ prop ] =
-                    newValue;
-            },
-            enumerable: true
-        });
+    function setNewTextAll(obj, prop) {
+    Object.defineProperty(obj, prop, {
+        set(newValue) {
+            mainEl[ prop ] =
+                shadowEl[ prop ] =
+                lightEl[ prop ] =
+                newValue;
+        },
+        enumerable: true
+    });
 
-    };
+}
 
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
@@ -192,7 +198,8 @@ const construct = (el) => {
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    inspectObject('lighEl.style.fill', lightEl.style.fill)
+    inspectObject('mainEl.style.fill',mainEl.style.fill)
+   
     //inspectObject('mainEl.text', mainEl.text)
 
 
