@@ -30,6 +30,7 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
+    setNewTextAll(el, 'textLength');
 
 
     //APPLY TEXT-STYLE CHANGES TO ALL
@@ -163,9 +164,13 @@ const construct = (el) => {
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
                     break;
+                case 'text-length':
+                    el.textLength = Number(attributeValue);
+                    break;
+                    
             }
         });
-
+        console.log(mainEl.textLength)
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {

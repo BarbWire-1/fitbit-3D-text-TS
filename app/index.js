@@ -13,7 +13,8 @@ let countDown = document.getElementById('countDown');
 //class light
 let allLights = document.getElementsByClassName('light');
 
-
+calsLabel.text = `cals ${today.adjusted.calories}`;
+countDown.text = 100;
 let cd = 100;
 setInterval(() => {
     //test.text = `steps ${today.adjusted.steps}`;
@@ -45,6 +46,8 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+console.log(test.getBBox().x)
+console.log(test.x)
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
 //dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
 // TODO B ^ Be careful what you wish for! You could indeed recurse through objects such as .style. But unless you were very selective,
