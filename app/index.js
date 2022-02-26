@@ -57,7 +57,7 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-// console.log(test.getBBox().x)//74
+//console.log(test.getBBox().x)//74
 // console.log(test.x)//0
 //TODO P this returns 0 - this is the value from symbol. use is set to 50%
 
@@ -74,7 +74,7 @@ test.shadow.style.opacity = 1;
 // INSPECT key:value
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
 // inspectObject('test.main.style.fill', test.main.style.fill)// test.main.style.fill: undefined
-console.log(test.text)
+//console.log(test.text)
 
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values

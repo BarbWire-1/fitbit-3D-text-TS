@@ -149,10 +149,12 @@ const construct = (el) => {
             x: mainBBox.x + leftExtra,
             y: mainBBox.y + topExtra
         }
-        dumpProperties('main', mainBBox, 1)
-        console.log(`bb=${JSON.stringify(bbox)}`)
+        // dumpProperties('main', mainBBox, 1)
+        // console.log(`bb=${JSON.stringify(bbox)}`)
+        
         return bbox;
     }
+    
 
     // INITIALISATION:
     (function () {
@@ -223,3 +225,4 @@ constructWidgets('shadowText', construct);
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
 */
+
