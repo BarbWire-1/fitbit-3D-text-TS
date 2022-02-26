@@ -46,7 +46,8 @@ export const inspectObject = (objName, obj) => {
     if (props) {
         console.log(`${objName}: ${obj}`)
     } else {
-        console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
+        //console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
+    console.log(objName.obj.prop)
     } 
 };
 //call like: inspectObject('objName',obj)
