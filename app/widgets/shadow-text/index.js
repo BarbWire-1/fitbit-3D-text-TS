@@ -12,13 +12,13 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-    
+
     // let useEls = []
     // useEls.push(el.id)
     // inspectObject((`${useEls[ 0 ]}.firstChild.style.fill`), useEls[ 0 ].firstChild.style.fill)
     //console.log(`use ids: ${useEls}`)
     //TODO B how get data out of the widget to read, resp read data from widget directly?
-    
+
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
@@ -35,14 +35,13 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-    setNewTextAll(el, 'textLength'); '⛔️'
-    //TODO P this doesn't get applied, although I can log it in app/index
 
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
+                console.log(`setNewS ${prop}=${newValue}`); // TODO P 4 del
                 mainEl.style[ prop ] =
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
@@ -68,7 +67,7 @@ const construct = (el) => {
             });
         }
     };
-    
+
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
             super(styleBase);
@@ -87,7 +86,7 @@ const construct = (el) => {
         }
     };
 
-    
+
 
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
@@ -96,7 +95,7 @@ const construct = (el) => {
             get() { return obj; }
         });
     };
-    
+
     let mainAPI = Object.seal({
         style: Object.seal(new StyleSubText(mainEl.style))
     });
@@ -110,7 +109,7 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-    
+
     //CONNECT OUTER TO VIRTUAL STYLE
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -151,10 +150,10 @@ const construct = (el) => {
         }
         // dumpProperties('main', mainBBox, 1)
         // console.log(`bb=${JSON.stringify(bbox)}`)
-        
+
         return bbox;
     }
-    
+
 
     // INITIALISATION:
     (function () {
@@ -175,10 +174,6 @@ const construct = (el) => {
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
                     break;
-                case 'text-length':
-                    el.textLength = Number(attributeValue);
-                    break; 
-                // TODO B remove if no solution    '⛔️'
             }
         });
         //console.log(`textLength: ${mainEl.textLength}`)
@@ -197,9 +192,9 @@ const construct = (el) => {
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
-    
-    
-    
+
+
+
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
