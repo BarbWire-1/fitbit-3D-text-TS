@@ -46,7 +46,7 @@ export const inspectObject = (objName, obj) => {
     if (props) {
         console.log(`${objName}: ${obj}`)
     } else {
-        console.log(`${objName}.${obj}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
+        console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
     } 
 };
 //call like: inspectObject('objName',obj)
@@ -54,8 +54,8 @@ export const inspectObject = (objName, obj) => {
 
   /*
  TODO can log values in widget for subEl...
- possible to get the corresponding <use> id?
- possible to go on one specific value?
+ possible to get the corresponding <use> id? el.id, dummy
+ possible to go on one specific value? value => "Argument is not an object"
  possible to reach/pass from/to app/index?
  B have a look at this: https://flexiple.com/key-value-javascript/
  try to write a recursion to get all properties of el

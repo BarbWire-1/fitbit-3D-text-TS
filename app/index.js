@@ -69,10 +69,12 @@ test.shadow.style.opacity = 1;
 // dumpProperties('test.light', test.light, true)
 //dumpProperties('test.light.style', test.light.style, true)
 //dumpProperties('test.light.style.fill', test.light.style.fill, false)   
-console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
+
 
 // INSPECT key:value
-//inspectObject('test.text', test.text)// keys and values for !style
+// console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
+// inspectObject('test.main.style.fill', test.main.style.fill)// test.main.style.fill: undefined
+console.log(test.main.style[0])
 
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
@@ -81,3 +83,5 @@ console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 // while values set here do see console.log line 29
 
 //TODO P could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
+
+//TODO is it possible to add console as prop to subEls?

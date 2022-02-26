@@ -198,7 +198,7 @@ const construct = (el) => {
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    inspectObject('mainEl.style.fill',mainEl.style.fill)
+    // inspectObject('mainEl.style.fill',mainEl.style.fill)
    
     //inspectObject('mainEl.text', mainEl.text)
 
