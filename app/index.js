@@ -19,10 +19,19 @@ let cd = 100;
 setInterval(() => {
     //test.text = `steps ${today.adjusted.steps}`;
     //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
-    calsLabel.text = `cals ${today.adjusted.calories}`;
+    calsLabel.text = cd % 2 == 0 ?`cals ${today.adjusted.calories}` : 'I can';
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
-
+    
+    
+    test.style.fontSize = cd % 2 == 0 ? 30 : 40;
+    if (cd % 2 == 0) { test.text = "I can't"; }
+    //console.log(test.getBBox().x)//starts with 86 then alternates 116 (steps) 107 (boo)
+    //Although displayed text itself soesn't get changed
+     
+    
+    
+    
     if (cd == 0) {
         cd = 100;
     }
@@ -46,22 +55,25 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-console.log(test.getBBox().x)
-console.log(test.x)
-//dumpProperties('test.light.style.fill', test.light.style.fill, false)   // TODO B This is working for me. The only member is .style.
-//dumpProperties('test', test, false)                                     // TODO P Yes, But I would love to log the values of the use like style.fill
-// TODO B ^ Be careful what you wish for! You could indeed recurse through objects such as .style. But unless you were very selective,
-// TODO B ...the same logic would also process .parent, .children (and therefore each child), etc. You'd get a HUGE output.
-// but If we can read this like now, we might be close...
+console.log(test.getBBox().x)//74
+console.log(test.x)//0
+//TODO P this returns 0 - this is the value from symbol. use is set to 50%
+
 //test.main.style.display = "none"
+
 //INSPECT OBJECTS****************************************************************************************
-// at the moment not possible as encapsulated
+
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
-dumpProperties('test.light.style', test.light.style, true) //
+// dumpProperties('test.light', test.light, true)
+//dumpProperties('test.light.style', test.light.style, true)
+//dumpProperties('test.light.style.fill', test.light.style.fill, false)   
 console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 
 // INSPECT key:value
-inspectObject('test.text', test.text)// keys and values for !style
-// dumpProperties('test.light', test.light, true)
+//inspectObject('test.text', test.text)// keys and values for !style
+
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
+
+//TODO P values set in config do change once in setInterval, but not switch back 
+// while values set here do see console.log line 29
