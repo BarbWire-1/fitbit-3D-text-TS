@@ -21,17 +21,16 @@ const construct = (el) => {
     
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
-    Object.defineProperty(obj, prop, {
-        set(newValue) {
-            mainEl[ prop ] =
-                shadowEl[ prop ] =
-                lightEl[ prop ] =
-                newValue;
-        },
-        enumerable: true
-    });
-
-}
+        Object.defineProperty(obj, prop, {
+            set(newValue) {
+                mainEl[ prop ] =
+                    shadowEl[ prop ] =
+                    lightEl[ prop ] =
+                    newValue;
+            },
+            enumerable: true
+        });
+    };
 
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
@@ -40,7 +39,7 @@ const construct = (el) => {
     //TODO P this doesn't get applied, although I can log it in app/index
 
     //APPLY TEXT-STYLE CHANGES TO ALL
-    
+    //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
@@ -53,7 +52,7 @@ const construct = (el) => {
         });
     };
 
-
+    // CREATE STYLE CLASSES
     class StyleCommon {     // style properties common to all elements
         constructor(styleBase) {
             // styleBase: the Fitbit API style object that implements things.
@@ -69,15 +68,7 @@ const construct = (el) => {
             });
         }
     };
-
-    class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-        constructor(elStyle) {
-            super(elStyle);
-            setNewStyleAll(this, 'fontFamily');
-            setNewStyleAll(this, 'fontSize');
-        }
-    };
-
+    
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
             super(styleBase);
@@ -88,9 +79,28 @@ const construct = (el) => {
         }
     };
 
+    class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
+        constructor(elStyle) {
+            super(elStyle);
+            setNewStyleAll(this, 'fontFamily');
+            setNewStyleAll(this, 'fontSize');
+        }
+    };
+
+    
+
+    // CREATE API's
+    // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
+    function defineProps(prop, obj) {
+        Object.defineProperty(el, prop, {
+            get() { return obj; }
+        });
+    };
+    
     let mainAPI = Object.seal({
         style: Object.seal(new StyleSubText(mainEl.style))
     });
+    defineProps('main', mainAPI);
 
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
@@ -98,26 +108,19 @@ const construct = (el) => {
         set y(newValue) { obj.y = newValue; },
         enumerable: true
     });
-
+    defineProps('light', effectsAPI(lightEl));
+    defineProps('shadow', effectsAPI(shadowEl));
+    
+    //CONNECT OUTER TO VIRTUAL STYLE
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
-
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         get() {
             return widgetStyleAPI;
         }
     });
 
-    // Exposes property and returns all values to owner
-    function defineProps(prop, obj)  {
-        Object.defineProperty(el, prop, {
-            get() { return obj; }
-        });
-    };
 
-    defineProps('main', mainAPI);
-    defineProps('light', effectsAPI(lightEl));
-    defineProps('shadow', effectsAPI(shadowEl));
-
+    // GETBBOX() ON USE (!)
     el.getBBox = () => {
         const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
 
