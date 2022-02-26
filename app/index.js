@@ -25,8 +25,13 @@ setInterval(() => {
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
 
-    test.style.fontSize = (cd % 2 == 0) ? 30 : 40;
-    //TODO P 1.0 it seems to only take any changes on text-style, if text is set here
+    //test.style.fontFamily = cd % 2? "Fabrikat-Bold" : "System-Regular"; // this works, but fontSize doesn't!
+    test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
+
+    const normalTextEl = document.getElementById('normalText');
+    normalTextEl.style.fontSize = cd/2+10;          // doesn't work without the following line
+    //normalTextEl.text = normalTextEl.text         // 🙄
+
     //but not only in config
     // If this is activated, it does the applied changes
 

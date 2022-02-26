@@ -41,11 +41,11 @@ const construct = (el) => {
    function setNewStyleAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
-                console.log(`setNewS ${prop}=${newValue}`); // TODO P 4 del
                 mainEl.style[ prop ] =
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
                     newValue;
+                mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
             },
             enumerable: true
         });
@@ -180,7 +180,7 @@ const construct = (el) => {
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
-        e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
+            e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
             //e.letterSpacing = mainEl.letterSpacing ?? 0;  // Removed because letter-spacing is set on useEl via config, and not on main
             e.style.fontFamily = elStyle.fontFamily;        // because font-family is set on useEl
             /* // Removed because text-anchor is set on useEl via config, and not on main
