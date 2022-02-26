@@ -26,7 +26,7 @@ setInterval(() => {
     
     
     test.style.fontSize = cd % 2 == 0 ? 30 : 40;
-    if (cd % 2 == 0) { test.text = "I can't"; }
+    if (cd % 2 == 0) { test.text = "I can't"; test.main.style.fill ="red" }
     //console.log(test.getBBox().x)//starts with 86 then alternates 116 (steps) 107 (boo)
     //Although displayed text itself soesn't get changed
      
