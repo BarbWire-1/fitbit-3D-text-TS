@@ -34,7 +34,7 @@ const construct = (el) => {
     //TODO P this doesn't get applied, although I can log it in app/index
 
     //APPLY TEXT-STYLE CHANGES TO ALL
-    // TODO B I like the removal of duplication that this function provides! 👍
+    
     const setNewStyleAll = (obj, prop) => {
         Object.defineProperty(obj, prop, {
             set(newValue) {
@@ -156,10 +156,10 @@ const construct = (el) => {
 
             switch(attributeName) {
                 case 'text':
-                    el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                   el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
-                    el.letterSpacing = Number(attributeValue);
+                   el.letterSpacing = Number(attributeValue);
                     break;
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
@@ -170,11 +170,11 @@ const construct = (el) => {
                 // TODO B remove if no solution    '⛔️'
             }
         });
-        console.log(mainEl.textLength)
+        //console.log(`textLength: ${mainEl.textLength}`)
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
-            //e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
+        e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
             //e.letterSpacing = mainEl.letterSpacing ?? 0;  // Removed because letter-spacing is set on useEl via config, and not on main
             e.style.fontFamily = elStyle.fontFamily;        // because font-family is set on useEl
             /* // Removed because text-anchor is set on useEl via config, and not on main
@@ -186,10 +186,7 @@ const construct = (el) => {
             e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
         });
     })();//IIFE
-    // TODO P I checked setting to el, but it is not possible in this level (the text inheritance, I assume)
-    // TODO B ^ You're right about letterSpacing, which can't be set on use in SVG/CSS. fontFamily could perhaps be set on use or main in SVG/CSS, so may need a conscious decision about which to copy above.
-    // TODO P ^I'm not sure whether it makes sense to make it an IIFE, just seemed logical, but requires an outer var
-    // TODO B ^ IIFE is logical (and potentially a lot more of the code may be able to go into it). I made it anonymous which, I think, addresses your concern about 'outer var'
+    
 
    // el.assignOnLoad();
     //INSPECT OBJECTS ***************************************************************
@@ -214,16 +211,4 @@ constructWidgets('shadowText', construct);
 /*
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
-
-TODO P it looks like css gets processed way slower now than js.
-TODO B ^ Issue now resolved?
-Not sure if it was this way before.
-you now can see: symbol defaults => js => css applied
-(or maybe js is just quicker this way ;) )
-
-I guess one of my recent changes might have caused that, but can't check now as out... sorry
 */
-// TODO B ^ How are you measuring the speed? ...
-// TODO B ...Are you sure this isn't an issue arising from lack of clarity about which props are set against use and which against main?...
-// TODO B ...You could console.log in various places to see the sequence in which things are getting applied; possibly the IIFE is getting processed at a different time than previously...
-// TODO B ...I also suspect that IIFE is now running BEFORE copying props from config, whereas redraw() used to be called last. Could it be that?

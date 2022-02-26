@@ -49,6 +49,7 @@
 }
 #test .myText{
     text-length: 20;
+    text-buffer: 40;
 }
 /*
 .color1 {

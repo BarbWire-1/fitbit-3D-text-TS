@@ -57,7 +57,7 @@ export const inspectObject = (objName, obj) => {
  possible to get the corresponding <use> id?
  possible to go on one specific value?
  possible to reach/pass from/to app/index?
- TODO B have a look at this: https://flexiple.com/key-value-javascript/
- TODO try to write a recursion to get all properties of el
+ B have a look at this: https://flexiple.com/key-value-javascript/
+ try to write a recursion to get all properties of el
 
 */

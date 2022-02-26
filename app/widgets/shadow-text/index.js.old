@@ -116,19 +116,6 @@ constructWidgets('shadowText', construct);
 
 
 /*
-TODO Exception for trying to add not exposed props
-TODO Try to run with new factory?
 
-TODO check, which structural functions to IIFE
-
-TODO check "safety" from CSS/SVG
-
-TODO decide whether to go with dummy textEl or not.
-It isn't really necessary, but makes main a subElement only!
-so fontSize couldn't be set on main any longer
-
-TODO what is the the specialty with fontSize?
-  * I can't set the API as for other properties
-  * I can't equal it from "owner" dummyEl to all el
 */
 

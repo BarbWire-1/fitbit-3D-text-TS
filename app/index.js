@@ -19,7 +19,7 @@ let cd = 100;
 setInterval(() => {
     //test.text = `steps ${today.adjusted.steps}`;
     //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
-    calsLabel.text = cd % 2 == 0 ?`cals ${today.adjusted.calories}` : 'I can';
+    calsLabel.text = cd % 2 == 0 ?`cals ${today.adjusted.calories}` : 'I can ';
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
     
@@ -42,7 +42,8 @@ calsLabel.textAnchor = "middle"
 test.style.fontSize = 50;
 //test.main.style.fontSize = "Tungsten-Medium"
 // TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
-//dumpProperties('test.main.style',test.main.style)   // TODO B by default, defineProperty sets enumable to false, so they won't be seen by dumpProps. I changed some to test. Need to decide what we want.
+// TODO P I absolutely prefer sealing. We don't people want to extend the widget's objects, do we?
+//dumpProperties('test.main.style',test.main.style,1)  
 //test.textAnchor = "middle";
 //test.letterSpacing = 10;
 test.main.style.fill = "white";
@@ -55,8 +56,8 @@ test.shadow.y = 5
 //test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-console.log(test.getBBox().x)//74
-console.log(test.x)//0
+// console.log(test.getBBox().x)//74
+// console.log(test.x)//0
 //TODO P this returns 0 - this is the value from symbol. use is set to 50%
 
 //test.main.style.display = "none"
@@ -77,3 +78,5 @@ console.log(`test.main.style keys: ${Object.keys(test.main.style)}`)
 
 //TODO P values set in config do change once in setInterval, but not switch back 
 // while values set here do see console.log line 29
+
+//TODO P could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
