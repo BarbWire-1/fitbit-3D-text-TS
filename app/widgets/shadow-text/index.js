@@ -161,11 +161,12 @@ const construct = (el) => {
         attributes.forEach(attribute => {
             const colonIndex = attribute.indexOf(':')
             const attributeName = attribute.substring(0, colonIndex).trim();
-            const attributeValue = attribute.substring(colonIndex+1).trim();
+            let attributeValue = attribute.substring(colonIndex+1).trim();
 
             switch(attributeName) {
                 case 'text':
-                   el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                    //TODO P this is VERY strange: if set, it displays fontSize on load ❓
+                   el.text = mainEl.text ?? attributeValue;   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
                    el.letterSpacing = Number(attributeValue);
