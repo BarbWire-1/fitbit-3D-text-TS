@@ -25,8 +25,17 @@ setInterval(() => {
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
     
     
-    test.style.fontSize = cd % 2 == 0 ? 30 : 40;
-    if (cd % 2 == 0) { test.text = "I can't"; test.main.style.fill ="red" }
+    test.style.fontSize = (cd % 2 == 0) ? 30 : 40;// this is extremely strange shows 40 as text!!! ah yes, if no text is defined, but though...
+    //TODO P it seems to only take any changes on text-style, if text is set here
+    
+    // If this is activated, it does the applied changes
+    // if (cd % 2 == 0) {
+    //     test.text = "I can't";
+    //     test.main.style.fill = "red"
+    // } else {
+    //     test.text = "Oh, I can?";
+    //     test.main.style.fill = "white"
+    // }
     //console.log(test.getBBox().x)//starts with 86 then alternates 116 (steps) 107 (boo)
     //Although displayed text itself soesn't get changed
      

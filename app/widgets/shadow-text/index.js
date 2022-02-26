@@ -167,8 +167,7 @@ const construct = (el) => {
 
             switch(attributeName) {
                 case 'text':
-                    //TODO P this is VERY strange: if set, it displays fontSize on load ❓
-                   el.text = mainEl.text ?? attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                   el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
                    el.letterSpacing = Number(attributeValue);
