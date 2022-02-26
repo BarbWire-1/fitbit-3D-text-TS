@@ -196,14 +196,14 @@ const construct = (el) => {
         });
     })();//IIFE
     
-
-   // el.assignOnLoad();
+    
+    
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
-    // inspectObject('mainEl.style.fill',mainEl.style.fill)
-   
-    //inspectObject('mainEl.text', mainEl.text)
+    // inspectObject('mainEl.style.fill',mainEl.style.fill)//✅
+    // inspectObject(el.text, el.text) // TODO can't log el.text. looks like it doesn' HAVE property, but only gets passed value from mainEl?
+    // inspectObject('mainEl.text', mainEl.text)// works only for text set in config
 
 
     //prototype chain

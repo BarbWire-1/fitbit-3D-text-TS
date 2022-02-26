@@ -74,7 +74,7 @@ test.shadow.style.opacity = 1;
 // INSPECT key:value
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
 // inspectObject('test.main.style.fill', test.main.style.fill)// test.main.style.fill: undefined
-console.log(test.main.style[0])
+console.log(test.text)
 
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
