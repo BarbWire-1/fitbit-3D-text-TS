@@ -104,8 +104,6 @@ const construct = (el) => {
         }
     };
 
-
-
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
     function defineProps(prop, obj) {
@@ -113,9 +111,9 @@ const construct = (el) => {
             get() { return obj; }
         });
     };
-
+  
     let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style)),
+        style: Object.seal(new StyleSubText(mainEl.style)), 
     });
     defineProps('main', mainAPI);
 
@@ -138,7 +136,7 @@ const construct = (el) => {
         }
     });
 
-
+   
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
         const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
@@ -171,7 +169,8 @@ const construct = (el) => {
 
         return  bbox;
     }
-
+    //getBBOX() on main-text only
+    el.mainBBox = () => mainEl.getBBox();
 
     // INITIALISATION:
     (function () {  // IIFE

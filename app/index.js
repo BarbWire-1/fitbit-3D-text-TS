@@ -56,6 +56,8 @@ console.log(test.textAnchor)//middle
 console.log(test.style.fontFamily)// nothing logged
 console.log(calsLabel.text)// working
 console.log(test.shadow.x)
+console.log(`test.getBBox().width: ${test.getBBox().width}`)
+console.log(`test.mainBBox().width: ${test.mainBBox().width}`)
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
