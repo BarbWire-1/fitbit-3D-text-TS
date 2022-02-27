@@ -46,7 +46,7 @@ test.shadow.style.display = "inline"
 test.shadow.style.opacity = 0.8;
 test.light.style.opacity = 0.5;
 
-test.style.fontFamily = "Tungsten-Medium"
+//test.style.fontFamily = "Tungsten-Medium"
 
 console.log(test.x)//0 as set in %
 console.log(test.y)//168 as literal
