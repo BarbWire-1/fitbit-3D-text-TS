@@ -148,15 +148,13 @@ const construct = (el) => {
             x: mainBBox.x + leftExtra,
             y: mainBBox.y + topExtra
         }
-        // dumpProperties('main', mainBBox, 1)
-        // console.log(`bb=${JSON.stringify(bbox)}`)
 
         return bbox;
     }
 
 
     // INITIALISATION:
-    (function () {
+    (function () {  // IIFE
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
         attributes.forEach(attribute => {
@@ -176,22 +174,14 @@ const construct = (el) => {
                     break;
             }
         });
-        //console.log(`textLength: ${mainEl.textLength}`)
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
-            e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
-            //e.letterSpacing = mainEl.letterSpacing ?? 0;  // Removed because letter-spacing is set on useEl via config, and not on main
-            e.style.fontFamily = elStyle.fontFamily;        // because font-family is set on useEl
-            /* // Removed because text-anchor is set on useEl via config, and not on main
-            try {     // textEl.textAnchor throws an error if textAnchor not defined
-                e.textAnchor = mainEl.textAnchor;
-            } catch (e) {
-               e.textAnchor = 'start';
-            }*/
-            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
+            e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;    // font-size can be set on useEl; if fontSize is undefined its value is -32768
         });
-    })();//IIFE
+    })();   // end of initialisation IIFE
 
 
 

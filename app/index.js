@@ -53,10 +53,6 @@ calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-//test.main.style.fontSize = "Tungsten-Medium"
-//dumpProperties('test.main.style',test.main.style,1)
-//test.textAnchor = "middle";
-//test.letterSpacing = 10;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
@@ -64,13 +60,10 @@ test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-//test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-//console.log(test.getBBox().x)//74
 // console.log(test.x)//0   // won't work because Fitbit API doesn't return % values correctly
 
-//test.main.style.display = "none"
 
 //INSPECT OBJECTS****************************************************************************************
 
@@ -91,5 +84,6 @@ test.shadow.style.opacity = 1;
 // while values set here do see console.log line 29
 
 //TODO P 3.9 could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
+//TODO B ^ I removed some from here and lots from the widget. Anything I didn't recognise I assumed to be yours and left alone. You can cull those if you like.
 
 //TODO is it possible to add console as prop to subEls?
