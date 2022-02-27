@@ -60,7 +60,6 @@ test.shadow.x = 5;
 test.shadow.y = 5
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-test.main.getBBox().width
 //console.log(JSON.stringify(test.text))//0   // won't work because Fitbit API doesn't return % values correctly
 
 // console.log(test.x)//0 as set in %
