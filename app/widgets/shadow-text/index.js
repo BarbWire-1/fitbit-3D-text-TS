@@ -121,7 +121,8 @@ const construct = (el) => {
     };
 
     let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style))
+        style: Object.seal(new StyleSubText(mainEl.style)),
+        get getBBox() { return mainEl.getBBox },//Tried to operate on a nonexistent element.
     });
     defineProps('main', mainAPI);
 

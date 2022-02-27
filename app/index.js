@@ -60,16 +60,17 @@ test.shadow.x = 5;
 test.shadow.y = 5
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
+test.main.getBBox().width
 //console.log(JSON.stringify(test.text))//0   // won't work because Fitbit API doesn't return % values correctly
 
-console.log(test.x)//0 as set in %
-console.log(test.y)//168 as literal
-console.log(test.text)// steps
-console.log(test.main.style.fill)//#FFFFFF 
-console.log(test.textAnchor)//middle
-console.log(test.style.fontSize)// -32768
-console.log(test.style.fontFamily)// nothing logged
-console.log(calsLabel.text)
+// console.log(test.x)//0 as set in %
+// console.log(test.y)//168 as literal
+// console.log(test.text)// steps
+// console.log(test.main.style.fill)//#FFFFFF 
+// console.log(test.textAnchor)//middle
+// console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
+// console.log(test.style.fontFamily)// nothing logged
+// console.log(calsLabel.text)// working
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
@@ -80,7 +81,7 @@ console.log(calsLabel.text)
 
 // INSPECT key:value
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
-inspectObject('test.main.style', test.main.style)// test.main.style.fill: undefined
+inspectObject('test.style', test.style)// test.main.style.fill: undefined
 //console.log(test.text)
 
 
