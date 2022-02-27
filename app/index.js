@@ -23,13 +23,18 @@ setInterval(() => {
     calsLabel.text = cd % 2 == 0 ?`cals ${today.adjusted.calories}` : 'I can ';
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
-    
-    
-    test.style.fontSize = (cd % 2 == 0) ? 30 : 40;
-    //TODO P it seems to only take any changes on text-style, if text is set here
+
+
+    //test.style.fontFamily = cd % 2? "Fabrikat-Bold" : "System-Regular"; // this works, but fontSize doesn't!
+    test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
+
+    const normalTextEl = document.getElementById('normalText');
+    normalTextEl.style.fontSize = cd/2+10;          // doesn't work without the following line
+    //normalTextEl.text = normalTextEl.text         // 🙄
+
     //but not only in config
     // If this is activated, it does the applied changes
-    
+
     // if (cd % 2 == 0) {
     //     test.text = "I can't";
     //     test.main.style.fill = "red"
@@ -39,7 +44,7 @@ setInterval(() => {
     // }
     //console.log(test.getBBox().x)//starts with 86/98 for NOT changing text/ 27/85 for changing
     // Although displayed text itself soesn't get changed
-      
+
     if (cd == 0) {
         cd = 100;
     }
@@ -48,12 +53,6 @@ calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-//test.main.style.fontSize = "Tungsten-Medium"
-// TODO B maybe we need to think about whether to .seal or not. Sealing is good because I don't like things silently failing. But it's inconsistent with Fitbit API: if Fitbit sealed element objects, we couldn't make them into widgets, so maybe unsealed is more flexible.
-// TODO P I absolutely prefer sealing. We don't people want to extend the widget's objects, do we?
-//dumpProperties('test.main.style',test.main.style,1)  
-//test.textAnchor = "middle";
-//test.letterSpacing = 10;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
@@ -61,21 +60,17 @@ test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-//test.main.x = 10000   // test: results in error because x isn't defined in main's API
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-//console.log(test.getBBox().x)//74
-// console.log(test.x)//0
-//TODO P this returns 0 - this is the value from symbol. use is set to 50%
+// console.log(test.x)//0   // won't work because Fitbit API doesn't return % values correctly
 
-//test.main.style.display = "none"
 
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
 // dumpProperties('test.light', test.light, true)
 //dumpProperties('test.light.style', test.light.style, true)
-//dumpProperties('test.light.style.fill', test.light.style.fill, false)   
+//dumpProperties('test.light.style.fill', test.light.style.fill, false)
 
 
 // INSPECT key:value
@@ -86,9 +81,9 @@ test.shadow.style.opacity = 1;
 
 //TODO search for a way to log/inspect useEl.prop.prop.prop values
 
-//TODO P values set in config do change once in setInterval, but not switch back 
 // while values set here do see console.log line 29
 
-//TODO P could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
+//TODO P 3.9 could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
+//TODO B ^ I removed some from here and lots from the widget. Anything I didn't recognise I assumed to be yours and left alone. You can cull those if you like.
 
 //TODO is it possible to add console as prop to subEls?

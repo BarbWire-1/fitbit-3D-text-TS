@@ -12,13 +12,13 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-    
+
     // let useEls = []
     // useEls.push(el.id)
     // inspectObject((`${useEls[ 0 ]}.firstChild.style.fill`), useEls[ 0 ].firstChild.style.fill)
     //console.log(`use ids: ${useEls}`)
     //TODO B how get data out of the widget to read, resp read data from widget directly?
-    
+
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
@@ -35,8 +35,6 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-    setNewTextAll(el, 'textLength'); '⛔️'
-    //TODO P this doesn't get applied, although I can log it in app/index
 
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
@@ -47,6 +45,7 @@ const construct = (el) => {
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
                     newValue;
+                mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
             },
             enumerable: true
         });
@@ -68,7 +67,7 @@ const construct = (el) => {
             });
         }
     };
-    
+
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
             super(styleBase);
@@ -87,7 +86,7 @@ const construct = (el) => {
         }
     };
 
-    
+
 
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
@@ -96,7 +95,7 @@ const construct = (el) => {
             get() { return obj; }
         });
     };
-    
+
     let mainAPI = Object.seal({
         style: Object.seal(new StyleSubText(mainEl.style))
     });
@@ -110,7 +109,7 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-    
+
     //CONNECT OUTER TO VIRTUAL STYLE
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
@@ -149,15 +148,13 @@ const construct = (el) => {
             x: mainBBox.x + leftExtra,
             y: mainBBox.y + topExtra
         }
-        // dumpProperties('main', mainBBox, 1)
-        // console.log(`bb=${JSON.stringify(bbox)}`)
-        
+
         return bbox;
     }
-    
+
 
     // INITIALISATION:
-    (function () {
+    (function () {  // IIFE
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
         attributes.forEach(attribute => {
@@ -175,31 +172,19 @@ const construct = (el) => {
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
                     break;
-                case 'text-length':
-                    el.textLength = Number(attributeValue);
-                    break; 
-                // TODO B remove if no solution    '⛔️'
             }
         });
-        //console.log(`textLength: ${mainEl.textLength}`)
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
-        e.text = mainEl.text ?? "shadow-text";        // Removed because text is set on useEl via config, and not on main
-            //e.letterSpacing = mainEl.letterSpacing ?? 0;  // Removed because letter-spacing is set on useEl via config, and not on main
-            e.style.fontFamily = elStyle.fontFamily;        // because font-family is set on useEl
-            /* // Removed because text-anchor is set on useEl via config, and not on main
-            try {     // textEl.textAnchor throws an error if textAnchor not defined
-                e.textAnchor = mainEl.textAnchor;
-            } catch (e) {
-               e.textAnchor = 'start';
-            }*/
-            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;   // because font-family is set on useEl; if fontSize is undefined its value is -32768
+            e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;    // font-size can be set on useEl; if fontSize is undefined its value is -32768
         });
-    })();//IIFE
-    
-    
-    
+    })();   // end of initialisation IIFE
+
+
+
     //INSPECT OBJECTS ***************************************************************
     // values currently not readable
     //key:value pairs
