@@ -33,22 +33,30 @@ export function dumpProperties(name, obj, types) {
 //call like: dumpProperties('obj', obj, boolean)
 
 //INSPECT key:value
-export const inspectObject = (objName, obj) => {
-    let props = [];
-    
+// export const inspectObject = (objName, obj) => {
+//     let props = [];
+//     
+//     for (const prop in obj) {
+//         // as propertyNames get handled as char-Array
+//         // I tried this approach, although not sure, whether this makes sense
+//         if (obj.hasOwnProperty(prop)) {
+//             props.push(obj[ prop ]);
+//         }; 
+//     };
+//     if (props) {
+//         console.log(`${objName}: ${obj}`)
+//     } else {
+//         //console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
+//     console.log(objName.obj.prop)
+//     } 
+// };
+export const inspectObject = (objName,obj) => {
+
     for (const prop in obj) {
-        // as propertyNames get handled as char-Array
-        // I tried this approach, although not sure, whether this makes sense
         if (obj.hasOwnProperty(prop)) {
-            props.push(obj[ prop ]);
-        }; 
+            console.log(`${objName} ${prop}: ${JSON.stringify(obj[ prop ])}`)
+        };
     };
-    if (props) {
-        console.log(`${objName}: ${obj}`)
-    } else {
-        //console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
-    console.log(objName.obj.prop)
-    } 
 };
 //call like: inspectObject('objName',obj)
 

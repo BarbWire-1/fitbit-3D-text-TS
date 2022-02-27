@@ -1,7 +1,9 @@
 "use strict"
 import { constructWidgets } from '../construct-widgets';
-import { inspectObject, inspectObject2, dumpProperties } from '../../devTools';
+import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
+import { validateRequestedPermissions } from '@fitbit/sdk/lib/ProjectConfiguration';
+import { DragTarget } from 'blockly';
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -21,9 +23,7 @@ const construct = (el) => {
 
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
-        
         Object.defineProperty(obj, prop, {
-           
             set(newValue) {
                 mainEl[ prop ] =
                     shadowEl[ prop ] =
@@ -41,6 +41,7 @@ const construct = (el) => {
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
    
+   
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
@@ -51,6 +52,14 @@ const construct = (el) => {
                     lightEl.style[ prop ] =
                     newValue;
                 mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
+            },
+            get() {
+                if (prop !== 'fontSize' && prop !== 'fontFamily') {
+                    return mainEl[ prop ]
+                } else {
+                   // return el[ prop ] // undefined
+                    return elStyle[ prop ]// fontSize: -32768/ fontFamily empty log
+                }
             },
             enumerable: true
         });
@@ -65,14 +74,14 @@ const construct = (el) => {
             Object.defineProperty(this, 'opacity', {
                 set(newValue) { styleBase.opacity = newValue; },
                 get() {
-                    return this.opacity
+                    return styleBase.opacity
                 },
                 enumerable: true
             });
             Object.defineProperty(this, 'display', {
                 set(newValue) { styleBase.display = newValue; },
                 get() {
-                    return this.display
+                    return styleBase.display
                 },
                 enumerable: true
             });
@@ -86,7 +95,7 @@ const construct = (el) => {
                 set(newValue) { styleBase.fill = newValue; },
                 get() {
                     return styleBase.fill
-                },
+                },      
                 enumerable: true
             });
         }
@@ -97,6 +106,7 @@ const construct = (el) => {
             super(elStyle);
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
+            
         }
     };
 
@@ -200,19 +210,14 @@ const construct = (el) => {
 
 
     //INSPECT OBJECTS ***************************************************************
-    // values currently not readable
-    //key:value pairs
-    // inspectObject('mainEl.style.fill',mainEl.style.fill)//✅
-    // inspectObject(el.text, el.text) // TODO can't log el.text. looks like it doesn' HAVE property, but only gets passed value from mainEl?
-    // inspectObject('mainEl.text', mainEl.text)// works only for text set in config
-
+    inspectObject('mainEl.style',mainEl.style)
+    console.log(mainEl.text) // here only logs if set in widget
 
     //prototype chain
     //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)
 
     //INSPECT OBJECTS END*************************************************************
-    // console.log(el.text)
-    // console.log(mainEl.text)
+    
     return el;
 };
 

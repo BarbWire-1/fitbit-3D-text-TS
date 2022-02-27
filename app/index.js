@@ -24,7 +24,6 @@ setInterval(() => {
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
-
     //test.style.fontFamily = cd % 2? "Fabrikat-Bold" : "System-Regular"; // this works, but fontSize doesn't!
 //     test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
 // 
@@ -63,10 +62,14 @@ test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
 //console.log(JSON.stringify(test.text))//0   // won't work because Fitbit API doesn't return % values correctly
 
-test.text = "test"
-console.log(test.main.style.fill)
-console.log(test.textAnchor)
-test
+console.log(test.x)//0 as set in %
+console.log(test.y)//168 as literal
+console.log(test.text)// steps
+console.log(test.main.style.fill)//#FFFFFF 
+console.log(test.textAnchor)//middle
+console.log(test.style.fontSize)// -32768
+console.log(test.style.fontFamily)// nothing logged
+console.log(calsLabel.text)
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
@@ -77,7 +80,7 @@ test
 
 // INSPECT key:value
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
-// inspectObject('test.main.style.fill', test.main.style.fill)// test.main.style.fill: undefined
+inspectObject('test.main.style', test.main.style)// test.main.style.fill: undefined
 //console.log(test.text)
 
 
