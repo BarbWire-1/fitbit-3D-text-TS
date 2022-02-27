@@ -1,26 +1,31 @@
 .myText {
-  text-length : 20;
-  font-size: 30;
-  letter-spacing: 0;
-  font-family: 'System-Regular'; /*this doesn't get applied*/
+    text-length: 20;
+    font-size: 30;
+    letter-spacing: 0;
+    font-family: 'System-Regular';
+    /*this doesn't get applied*/
+}
+
+#shadowText {
+    font-family: 'System-Regular';
 }
 
 .main {
     fill: grey;
     text-anchor: start;
-    
+
 }
 
 .shadow {
     fill: red;
     x: 1;
     y: 1;
-   
+
 }
 
 .light {
     fill: white;
     x: -1;
     y: -1;
-    
+
 }
