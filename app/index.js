@@ -20,18 +20,17 @@ let cd = 100;
 setInterval(() => {
     //test.text = `steps ${today.adjusted.steps}`;
     //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
-    calsLabel.text = cd % 2 == 0 ?`cals ${today.adjusted.calories}` : 'I can ';
+    calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
     //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
 
 
     //test.style.fontFamily = cd % 2? "Fabrikat-Bold" : "System-Regular"; // this works, but fontSize doesn't!
-    test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
-
+//     test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
+// 
     const normalTextEl = document.getElementById('normalText');
-    normalTextEl.style.fontSize = cd/2+10;          // doesn't work without the following line
+//     normalTextEl.style.fontSize = cd/2+10;          // doesn't work without the following line
     //normalTextEl.text = normalTextEl.text         // 🙄
-
     //but not only in config
     // If this is activated, it does the applied changes
 
@@ -62,9 +61,12 @@ test.shadow.x = 5;
 test.shadow.y = 5
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-// console.log(test.x)//0   // won't work because Fitbit API doesn't return % values correctly
+//console.log(JSON.stringify(test.text))//0   // won't work because Fitbit API doesn't return % values correctly
 
-
+test.text = "test"
+console.log(test.main.style.fill)
+console.log(test.textAnchor)
+test
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana

@@ -21,12 +21,17 @@ const construct = (el) => {
 
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
+        
         Object.defineProperty(obj, prop, {
+           
             set(newValue) {
                 mainEl[ prop ] =
                     shadowEl[ prop ] =
                     lightEl[ prop ] =
                     newValue;
+            },
+            get() {
+                return mainEl[prop]
             },
             enumerable: true
         });
@@ -35,7 +40,7 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-
+   
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
@@ -59,10 +64,16 @@ const construct = (el) => {
             // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
             Object.defineProperty(this, 'opacity', {
                 set(newValue) { styleBase.opacity = newValue; },
+                get() {
+                    return this.opacity
+                },
                 enumerable: true
             });
             Object.defineProperty(this, 'display', {
                 set(newValue) { styleBase.display = newValue; },
+                get() {
+                    return this.display
+                },
                 enumerable: true
             });
         }
@@ -73,6 +84,9 @@ const construct = (el) => {
             super(styleBase);
             Object.defineProperty(this, 'fill', {
                 set(newValue) { styleBase.fill = newValue; },
+                get() {
+                    return styleBase.fill
+                },
                 enumerable: true
             });
         }
@@ -149,7 +163,7 @@ const construct = (el) => {
             y: mainBBox.y + topExtra
         }
 
-        return bbox;
+        return  bbox;
     }
 
 
@@ -197,7 +211,8 @@ const construct = (el) => {
     //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)
 
     //INSPECT OBJECTS END*************************************************************
-
+    // console.log(el.text)
+    // console.log(mainEl.text)
     return el;
 };
 
