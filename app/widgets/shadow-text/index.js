@@ -15,11 +15,6 @@ const construct = (el) => {
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
 
-    // let useEls = []
-    // useEls.push(el.id)
-    // inspectObject((`${useEls[ 0 ]}.firstChild.style.fill`), useEls[ 0 ].firstChild.style.fill)
-    //console.log(`use ids: ${useEls}`)
-    //TODO B how get data out of the widget to read, resp read data from widget directly?
 
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
@@ -54,12 +49,11 @@ const construct = (el) => {
                 mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
             },
             get() {
-                if (prop !== 'fontSize' && prop !== 'fontFamily') {
-                    return mainEl[ prop ]
-                } else {
-                   // return el[ prop ] // undefined
-                    return elStyle[ prop ]// fontSize: -32768/ fontFamily empty log
-                }
+                // if (prop !== 'fontSize' && prop !== 'fontFamily') {
+                //     return mainEl.style[ prop ]
+                // } else {
+                   return mainEl.style[ prop ]
+                // }
             },
             enumerable: true
         });
@@ -213,7 +207,7 @@ const construct = (el) => {
 
     //INSPECT OBJECTS ***************************************************************
     inspectObject('mainEl.style',mainEl.style)
-    console.log(mainEl.text) // here only logs if set in widget
+    //console.log(mainEl.text) // here only logs if set in widget
 
     //prototype chain
     //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)

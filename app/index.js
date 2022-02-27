@@ -18,31 +18,11 @@ calsLabel.text = `cals ${today.adjusted.calories}`;
 countDown.text = 100;
 let cd = 100;
 setInterval(() => {
-    //test.text = `steps ${today.adjusted.steps}`;
-    //test.main.style.fill = cd%2? 'red' : 'green';    // alternate fill to detect if StyleSubText is created every time
+    
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
-    //calsLabel.main.style.fill = cd % 2 === 0 ? "limegreen" : "grey";
-
-    //test.style.fontFamily = cd % 2? "Fabrikat-Bold" : "System-Regular"; // this works, but fontSize doesn't!
-//     test.style.fontSize = (cd % 2 == 0) ? 30 : 90;
-// 
-    const normalTextEl = document.getElementById('normalText');
-//     normalTextEl.style.fontSize = cd/2+10;          // doesn't work without the following line
-    //normalTextEl.text = normalTextEl.text         // 🙄
-    //but not only in config
-    // If this is activated, it does the applied changes
-
-    // if (cd % 2 == 0) {
-    //     test.text = "I can't";
-    //     test.main.style.fill = "red"
-    // } else {
-    //     test.text = "Oh, I can?";
-    //     test.main.style.fill = "white"
-    // }
-    //console.log(test.getBBox().x)//starts with 86/98 for NOT changing text/ 27/85 for changing
-    // Although displayed text itself soesn't get changed
-
+    
+    
     if (cd == 0) {
         cd = 100;
     }
@@ -60,36 +40,40 @@ test.shadow.x = 5;
 test.shadow.y = 5
 test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
-//console.log(JSON.stringify(test.text))//0   // won't work because Fitbit API doesn't return % values correctly
 
-// console.log(test.x)//0 as set in %
-// console.log(test.y)//168 as literal
-// console.log(test.text)// steps
-// console.log(test.main.style.fill)//#FFFFFF 
-// console.log(test.textAnchor)//middle
-// console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
-// console.log(test.style.fontFamily)// nothing logged
-// console.log(calsLabel.text)// working
-//console.log(test.shadow.x)
+test.style.fontFamily = "Tungsten-Medium"
+//TODO P^// only gets logged if set here after initialisation widget(?)
+// do we need to point getters elsewhere?
+
+console.log(test.x)//0 as set in %
+console.log(test.y)//168 as literal
+console.log(test.text)// steps
+console.log(test.main.style.fill)//#FFFFFF 
+console.log(test.textAnchor)//middle
+ console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
+console.log(test.style.fontFamily)// nothing logged
+console.log(calsLabel.text)// working
+console.log(test.shadow.x)
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
+
 // dumpProperties('test.light', test.light, true)
-//dumpProperties('test.light.style', test.light.style, true)
-//dumpProperties('test.light.style.fill', test.light.style.fill, false)
+// dumpProperties('test.light.style', test.light.style, true)
+// dumpProperties('test.light.style.fill', test.light.style.fill, false)
 
 
 // INSPECT key:value
+
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
 inspectObject('test.style', test.style)// test.main.style.fill: undefined
 //console.log(test.text)
 
 
-//TODO search for a way to log/inspect useEl.prop.prop.prop values
+//TODO P^I wonder about the best place to apply Object.seal(). Had you tested that?
+// as there are some set on outer (API) and inner like 'style'
 
-// while values set here do see console.log line 29
 
-//TODO P 3.9 could you have a look which comments or commented out code could be removed? I'm not sure whether there are some we should keep for later decisions to make.
-//TODO B ^ I removed some from here and lots from the widget. Anything I didn't recognise I assumed to be yours and left alone. You can cull those if you like.
 
-//TODO is it possible to add console as prop to subEls?
+
+
