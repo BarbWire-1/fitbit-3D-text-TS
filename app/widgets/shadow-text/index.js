@@ -128,7 +128,9 @@ const construct = (el) => {
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
+        get x() { return obj.x; },
         set y(newValue) { obj.y = newValue; },
+        get y() { return obj.y; },
         enumerable: true
     });
     defineProps('light', effectsAPI(lightEl));

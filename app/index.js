@@ -70,6 +70,7 @@ test.shadow.style.opacity = 1;
 // console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
 // console.log(test.style.fontFamily)// nothing logged
 // console.log(calsLabel.text)// working
+//console.log(test.shadow.x)
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
