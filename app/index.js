@@ -31,8 +31,8 @@ calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 // GETTERS
-//TODO P^ only gets logged if set here after initialisation widget(?)
-// do we need to point getters elsewhere?
+//TODO P^ widget defaults don't get logged here
+// integrate defaults in getters?
 // I had tried to change sequence, ie setting initialisation on top of the construct(), but then there are some elements undefined 
 test.style.fontSize = 50;
 test.main.style.fill = "white";
@@ -53,7 +53,8 @@ console.log(test.text)// steps
 console.log(test.main.style.fill)//#FFFFFF 
 console.log(test.textAnchor)//middle
  console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
-console.log(test.style.fontFamily)// nothing logged
+console.log(test.style.fontFamily)// 
+console.log('calsLabel.style.fontFamily: ' + calsLabel.style.fontFamily)
 console.log(calsLabel.text)// working
 console.log(test.shadow.x)
 console.log(`test.getBBox().width: ${test.getBBox().width}`)
