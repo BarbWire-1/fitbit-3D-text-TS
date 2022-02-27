@@ -30,6 +30,10 @@ setInterval(() => {
 calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
+// GETTERS
+//TODO P^ only gets logged if set here after initialisation widget(?)
+// do we need to point getters elsewhere?
+// I had tried to change sequence, ie setting initialisation on top of the construct(), but then there are some elements undefined 
 test.style.fontSize = 50;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
@@ -42,8 +46,6 @@ test.shadow.style.display = "inline"
 test.shadow.style.opacity = 1;
 
 test.style.fontFamily = "Tungsten-Medium"
-//TODO P^// only gets logged if set here after initialisation widget(?)
-// do we need to point getters elsewhere?
 
 console.log(test.x)//0 as set in %
 console.log(test.y)//168 as literal
