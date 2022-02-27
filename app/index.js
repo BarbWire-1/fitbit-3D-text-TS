@@ -43,7 +43,8 @@ test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
 test.shadow.style.display = "inline"
-test.shadow.style.opacity = 1;
+test.shadow.style.opacity = 0.8;
+test.light.style.opacity = 0.5;
 
 test.style.fontFamily = "Tungsten-Medium"
 
