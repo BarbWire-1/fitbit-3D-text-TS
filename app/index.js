@@ -18,10 +18,9 @@ calsLabel.text = `cals ${today.adjusted.calories}`;
 countDown.text = 100;
 let cd = 100;
 setInterval(() => {
-    
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
-    
+    test.style.fontSize = cd % 2 == 0 ? 50 : 70;
     
     if (cd == 0) {
         cd = 100;
@@ -42,9 +41,13 @@ test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-test.shadow.style.display = "inline"
-test.shadow.style.opacity = 0.8;
-test.light.style.opacity = 0.5;
+// test.shadow.style.display = "inline"
+// test.shadow.style.opacity =0.8;
+// test.light.style.opacity = 0.5;
+
+//test.style.display = 'none';
+test.main.style.display = 'none'// TODO P ^ this gets also processed if display = "none"???
+
 
 //test.style.fontFamily = "Tungsten-Medium"
 
@@ -53,7 +56,7 @@ console.log(test.y)//168 as literal
 console.log(test.text)// steps
 console.log(test.main.style.fill)//#FFFFFF 
 console.log(test.textAnchor)//middle
- console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
+console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
 console.log(test.style.fontFamily)// 
 console.log('calsLabel.style.fontFamily: ' + calsLabel.style.fontFamily)
 console.log(calsLabel.text)// working

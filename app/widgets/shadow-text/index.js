@@ -139,40 +139,43 @@ const construct = (el) => {
    
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
-        const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
+        if (el.style.display !== 'none') { // else returns DOM rect
+            const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
+            el.mainBBox = () => mainEl.getBBox()
+            
+            let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
+            if (lightEl.style.display !== 'none') {
+                lightX = lightEl.x;
+                lightY = lightEl.y;
+            };
+            if (shadowEl.style.display !== 'none') {
+                shadowX = shadowEl.x;
+                shadowY = shadowEl.y;
+            };
 
-        let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
-        if (lightEl.style.display !== 'none') {
-            lightX = lightEl.x;
-            lightY = lightEl.y;
-        };
-        if (shadowEl.style.display !== 'none') {
-            shadowX = shadowEl.x;
-            shadowY = shadowEl.y;
-        };
+            const leftExtra = Math.min(Math.min(lightX, 0), Math.min(shadowX, 0));    // will be 0 or negative
+            const topExtra = Math.min(Math.min(lightY, 0), Math.min(shadowY, 0));    // will be 0 or negative
+            const rightExtra = Math.max(Math.max(lightX, 0), Math.max(shadowX, 0));
+            const bottomExtra = Math.max(Math.max(lightY, 0), Math.max(shadowY, 0));
 
-        const leftExtra = Math.min(Math.min(lightX,0), Math.min(shadowX,0));    // will be 0 or negative
-        const topExtra = Math.min(Math.min(lightY,0), Math.min(shadowY,0));    // will be 0 or negative
-        const rightExtra = Math.max(Math.max(lightX,0), Math.max(shadowX,0));
-        const bottomExtra = Math.max(Math.max(lightY,0), Math.max(shadowY,0));
-
-        const bbox = {
-            bottom: mainBBox.bottom + bottomExtra,
-            height: mainBBox.height - topExtra + bottomExtra,
-            left: mainBBox.x + leftExtra,
-            right: mainBBox.right + rightExtra,
-            top: mainBBox.y + topExtra,
-            width: mainBBox.width - leftExtra + rightExtra,
-            x: mainBBox.x + leftExtra,
-            y: mainBBox.y + topExtra
-        }
-
-        return  bbox;
+            const bbox = {
+                bottom: mainBBox.bottom + bottomExtra,
+                height: mainBBox.height - topExtra + bottomExtra,
+                left: mainBBox.x + leftExtra,
+                right: mainBBox.right + rightExtra,
+                top: mainBBox.y + topExtra,
+                width: mainBBox.width - leftExtra + rightExtra,
+                x: mainBBox.x + leftExtra,
+                y: mainBBox.y + topExtra
+            }
+            return bbox;
+        } else console.warn(`Can't measure not displayed element '${el.id}'.`)
+        
     }
     //getBBOX() on main-text only
-    el.mainBBox = () => mainEl.getBBox();
-
-    // INITIALISATION:
+    //if(mainEl) el.mainBBox = () => mainEl.getBBox();// can't get a conditional or other check working. TypeError is quicker
+   
+   // INITIALISATION:
     (function () {  // IIFE
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
@@ -198,7 +201,7 @@ const construct = (el) => {
         const allSubTextElements = el.getElementsByClassName('myText');
         allSubTextElements.forEach(e => {
             e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-            e.style.fontSize = elStyle.fontSize > 0 ? elStyle.fontSize : 30;    // font-size can be set on useEl; if fontSize is undefined its value is -32768
+            e.style.fontSize = elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
         });
     })();   // end of initialisation IIFE
 

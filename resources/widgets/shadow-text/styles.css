@@ -3,29 +3,35 @@
     font-size: 30;
     letter-spacing: 0;
     font-family: 'System-Regular';
-    /*this doesn't get applied*/
+   
 }
 
 #shadowText {
     font-family: 'System-Regular';
+    font-size: 30;
+    opacity: 1;
+    display: "inline";
 }
 
-.main {
+#main {
     fill: grey;
     text-anchor: start;
-
+    opacity: 1;
+   
 }
 
-.shadow {
+#shadow {
     fill: red;
     x: 1;
     y: 1;
-
+    opacity: 0.8;
+  
 }
 
-.light {
+#light {
     fill: white;
     x: -1;
     y: -1;
+    opacity: 0.8;
 
 }

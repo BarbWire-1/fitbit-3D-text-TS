@@ -2,7 +2,7 @@
 
     <!--link rel="stylesheet" href="styles.css" /-->
 
-    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto" opacity="1">
+    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto" >
         <!--this is an interesting found. Inheritance?-->
         <!-- <text id="dummy" class="myText" display="none"  text-anchor="start"/>  element inherits text/text-props -->
         <text id="shadow" class="myText shadow" />
