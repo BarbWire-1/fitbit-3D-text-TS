@@ -1,9 +1,14 @@
 .myText {
   text-length : 20;
+  font-size: 30;
+  letter-spacing: 0;
+  font-family: 'System-Regular'; /*this doesn't get applied*/
 }
 
 .main {
     fill: grey;
+    text-anchor: start;
+    
 }
 
 .shadow {

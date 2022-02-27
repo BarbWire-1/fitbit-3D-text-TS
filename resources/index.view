@@ -18,10 +18,7 @@
 
     </use>
 
-    <use id="countDown" href="#shadowText" x="50%" y="50%-60" font-family="Barlow-Bold" font-size="70" opacity="1"
-        display="inline">
-        <!-- <set href="dummy" attributeName="letter-spacing" to="3"/>       this one is working it probably doesn't now, but it should work against main -->
-        <!-- <set href="dummy" attributeName="text-anchor" to="middle"/> -->
+    <use id="countDown" href="#shadowText" x="50%" y="50%-60" font-family="Barlow-Bold" font-size="70" opacity="1" display="inline">
         <set href="#config" attributeName="text-buffer" to='text-anchor: middle' />
         <!-- used to be set on main, but is now set in config because it applies to all textEls -->
     </use>
