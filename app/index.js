@@ -46,7 +46,9 @@ test.shadow.y = 5
 // test.light.style.opacity = 0.5;
 
 //test.style.display = 'none';
-test.main.style.display = 'none'// TODO P ^ this gets also processed if display = "none"???
+test.main.style.display = 'none'
+//TODO P ^ this gets also processed if display = "none"???
+//TODO P ^ practcal, but confusing
 
 
 //test.style.fontFamily = "Tungsten-Medium"

@@ -141,6 +141,7 @@ const construct = (el) => {
     el.getBBox = () => {
         if (el.style.display !== 'none') { // else returns DOM rect
             const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
+            
             el.mainBBox = () => mainEl.getBBox()
             
             let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
