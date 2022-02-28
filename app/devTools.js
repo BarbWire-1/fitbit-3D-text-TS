@@ -33,10 +33,11 @@ export function dumpProperties(name, obj, types) {
 //call like: dumpProperties('obj', obj, boolean)
 
 export const inspectObject = (objName,obj) => {
-const prettyOut = e => JSON.parse(JSON.stringify(e))
+//const prettyOut = e => JSON.parse(JSON.stringify(e))
     for (const prop in obj) {
         if (obj.hasOwnProperty(prop)) {
-                console.log(`${prettyOut(objName)}.${prettyOut(prop)}: ${JSON.stringify(obj[ prop ])}`)
+            //console.log(`${prettyOut(objName)}.${prettyOut(prop)}: ${JSON.stringify(obj[ prop ])}`)
+            console.log(`${objName}.${[prop]}: ${JSON.stringify(obj[ prop ])}`)
     
         };
         
