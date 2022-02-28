@@ -100,7 +100,7 @@ const construct = (el) => {
             super(elStyle);
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
-            
+          
         }
     };
 
@@ -108,7 +108,8 @@ const construct = (el) => {
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
     function defineProps(prop, obj) {
         Object.defineProperty(el, prop, {
-            get() { return obj; }
+            get() { return obj; },
+           
         });
     };
   
@@ -126,6 +127,7 @@ const construct = (el) => {
         set y(newValue) { obj.y = newValue; },
         get y() { return obj.y; },
         enumerable: true
+       
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
@@ -136,7 +138,6 @@ const construct = (el) => {
         get() {
             return widgetStyleAPI;
         },
-        enumerable: true
     });
 
    
