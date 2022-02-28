@@ -61,11 +61,9 @@ inspectObject('test.getBBox()', test.getBBox())
 inspectObject('test.main', test.main)
 inspectObject('test.main.style', test.main.style)
 inspectObject('test.main.getBBox()', test.main.getBBox())//undefined
-inspectObject('test.main.getBBox().width', test.main.getBBox().width)//empty
-console.log("console: "+ test.main.getBBox().width)
+inspectObject('test.main.getBBox().width', test.main.getBBox().width)//empty !
+console.log("console: "+ test.main.getBBox().width)//working
 inspectObject('test.light', test.light)
-
-
 
 
 
