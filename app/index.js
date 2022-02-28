@@ -33,7 +33,7 @@ calsLabel.textAnchor = "middle"
 //TODO P^ widget defaults don't get logged here
 // integrate defaults in getters?
 // I had tried to change sequence, ie setting initialisation on top of the construct(), but then there are some elements undefined 
-test.style.fontSize = 50;
+//test.style.fontSize = 50;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
@@ -64,7 +64,8 @@ console.log('calsLabel.style.fontFamily: ' + calsLabel.style.fontFamily)
 console.log(calsLabel.text)// working
 console.log(test.shadow.x)
 console.log(`test.getBBox().width: ${test.getBBox().width}`)
-console.log(`test.mainBBox().width: ${test.mainBBox().width}`)
+console.log(`test.main.getBBox().width: ${test.main.getBBox().width}`)
+
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
@@ -77,7 +78,7 @@ console.log(`test.mainBBox().width: ${test.mainBBox().width}`)
 // INSPECT key:value
 
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
-inspectObject('test.style', test.style)// test.main.style.fill: undefined
+inspectObject('test.getBBox()', test.getBBox())// test.main.style.fill: undefined
 //console.log(test.text)
 
 

@@ -1,23 +1,26 @@
 .myText {
     text-length: 20;
-    font-size: 30;
-    letter-spacing: 0;
-    font-family: 'System-Regular';
-   
+
+
+
 }
 
 #shadowText {
+    /*set as logs a undefined if not*/
     font-family: 'System-Regular';
+    opacity: "1";
     font-size: 30;
-    opacity: 1;
-    display: "inline";
+    letter-spacing: 0;
+    /*set as logs a undefined if not*/
+    /* display: "inline"; */
+    /*commented out as inherit*/
 }
 
 #main {
     fill: grey;
     text-anchor: start;
     opacity: 1;
-   
+
 }
 
 #shadow {
@@ -25,7 +28,7 @@
     x: 1;
     y: 1;
     opacity: 0.8;
-  
+
 }
 
 #light {

@@ -54,7 +54,9 @@ export const inspectObject = (objName,obj) => {
 
     for (const prop in obj) {
         if (obj.hasOwnProperty(prop)) {
-            console.log(`${objName} ${prop}: ${JSON.stringify(obj[ prop ])}`)
+            //console.log(`${objName}.${prop}: ${JSON.stringify(obj[ prop ])}`)
+            console.log(`${JSON.parse(JSON.stringify(objName))}.${JSON.parse((JSON.stringify(prop)))}: ${JSON.stringify(obj[ prop ])}`)
+        
         };
     };
 };

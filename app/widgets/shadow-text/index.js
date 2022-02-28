@@ -114,6 +114,7 @@ const construct = (el) => {
   
     let mainAPI = Object.seal({
         style: Object.seal(new StyleSubText(mainEl.style)), 
+        getBBox: () => mainEl.getBBox()
     });
     defineProps('main', mainAPI);
 
@@ -139,11 +140,10 @@ const construct = (el) => {
    
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
-        if (el.style.display !== 'none') { // else returns DOM rect
+       
             const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
             
-            el.mainBBox = () => mainEl.getBBox()
-            
+        
             let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
             if (lightEl.style.display !== 'none') {
                 lightX = lightEl.x;
@@ -170,11 +170,10 @@ const construct = (el) => {
                 y: mainBBox.y + topExtra
             }
             return bbox;
-        } else console.warn(`Can't measure not displayed element '${el.id}'.`)
+      
         
     }
-    //getBBOX() on main-text only
-    //if(mainEl) el.mainBBox = () => mainEl.getBBox();// can't get a conditional or other check working. TypeError is quicker
+    
    
    // INITIALISATION:
     (function () {  // IIFE
@@ -209,7 +208,7 @@ const construct = (el) => {
 
 
     //INSPECT OBJECTS ***************************************************************
-    inspectObject('mainEl.style',mainEl.style)
+    //inspectObject('mainEl.style',mainEl.style)
     //console.log(mainEl.text) // here only logs if set in widget
 
     //prototype chain
