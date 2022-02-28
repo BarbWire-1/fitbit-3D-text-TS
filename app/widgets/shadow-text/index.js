@@ -49,11 +49,7 @@ const construct = (el) => {
                 mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
             },
             get() {
-                // if (prop !== 'fontSize' && prop !== 'fontFamily') {
-                //     return mainEl.style[ prop ]
-                // } else {
                    return mainEl.style[ prop ]
-                // }
             },
             enumerable: true
         });
