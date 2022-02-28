@@ -33,13 +33,13 @@ export function dumpProperties(name, obj, types) {
 //call like: dumpProperties('obj', obj, boolean)
 
 export const inspectObject = (objName,obj) => {
-
+const prettyOut = e => JSON.parse(JSON.stringify(e))
     for (const prop in obj) {
         if (obj.hasOwnProperty(prop)) {
-            //console.log(`${objName}.${prop}: ${JSON.stringify(obj[ prop ])}`)
-            console.log(`${JSON.parse(JSON.stringify(objName))}.${JSON.parse((JSON.stringify(prop)))}: ${JSON.stringify(obj[ prop ])}`)
-        
+                console.log(`${prettyOut(objName)}.${prettyOut(prop)}: ${JSON.stringify(obj[ prop ])}`)
+    
         };
+        
     };
     console.log('----------------------------')
 };
@@ -47,4 +47,4 @@ export const inspectObject = (objName,obj) => {
 //TODO Make recursive?
 //TODO how to reach main.getBBOX() values here? - working for el.getBBOX as separately defined?
 
-  
+ 
