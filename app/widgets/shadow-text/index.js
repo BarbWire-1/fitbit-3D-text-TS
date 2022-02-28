@@ -35,8 +35,8 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-   
-   
+
+
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
@@ -89,7 +89,7 @@ const construct = (el) => {
                 set(newValue) { styleBase.fill = newValue; },
                 get() {
                     return styleBase.fill
-                },      
+                },
                 enumerable: true
             });
         }
@@ -100,7 +100,7 @@ const construct = (el) => {
             super(elStyle);
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
-            
+
         }
     };
 
@@ -111,9 +111,10 @@ const construct = (el) => {
             get() { return obj; }
         });
     };
-  
+
     let mainAPI = Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style)), 
+        style: Object.seal(new StyleSubText(mainEl.style)),
+        getBBox: () => mainEl.getBBox()
     });
     defineProps('main', mainAPI);
 
@@ -136,14 +137,12 @@ const construct = (el) => {
         }
     });
 
-   
+
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
         if (el.style.display !== 'none') { // else returns DOM rect
             const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
-            
-            el.mainBBox = () => mainEl.getBBox()
-            
+
             let lightX = 0, lightY = 0, shadowX = 0, shadowY = 0;
             if (lightEl.style.display !== 'none') {
                 lightX = lightEl.x;
@@ -171,11 +170,11 @@ const construct = (el) => {
             }
             return bbox;
         } else console.warn(`Can't measure not displayed element '${el.id}'.`)
-        
+
     }
     //getBBOX() on main-text only
     //if(mainEl) el.mainBBox = () => mainEl.getBBox();// can't get a conditional or other check working. TypeError is quicker
-   
+
    // INITIALISATION:
     (function () {  // IIFE
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
@@ -216,7 +215,7 @@ const construct = (el) => {
     //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)
 
     //INSPECT OBJECTS END*************************************************************
-    
+
     return el;
 };
 

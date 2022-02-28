@@ -21,7 +21,7 @@ setInterval(() => {
     calsLabel.text = `cals ${today.adjusted.calories}`;
     countDown.text = (`00${--cd}`).slice(-2);
     test.style.fontSize = cd % 2 == 0 ? 50 : 70;
-    
+
     if (cd == 0) {
         cd = 100;
     }
@@ -32,7 +32,7 @@ calsLabel.textAnchor = "middle"
 // GETTERS
 //TODO P^ widget defaults don't get logged here
 // integrate defaults in getters?
-// I had tried to change sequence, ie setting initialisation on top of the construct(), but then there are some elements undefined 
+// I had tried to change sequence, ie setting initialisation on top of the construct(), but then there are some elements undefined
 test.style.fontSize = 50;
 test.main.style.fill = "white";
 test.shadow.style.fill = "black";
@@ -46,7 +46,7 @@ test.shadow.y = 5
 // test.light.style.opacity = 0.5;
 
 //test.style.display = 'none';
-test.main.style.display = 'none'
+//test.main.style.display = 'none'
 //TODO P ^ this gets also processed if display = "none"???
 //TODO P ^ practcal, but confusing
 
@@ -56,15 +56,15 @@ test.main.style.display = 'none'
 console.log(test.x)//0 as set in %
 console.log(test.y)//168 as literal
 console.log(test.text)// steps
-console.log(test.main.style.fill)//#FFFFFF 
+console.log(test.main.style.fill)//#FFFFFF
 console.log(test.textAnchor)//middle
 console.log(test.style.fontSize)// -32768 - although set above return elstyle wrong, but style: undefined
-console.log(test.style.fontFamily)// 
+console.log(test.style.fontFamily)//
 console.log('calsLabel.style.fontFamily: ' + calsLabel.style.fontFamily)
 console.log(calsLabel.text)// working
 console.log(test.shadow.x)
 console.log(`test.getBBox().width: ${test.getBBox().width}`)
-console.log(`test.mainBBox().width: ${test.mainBBox().width}`)
+console.log(`test.main.getBBox().width: ${test.main.getBBox().width}`)
 //INSPECT OBJECTS****************************************************************************************
 
 // INSPECT PROTOTYPECHAIN ©️ Gondwana
