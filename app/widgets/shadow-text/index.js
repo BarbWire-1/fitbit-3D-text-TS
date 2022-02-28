@@ -112,9 +112,10 @@ const construct = (el) => {
         });
     };
   
-    let mainAPI = Object.seal({
+    let mainAPI =  Object.seal({
         style: Object.seal(new StyleSubText(mainEl.style)), 
-        getBBox: () => mainEl.getBBox()
+        getBBox: () => mainEl.getBBox(),
+        enumerable: true
     });
     defineProps('main', mainAPI);
 
@@ -134,7 +135,8 @@ const construct = (el) => {
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         get() {
             return widgetStyleAPI;
-        }
+        },
+        enumerable: true
     });
 
    

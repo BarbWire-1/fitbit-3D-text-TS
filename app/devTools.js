@@ -32,24 +32,6 @@ export function dumpProperties(name, obj, types) {
 };
 //call like: dumpProperties('obj', obj, boolean)
 
-//INSPECT key:value
-// export const inspectObject = (objName, obj) => {
-//     let props = [];
-//     
-//     for (const prop in obj) {
-//         // as propertyNames get handled as char-Array
-//         // I tried this approach, although not sure, whether this makes sense
-//         if (obj.hasOwnProperty(prop)) {
-//             props.push(obj[ prop ]);
-//         }; 
-//     };
-//     if (props) {
-//         console.log(`${objName}: ${obj}`)
-//     } else {
-//         //console.log(`${objName}.${prop}: ${JSON.stringify(props.join(""))}`)// incl.values. how to get a key:value pair here?
-//     console.log(objName.obj.prop)
-//     } 
-// };
 export const inspectObject = (objName,obj) => {
 
     for (const prop in obj) {
@@ -59,16 +41,10 @@ export const inspectObject = (objName,obj) => {
         
         };
     };
+    console.log('----------------------------')
 };
 //call like: inspectObject('objName',obj)
+//TODO Make recursive?
+//TODO how to reach main.getBBOX() values here? - working for el.getBBOX as separately defined?
 
-
-  /*
- TODO can log values in widget for subEl...
- possible to get the corresponding <use> id? el.id, dummy
- possible to go on one specific value? value => "Argument is not an object"
- possible to reach/pass from/to app/index?
- B have a look at this: https://flexiple.com/key-value-javascript/
- try to write a recursion to get all properties of el
-
-*/
+  
