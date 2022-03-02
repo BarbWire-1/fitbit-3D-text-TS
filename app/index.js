@@ -54,8 +54,12 @@ test.style.fill = "orange"
 // INSPECT key:value
 
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
-inspectObject('test', test)
-// inspectObject('test.style', test.style)
+inspectObject('test', test)// doesn't list style (?)
+inspectObject('test.style', test.style)
+inspectObject('test.style.fill', test.style.fill)// returns fill as splitted object!!
+
+inspectObject('test.main.style', test.main.style) // doesn't list fill, which is expected
+
 // inspectObject('test.getBBox()', test.getBBox())
 // 
 // inspectObject('test.main', test.main)
@@ -65,7 +69,8 @@ inspectObject('test', test)
 // console.log("console: "+ test.main.getBBox().width)//working
 // inspectObject('test.light', test.light)
 
-
+console.log(test.style.fill)//#FFA500
+console.log(test.main.style.fill)//undefined, which it should be
 
 
 

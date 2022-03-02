@@ -138,7 +138,8 @@ const construct = (el) => {
     // all text-related, mainEl.fill, el.getBBox(), all useOwn
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
-        set fill(newValue) { mainEl.style.fill = newValue },
+        set fill(newValue) { el.style.fill = mainEl.style.fill = newValue },
+        get fill() { return el.style.fill},
         
         get() {
             return widgetStyleAPI;
