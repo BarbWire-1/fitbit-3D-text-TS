@@ -4,12 +4,18 @@
 
     <use id="test" href="#shadowText" x="50%" y="168" >
         <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle;' />
+        <set href="#light" attributeName="fill" to="white" />
+         <set href="#light" attributeName="x" to="-1"/>
+        <set href="#light" attributeName="y" to="-1"/>
+        <set href="#light" attributeName="opacity" to="0.8"/>
+        <set href="#shadow" attributeName="x" to="5"/>
+         <set href="#shadow" attributeName="y" to="5"/>
+        <set href="#shadow" attributeName="opacity" to="0.8"/>
     </use>
-    
+    <!-- TODO <set> on subelements not working.... WHY? -->
     <use id="calsLabel" href="#shadowText" x="50%" y="50%+100" font-family="Fabrikat-Bold" font-size="40" opacity="1"
         display="inline">
-        <!--set href="main" attributeName="fill" to="white" /-->
-        <!-- <set href="dummy" attributeName="text-anchor" to="start"/> -->
+       
 
     </use>
 

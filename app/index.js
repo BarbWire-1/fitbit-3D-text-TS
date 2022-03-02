@@ -36,15 +36,15 @@ let cd = 100;
 
 //* TESTING *******************************************************************************************
 //test.style.fontFamily = "Tungsten-Medium"
-test.style.fontSize = 50;
-test.style.fill = "white";
-test.shadow.style.fill = "black";
-test.light.style.fill = "white";
-test.light.x = -1;
-test.light.y = -1;
-test.shadow.x = 5;
-test.shadow.y = 5
-test.style.fill = "orange"
+// test.style.fontSize = 50;
+// test.style.fill = "white";
+// test.shadow.style.fill = "black";
+// test.light.style.fill = "white";
+// test.light.x = -1;
+// test.light.y = -1;
+// test.shadow.x = 5;
+// test.shadow.y = 5
+// test.style.fill = "orange"
 //test.main.style.fill = "white"// invalid argument type
 
 //INSPECT OBJECTS****************************************************************************************

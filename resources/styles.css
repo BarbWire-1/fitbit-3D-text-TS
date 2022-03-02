@@ -44,21 +44,3 @@
     opacity: 1;
     fill: #f5acda
 }
-#test {
-    letter-spacing: -1;
-}
-#test .myText{
-    text-length: 20;
-}
-/*
-.color1 {
-    fill:yellowgreen;
-}
-.light {
-    fill: #d00ae2;
-    x: -10;
-}
-*/
-#test #light  {
-    opacity: 0.5;
-}
