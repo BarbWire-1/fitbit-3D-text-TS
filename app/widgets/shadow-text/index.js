@@ -223,6 +223,9 @@ const construct = (el) => {
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
                     break;
+                case 'fill':
+                    el.style.fill = attributeValue;
+                    break;
             }
         });
         // // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS

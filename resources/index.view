@@ -3,7 +3,7 @@
 
 
     <use id="test" href="#shadowText" x="50%" y="168" >
-        <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle;' />
+        <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle; fill: green;' />
         <set href="#light" attributeName="fill" to="white" />
          <set href="#light" attributeName="x" to="-1"/>
         <set href="#light" attributeName="y" to="-1"/>
