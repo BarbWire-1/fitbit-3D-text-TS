@@ -71,6 +71,7 @@ inspectObject('test.main.style', test.main.style) // doesn't list fill, which is
 
 console.log(test.style.fill)//#FFA500
 console.log(test.main.style.fill)//undefined, which it should be
+console.log(Object.keys(test))//text,textAnchor,letterSpacing,getBBox// I don't like, that "style" is missing
 
 
 

@@ -2,8 +2,7 @@
 import { constructWidgets } from '../construct-widgets';
 import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
-import { validateRequestedPermissions } from '@fitbit/sdk/lib/ProjectConfiguration';
-import { DragTarget } from 'blockly';
+
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
