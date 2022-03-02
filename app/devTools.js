@@ -47,5 +47,6 @@ export const inspectObject = (objName,obj) => {
 //call like: inspectObject('objName',obj)
 //TODO Make recursive?
 //TODO how to reach main.getBBOX() values here? - working for el.getBBOX as separately defined?
+//TODO why doesn't el.style get listed?
 
  

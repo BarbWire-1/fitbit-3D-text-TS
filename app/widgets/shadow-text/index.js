@@ -114,14 +114,14 @@ const construct = (el) => {
            
         });
     };
-  
+    //opacity, display, getBBox()
     let mainAPI =  Object.seal({
         style: Object.seal(new StyleCommon(mainEl.style)), 
         getBBox: () => mainEl.getBBox(),
         enumerable: true
     });
     defineProps('main', mainAPI);
-
+    //x, y, fill, opacity, display
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
         set x(newValue) { obj.x = newValue; },
@@ -135,6 +135,7 @@ const construct = (el) => {
     defineProps('shadow', effectsAPI(shadowEl));
 
     //CONNECT OUTER TO VIRTUAL STYLE
+    // all text-related, mainEl.fill, el.getBBox(), all useOwn
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         set fill(newValue) { mainEl.style.fill = newValue },
