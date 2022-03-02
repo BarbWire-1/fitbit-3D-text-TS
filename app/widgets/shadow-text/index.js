@@ -158,8 +158,7 @@ const construct = (el) => {
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         set fill(newValue) { el.style.fill = mainEl.style.fill = newValue },
-        get fill() { return el.style.fill},
-        
+        get fill() { return el.style.fill },
         get() {
             return widgetStyleAPI;
         },

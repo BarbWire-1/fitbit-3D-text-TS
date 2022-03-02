@@ -76,7 +76,6 @@ inspectObject('test.style', test.style)
 
 // console.log(test.style.fill)//#FFA500
 // console.log(test.main.style.fill)//undefined, which it should be
-console.log(Object.keys(test))//text,textAnchor,letterSpacing,style,getBBox// Finally style is in.
-//test.main.style.fill = "red"
+
 
 
