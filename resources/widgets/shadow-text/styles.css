@@ -15,4 +15,6 @@
     /* display: "inline"; */
     /*commented out as inherit*/
 /* } */
-
+.light {
+    fill:#ff8c00
+}

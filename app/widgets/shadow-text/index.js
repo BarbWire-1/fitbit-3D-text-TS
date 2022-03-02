@@ -1,19 +1,22 @@
 "use strict"
-import { constructWidgets } from '../construct-widgets';
+import { constructWidgets, startFactory } from '../construct-widgets';
 import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
 
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
-
+console.log(`3. startWidget ${Date.now() - startFactory}ms from start`)
+let i = 1;
 const construct = (el) => {
-    
+   
     let mainEl = el.getElementById('main');
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-    
+    //console.log(`line 17 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
+//inspectObject('line 17 lightEl', lightEl)//crashes
+        
     (function () {  // IIFE
         // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
         // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
@@ -23,7 +26,10 @@ const construct = (el) => {
             e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
         });
     })();   // end of initialisation IIFE
-
+    
+   // inspectObject('line 27 lightEl', lightEl)
+    console.log(`line 31 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 
+    
     // CREATE STYLE CLASSES
     class StyleCommon {     // style properties common to all elements
         constructor(styleBase) {
@@ -46,7 +52,8 @@ const construct = (el) => {
             });
         }
     };
-
+    //inspectObject('line 50 lightEl', lightEl)
+   
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
             super(styleBase);
@@ -59,14 +66,16 @@ const construct = (el) => {
             });
         }
     };
-
+    console.log(`line 69 lightEl.style.fill:${lightEl.style.fill}`)
+//inspectObject('line 64 lightEl', lightEl)
+    
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
             super(elStyle);
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
             Object.defineProperty(this, 'fill', {
-                set(newValue) { mainEl.style.fill = newValue; },
+                set(newValue) { mainEl.style.fill = newValue ?? "white"; },
                 get() {
                     return mainEl.style.fill
                 },
@@ -74,6 +83,7 @@ const construct = (el) => {
             });
         }
     };
+//inspectObject('line 79 lightEl', lightEl)
     const equalAll = (p,v) => {
         mainEl[ p ] =
             shadowEl[ p ] =
@@ -94,14 +104,14 @@ const construct = (el) => {
             enumerable: true
         });
     };
-
+//inspectObject('line 100 lightEl', lightEl)
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
     //setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize, but not for fontFamily. Missing default somewhere?
     // ooooh... the -32768???
 
-    
+//inspectObject('line 107 lightEl', lightEl)
    
    
     //APPLY TEXT-STYLE CHANGES TO ALL
@@ -124,7 +134,7 @@ const construct = (el) => {
         });
     };
 
-   
+//inspectObject('line 130 lightEl', lightEl)
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
     function defineProps(prop, obj) {
@@ -152,20 +162,23 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-
+    
+    //inspectObject('line 159 lightEl', lightEl)
+    
     //CONNECT OUTER TO VIRTUAL STYLE
     // all text-related, mainEl.fill, el.getBBox(), all useOwn
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
-        set fill(newValue) { el.style.fill = mainEl.style.fill = newValue },
+        set fill(newValue) { mainEl.style.fill = newValue },
         get fill() { return el.style.fill },
         get() {
             return widgetStyleAPI;
         },
         enumerable: true,
     });
-    inspectObject('widgetStyleAPI',widgetStyleAPI)
    
+    //inspectObject('line 172 lightEl', lightEl)
+    
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
        
@@ -202,7 +215,7 @@ const construct = (el) => {
         
     }
     
-   
+    //inspectObject('line 209 lightEl', lightEl)
    // INITIALISATION:
     (function () {  // IIFE
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
@@ -225,18 +238,12 @@ const construct = (el) => {
                 case 'font-size':
                     el.style.fontSize = Number(attributeValue);
                     break;
+               
             }
         });
-        // // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-        // // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
-        // const allSubTextElements = el.getElementsByClassName('myText');
-        // allSubTextElements.forEach(e => {
-        //     e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-        //     e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
-        // });
     })();   // end of initialisation IIFE
 
-
+    
 
     //INSPECT OBJECTS ***************************************************************
     //inspectObject('mainEl.style',mainEl.style)
@@ -247,11 +254,12 @@ const construct = (el) => {
 
     //INSPECT OBJECTS END*************************************************************
     
+    console.log(`4. createWidget ${i++} ${Date.now() - startFactory}ms from start`)
     return el;
 };
 
 constructWidgets('shadowText', construct);
-
+console.log(`5. endWidget ${Date.now() - startFactory}ms from start`)
 
 
 /*

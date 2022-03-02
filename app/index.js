@@ -1,13 +1,14 @@
 // this widget gets integrated by the widget-factory written by Gondwanasoft:  https://github.com/gondwanasoft/fitbit-simple-widget
 import document from "document";
 import { today } from "user-activity";
-//import { widgetFactory } from './widgets/widget-factory';
+import { startFactory } from "./widgets/construct-widgets";
 import './widgets/shadow-text';
 import { dumpProperties, inspectObject } from './devTools'
 
-
+console.log(`6. startApp ${Date.now() - startFactory}ms from start`)
 // single widget-uses
 let test = document.getElementById('test');
+inspectObject('app line 12 test.light.style', test.light.style)
 let calsLabel = document.getElementById('calsLabel');
 let countDown = document.getElementById('countDown');
 
@@ -16,7 +17,7 @@ let allLights = document.getElementsByClassName('light');
 
 calsLabel.text = `cals ${today.adjusted.calories}`;
 countDown.text = 100;
-
+inspectObject('app line 20 test.light.style', test.light.style)
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
 let cd = 100;
 
@@ -60,7 +61,7 @@ let cd = 100;
 
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
 //inspectObject('test', test)// doesn't list style (?)
-inspectObject('test.style', test.style)
+//inspectObject('test.style', test.style)
 //inspectObject('test.style.fill', test.style.fill)// returns fill as splitted object!!
 
 //inspectObject('test.main.style', test.main.style) // doesn't list fill, which is expected
@@ -76,6 +77,8 @@ inspectObject('test.style', test.style)
 
 // console.log(test.style.fill)//#FFA500
 // console.log(test.main.style.fill)//undefined, which it should be
+inspectObject('app line 80 test.light.style', test.light.style)
+console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
 
 
 
