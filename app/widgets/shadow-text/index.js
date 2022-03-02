@@ -222,8 +222,8 @@ const construct = (el) => {
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
                     break;
-                case 'fill':
-                    el.style.fill = attributeValue;
+                case 'font-size':
+                    el.style.fontSize = Number(attributeValue);
                     break;
             }
         });

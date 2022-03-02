@@ -2,12 +2,12 @@
 
     <!--link rel="stylesheet" href="styles.css" /-->
 
-    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto" >
+    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto" fill="grey" >
         <!--this is an interesting found. Inheritance?-->
         <!-- <text id="dummy" class="myText" display="none"  text-anchor="start"/>  element inherits text/text-props -->
-        <text id="shadow" class="myText shadow widget-auto" />
+        <text id="shadow"  class="myText shadow widget-auto"  />
         <!--so fill and/or offset can be set per class .shadow-->
-        <text id="light" class="myText light widget-auto"/>
+        <text id="light"  class="myText light widget-auto"/>
         <!--so fill and/or offset can be set per class .highlight-->
         <text id="main" class="myText main widget-auto" x="0" y="0" />
         <!--so fill can be set per class .main / x,y is hardcoded to 0,0 in redraw as others are set in relation-->
