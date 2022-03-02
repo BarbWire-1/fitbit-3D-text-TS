@@ -48,6 +48,6 @@
     opacity: 1;
     fill: #f5acda
 }
-#test #light {
-    fill: yellowgreen;
+#test .light {
+    fill: #9acd32;
 }

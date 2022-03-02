@@ -9,6 +9,8 @@ console.log(`6. startApp ${Date.now() - startFactory}ms from start`)
 // single widget-uses
 let test = document.getElementById('test');
 inspectObject('app line 12 test.light.style', test.light.style)
+console.log('app line 12 test.light.style.fill', test.light.style.fill)//#9ACD32 
+
 let calsLabel = document.getElementById('calsLabel');
 let countDown = document.getElementById('countDown');
 
@@ -20,7 +22,7 @@ countDown.text = 100;
 inspectObject('app line 20 test.light.style', test.light.style)
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
 let cd = 100;
-
+console.log('app line 25 test.light.style.fill', test.light.style.fill)
 // setInterval(() => {
 //     calsLabel.text = `cals ${today.adjusted.calories}`;
 //     countDown.text = (`00${--cd}`).slice(-2);
@@ -80,5 +82,5 @@ let cd = 100;
 inspectObject('app line 80 test.light.style', test.light.style)
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
 
-
+console.log('app line 85 test.light.style.fill', test.light.style.fill)
 

@@ -2,7 +2,14 @@
 import { constructWidgets, startFactory } from '../construct-widgets';
 import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
+/**TEST SEQUENCE LIGHTEL.STYLE.FILL*********************************************************************
+SETTING:
+widget css #FF8C00
+widget svg --
 
+app css #9ACD32 // immediately applied
+app svg #63C1CB // never gets applied
+*/
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
