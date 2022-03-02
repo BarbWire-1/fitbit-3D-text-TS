@@ -234,5 +234,7 @@ constructWidgets('shadowText', construct);
 /*
 TODO Exception for trying to add not exposed props
 TODO check "safety" from CSS/SVG
+TODO how get style on el as own property??? as el.style is working, but indirectly? 
+Don't get it
 */
 

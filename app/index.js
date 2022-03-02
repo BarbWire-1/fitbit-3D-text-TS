@@ -41,6 +41,7 @@ test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
 test.style.fill = "orange"
+//test.main.style.fill = "white"// invalid argument type
 
 //INSPECT OBJECTS****************************************************************************************
 
