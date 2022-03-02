@@ -48,5 +48,6 @@ export const inspectObject = (objName,obj) => {
 //TODO Make recursive?
 //TODO how to reach main.getBBOX() values here? - working for el.getBBOX as separately defined?
 //TODO why doesn't el.style get listed? CHECK implementation of style and fill on el/ or test above function. One of both or both must be wrong
+// need to inherit from main, instead of just assigning? any importance?
 
  
