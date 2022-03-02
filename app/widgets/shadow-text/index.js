@@ -88,7 +88,7 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-    setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize. Same el.style issue??
+    //setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize, but not for fontFamily. Missing default somewhere?
 
     
    
@@ -103,7 +103,8 @@ const construct = (el) => {
                 mainEl.style[ prop ] =
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
-                    newValue
+                newValue
+               mainEl.text = lightEl.text=shadowEl.text = mainEl.text
             },
             get() {
                    return mainEl.style[ prop ]

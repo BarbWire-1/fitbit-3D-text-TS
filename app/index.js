@@ -18,17 +18,17 @@ calsLabel.text = `cals ${today.adjusted.calories}`;
 countDown.text = 100;
 
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
-//let cd = 100;
+let cd = 100;
 
-// setInterval(() => {
-//     calsLabel.text = `cals ${today.adjusted.calories}`;
-//     countDown.text = (`00${--cd}`).slice(-2);
-//     test.style.fontSize = cd % 2 == 0 ? 50 : 70;
-//     
-//     if (cd == 0) {
-//         cd = 100;
-//     }
-// }, 1000);
+setInterval(() => {
+    calsLabel.text = `cals ${today.adjusted.calories}`;
+    countDown.text = (`00${--cd}`).slice(-2);
+    test.style.fontSize = cd % 2 == 0 ? 50 : 70;
+    
+    if (cd == 0) {
+        cd = 100;
+    }
+}, 1000);
 calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
@@ -56,11 +56,11 @@ test.style.fill = "orange"
 // INSPECT key:value
 
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
-inspectObject('test', test)// doesn't list style (?)
+//inspectObject('test', test)// doesn't list style (?)
 inspectObject('test.style', test.style)
-inspectObject('test.style.fill', test.style.fill)// returns fill as splitted object!!
+//inspectObject('test.style.fill', test.style.fill)// returns fill as splitted object!!
 
-inspectObject('test.main.style', test.main.style) // doesn't list fill, which is expected
+//inspectObject('test.main.style', test.main.style) // doesn't list fill, which is expected
 
 // inspectObject('test.getBBox()', test.getBBox())
 // 
@@ -73,7 +73,7 @@ inspectObject('test.main.style', test.main.style) // doesn't list fill, which is
 
 console.log(test.style.fill)//#FFA500
 console.log(test.main.style.fill)//undefined, which it should be
-console.log(Object.keys(test))//text,textAnchor,letterSpacing,getBBox// I don't like, that "style" is missing
+console.log(Object.keys(test))//text,textAnchor,letterSpacing,style,getBBox// Finally style is in.
 
 
 
