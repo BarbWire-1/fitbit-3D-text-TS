@@ -33,14 +33,14 @@ calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
 test.style.fontSize = 50;
-test.main.style.fill = "white";
+test.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
 test.light.x = -10;
 test.light.y = -10;
 test.shadow.x = 5;
 test.shadow.y = 5
-
+test.style.fill = "orange"
 
 //INSPECT OBJECTS****************************************************************************************
 
@@ -55,15 +55,15 @@ test.shadow.y = 5
 
 // console.log(`test.main.style: ${Object.keys(test.main.style)}`)//test.main.style: opacity,display,fill
 inspectObject('test', test)
-inspectObject('test.style', test.style)
-inspectObject('test.getBBox()', test.getBBox())
-
-inspectObject('test.main', test.main)
-inspectObject('test.main.style', test.main.style)
-inspectObject('test.main.getBBox()', test.main.getBBox())//undefined
-inspectObject('test.main.getBBox().width', test.main.getBBox().width)//empty !
-console.log("console: "+ test.main.getBBox().width)//working
-inspectObject('test.light', test.light)
+// inspectObject('test.style', test.style)
+// inspectObject('test.getBBox()', test.getBBox())
+// 
+// inspectObject('test.main', test.main)
+// inspectObject('test.main.style', test.main.style)
+// inspectObject('test.main.getBBox()', test.main.getBBox())//undefined
+// inspectObject('test.main.getBBox().width', test.main.getBBox().width)//empty !
+// console.log("console: "+ test.main.getBBox().width)//working
+// inspectObject('test.light', test.light)
 
 
 

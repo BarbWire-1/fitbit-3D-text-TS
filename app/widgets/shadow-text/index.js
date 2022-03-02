@@ -15,6 +15,56 @@ const construct = (el) => {
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
 
+    // CREATE STYLE CLASSES
+    class StyleCommon {     // style properties common to all elements
+        constructor(styleBase) {
+            // styleBase: the Fitbit API style object that implements things.
+            // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
+            // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
+            Object.defineProperty(this, 'opacity', {
+                set(newValue) { styleBase.opacity = newValue; },
+                get() {
+                    return styleBase.opacity
+                },
+                enumerable: true
+            });
+            Object.defineProperty(this, 'display', {
+                set(newValue) { styleBase.display = newValue; },
+                get() {
+                    return styleBase.display
+                },
+                enumerable: true
+            });
+        }
+    };
+
+    class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
+        constructor(styleBase) {
+            super(styleBase);
+            Object.defineProperty(this, 'fill', {
+                set(newValue) { styleBase.fill = newValue; },
+                get() {
+                    return styleBase.fill
+                },
+                enumerable: true
+            });
+        }
+    };
+
+    class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
+        constructor(elStyle) {
+            super(elStyle);
+            setNewStyleAll(this, 'fontFamily');
+            setNewStyleAll(this, 'fontSize');
+            Object.defineProperty(this, 'fill', {
+                set(newValue) { mainEl.style.fill = newValue; },
+                get() {
+                    return mainEl.style.fill
+                },
+            });
+        }
+    };
+
 
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
@@ -55,51 +105,7 @@ const construct = (el) => {
         });
     };
 
-    // CREATE STYLE CLASSES
-    class StyleCommon {     // style properties common to all elements
-        constructor(styleBase) {
-            // styleBase: the Fitbit API style object that implements things.
-            // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
-            // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
-            Object.defineProperty(this, 'opacity', {
-                set(newValue) { styleBase.opacity = newValue; },
-                get() {
-                    return styleBase.opacity
-                },
-                enumerable: true
-            });
-            Object.defineProperty(this, 'display', {
-                set(newValue) { styleBase.display = newValue; },
-                get() {
-                    return styleBase.display
-                },
-                enumerable: true
-            });
-        }
-    };
-
-    class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
-        constructor(styleBase) {
-            super(styleBase);
-            Object.defineProperty(this, 'fill', {
-                set(newValue) { styleBase.fill = newValue; },
-                get() {
-                    return styleBase.fill
-                },      
-                enumerable: true
-            });
-        }
-    };
-
-    class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
-        constructor(elStyle) {
-            super(elStyle);
-            setNewStyleAll(this, 'fontFamily');
-            setNewStyleAll(this, 'fontSize');
-          
-        }
-    };
-
+   
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
     function defineProps(prop, obj) {
@@ -110,7 +116,7 @@ const construct = (el) => {
     };
   
     let mainAPI =  Object.seal({
-        style: Object.seal(new StyleSubText(mainEl.style)), 
+        style: Object.seal(new StyleCommon(mainEl.style)), 
         getBBox: () => mainEl.getBBox(),
         enumerable: true
     });
@@ -131,6 +137,8 @@ const construct = (el) => {
     //CONNECT OUTER TO VIRTUAL STYLE
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
+        set fill(newValue) { mainEl.style.fill = newValue },
+        
         get() {
             return widgetStyleAPI;
         },
