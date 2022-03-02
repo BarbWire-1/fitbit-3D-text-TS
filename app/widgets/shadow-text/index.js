@@ -4,6 +4,8 @@ import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
 /**TEST SEQUENCE LIGHTEL.STYLE.FILL*********************************************************************
 SETTING:
+lightEl 1
+=========
 widget css #FF8C00
 widget svg --
 
@@ -14,6 +16,7 @@ app svg #63C1CB // never gets applied
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
 console.log(`3. startWidget ${Date.now() - startFactory}ms from start`)
+console.log('-------------------------------')
 let i = 1;
 const construct = (el) => {
    
@@ -261,7 +264,8 @@ const construct = (el) => {
 
     //INSPECT OBJECTS END*************************************************************
     
-    console.log(`4. createWidget ${i++} ${Date.now() - startFactory}ms from start`)
+    console.log(`4. ${i++}.use created ${Date.now() - startFactory}ms from start`)
+    console.log('-------------------------------')
     return el;
 };
 

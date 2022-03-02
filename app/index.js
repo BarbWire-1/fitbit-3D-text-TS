@@ -6,11 +6,12 @@ import './widgets/shadow-text';
 import { dumpProperties, inspectObject } from './devTools'
 
 console.log(`6. startApp ${Date.now() - startFactory}ms from start`)
+console.log('-------------------------------')
 // single widget-uses
 let test = document.getElementById('test');
-inspectObject('app line 12 test.light.style', test.light.style)
+//inspectObject('app line 12 test.light.style', test.light.style)
 console.log('app line 12 test.light.style.fill', test.light.style.fill)//#9ACD32 
-
+console.log('-------------------------------')
 let calsLabel = document.getElementById('calsLabel');
 let countDown = document.getElementById('countDown');
 
@@ -19,10 +20,11 @@ let allLights = document.getElementsByClassName('light');
 
 calsLabel.text = `cals ${today.adjusted.calories}`;
 countDown.text = 100;
-inspectObject('app line 20 test.light.style', test.light.style)
+//inspectObject('app line 20 test.light.style', test.light.style)
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
 let cd = 100;
 console.log('app line 25 test.light.style.fill', test.light.style.fill)
+console.log('-------------------------------')
 // setInterval(() => {
 //     calsLabel.text = `cals ${today.adjusted.calories}`;
 //     countDown.text = (`00${--cd}`).slice(-2);
@@ -79,8 +81,11 @@ console.log('app line 25 test.light.style.fill', test.light.style.fill)
 
 // console.log(test.style.fill)//#FFA500
 // console.log(test.main.style.fill)//undefined, which it should be
-inspectObject('app line 80 test.light.style', test.light.style)
+//inspectObject('app line 80 test.light.style', test.light.style)
+console.log('app line 85 test.light.style.fill', test.light.style.fill)
+console.log('-------------------------------')
+
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
 
-console.log('app line 85 test.light.style.fill', test.light.style.fill)
+
 
