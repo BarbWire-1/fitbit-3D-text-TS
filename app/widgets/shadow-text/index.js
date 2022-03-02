@@ -88,6 +88,9 @@ const construct = (el) => {
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
+    setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize. Same el.style issue??
+
+    
    
    
     //APPLY TEXT-STYLE CHANGES TO ALL
@@ -96,13 +99,11 @@ const construct = (el) => {
        Object.defineProperty(obj, prop, {
             
             set(newValue) {
-               //equalAll(style[ prop ]) = newValue;// style is not defined!!! here it shows again. Possible?
+                //equalAll(style[ prop ]) = newValue;// style is not defined!!! here it shows again. Possible?
                 mainEl.style[ prop ] =
-                   shadowEl.style[ prop ] =
-                   lightEl.style[ prop ] =
-                   newValue;
-                //equalAll(text, mainEl.text)// text is not defined !!!
-                mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
+                    shadowEl.style[ prop ] =
+                    lightEl.style[ prop ] =
+                    newValue
             },
             get() {
                    return mainEl.style[ prop ]

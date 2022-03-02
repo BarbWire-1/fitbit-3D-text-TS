@@ -32,6 +32,7 @@ countDown.text = 100;
 calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
+test.style.fontFamily = "Tungsten-Medium"
 test.style.fontSize = 50;
 test.style.fill = "white";
 test.shadow.style.fill = "black";
