@@ -45,7 +45,7 @@ const construct = (el) => {
                 get() {
                     return styleBase.fill
                 },
-                enumerable: true
+                enumerable: true,
             });
         }
     };
@@ -60,19 +60,23 @@ const construct = (el) => {
                 get() {
                     return mainEl.style.fill
                 },
+                enumerable: true,
             });
         }
     };
-
+    const equalAll = (p,v) => {
+        mainEl[ p ] =
+            shadowEl[ p ] =
+            lightEl[ p ] =
+            v;
+            
+    }
 
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
-                mainEl[ prop ] =
-                    shadowEl[ prop ] =
-                    lightEl[ prop ] =
-                    newValue;
+                equalAll(prop, newValue);
             },
             get() {
                 return mainEl[prop]
@@ -89,12 +93,15 @@ const construct = (el) => {
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
    function setNewStyleAll(obj, prop) {
-        Object.defineProperty(obj, prop, {
+       Object.defineProperty(obj, prop, {
+            
             set(newValue) {
+               //equalAll(style[ prop ]) = newValue;// style is not defined!!! here it shows again. Possible?
                 mainEl.style[ prop ] =
-                    shadowEl.style[ prop ] =
-                    lightEl.style[ prop ] =
-                    newValue;
+                   shadowEl.style[ prop ] =
+                   lightEl.style[ prop ] =
+                   newValue;
+                //equalAll(text, mainEl.text)// text is not defined !!!
                 mainEl.text = lightEl.text = shadowEl.text = mainEl.text    // god-awful kludge to get changed fontSize to be displayed
             },
             get() {
@@ -143,6 +150,7 @@ const construct = (el) => {
         get() {
             return widgetStyleAPI;
         },
+        enumerable: true,
     });
 
    
