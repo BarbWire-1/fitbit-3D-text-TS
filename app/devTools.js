@@ -39,7 +39,7 @@ export const inspectObject = (objName,obj) => {
             //console.log(`${prettyOut(objName)}.${prettyOut(prop)}: ${JSON.stringify(obj[ prop ])}`)
             console.log(`${objName}.${[ prop ]}: ${JSON.stringify(obj[ prop ])}`)
         }
-        else { console.log(`inherit: ${objName}.${[ prop ]}`) }
+       // else { console.log(`inherit: ${objName}.${[ prop ]}`) }
         
     };
     console.log('----------------------------')

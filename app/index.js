@@ -20,25 +20,28 @@ countDown.text = 100;
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
 let cd = 100;
 
-setInterval(() => {
-    calsLabel.text = `cals ${today.adjusted.calories}`;
-    countDown.text = (`00${--cd}`).slice(-2);
-    test.style.fontSize = cd % 2 == 0 ? 50 : 70;
-    
-    if (cd == 0) {
-        cd = 100;
-    }
-}, 1000);
-calsLabel.textAnchor = "middle"
+// setInterval(() => {
+//     calsLabel.text = `cals ${today.adjusted.calories}`;
+//     countDown.text = (`00${--cd}`).slice(-2);
+//     test.style.fontSize = cd % 2 == 0 ? 50 : 70;
+//     test.style.fontFamily = cd % 2 == 0 ? 'System-Regular' : 'Tungsten-Medium';
+//     test.textAnchor = cd % 2 == 0 ? 'middle' : 'start';
+//     test.style.fill = cd % 2 == 0 ? 'white' : 'blue';
+//     
+//     if (cd == 0) {
+//         cd = 100;
+//     }
+// }, 1000);
+// calsLabel.textAnchor = "middle"
 
 //* TESTING *******************************************************************************************
-test.style.fontFamily = "Tungsten-Medium"
+//test.style.fontFamily = "Tungsten-Medium"
 test.style.fontSize = 50;
 test.style.fill = "white";
 test.shadow.style.fill = "black";
 test.light.style.fill = "white";
-test.light.x = -10;
-test.light.y = -10;
+test.light.x = -1;
+test.light.y = -1;
 test.shadow.x = 5;
 test.shadow.y = 5
 test.style.fill = "orange"
@@ -71,9 +74,9 @@ inspectObject('test.style', test.style)
 // console.log("console: "+ test.main.getBBox().width)//working
 // inspectObject('test.light', test.light)
 
-console.log(test.style.fill)//#FFA500
-console.log(test.main.style.fill)//undefined, which it should be
+// console.log(test.style.fill)//#FFA500
+// console.log(test.main.style.fill)//undefined, which it should be
 console.log(Object.keys(test))//text,textAnchor,letterSpacing,style,getBBox// Finally style is in.
-
+//test.main.style.fill = "red"
 
 

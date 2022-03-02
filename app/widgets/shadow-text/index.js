@@ -8,11 +8,21 @@ import document from 'document'
 // this allows them to get overwritten from main CSS if set there
 
 const construct = (el) => {
-
+    
     let mainEl = el.getElementById('main');
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
+    
+    (function () {  // IIFE
+        // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+        const allSubTextElements = el.getElementsByClassName('myText');
+        allSubTextElements.forEach(e => {
+            e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+            e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+        });
+    })();   // end of initialisation IIFE
 
     // CREATE STYLE CLASSES
     class StyleCommon {     // style properties common to all elements
@@ -89,6 +99,7 @@ const construct = (el) => {
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
     //setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize, but not for fontFamily. Missing default somewhere?
+    // ooooh... the -32768???
 
     
    
@@ -104,7 +115,7 @@ const construct = (el) => {
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
                 newValue
-               mainEl.text = lightEl.text=shadowEl.text = mainEl.text
+                mainEl.text = lightEl.text=shadowEl.text = mainEl.text //gos-awfuk kludge to get fontSize applied/same for textAnchor
             },
             get() {
                    return mainEl.style[ prop ]
@@ -154,7 +165,7 @@ const construct = (el) => {
         },
         enumerable: true,
     });
-
+    inspectObject('widgetStyleAPI',widgetStyleAPI)
    
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
@@ -214,13 +225,13 @@ const construct = (el) => {
                     break;
             }
         });
-        // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
-        const allSubTextElements = el.getElementsByClassName('myText');
-        allSubTextElements.forEach(e => {
-            e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-            e.style.fontSize = elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
-        });
+        // // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        // // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+        // const allSubTextElements = el.getElementsByClassName('myText');
+        // allSubTextElements.forEach(e => {
+        //     e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+        //     e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+        // });
     })();   // end of initialisation IIFE
 
 
