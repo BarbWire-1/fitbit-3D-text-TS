@@ -48,9 +48,12 @@
     opacity: 1;
     fill: #f5acda
 }
-#test #light {
-    fill: #555555;
-}
-#test .light {
-    fill: #666666
+/* #test #light {
+    fill: #888888;
+} */
+/* #test .light {
+    fill: #999999;
+} */
+#test #light .light {
+    fill: #AAAAAA;
 }

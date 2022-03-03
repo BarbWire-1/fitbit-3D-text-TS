@@ -2,41 +2,7 @@
 import { constructWidgets, startFactory } from '../construct-widgets';
 import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
-/**TEST SEQUENCE LIGHTEL.STYLE.FILL*********************************************************************
-SETTING:
-#000000 
 
-
-#111111 
-#222222
-
-
-#333333
-#444444
-
-
-#555555
-#666666
-
-#777777
-lightEl 1
-=========
-widget js    #000000 2️⃣  
-   
-widget css
-#light       #111111
-.light       #222222 
-   
-widget svg
-use          #333333  
-light        #444444      
-
-app css 
-#light       #555555   
-.light       #666666 
-
-app svg      #777777 1️⃣
-*/
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
@@ -197,7 +163,7 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-    lightEl.style.fill ="#000000"
+    //lightEl.style.fill ="#000000"
     //inspectObject('line 159 lightEl', lightEl)
     
     //CONNECT OUTER TO VIRTUAL STYLE

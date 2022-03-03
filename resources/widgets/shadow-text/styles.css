@@ -15,9 +15,12 @@
     /* display: "inline"; */
     /*commented out as inherit*/
 /* } */
-#light {
-    fill:#111111
-}
-.light {
-    fill:#222222
+/* #light {
+    fill:#333333;
+} */
+/* .light {
+    fill:#444444;
+} */
+#light .light {
+    fill: #555555;
 }

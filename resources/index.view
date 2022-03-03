@@ -4,7 +4,7 @@
 
     <use id="test" href="#shadowText" x="50%" y="168" font-family="Barlow-Bold" fill="#63c1cb"  >
         <set href="#config" attributeName="text-buffer" to='text: steps; letter-spacing: 10; text-anchor: middle; font-size: 50;' />
-        <set href="#light" attributeName="fill" to="#777777" />
+        <!-- <set href="#light" attributeName="fill" to="#777777" /> -->
         <set href="#light" attributeName="x" to="-10"/>
         <set href="#light" attributeName="y" to="-10"/>
         <set href="#light" attributeName="opacity" to="1"/>
