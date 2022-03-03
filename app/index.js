@@ -12,14 +12,14 @@ let test = document.getElementById('test');
 //inspectObject('app line 12 test.light.style', test.light.style)
 console.log('app line 12 test.light.style.fill', test.light.style.fill)//#9ACD32 
 console.log('-------------------------------')
-let calsLabel = document.getElementById('calsLabel');
-let countDown = document.getElementById('countDown');
-
-//class light
-let allLights = document.getElementsByClassName('light');
-
-calsLabel.text = `cals ${today.adjusted.calories}`;
-countDown.text = 100;
+// let calsLabel = document.getElementById('calsLabel');
+// let countDown = document.getElementById('countDown');
+// 
+// //class light
+// let allLights = document.getElementsByClassName('light');
+// 
+// calsLabel.text = `cals ${today.adjusted.calories}`;
+// countDown.text = 100;
 //inspectObject('app line 20 test.light.style', test.light.style)
 // SETINTERVAL FOR TESTING ADJUSTMENTS ON RUNTIME
 let cd = 100;
