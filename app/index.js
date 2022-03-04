@@ -12,12 +12,13 @@ console.log('-------------------------------')
 let widgetUsesGroup = document.getElementById('widgetUsesGroup')
 let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
-widget[0].light.style.fill ="black"
+
 
 const logThroughUses = (array) => {
     array.forEach(el => {
         console.log(`${el.id}.light.fill: ${el.light.style.fill}`)
     })
+    console.log('-------------------------------')
 };
 
 logThroughUses(widget)

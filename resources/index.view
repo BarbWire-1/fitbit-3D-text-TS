@@ -2,23 +2,23 @@
     <rect id="background" />
 <g id = "widgetUsesGroup">
     <!--widget 1 to  9 for direct comparison of setting applied-->
-    <use id="widget1" href="#shadowText" class="widget-auto" x="50%" y="50%" fill="white"  >
+    <use id="widget1" href="#shadowText" class="widget-auto" x="50" y="60" fill="blue"  >
         <set href="#config" attributeName="text-buffer" to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1"/>
-        <set href="#light" attributeName="y" to="-1"/>
+        <set href="#light" attributeName="x" to="-2"/>
+        <set href="#light" attributeName="y" to="-2"/>
         <set href="#light" attributeName="opacity" to="1"/>
         <set href="#shadow" attributeName="x" to="1"/>
         <set href="#shadow" attributeName="y" to="1"/>
         <set href="#shadow" attributeName="opacity" to="1"/>
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
-    <use id="widget2" href="#shadowText" class="widget-auto" x="50" y="$+30" fill="white">
+    <use id="widget2" href="#shadowText" class="widget-auto" x="50" y="90" fill="blue">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 2; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -26,12 +26,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget3" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget3" href="#shadowText"  x="50" y="120" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 3; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -39,12 +39,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget4" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget4" href="#shadowText"  x="50" y="150" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 4; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -52,12 +52,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget5" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget5" href="#shadowText"  x="50" y="180" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 5; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -65,12 +65,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget6" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget6" href="#shadowText"  x="50" y="210" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 6; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -78,12 +78,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget7" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget7" href="#shadowText"  x="50" y="240" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 7; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -91,12 +91,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget8" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget8" href="#shadowText"  x="50" y="270" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 8; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
@@ -104,12 +104,12 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget9" href="#shadowText"  x="50" y="30" fill="white">
+    <use id="widget9" href="#shadowText"  x="50" y="300" fill="blue">
         <set href="#config" attributeName="text-buffer"
-            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
+            to='text: widget 9; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
-        <set href="#light" attributeName="x" to="-1" />
-        <set href="#light" attributeName="y" to="-1" />
+        <set href="#light" attributeName="x" to="-2" />
+        <set href="#light" attributeName="y" to="-2" />
         <set href="#light" attributeName="opacity" to="1" />
         <set href="#shadow" attributeName="x" to="1" />
         <set href="#shadow" attributeName="y" to="1" />
