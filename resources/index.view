@@ -118,4 +118,46 @@
     </use>
 </g>
 
+<!-- NORMAL SYMBOL/USE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+<defs>
+    <symbol id="shadowUse" x="0" y="0"  class="normalUse">
+        <text id="shadowN" class="shadow" x="1" y="1" text="normal"/>
+        <text id="lightN" class="light" x="-2" y="-2" text="normal"/>
+        <text id="mainN" class="main" x="0" y="0" text ="normal"/>
+        <!-- <text id="config" display="none" text-length="70" /> -->
+    </symbol>
+</defs>
+
+<g id="normalUsesGroup">
+    <!--normalUse 1 to  9 for direct comparison of setting applied-->
+    <use id="normal1" href="#shadowUse" x="50" y="200" >
+        <!-- <set href="#config" attributeName="text-buffer"
+            to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' /> -->
+        <set href="#mainN" attributeName="fill" to="white" />
+        <set href="#lightN" attributeName="fill" to="#777777" />
+        <set href="#lightN" attributeName="x" to="-2" />
+        <set href="#lightN" attributeName="y" to="-2" />
+        <set href="#lightN" attributeName="opacity" to="1" />
+        <set href="#shadowN" attributeName="x" to="1" />
+        <set href="#shadowN" attributeName="y" to="1" />
+        <set href="#shadowN" attributeName="opacity" to="1" />
+        <set href="#shadowN" attributeName="fill" to="red" />
+    </use>
+    
+    <!--normalUse 1 to  9 for direct comparison of setting applied-->
+    <use id="normal2" href="#shadowUse" x="50" y="230">
+        <!-- <set href="#config" attributeName="text-buffer"
+                to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' /> -->
+        <set href="#mainN" attributeName="fill" to="white" />
+        <set href="#lightN" attributeName="fill" to="#777777" />
+        <set href="#lightN" attributeName="x" to="-2" />
+        <set href="#lightN" attributeName="y" to="-2" />
+        <set href="#lightN" attributeName="opacity" to="1" />
+        <set href="#shadowN" attributeName="x" to="1" />
+        <set href="#shadowN" attributeName="y" to="1" />
+        <set href="#shadowN" attributeName="opacity" to="1" />
+        <set href="#shadowN" attributeName="fill" to="red" />
+    </use>
+</g>
+
 </svg>

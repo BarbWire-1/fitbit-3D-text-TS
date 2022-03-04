@@ -12,6 +12,13 @@ console.log('-------------------------------')
 let widgetUsesGroup = document.getElementById('widgetUsesGroup')
 let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
+let normalUsesGroup = document.getElementById('normalUsesGroup')
+let normal = normalUsesGroup.getElementsByClassName("normalUse");
+
+let normal1 = normalUsesGroup.getElementById('normal1')
+
+console.log(JSON.stringify(normal))
+console.log(JSON.stringify(normal1))
 
 
 const logThroughUses = (array) => {
@@ -22,6 +29,9 @@ const logThroughUses = (array) => {
 };
 
 logThroughUses(widget)
+
+
+//logThroughUses(normal)
 
 // //inspectObject('app line 12 test.light.style', test.light.style)
 // console.log('app line 12 test.light.style.fill', test.light.style.fill)//#9ACD32 
