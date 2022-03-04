@@ -241,7 +241,7 @@ console.log(lightEl.style.fill)
             const allSubTextElements = el.getElementsByClassName('myText');
             allSubTextElements.forEach(e => {
                 e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-                e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+                e.style.fontSize = e.style.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
             });
        
     })();   // end of initialisation IIFE
