@@ -16,6 +16,14 @@ let normalUsesGroup = document.getElementById('normalUsesGroup')
 let normal = normalUsesGroup.getElementsByClassName("normalUse");
 
 
+const logThroughUses = (array) => {
+    array.forEach(el => {
+        let testFill = el.getElementById('light').style.fill
+        console.log(`${el.id}.light.fill: ${testFill}`)
+    })
+    console.log('-------------------------------')
+};
+logThroughUses(normal)
 
 //console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
@@ -28,13 +36,15 @@ const logThroughWidget = (array) => {
 
 logThroughWidget(widget)
 
-const logThroughUses = (array) => {
+const logThroughUses2 = (array) => {
     array.forEach(el => {
-        console.log(`${el.id}.light.fill: ${el.getElementById('light').style.fill}`)
+        let testFill = el.getElementById('light').style.fill
+        
+        console.log(`${el.id}.light.fill: ${testFill}`)
     })
     console.log('-------------------------------')
 };
-logThroughUses(normal)
+logThroughUses2(normal)
 // dumpProperties('normal1', normal1, 1)
 // inspectObject('normal1', normal1)//normal1 keys:  // and.... nothing!
 

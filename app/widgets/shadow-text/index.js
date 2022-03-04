@@ -104,6 +104,7 @@ const construct = (el) => {
             enumerable: true
         });
     };
+    //lightEl.style.fill = "#000000"
 //inspectObject('line 100 lightEl', lightEl)
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');

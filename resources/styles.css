@@ -55,4 +55,7 @@
 #normal8 .light {fill: #888888;}
 #normal9 .light {fill: #888888;}
 
+#shodowUse #light { fill: #333333}
+#shodowUse .light { fill: #444444}
+
 
