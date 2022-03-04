@@ -15,21 +15,13 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-    //console.log(`line 17 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
-//inspectObject('line 17 lightEl', lightEl)//crashes
-        
-    (function () {  // IIFE
-        // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
-        const allSubTextElements = el.getElementsByClassName('myText');
-        allSubTextElements.forEach(e => {
-            e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-            e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
-        });
-    })();   // end of initialisation IIFE
     
-   // inspectObject('line 27 lightEl', lightEl)
-    console.log(`line 31 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 
+    
+    
+    console.log(`line 17 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
+    //inspectObject('line 17 lightEl', lightEl)//crashes
+        
+    
     
     // CREATE STYLE CLASSES
     class StyleCommon {     // style properties common to all elements
@@ -92,7 +84,7 @@ const construct = (el) => {
             v;
             
     }
-
+console.log(lightEl.style.fill)
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
@@ -242,6 +234,16 @@ const construct = (el) => {
                
             }
         });
+        
+        
+            // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+            // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+            const allSubTextElements = el.getElementsByClassName('myText');
+            allSubTextElements.forEach(e => {
+                e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+                e.style.fontSize = e.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+            });
+       
     })();   // end of initialisation IIFE
 
     
