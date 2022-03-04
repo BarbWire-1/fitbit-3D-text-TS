@@ -25,7 +25,7 @@ const construct = (el) => {
     });
     
     
-    console.log(`line 17 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
+    console.log(`lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
     //inspectObject('line 17 lightEl', lightEl)//crashes
         
     
@@ -66,7 +66,7 @@ const construct = (el) => {
             });
         }
     };
-    console.log(`line 69 lightEl.style.fill:${lightEl.style.fill}`)
+    console.log(`lightEl.style.fill:${lightEl.style.fill}`)
 //inspectObject('line 64 lightEl', lightEl)
     
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
@@ -91,7 +91,7 @@ const construct = (el) => {
             v;
             
     }
-console.log(lightEl.style.fill)
+    console.log(`lightEl.style.fill:${lightEl.style.fill}`)
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {

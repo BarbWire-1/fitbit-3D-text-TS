@@ -20,10 +20,7 @@ let normal1 = normalUsesGroup.getElementById('normal1')
 // console.log(JSON.stringify(normal))// [{},{},{},{},{},{},{},{},{}]
 // console.log(JSON.stringify(normal1))//  {} 
 console.log(`normal1.x: ${normal1.x}`)// normal1.x: 200
-console.log(normal1.firstChild.nextSibling.style.fill)
-normal1.firstChild.nextSibling.text = "blah";
-normal1.firstChild.nextSibling.style.fill = "orange";
-normal1.getElementById('light').text="blubb"
+
 //console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
 const logThroughWidget = (array) => {
