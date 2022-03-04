@@ -5,22 +5,12 @@
 
 }
 
-/* #shadowText { */
-    /*set as logs a undefined if not*/
-    /* font-family: 'System-Regular';
-    opacity: "1";
-    font-size: 30;
-    letter-spacing: 0; */
-    /*set as logs a undefined if not*/
-    /* display: "inline"; */
-    /*commented out as inherit*/
-/* } */
-/* #light {
+#light {
     fill:#333333;
-} */
-/* .light {
+} 
+.light {
     fill:#444444;
-} */
+}
 #light .light {
     fill: #555555;
 }

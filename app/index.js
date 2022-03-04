@@ -29,7 +29,8 @@ const logThroughUses = (array) => {
 };
 
 logThroughUses(widget)
-
+//dumpProperties('normal1', normal1, 1)
+inspectObject('normal1', normal1)
 
 //logThroughUses(normal)
 
