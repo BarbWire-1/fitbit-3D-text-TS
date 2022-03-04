@@ -15,11 +15,7 @@ let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 let normalUsesGroup = document.getElementById('normalUsesGroup')
 let normal = normalUsesGroup.getElementsByClassName("normalUse");
 
-let normal1 = normalUsesGroup.getElementById('normal1')
 
-// console.log(JSON.stringify(normal))// [{},{},{},{},{},{},{},{},{}]
-// console.log(JSON.stringify(normal1))//  {} 
-console.log(`normal1.x: ${normal1.x}`)// normal1.x: 200
 
 //console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
