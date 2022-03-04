@@ -123,7 +123,7 @@
 <defs>
     <symbol id="shadowUse" x="0" y="0"  class="normalUse">
         <text id="shadow" class="shadow" x="1" y="1" text-buffer="normal" font-size="20" fill="red" opacity="0.5"/>
-        <text id="light" class="light" x="-3" y="-3" text-buffer="normal" font-size="20"/>
+        <text id="light" class="light" x="-3" y="-3" text-buffer="normal" font-size="20" />
         <text id="main" class="main" x="0" y="0" text-buffer ="normal" font-size="20" fill="black"/>
         <!-- <text id="config" display="none" text-length="70" /> -->
     </symbol>

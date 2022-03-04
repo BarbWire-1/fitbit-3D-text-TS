@@ -17,9 +17,14 @@ let normal = normalUsesGroup.getElementsByClassName("normalUse");
 
 let normal1 = normalUsesGroup.getElementById('normal1')
 
-console.log(JSON.stringify(normal))
-console.log(JSON.stringify(normal1))
-
+// console.log(JSON.stringify(normal))// [{},{},{},{},{},{},{},{},{}]
+// console.log(JSON.stringify(normal1))//  {} 
+console.log(`normal1.x: ${normal1.x}`)// normal1.x: 200
+console.log(normal1.firstChild.nextSibling.style.fill)
+normal1.firstChild.nextSibling.text = "blah";
+normal1.firstChild.nextSibling.style.fill = "orange";
+normal1.getElementById('light').text="blubb"
+//console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
 const logThroughUses = (array) => {
     array.forEach(el => {
@@ -29,8 +34,8 @@ const logThroughUses = (array) => {
 };
 
 logThroughUses(widget)
-//dumpProperties('normal1', normal1, 1)
-inspectObject('normal1', normal1)
+// dumpProperties('normal1', normal1, 1)
+// inspectObject('normal1', normal1)//normal1 keys:  // and.... nothing!
 
 //logThroughUses(normal)
 
@@ -110,12 +115,6 @@ inspectObject('normal1', normal1)
 // console.log('-------------------------------')
 
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
-const logThroughUses = (array) => {
-    array.forEach(el => {
-        console.log(`${el.id}.light.fill: ${el.light.style.fill}`)
-    })
-    console.log('-------------------------------')
-    
-};
+
 
 
