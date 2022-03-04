@@ -15,7 +15,14 @@ const construct = (el) => {
     let lightEl = el.getElementById('light');
     let shadowEl = el.getElementById('shadow');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
-    
+
+    // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
+        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+    const allSubTextElements = el.getElementsByClassName('myText');
+    allSubTextElements.forEach(e => {
+        e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
+        e.style.fontSize = e.style.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+    });
     
     
     console.log(`line 17 lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
@@ -204,26 +211,26 @@ console.log(lightEl.style.fill)
                 y: mainBBox.y + topExtra
             }
             return bbox;
-      
         
     }
-    
-    //inspectObject('line 209 lightEl', lightEl)
-   // INITIALISATION:
+    // INITIALISATION:
     (function () {  // IIFE
+
+
+
         // PARSE AND PROCESS SVG CONFIG ATTRIBUTES
         const attributes = el.getElementById('config').text.split(';')
         attributes.forEach(attribute => {
             const colonIndex = attribute.indexOf(':')
             const attributeName = attribute.substring(0, colonIndex).trim();
-            let attributeValue = attribute.substring(colonIndex+1).trim();
+            let attributeValue = attribute.substring(colonIndex + 1).trim();
 
-            switch(attributeName) {
+            switch (attributeName) {
                 case 'text':
-                   el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                    el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
-                   el.letterSpacing = Number(attributeValue);
+                    el.letterSpacing = Number(attributeValue);
                     break;
                 case 'text-anchor':
                     el.textAnchor = attributeValue;
@@ -231,20 +238,18 @@ console.log(lightEl.style.fill)
                 case 'font-size':
                     el.style.fontSize = Number(attributeValue);
                     break;
-               
+
             }
         });
-        
-        
-            // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-            // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
-            const allSubTextElements = el.getElementsByClassName('myText');
-            allSubTextElements.forEach(e => {
-                e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-                e.style.fontSize = e.style.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
-            });
-       
+
+
+
+
     })();   // end of initialisation IIFE
+
+    
+    //inspectObject('line 209 lightEl', lightEl)
+   
 
     
 
