@@ -110,6 +110,12 @@ inspectObject('normal1', normal1)
 // console.log('-------------------------------')
 
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
-
+const logThroughUses = (array) => {
+    array.forEach(el => {
+        console.log(`${el.id}.light.fill: ${el.light.style.fill}`)
+    })
+    console.log('-------------------------------')
+    
+};
 
 
