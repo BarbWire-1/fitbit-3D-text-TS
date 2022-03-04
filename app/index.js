@@ -26,14 +26,22 @@ normal1.firstChild.nextSibling.style.fill = "orange";
 normal1.getElementById('light').text="blubb"
 //console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
-const logThroughUses = (array) => {
+const logThroughWidget = (array) => {
     array.forEach(el => {
         console.log(`${el.id}.light.fill: ${el.light.style.fill}`)
     })
     console.log('-------------------------------')
 };
 
-logThroughUses(widget)
+logThroughWidget(widget)
+
+const logThroughUses = (array) => {
+    array.forEach(el => {
+        console.log(`${el.id}.light.fill: ${el.getElementById('light').style.fill}`)
+    })
+    console.log('-------------------------------')
+};
+logThroughUses(normal)
 // dumpProperties('normal1', normal1, 1)
 // inspectObject('normal1', normal1)//normal1 keys:  // and.... nothing!
 
