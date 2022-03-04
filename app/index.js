@@ -9,23 +9,19 @@ console.log(`6. startApp ${Date.now() - startFactory}ms from start`)
 console.log('-------------------------------')
 // single widget-uses
 
+let widgetUsesGroup = document.getElementById('widgetUsesGroup')
+let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
-let widgetUses = document.getElementById("widgetUses").children;
-let numberOfWidgetUses = 9;
-
-const getHandles = (form, numberOf) => {
-    for (let i = 0; i < numberOf; i++) {
-        form[ numberOf ] = document.getElementById(`${form}${numberOf}`)
-    }
-};
-getHandles('widget', numberOfWidgetUses);
+widget[0].light.style.fill ="black"
 
 const logThroughUses = (array) => {
     array.forEach(el => {
         console.log(`${el.id}.light.fill: ${el.light.style.fill}`)
     })
 };
-logThroughUses(widgetUses)
+
+logThroughUses(widget)
+
 // //inspectObject('app line 12 test.light.style', test.light.style)
 // console.log('app line 12 test.light.style.fill', test.light.style.fill)//#9ACD32 
 // console.log('-------------------------------')

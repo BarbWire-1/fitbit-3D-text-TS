@@ -1,8 +1,8 @@
 <svg>
     <rect id="background" />
-<g id = "widgetUses">
+<g id = "widgetUsesGroup">
     <!--widget 1 to  9 for direct comparison of setting applied-->
-    <use id="widget1" href="#shadowText" x="50%" y="50%" fill="white"  >
+    <use id="widget1" href="#shadowText" class="widget-auto" x="50%" y="50%" fill="white"  >
         <set href="#config" attributeName="text-buffer" to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
         <set href="#light" attributeName="x" to="-1"/>
@@ -13,7 +13,7 @@
         <set href="#shadow" attributeName="opacity" to="1"/>
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
-    <use id="widget2" href="#shadowText" x="50" y="$+30" fill="white">
+    <use id="widget2" href="#shadowText" class="widget-auto" x="50" y="$+30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 2; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -26,7 +26,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget3" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget3" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -39,7 +39,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget4" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget4" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -52,7 +52,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget5" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget5" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -65,7 +65,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget6" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget6" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -78,7 +78,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget7" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget7" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -91,7 +91,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget8" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget8" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
@@ -104,7 +104,7 @@
         <set href="#shadow" attributeName="fill" to="red" />
     </use>
     
-    <use id="widget9" href="#shadowText" x="50" y="30" fill="white">
+    <use id="widget9" href="#shadowText"  x="50" y="30" fill="white">
         <set href="#config" attributeName="text-buffer"
             to='text: widget 1; letter-spacing: 0; text-anchor: start; font-size: 20;' />
         <set href="#light" attributeName="fill" to="#777777" />
