@@ -5,12 +5,10 @@
 
 }
 
-#light {
-    fill:#333333;
-} 
-.light {
+#lightW {
+    fill:#333333; 
+} /* removed from inst 7 ff*/
+.lightW {
     fill:#444444;
-}
-#light .light {
-    fill: #555555;
-}
+}/*removed from instance 8ff*/
+

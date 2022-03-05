@@ -11,9 +11,9 @@ console.log('-------------------------------')
 let i = 1;
 const construct = (el) => {
    
-    let mainEl = el.getElementById('main');
-    let lightEl = el.getElementById('light');
-    let shadowEl = el.getElementById('shadow');
+    let mainEl = el.getElementById('mainW');
+    let lightEl = el.getElementById('lightW');
+    let shadowEl = el.getElementById('shadowW');
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
 
     // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS

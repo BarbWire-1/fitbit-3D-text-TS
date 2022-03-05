@@ -18,7 +18,7 @@ let normal = normalUsesGroup.getElementsByClassName("normalUse");
 
 const logThroughUses = (array) => {
     array.forEach(el => {
-        let testFill = el.getElementById('light').style.fill
+        let testFill = el.getElementById('lightN').style.fill
         console.log(`${el.id}.light.fill: ${testFill}`)
     })
     console.log('-------------------------------')
@@ -38,7 +38,7 @@ logThroughWidget(widget)
 
 const logThroughUses2 = (array) => {
     array.forEach(el => {
-        let testFill = el.getElementById('light').style.fill
+        let testFill = el.getElementById('lightN').style.fill
         
         console.log(`${el.id}.light.fill: ${testFill}`)
     })

@@ -7,55 +7,59 @@
 /*SETTINGS ON WIDGET-USES*/
 /*fill on useEl.id + subEl.id*/
 /* for testing, comment-out one by one */
-#widget1 #light {fill: #777777;}
-#widget2 #light {fill: #777777;}
-#widget3 #light {fill: #777777;}
-#widget4 #light {fill: #777777;}
-#widget5 #light {fill: #777777;}
-#widget6 #light {fill: #777777;}
-#widget7 #light {fill: #777777;}
-#widget8 #light {fill: #777777;}
-#widget9 #light {fill: #777777;}
+#widget1 #lightW {fill: #777777;}
+#widget2 #lightW {fill: #777777;}
+#widget3 #lightW {fill: #777777;}
+#widget4 #lightW {fill: #777777;}
+#widget5 #lightW {fill: #777777;} /*removed inst 5ff*/
+#widget6 #lightW {fill: #777777;}
+#widget7 #lightW {fill: #777777;}
+#widget8 #lightW {fill: #777777;}
+#widget9 #lightW {fill: #777777;} 
 
 /*fill on useEl.id + subEl.class*/
 /* for testing, comment-out one by one */
-#widget1 .light {fill: #888888;}
-#widget2 .light {fill: #888888;}
-#widget3 .light {fill: #888888;}
-#widget4 .light {fill: #888888;}
-#widget5 .light {fill: #888888;}
-#widget6 .light {fill: #888888;}
-#widget7 .light {fill: #888888;}
-#widget8 .light {fill: #888888;}
-#widget9 .light {fill: #888888;}
+#widget1 .lightW {fill: #888888;}
+#widget2 .lightW {fill: #888888;}
+#widget3 .lightW {fill: #888888;}
+#widget4 .lightW {fill: #888888;}
+#widget5 .lightW {fill: #888888;} 
+#widget6 .lightW {fill: #888888;}/*removed inst 6 ff*/
+#widget7 .lightW {fill: #888888;}
+#widget8 .lightW {fill: #888888;}
+#widget9 .lightW {fill: #888888;}
+
+/* these settings arre also in widget/css - remove here? */
+ #lightW { fill: #999999} 
+.lightW { fill: #AAAAAA} /*removed from instance 8ff */
 
 
 /*SETTINGS ON SYMBOL-USES*/
 /*fill on useEl.id + subEl.id*/
 /* for testing, comment-out one by one */
-#normal1 #light {fill: #777777;}
-#normal2 #light {fill: #777777;}
-#normal3 #light {fill: #777777;}
-#normal4 #light {fill: #777777;}
-#normal5 #light {fill: #777777;}
-#normal6 #light {fill: #777777;}
-#normal7 #light {fill: #777777;}
-#normal8 #light {fill: #777777;}
-#normal9 #light {fill: #777777;}
+#normal1 #lightN {fill: #777777;}
+#normal2 #lightN {fill: #777777;}
+#normal3 #lightN {fill: #777777;}
+#normal4 #lightN {fill: #777777;}
+#normal5 #lightN {fill: #777777;}
+#normal6 #lightN {fill: #777777;}
+#normal7 #lightN {fill: #777777;}
+#normal8 #lightN {fill: #777777;}
+#normal9 #lightN {fill: #777777;}
 
 /*fill on useEl.id + subEl.class*/
 /* for testing, comment-out one by one */
-#normal1 .light {fill: #888888;}
-#normal2 .light {fill: #888888;}
-#normal3 .light {fill: #888888;}
-#normal4 .light {fill: #888888;}
-#normal5 .light {fill: #888888;}
-#normal6 .light {fill: #888888;}
-#normal7 .light {fill: #888888;}
-#normal8 .light {fill: #888888;}
-#normal9 .light {fill: #888888;}
+#normal1 .lightN {fill: #888888;}
+#normal2 .lightN {fill: #888888;}
+#normal3 .lightN {fill: #888888;}
+#normal4 .lightN {fill: #888888;}
+#normal5 .lightN {fill: #888888;}
+#normal6 .lightN {fill: #888888;}
+#normal7 .lightN {fill: #888888;}
+#normal8 .lightN {fill: #888888;}
+#normal9 .lightN {fill: #888888;}
 
-#shodowUse #light { fill: #333333}
-#shodowUse .light { fill: #444444}
+#lightN { fill: #999999} /* removed use 5ff)*/
+.lightN { fill: #AAAAAA}/* removed use 6ff
 
 
