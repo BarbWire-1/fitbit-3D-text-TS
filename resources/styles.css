@@ -11,11 +11,12 @@
 #widget2 #lightW {fill: #777777;}
 #widget3 #lightW {fill: #777777;}
 #widget4 #lightW {fill: #777777;}
-#widget5 #lightW {fill: #777777;} /*removed inst 5ff*/
+/* removed inst 5ff */
+/* #widget5 #lightW {fill: #777777;} 
 #widget6 #lightW {fill: #777777;}
 #widget7 #lightW {fill: #777777;}
 #widget8 #lightW {fill: #777777;}
-#widget9 #lightW {fill: #777777;} 
+#widget9 #lightW {fill: #777777;}  */
 
 /*fill on useEl.id + subEl.class*/
 /* for testing, comment-out one by one */
@@ -24,14 +25,15 @@
 #widget3 .lightW {fill: #888888;}
 #widget4 .lightW {fill: #888888;}
 #widget5 .lightW {fill: #888888;} 
-#widget6 .lightW {fill: #888888;}/*removed inst 6 ff*/
+/*removed inst 6 ff*/
+/* #widget6 .lightW {fill: #888888;}
 #widget7 .lightW {fill: #888888;}
 #widget8 .lightW {fill: #888888;}
-#widget9 .lightW {fill: #888888;}
+#widget9 .lightW {fill: #888888;} */
 
-/* these settings arre also in widget/css - remove here? */
- #lightW { fill: #999999} 
-.lightW { fill: #AAAAAA} /*removed from instance 8ff */
+
+ /* #lightW { fill: #999999}  *//*removed instance 8ff*/
+/* .lightW { fill: #AAAAAA} removed from instance 10ff */
 
 
 /*SETTINGS ON SYMBOL-USES*/
@@ -59,7 +61,8 @@
 #normal8 .lightN {fill: #888888;}
 #normal9 .lightN {fill: #888888;}
 
-#lightN { fill: #999999} /* removed use 5ff)*/
-.lightN { fill: #AAAAAA}/* removed use 6ff
+
+/* #lightN { fill: #999999} removed use 5ff) */
+/* .lightN { fill: #AAAAAA}/* removed use 6ff */
 
 

@@ -7,7 +7,7 @@
         <!-- <text id="dummy" class="myText" display="none"  text-anchor="start"/>  element inherits text/text-props -->
         <text id="shadowW"  class="myText shadowW "  />
         <!--so fill and/or offset can be set per class .shadow-->
-        <text id="lightW"  class="myText lightW" /> <!-- "fill="#222222"/> rem from 4 ff-->
+        <text id="lightW"  class="myText lightW"/> <!-- fill="#222222"/> rem from 4 ff-->
         <!--so fill and/or offset can be set per class .highlight-->
         <text id="mainW" class="myText mainW " x="0" y="0" />
         <!--so fill can be set per class .main / x,y is hardcoded to 0,0 in redraw as others are set in relation-->
