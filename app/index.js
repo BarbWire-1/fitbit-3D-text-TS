@@ -48,5 +48,10 @@ logThroughUses2(normal)
 
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
 
+// TODO DEFAULTS on symbol x,y overwritable
+// DEFAULTS on subElements: in symbol css on class. eG .light {}
+// can be overwritten in css on #useEl #subEl
+// TODO test class settings in widget class="widget-auto className" (???)
+
 
 
