@@ -6,8 +6,7 @@ import document from 'document'
 
 // DEFAULTS in widgets/shadow-text/styles.css
 // this allows them to get overwritten from main CSS if set there
-console.log(`3. startWidget ${Date.now() - startFactory}ms from start`)
-console.log('-------------------------------')
+
 let i = 1;
 const construct = (el) => {
    
@@ -23,11 +22,6 @@ const construct = (el) => {
         e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
         e.style.fontSize = e.style.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
     });
-    
-    
-    console.log(`lightEl.style.fill:${lightEl.style.fill}`)//#9ACD32 crashes IIFE???
-    //inspectObject('line 17 lightEl', lightEl)//crashes
-        
     
     
     // CREATE STYLE CLASSES
@@ -52,7 +46,6 @@ const construct = (el) => {
             });
         }
     };
-    //inspectObject('line 50 lightEl', lightEl)
    
     class StyleSubText extends StyleCommon {  // style properties applicable to all textElements
         constructor(styleBase) {
@@ -67,7 +60,7 @@ const construct = (el) => {
         }
     };
     console.log(`lightEl.style.fill:${lightEl.style.fill}`)
-//inspectObject('line 64 lightEl', lightEl)
+
     
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
@@ -83,7 +76,7 @@ const construct = (el) => {
             });
         }
     };
-//inspectObject('line 79 lightEl', lightEl)
+
     const equalAll = (p,v) => {
         mainEl[ p ] =
             shadowEl[ p ] =
@@ -104,16 +97,9 @@ const construct = (el) => {
             enumerable: true
         });
     };
-    //lightEl.style.fill = "#000000"
-//inspectObject('line 100 lightEl', lightEl)
     setNewTextAll(el, 'text');
     setNewTextAll(el, 'textAnchor');
     setNewTextAll(el, 'letterSpacing');
-    //setNewTextAll(el.style, 'fontSize');// no idea, why this is necessary to apply fontSize, but not for fontFamily. Missing default somewhere?
-    // ooooh... the -32768???
-
-//inspectObject('line 107 lightEl', lightEl)
-   
    
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
@@ -121,7 +107,6 @@ const construct = (el) => {
        Object.defineProperty(obj, prop, {
             
             set(newValue) {
-                //equalAll(style[ prop ]) = newValue;// style is not defined!!! here it shows again. Possible?
                 mainEl.style[ prop ] =
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
@@ -151,6 +136,7 @@ const construct = (el) => {
         enumerable: true
     });
     defineProps('main', mainAPI);
+    
     //x, y, fill, opacity, display
     let effectsAPI = (obj) => Object.seal({
         style: Object.seal(new StyleSubText(obj.style)),
@@ -163,8 +149,6 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-    //lightEl.style.fill ="#000000"
-    //inspectObject('line 159 lightEl', lightEl)
     
     //CONNECT OUTER TO VIRTUAL STYLE
     // all text-related, mainEl.fill, el.getBBox(), all useOwn
@@ -178,8 +162,6 @@ const construct = (el) => {
         enumerable: true,
     });
    
-    //inspectObject('line 172 lightEl', lightEl)
-    
     // GETBBOX() ON USE (!)
     el.getBBox = () => {
        
@@ -248,11 +230,6 @@ const construct = (el) => {
 
     })();   // end of initialisation IIFE
 
-    
-    //inspectObject('line 209 lightEl', lightEl)
-   
-
-    
 
     //INSPECT OBJECTS ***************************************************************
     //inspectObject('mainEl.style',mainEl.style)
@@ -262,14 +239,11 @@ const construct = (el) => {
     //dumpProperties('lightEl.style.fill', lightEl.style.fill, false)
 
     //INSPECT OBJECTS END*************************************************************
-    
-    console.log(`4. ${i++}.use created ${Date.now() - startFactory}ms from start`)
-    console.log('-------------------------------')
+   
     return el;
 };
 
 constructWidgets('shadowText', construct);
-console.log(`5. endWidget ${Date.now() - startFactory}ms from start`)
 
 
 /*
