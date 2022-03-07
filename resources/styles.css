@@ -19,13 +19,14 @@
 }
 
 .myClass #main {
-    letter-spacing: 5; /* this gets applied, but ONLY to main!!! */
+    letter-spacing: 15; /* INCONSISTENT having to use mainEl here */
+    text-anchor: middle;
 }
 .myClass{
     fill: orange;
     font-family: 'Barlow-Bold';
     font-size: 40; /* haha... gets applied, but logs as -32768 WTF??*/
-   
+    
 }
 .myClass #light{
     fill: magenta;
