@@ -11,20 +11,6 @@ console.log('-------------------------------')
 let widgetUsesGroup = document.getElementById('widgetUsesGroup')
 let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
-let normalUsesGroup = document.getElementById('normalUsesGroup')
-let normal = normalUsesGroup.getElementsByClassName("normalUse");
-
-
-const logThroughUses = (array) => {
-    array.forEach(el => {
-        let testFill = el.getElementById('lightN').style.fill
-        console.log(`${el.id}.light.fill: ${testFill}`)
-    })
-    console.log('-------------------------------')
-};
-logThroughUses(normal)
-
-//console.log(`normal.light.style.fill: ${normal.light.style.fill}`)//TypeError: Cannot read property 'style' of undefined 😧
 
 const logThroughWidget = (array) => {
     array.forEach(el => {
@@ -35,15 +21,6 @@ const logThroughWidget = (array) => {
 
 logThroughWidget(widget)
 
-const logThroughUses2 = (array) => {
-    array.forEach(el => {
-        let testFill = el.getElementById('lightN').style.fill
-        
-        console.log(`${el.id}.light.fill: ${testFill}`)
-    })
-    console.log('-------------------------------')
-};
-logThroughUses2(normal)
 
 
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)

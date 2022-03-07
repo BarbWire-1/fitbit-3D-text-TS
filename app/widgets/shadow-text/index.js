@@ -59,9 +59,7 @@ const construct = (el) => {
             });
         }
     };
-    console.log(`lightEl.style.fill:${lightEl.style.fill}`)
 
-    
     class StyleWidget extends StyleCommon {   // style properties applicable to widget (useElement)
         constructor(elStyle) {
             super(elStyle);
@@ -84,7 +82,7 @@ const construct = (el) => {
             v;
             
     }
-    console.log(`lightEl.style.fill:${lightEl.style.fill}`)
+    
     //APPLY CHANGES ON EL TO ALL
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
