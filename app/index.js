@@ -12,7 +12,13 @@ console.log('-------------------------------')
 let widgetUsesGroup = document.getElementById('widgetUsesGroup')
 let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
+let newUse = widgetUsesGroup.getElementById('newUse')
+newUse.style.fontSize = 30;
+//newUse.style.fill = 'magenta'
 
+let classEl1 = document.getElementById('classEl1')
+
+//newUse.text='blah'
 const logThroughWidget = (array) => {
     array.forEach(el => {
         console.log(`${el.id}.fill: ${el.style.fill}`)//undefined. why? main also undefined

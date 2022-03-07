@@ -5,9 +5,9 @@
 }
 
 
-#new #config {
+#newUse #config {
     text-buffer:
-        'text: newConfig;';
+        'text: newUse;';
 }
 #classEl1 #config {
     text-buffer:

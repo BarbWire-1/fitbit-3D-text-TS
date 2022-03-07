@@ -16,7 +16,7 @@
             <set href="#config" attributeName="text-buffer" to='text: widget 3;font-size: 20;' />
         </use>
         
-        <use id="new" href="#shadowText" x="168" y="120" font-family="System-Regular">
+        <use id="newUse" href="#shadowText" x="168" y="120" font-family="System-Regular" class="widget-auto" fill="blue">
             <!-- <set href="#config" attributeName="text-buffer" to='text: new'/> -->
         </use>
     </g>

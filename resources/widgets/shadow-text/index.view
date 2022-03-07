@@ -1,8 +1,8 @@
 <defs>
-    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto"> 
-        <text id="shadow"  class="myText shadowW "  />
+    <symbol id="shadowText" x="0" y="0" type="shadowText" class="widget-auto" fill="grey"> 
+        <text id="shadow"  class="myText shadowW " />
         <text id="light"  class="myText lightW"/> 
-        <text id="main" class="myText mainW " x="0" y="0"/>
+        <text id="main" class="myText mainW " x="0" y="0" text="text"/>
         <text id="config" display="none" text-length="70" />
     </symbol>
 </defs>
