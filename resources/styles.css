@@ -20,7 +20,7 @@
 .myClass{
     fill: orange;
     font-family: 'Barlow-Bold';
-    font-size: 40;
+    font-size: 40; /* haha... gets applied, but logs as -32768 */
 }
 .myClass #light{
     fill: magenta;
