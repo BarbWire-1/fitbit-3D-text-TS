@@ -11,24 +11,29 @@
 }
 #classEl1 #config {
     text-buffer:
-        'text: classEl 1;';
+        'text: myClass El 1;';
 }
  #classEl2 #config {
     text-buffer:
-        'text: classEl 2;';
-}    
+        'text: myClass El 2;';
+}
+
+
 .myClass{
     fill: orange;
     font-family: 'Barlow-Bold';
-    font-size: 40; /* haha... gets applied, but logs as -32768 */
+    font-size: 40; /* haha... gets applied, but logs as -32768 WTF??*/
+   
 }
+
 .myClass #light{
     fill: magenta;
-    x: -3;
-    y: -3;
+    x: -2;
+    y: -2;
 }
 .myClass #shadow{
     fill: red;
     x: 3;
     y: 3;
 }
+/* TODO how to apply letter-spacing, text-anchor on class??? */
