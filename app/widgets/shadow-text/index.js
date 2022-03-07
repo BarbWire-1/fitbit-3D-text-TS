@@ -68,10 +68,10 @@ const construct = (el) => {
             setNewStyleAll(this, 'fontFamily');
             setNewStyleAll(this, 'fontSize');
             Object.defineProperty(this, 'fill', {
-                set(newValue) { mainEl.style.fill = newValue ?? "white"; },
-                // get() {
-                //     return mainEl.style.fill
-                // },
+                set(newValue) { mainEl.style.fill = newValue; },
+                get() {
+                    return mainEl.style.fill
+                },
                 enumerable: true,
             });
         }
