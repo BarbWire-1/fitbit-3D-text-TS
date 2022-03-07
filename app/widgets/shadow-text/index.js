@@ -20,7 +20,7 @@ const construct = (el) => {
     const allSubTextElements = el.getElementsByClassName('myText');
     allSubTextElements.forEach(e => {
         e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-        e.style.fontSize = e.style.fontsize <= 0 ? 30 : elStyle.fontSize     // font-size can be set on useEl; if fontSize is undefined its value is -32768
+        e.style.fontSize = e.style.fontsize <= 0 ? elStyle.fontSize ?? elStyle.fontSize : 30   // font-size can be set on useEl; if fontSize is undefined its value is -32768
     });
     
     
@@ -218,16 +218,16 @@ const construct = (el) => {
 
             switch (attributeName) {
                 case 'text':
-                    el.text = attributeValue;   // this won't like embedded semi-colons, and quotes will require care
+                    el.text = attributeValue ?? 'text';   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
-                    el.letterSpacing = Number(attributeValue);
+                    el.letterSpacing = Number(attributeValue) ?? 0;
                     break;
                 case 'text-anchor':
-                    el.textAnchor = attributeValue;
+                    el.textAnchor = attributeValue ?? 'start';
                     break;
                 case 'font-size':
-                    el.style.fontSize = Number(attributeValue);
+                    el.style.fontSize = Number(attributeValue) ?? 30;
                     break;
 
             }

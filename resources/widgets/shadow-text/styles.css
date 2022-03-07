@@ -5,6 +5,10 @@
 
 }
 
+.config {
+    text-buffer:
+        'text: text; text-anchor: start;font-size: 30;letter-spacing: 0;'
+    }
 /* #lightW {
     fill:#333333; 
 } removed from inst 7 ff */

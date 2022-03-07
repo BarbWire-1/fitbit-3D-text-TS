@@ -41,9 +41,9 @@
     </use>
     
     
-    <use id="new" href="#shadowText" x="168" y="120">
-        <!-- <set href="#config" attributeName="text-buffer"
-            to='text: new; letter-spacing: 0; text-anchor: start; font-size: 20;' /> -->
+    <use id="new" href="#shadowText" x="168" y="120" font-family="System-Regular">
+    <set href="#config" attributeName="text-buffer"
+        to='text: new' />
           
         
     </use>
@@ -52,3 +52,5 @@
 
 
 </svg>
+
+<!-- text-anchor: start; letter-spacing: 0;-->
