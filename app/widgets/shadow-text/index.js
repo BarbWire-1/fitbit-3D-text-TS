@@ -19,8 +19,10 @@ const construct = (el) => {
         // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
     const allSubTextElements = el.getElementsByClassName('myText');
     allSubTextElements.forEach(e => {
-        e.style.fontFamily = elStyle.fontFamily;                            // font-family can be set on useEl
-        e.style.fontSize = e.style.fontsize <= 0 ? elStyle.fontSize ?? elStyle.fontSize : 30   // font-size can be set on useEl; if fontSize is undefined its value is -32768
+        e.style.fontFamily = elStyle.fontFamily;
+        let fsPublic = e.style.fontSize;
+        let fsPrivate = elStyle.fontSize;                         // font-family can be set on useEl
+        fsPublic = fsPublic <= 0 ? fsPrivate ?? fsPrivate : 30   // font-size can be set on useEl; if fontSize is undefined its value is -32768
     });
     
     
