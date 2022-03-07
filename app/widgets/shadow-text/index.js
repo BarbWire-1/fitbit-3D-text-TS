@@ -23,7 +23,14 @@ const construct = (el) => {
         let fsPublic = e.style.fontSize;
         let fsPrivate = elStyle.fontSize;                         // font-family can be set on useEl
         fsPublic = fsPublic <= 0 ? fsPrivate ?? fsPrivate : 30   // font-size can be set on useEl; if fontSize is undefined its value is -32768
+        e.letterSpacing = mainEl.letterSpacing;
+        try {     // textEl.textAnchor throws an error if textAnchor not defined
+            e.textAnchor = mainEl.textAnchor;
+        } catch (e) {
+            e.textAnchor = 'start';  // default
+        }
     });
+   
     
     
     // CREATE STYLE CLASSES
