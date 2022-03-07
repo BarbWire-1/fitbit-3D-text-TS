@@ -3,7 +3,32 @@
     height: 100%;
     fill: "black";
 }
+
+
 #new #config {
     text-buffer:
-        'text: new;'
-    }
+        'text: newConfig;';
+}
+#classEl1 #config {
+    text-buffer:
+        'text: classEl 1;';
+}
+ #classEl2 #config {
+    text-buffer:
+        'text: classEl 2;';
+}    
+.myClass{
+    fill: orange;
+    font-family: 'Barlow-Bold';
+    font-size: 40;
+}
+.myClass #light{
+    fill: magenta;
+    x: -3;
+    y: -3;
+}
+.myClass #shadow{
+    fill: red;
+    x: 3;
+    y: 3;
+}

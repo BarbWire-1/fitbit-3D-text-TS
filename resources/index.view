@@ -1,13 +1,15 @@
 <svg>
     <rect id="background" />
     
-    <g id = "widgetUsesGroup" transform="translate(30,0)" font-family="Barlow-Bold" >
-        <use id="widget1" href="#shadowText" x="50" y="60" fill="#43403b" >
-            <set href="#config" attributeName="text-buffer" to='text: widget 1;font-size: 50;' /> 
+    <g id = "widgetUsesGroup" transform="translate(30,0)"  >
+    
+    
+        <use id="classEl1" href="#shadowText" x="50" y="60" class="widget-auto myClass" >
+            <!-- <set href="#config" attributeName="text-buffer" to='text: classEl 1;' />  -->
         </use>
         
-        <use id="widget2" href="#shadowText"  x="50" y="90" >
-            <set href="#config" attributeName="text-buffer" to='text: widget 2; font-size: 20;' />
+        <use id="classEl2" href="#shadowText"  x="50" y="90"  class="widget-auto myClass">
+            <!-- <set href="#config" attributeName="text-buffer" to='text: classEl 2;' /> -->
         </use>
         
         <use id="widget3" href="#shadowText"  x="50" y="120">

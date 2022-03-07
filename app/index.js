@@ -4,6 +4,7 @@ import { startFactory } from "./widgets/construct-widgets";
 import './widgets/shadow-text';
 
 
+
 console.log(`6. startApp ${Date.now() - startFactory}ms from start`)
 console.log('-------------------------------')
 // single widget-uses
