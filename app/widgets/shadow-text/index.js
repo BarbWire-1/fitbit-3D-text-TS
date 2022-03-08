@@ -30,6 +30,16 @@ const construct = (el) => {
             e.textAnchor = 'start';  // default
         }
     });
+    
+    //defaults //I HATE THIS!!!
+    
+    lightEl.style.fill = lightEl.style.fill ?? "white";
+    shadowEl.style.fill = shadowEl.style.fill ?? "red";
+    mainEl.text = mainEl.text ?? 'text';
+    lightEl.x = lightEl.x ?? -1;
+    lightEl.y = lightEl.y ?? -1;
+    shadowEl.x = shadowEl.x ?? 1;
+    shadowEl.y = shadowEl.y ?? 1;
    
     
     
@@ -155,10 +165,7 @@ const construct = (el) => {
     });
     defineProps('light', effectsAPI(lightEl));
     defineProps('shadow', effectsAPI(shadowEl));
-    lightEl.x = lightEl.x ?? -1;
-    lightEl.y = lightEl.y ?? -1;
-    shadowEl.x = shadowEl.x ?? 1;
-    shadowEl.y = shadowEl.y ?? 1;
+    
   
     //CONNECT OUTER TO VIRTUAL STYLE
     // all text-related, mainEl.fill, el.getBBox(), all useOwn
@@ -174,9 +181,7 @@ const construct = (el) => {
         },
         enumerable: true,
     });
-    lightEl.style.fill = lightEl.style.fill ?? "white";
-    shadowEl.style.fill = shadowEl.style.fill ?? "red";
-    mainEl.text = mainEl.text ?? 'text'
+    
    
     
     // GETBBOX() ON USE (!)
