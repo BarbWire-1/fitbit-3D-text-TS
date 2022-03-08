@@ -18,14 +18,15 @@
         'text: myClass El 2;';
 }
 
-.myClass #main {
-    letter-spacing: 3; /* INCONSISTENT having to use mainEl here */
-    text-anchor: start;
-}
+
 .myClass{
     fill: orange;
     font-family: 'Barlow-Bold';
-    font-size: 30; /* haha... gets applied, but logs as -32768 WTF??*/
+    font-size: 35; /* haha... gets applied, but logs as -32768 WTF??*/
+}
+.myClass #main {
+    letter-spacing: 3; /* INCONSISTENT having to use mainEl here */
+    text-anchor: start;
 }
 .myClass #light{
     fill: magenta;

@@ -176,6 +176,7 @@ const construct = (el) => {
     });
     lightEl.style.fill = lightEl.style.fill ?? "white";
     shadowEl.style.fill = shadowEl.style.fill ?? "red";
+    mainEl.text = mainEl.text ?? 'text'
    
     
     // GETBBOX() ON USE (!)

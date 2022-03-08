@@ -20,7 +20,7 @@
             <!-- <set href="#config" attributeName="text-buffer" to='text: new'/> -->
         </use>
         <use id="newUse2" href="#shadowText" x="168" y="150" font-family="System-Regular" fill="blue" >
-             <set href="#config" attributeName="text-buffer" to='text: new2; font-size: 40;text-anchor: middle; letter-spacing: 10;'/> -->
+             <set href="#config" attributeName="text-buffer" to='font-size: 40;text-anchor: middle; letter-spacing: 10;'/> -->
         </use>
     </g>
         
