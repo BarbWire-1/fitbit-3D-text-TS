@@ -88,7 +88,7 @@ const construct = (el) => {
         mainEl[ p ] =
             shadowEl[ p ] =
             lightEl[ p ] =
-            v;
+            v ;
     };
     
     //APPLY CHANGES ON EL TO ALL
@@ -117,7 +117,7 @@ const construct = (el) => {
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
                 newValue
-                mainEl.text = lightEl.text=shadowEl.text = mainEl.text //gos-awfuk kludge to get fontSize applied/same for textAnchor
+                mainEl.text = lightEl.text=shadowEl.text = mainEl.text ?? 'text' //gos-awfuk kludge to get fontSize applied/same for textAnchor
             },
             get() {
                    return mainEl.style[ prop ]

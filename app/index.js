@@ -14,7 +14,9 @@ let widget = widgetUsesGroup.getElementsByClassName("widget-auto");
 
 let newUse = widgetUsesGroup.getElementById('newUse')
 newUse.style.fontSize = 30;
-//newUse.style.fill = 'magenta'
+newUse.style.fill = 'magenta'
+let newUse2 = widgetUsesGroup.getElementById('newUse2')
+newUse2.text = 'blah'
 
 let classEl1 = document.getElementById('classEl1')
 
