@@ -25,7 +25,7 @@
 .myClass{
     fill: orange;
     font-family: 'Barlow-Bold';
-    font-size: 40; /* haha... gets applied, but logs as -32768 WTF??*/
+    font-size: 30; /* haha... gets applied, but logs as -32768 WTF??*/
 }
 .myClass #light{
     fill: magenta;
@@ -37,4 +37,4 @@
     x: 3;
     y: 3;
 }
-/* TODO how to apply letter-spacing, text-anchor on class??? */
+/* TODO how to get letterSpacing/textAnchor on use instead of main??? */

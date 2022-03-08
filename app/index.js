@@ -20,6 +20,7 @@ newUse2.text = 'blah'
 
 let classEl1 = document.getElementById('classEl1')
 
+
 //newUse.text='blah'
 const logThroughWidget = (array) => {
     array.forEach(el => {
@@ -31,21 +32,13 @@ const logThroughWidget = (array) => {
         console.log(`${el.id}.shadow.fill: ${el.shadow.style.fill}`)
         console.log(`${el.id}.shadow.x: ${el.shadow.x}`)
         console.log('-------------------------------')
-    })
-        console.log('-------------------------------')
-        
+    })    
 };
-
 logThroughWidget(widget)
-
-
 
 console.log(`7. endApp ${Date.now() - startFactory}ms from start`)
 
-// TODO DEFAULTS on symbol x,y overwritable
-// DEFAULTS on subElements: in symbol css on class. eG .light {}
-// can be overwritten in css on #useEl #subEl
-// TODO test class settings in widget class="widget-auto className" (???)
+//TODO test if <set> can overwrite everything, then clean
 
 
 
