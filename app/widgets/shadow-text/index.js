@@ -4,10 +4,6 @@ import { dumpProperties,inspectObject } from '../../devTools';
 import document from 'document'
 
 
-// DEFAULTS in widgets/shadow-text/styles.css
-// this allows them to get overwritten from main CSS if set there
-
-let i = 1;
 const construct = (el) => {
    
     let mainEl = el.getElementById('main');
@@ -16,7 +12,16 @@ const construct = (el) => {
     let elStyle = el.style;   // keep a reference to the REAL .style because we're going to redefine .style
 
     // DEFINES RELATIONS BETWEEN SUBTEXTELEMENTS
-        // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+    // Note that text, letter-spacing and text-anchor are set on useEl using config (see above), and are not copied from mainEl.
+    //defaults //I HATE THIS!!!
+    lightEl.style.fill = lightEl.style.fill ?? "white";
+    shadowEl.style.fill = shadowEl.style.fill ?? "red";
+
+    lightEl.x = lightEl.x ?? -1;
+    lightEl.y = lightEl.y ?? -1;
+    shadowEl.x = shadowEl.x ?? 1;
+    shadowEl.y = shadowEl.y ?? 1;
+    
     const allSubTextElements = el.getElementsByClassName('myText');
     allSubTextElements.forEach(e => {
         e.style.fontFamily = elStyle.fontFamily;
@@ -31,14 +36,7 @@ const construct = (el) => {
         }
     });
     
-    //defaults //I HATE THIS!!!
-    lightEl.style.fill = lightEl.style.fill ?? "white";
-    shadowEl.style.fill = shadowEl.style.fill ?? "red";
-    mainEl.text = mainEl.text ?? 'text';
-    lightEl.x = lightEl.x ?? -1;
-    lightEl.y = lightEl.y ?? -1;
-    shadowEl.x = shadowEl.x ?? 1;
-    shadowEl.y = shadowEl.y ?? 1;
+    
    
     
     
@@ -48,6 +46,7 @@ const construct = (el) => {
             // styleBase: the Fitbit API style object that implements things.
             // We're using the constructor as a closure; ie, local variables (including the parameter) shouldn't be exposed publicly.
             // This necessitates putting properties and functions that need such variables in the constructor, which is a bit ugly.
+            
             Object.defineProperty(this, 'opacity', {
                 set(newValue) { styleBase.opacity = newValue; },
                 get() {
@@ -93,18 +92,28 @@ const construct = (el) => {
         }
     };
 
-    const equalAll = (p, v) => {
-        mainEl[ p ] =
-            shadowEl[ p ] =
-            lightEl[ p ] =
-            v ;
+    /**
+     * pass text and textProperties to all subElements
+     * @param {*} prop 
+     * @param {*} value 
+     */
+    const passToAll = (prop, value) => {
+        mainEl[ prop ] =
+            shadowEl[ prop ] =
+            lightEl[ prop ] =
+            value ;
     };
     
     //APPLY CHANGES ON EL TO ALL
+    /**
+     * 
+     * @param {*} obj 
+     * @param {*} prop 
+     */
     function setNewTextAll(obj, prop) {
         Object.defineProperty(obj, prop, {
             set(newValue) {
-                equalAll(prop, newValue);
+                passToAll(prop, newValue);
             },
             get() {
                 return mainEl[prop]
@@ -118,6 +127,11 @@ const construct = (el) => {
    
     //APPLY TEXT-STYLE CHANGES TO ALL
     //called in styleWidget constructor
+    /**
+     * 
+     * @param {*} obj 
+     * @param {*} prop 
+     */
    function setNewStyleAll(obj, prop) {
        Object.defineProperty(obj, prop, {
             
@@ -126,7 +140,7 @@ const construct = (el) => {
                     shadowEl.style[ prop ] =
                     lightEl.style[ prop ] =
                 newValue
-                mainEl.text = lightEl.text=shadowEl.text = mainEl.text ?? 'text' //gos-awfuk kludge to get fontSize applied/same for textAnchor
+                mainEl.text = lightEl.text=shadowEl.text = mainEl.text //god-awful kludge to get fontSize applied/same for textAnchor
             },
             get() {
                    return mainEl.style[ prop ]
@@ -138,6 +152,11 @@ const construct = (el) => {
 //inspectObject('line 130 lightEl', lightEl)
     // CREATE API's
     // FUNCTION TO EXPOSE TO CORRESPONDING OBJECT
+    /**
+     * 
+     * @param {*} prop 
+     * @param {*} obj 
+     */
     function defineProps(prop, obj) {
         Object.defineProperty(el, prop, {
             get() { return obj; },
@@ -145,6 +164,7 @@ const construct = (el) => {
         });
     };
     //opacity, display, getBBox()
+    
     let mainAPI =  Object.seal({
         style: Object.seal(new StyleCommon(mainEl.style)), 
         getBBox: () => mainEl.getBBox(),
@@ -171,10 +191,6 @@ const construct = (el) => {
     let widgetStyleAPI = Object.seal(new StyleWidget(elStyle));
     Object.defineProperty(el, 'style', {  // we kept a reference to the real .style in elStyle
         set fill(newValue) { mainEl.style.fill = newValue },
-        // get fill() {
-        //     return
-        //     el.style.fill 
-        // },
         get() {
             return widgetStyleAPI;
         },
@@ -184,6 +200,10 @@ const construct = (el) => {
    
     
     // GETBBOX() ON USE (!)
+    /**
+     * 
+     * @returns 
+     */
     el.getBBox = () => {
        
             const mainBBox = mainEl.getBBox();  // we assume el and mainEl don't have display==='none'
@@ -231,16 +251,16 @@ const construct = (el) => {
 
             switch (attributeName) {
                 case 'text':
-                    el.text = attributeValue ?? 'text';   // this won't like embedded semi-colons, and quotes will require care
+                    el.text = attributeValue   // this won't like embedded semi-colons, and quotes will require care
                     break;
                 case 'letter-spacing':
-                    el.letterSpacing = Number(attributeValue) ?? 0;
+                    el.letterSpacing = Number(attributeValue);
                     break;
                 case 'text-anchor':
-                    el.textAnchor = attributeValue ?? 'start';
+                    el.textAnchor = attributeValue;
                     break;
                 case 'font-size':
-                    el.style.fontSize = Number(attributeValue) ?? 30;
+                    el.style.fontSize = Number(attributeValue);
                     break;
 
             }
