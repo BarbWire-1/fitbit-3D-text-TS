@@ -32,7 +32,6 @@ const construct = (el) => {
     });
     
     //defaults //I HATE THIS!!!
-    
     lightEl.style.fill = lightEl.style.fill ?? "white";
     shadowEl.style.fill = shadowEl.style.fill ?? "red";
     mainEl.text = mainEl.text ?? 'text';
